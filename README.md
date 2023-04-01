@@ -12,6 +12,7 @@ ChatPaths is a communication app for helping non-verbal kids communicate while o
 - Manual ordering and anchoring of paths you don't want sorted
 - Text to Speech prompting
 - Voice recording of prompts for better contextual and familiar cues
+- Multiple user profiles to support therapy and classroom environments
 
 [![Android CI](https://github.com/gyund/chatpaths/actions/workflows/android.yml/badge.svg)](https://github.com/gyund/chatpaths/actions/workflows/android.yml)
 
