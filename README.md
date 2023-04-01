@@ -10,7 +10,9 @@ Non-verbal communication app for helping kids communicate with the world :)
 
 To build a _signed_ release, add these lines to your ~/.gradle/gradle.properties file
 
+```
 chatpathsKeyStoreFile=/Users/username/git/secret.keystore
 chatpathsKeyStorePassword=
 chatpathsKeyStoreAlias=
 chatpathsKeyStoreAliasPassword=
+```
