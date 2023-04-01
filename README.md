@@ -5,6 +5,8 @@
 # chatpaths
 Non-verbal communication app for helping kids communicate with the world :)
 
+[![Android CI](https://github.com/gyund/chatpaths/actions/workflows/android.yml/badge.svg)](https://github.com/gyund/chatpaths/actions/workflows/android.yml)
+
 <a href='https://play.google.com/store/apps/details?id=com.gy.chatpaths.aac.app'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' style="max-width:100%;"/></a>
 
 ## Incorporated Works
