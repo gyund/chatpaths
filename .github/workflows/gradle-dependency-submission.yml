@@ -22,17 +22,6 @@ jobs:
           restore-keys: |
             gradle-${{ runner.os }}-
           
-      - name: 'Checkout Repository'
-        uses: actions/checkout@v3
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Run snapshot action
-        uses: mikepenz/gradle-dependency-submission@main
-        with:
-          gradle-build-module: |-
-            :app
-            :framework
-            :resource
+      - name: Gradle Dependency Submission
+        uses: mikepenz/gradle-dependency-submission@v0.8.6
 
-          sub-module-mode: 'INDIVIDUAL_DEEP'
-          include-build-environment: true
