@@ -1,0 +1,33 @@
+name: Gradle Dependency Submission
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  gradle-action-detection:
+    runs-on: ubuntu-latest
+    # The Dependency Submission API requires write permission
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      
+      - name: Gradle Dependency Submission
+        uses: mikepenz/gradle-dependency-submission@v0.8.6
+        with:
+          gradle-build-module: |-
+            :app
+            :framework
+            :resource
+          
+
