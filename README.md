@@ -18,6 +18,19 @@ ChatPaths is a communication app for helping non-verbal kids communicate while o
 
 <a href='https://play.google.com/store/apps/details?id=com.gy.chatpaths.aac.app'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' style="max-width:100%;"/></a>
 
+## Structure
+
+```
+chatpaths
+    |
+    ----- app       = core UI & DI code
+    |
+    ----- framework = database & DAO
+    |
+    ----- resource  = images
+```
+
+
 ## Incorporated Works
 
 Chatpaths makes use of a number of 3rd party visual resources as well as compositions and 
