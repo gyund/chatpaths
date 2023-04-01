@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/userFragment"
+            android:icon="@drawable/ic_baseline_supervised_user_circle_24"
+            android:title="@string/switch_users" />
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_navigation_24"
+            android:title="@string/menu_home" />
+    </group>
+    <group android:id="@+id/drawer_subgroup">
+        <item
+            android:id="@+id/settingsFragment"
+            android:title="@string/action_settings" />
+        <item
+            android:id="@+id/help"
+            android:title="@string/help"
+            android:visible="false" />
+    </group>
+    <group>
+        <item
+            android:id="@+id/facebook"
+            android:title="@string/visit_facebook"
+            android:visible="false" />
+    </group>
+    <group>
+        <item
+            android:id="@+id/sendFeedback"
+            android:title="@string/feedback"
+            android:visible="false" />
+        <item
+            android:id="@+id/licenseFragment"
+            android:title="@string/licenses" />
+    </group>
+</menu>

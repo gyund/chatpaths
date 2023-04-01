@@ -1,0 +1,394 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 8,
+    "identityHash": "a06eec80f4781fb60844f0714830f0e7",
+    "entities": [
+      {
+        "tableName": "Path",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pathId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `defaultTitleStringResource` TEXT, `imageResource` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "pathId",
+            "columnName": "pathId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "defaultTitleStringResource",
+            "columnName": "defaultTitleStringResource",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "imageResource",
+            "columnName": "imageResource",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "pathId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "PathCollection",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`collectionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "collectionId",
+            "columnName": "collectionId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "collectionId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "PathToCollections",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pathCollectionId` INTEGER NOT NULL, `pathId` INTEGER NOT NULL, `parentId` INTEGER, `defaultOrder` INTEGER NOT NULL DEFAULT 0, FOREIGN KEY(`pathId`) REFERENCES `Path`(`pathId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`pathCollectionId`) REFERENCES `PathCollection`(`collectionId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`parentId`) REFERENCES `Path`(`pathId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pathCollectionId",
+            "columnName": "pathCollectionId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pathId",
+            "columnName": "pathId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentId",
+            "columnName": "parentId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "defaultOrder",
+            "columnName": "defaultOrder",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_PathToCollections_pathCollectionId_pathId_parentId",
+            "unique": true,
+            "columnNames": [
+              "pathCollectionId",
+              "pathId",
+              "parentId"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_PathToCollections_pathCollectionId_pathId_parentId` ON `${TABLE_NAME}` (`pathCollectionId`, `pathId`, `parentId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Path",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "pathId"
+            ],
+            "referencedColumns": [
+              "pathId"
+            ]
+          },
+          {
+            "table": "PathCollection",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "pathCollectionId"
+            ],
+            "referencedColumns": [
+              "collectionId"
+            ]
+          },
+          {
+            "table": "Path",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parentId"
+            ],
+            "referencedColumns": [
+              "pathId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "PathUserML",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` INTEGER NOT NULL, `pathCollectionId` INTEGER NOT NULL, `pathId` INTEGER NOT NULL, `enabled` INTEGER NOT NULL DEFAULT true, `timesUsed` INTEGER NOT NULL DEFAULT 0, `pathOrder` INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(`userId`, `pathCollectionId`, `pathId`), FOREIGN KEY(`userId`) REFERENCES `PathUser`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`pathCollectionId`) REFERENCES `PathCollection`(`collectionId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`pathId`) REFERENCES `Path`(`pathId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pathCollectionId",
+            "columnName": "pathCollectionId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pathId",
+            "columnName": "pathId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enabled",
+            "columnName": "enabled",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "true"
+          },
+          {
+            "fieldPath": "timesUsed",
+            "columnName": "timesUsed",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "pathOrder",
+            "columnName": "pathOrder",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "userId",
+            "pathCollectionId",
+            "pathId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "PathUser",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "userId"
+            ],
+            "referencedColumns": [
+              "userId"
+            ]
+          },
+          {
+            "table": "PathCollection",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "pathCollectionId"
+            ],
+            "referencedColumns": [
+              "collectionId"
+            ]
+          },
+          {
+            "table": "Path",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "pathId"
+            ],
+            "referencedColumns": [
+              "pathId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "PathUser",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "userId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "UserPathCustomizations",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pathId` INTEGER NOT NULL, `title` TEXT, `imageResource` TEXT, PRIMARY KEY(`pathId`))",
+        "fields": [
+          {
+            "fieldPath": "pathId",
+            "columnName": "pathId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "imageResource",
+            "columnName": "imageResource",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "pathId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_UserPathCustomizations_pathId",
+            "unique": false,
+            "columnNames": [
+              "pathId"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_UserPathCustomizations_pathId` ON `${TABLE_NAME}` (`pathId`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "UserPathUniqueImages",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `userId` INTEGER NOT NULL, `pathId` INTEGER NOT NULL, `imageResource` TEXT NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`userId`) REFERENCES `PathUser`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`pathId`) REFERENCES `Path`(`pathId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pathId",
+            "columnName": "pathId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageResource",
+            "columnName": "imageResource",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_UserPathUniqueImages_userId_pathId",
+            "unique": true,
+            "columnNames": [
+              "userId",
+              "pathId"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_UserPathUniqueImages_userId_pathId` ON `${TABLE_NAME}` (`userId`, `pathId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "PathUser",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "userId"
+            ],
+            "referencedColumns": [
+              "userId"
+            ]
+          },
+          {
+            "table": "Path",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "pathId"
+            ],
+            "referencedColumns": [
+              "pathId"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [
+      {
+        "viewName": "PathUserDetail",
+        "createSql": "CREATE VIEW `${VIEW_NAME}` AS SELECT PU.userId, P.pathId, P.imageResource as defaultImageResource, P.defaultTitleStringResource, P2C.parentId, P2C.defaultOrder, PC.collectionId, PC.name AS collectionName, COALESCE(PUML.enabled,1) as enabled, COALESCE(PUML.timesUsed,0) as timesUsed, COALESCE(PUML.pathOrder,0) as pathOrder, UPC.title AS userTitle, UPC.imageResource AS userSharedImageUri, UPUI.imageResource AS userIndividualImageUri FROM PathUser AS PU INNER JOIN Path AS P INNER JOIN PathToCollections AS P2C ON P2C.pathId = P.pathId LEFT JOIN UserPathCustomizations AS UPC ON P.pathId = UPC.pathId LEFT JOIN PathUserML AS PUML ON PUML.userId = PU.userId AND PUML.pathId = P.pathId AND PUML.pathCollectionId = P2C.pathCollectionId LEFT JOIN PathCollection AS PC ON PC.collectionId = P2C.pathCollectionId LEFT JOIN UserPathUniqueImages AS UPUI ON UPUI.userId = PU.userId AND UPUI.pathId = P.pathId"
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a06eec80f4781fb60844f0714830f0e7')"
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/copyToUser"
+        android:icon="@drawable/ic_baseline_content_copy_24"
+        android:iconTint="@color/primaryTextColor"
+        android:title="@string/copy_to_user"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/readOutLoud"
+        android:icon="@drawable/ic_baseline_volume_up_24"
+        android:iconTint="@color/primaryTextColor"
+        android:title="@string/read_out_loud_preference_title"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:title="@string/reset"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/restoreOrderMenu"
+                android:title="@string/path_order" />
+            <item
+                android:id="@+id/resetSortingStatsMenu"
+                android:title="@string/statistics" />
+        </menu>
+    </item>
+
+</menu>

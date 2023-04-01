@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#000000</color>
+
+    <color name="primaryColor">#ffc400</color>
+    <color name="primaryLightColor">#fff64f</color>
+    <color name="primaryDarkColor">#c79400</color>
+    <color name="secondaryColor">#ffab00</color>
+    <color name="secondaryLightColor">#ffdd4b</color>
+    <color name="secondaryDarkColor">#c67c00</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#000000</color>
+
+    <color name="colorOnBackground">#FFFFFF</color>
+
+
+    <color name="cardviewBackgroundColor">#D9202020</color>
+    <color name="negativeColor">#EF5350</color>
+
+</resources>

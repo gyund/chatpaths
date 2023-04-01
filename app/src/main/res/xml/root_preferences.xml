@@ -1,0 +1,71 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/general_preference_title">
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="keep_screen_awake_preference"
+            android:summaryOff="@string/keep_awake_preference_summary_off"
+            android:summaryOn="@string/keep_awake_preference_summary_on"
+            android:title="@string/keep_awake_preference_title" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="read_out_loud_preference"
+            android:summaryOff="@string/read_out_loud_preference_summary_off"
+            android:summaryOn="@string/read_out_loud_preference_summary_on"
+            android:title="@string/read_out_loud_preference_title" />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/path">
+
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:key="fixed_path_text_color"
+            app:summaryOff="@string/fixed_path_text_summary_off_text"
+            app:summaryOn="@string/fixed_path_text_summary_on_text"
+            app:title="@string/fixed_color_preference_title" />
+
+        <!--
+                <EditTextPreference
+                    app:key="signature"
+                    app:title="@string/signature_title"
+                    app:useSimpleSummaryProvider="true" />
+
+                <ListPreference
+                    app:defaultValue="reply"
+                    app:entries="@array/reply_entries"
+                    app:entryValues="@array/reply_values"
+                    app:key="reply"
+                    app:title="@string/reply_title"
+                    app:useSimpleSummaryProvider="true" />
+
+            </PreferenceCategory>
+
+            <PreferenceCategory app:title="@string/sync_header">
+
+                <SwitchPreferenceCompat
+                    app:key="sync"
+                    app:title="@string/sync_title" />
+
+                <SwitchPreferenceCompat
+                    app:dependency="sync"
+                    app:key="attachment"
+                    app:summaryOff="@string/attachment_summary_off"
+                    app:summaryOn="@string/attachment_summary_on"
+                    app:title="@string/attachment_title" />
+
+        -->
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Analytics"
+        app:isPreferenceVisible="false">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_preference_anonymous_usage_statistics"
+            android:summaryOff="Don't report path names and usage statistics"
+            android:summaryOn="Report path names and usage statistics not marked as sensitive"
+            android:title="Anonymous Statistics" />
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

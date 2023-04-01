@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>uri_facebook</key>
+        <value>https://www.facebook.com/ChatPaths</value>
+    </entry>
+    <entry>
+        <key>review_check_interval</key>
+        <value>5</value>
+    </entry>
+</defaultsMap>

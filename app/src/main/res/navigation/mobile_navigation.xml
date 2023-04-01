@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.gy.chatpaths.aac.app.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_userFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_licenseFragment2"
+            app:destination="@id/licenseFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_smartchatCommonFragment"
+            app:destination="@id/smartchatCommonFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_templateFragment"
+            app:destination="@id/templateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/licenseFragment"
+        android:name="com.gy.chatpaths.aac.app.ui.license.LicenseFragment"
+        android:label="License Info"
+        tools:layout="@layout/fragment_license" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.gy.chatpaths.aac.app.ui.home.SettingsFragment"
+        android:label="@string/settings" />
+
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.gy.chatpaths.aac.app.ui.manager.user.UserFragment"
+        android:label="@string/user_fragment_title"
+        tools:layout="@layout/user_fragment">
+        <action
+            android:id="@+id/action_userFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.gy.chatpaths.aac.app.ui.manager.userdetail.UserDetailFragment"
+        android:label="@string/user_details_fragment_title"
+        tools:layout="@layout/user_detail">
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_userDetailFragment_to_collectionDetailFragment"
+            app:destination="@id/collectionDetailFragment" />
+        <action
+            android:id="@+id/action_userDetailFragment_to_imageSelectFragment"
+            app:destination="@id/imageSelectFragment" />
+        <action
+            android:id="@+id/action_userDetailFragment_to_templateFragment"
+            app:destination="@id/templateFragment" />
+        <argument
+            android:name="usingCollection"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/smartchatCommonFragment"
+        android:name="com.gy.chatpaths.aac.app.ui.smartchat.SmartchatCommonFragment"
+        android:label=""
+        tools:layout="@layout/fragment_smartchat_root">
+        <argument
+            android:name="collection_id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_smartchatCommonFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment" />
+        <action
+            android:id="@+id/action_smartchatCommonFragment_to_pathsFragment"
+            app:destination="@id/pathsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/collectionDetailFragment"
+        android:name="com.gy.chatpaths.aac.app.ui.manager.collectiondetail.CollectionDetailFragment"
+        android:label="@string/path_collection_details_fragment_title"
+        tools:layout="@layout/fragment_collection_detail">
+        <argument
+            android:name="collection_id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_collectionDetailFragment_to_imageSelectFragment"
+            app:destination="@id/imageSelectFragment" />
+        <argument
+            android:name="usingCollection"
+            app:argType="boolean" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_nav_home"
+        app:destination="@id/nav_home"
+        app:popUpTo="@id/nav_home"
+        app:popUpToInclusive="true" />
+    <action
+        android:id="@+id/action_global_nav_settings"
+        app:destination="@id/settingsFragment" />
+    <fragment
+        android:id="@+id/pathsDetailFragment"
+        android:name="com.gy.chatpaths.aac.app.ui.manager.pathdetail.PathsDetailFragment"
+        android:label="@string/paths_detail_fragment_name"
+        tools:layout="@layout/fragment_path_detail">
+        <argument
+            android:name="collectionId"
+            app:argType="integer" />
+        <argument
+            android:name="parentId"
+            app:argType="integer" />
+        <argument
+            android:name="pathId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_pathsDetailFragment_to_pathsFragment"
+            app:destination="@id/pathsFragment"
+            app:popUpTo="@id/pathsFragment" />
+        <action
+            android:id="@+id/action_pathsDetailFragment_to_imageSelectFragment"
+            app:destination="@id/imageSelectFragment" />
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/pathsFragment"
+        android:name="com.gy.chatpaths.aac.app.ui.manager.path.PathsFragment"
+        android:label="@string/paths_fragment_name"
+        tools:layout="@layout/fragment_paths">
+        <action
+            android:id="@+id/action_pathsFragment_to_pathsDetailFragment"
+            app:destination="@id/pathsDetailFragment" />
+        <argument
+            android:name="collectionId"
+            app:argType="integer" />
+        <argument
+            android:name="parentId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_pathsFragment_to_imageSelectFragment"
+            app:destination="@id/imageSelectFragment" />
+        <action
+            android:id="@+id/action_pathsFragment_to_userSelectorFragment"
+            app:destination="@id/userSelectorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageSelectFragment"
+        android:name="com.gy.chatpaths.aac.app.ui.imageselect.ImageSelectFragment"
+        android:label="@string/imageSelectFragmentTitle"
+        tools:layout="@layout/fragment_imageselect" />
+    <fragment
+        android:id="@+id/templateFragment"
+        android:name="com.gy.chatpaths.aac.app.ui.selector.template.TemplateFragment"
+        android:label="@string/choose_a_template"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/userSelectorFragment"
+        android:name="com.gy.chatpaths.aac.app.ui.selector.user.UserSelectorFragment"
+        android:label="@string/select_a_user" />
+</navigation>

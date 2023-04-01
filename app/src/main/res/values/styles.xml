@@ -1,0 +1,74 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryLightColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryLightColor</item>
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
+        <item name="colorError">#F44336</item>
+        <item name="colorOnError">#FFFFFF</item>
+        <item name="colorSurface">@color/background</item>
+        <item name="colorOnSurface">#FFFFFF</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnBackground">@color/colorOnBackground</item>
+        <item name="editTextStyle">@style/MyEditTextViewStyle</item>
+        <item name="android:navigationBarColor">@color/background</item>
+    </style>
+
+    <style name="EditableTextViewStyle" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:minHeight">48dp</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
+
+    <style name="MyEditTextViewStyle" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:minHeight">48dp</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
+
+    <style name="MyFabStyle" parent="@style/Widget.MaterialComponents.FloatingActionButton">
+        <item name="android:layout_margin">16dp</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/background</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/AppTheme.NoActionBar</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="ToolBarStyle" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/primaryTextColor</item>
+        <item name="android:textColorSecondary">@color/secondaryTextColor</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="android:iconTint">@color/primaryTextColor</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Dark">
+
+    </style>
+
+    <style name="NegativeButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="materialThemeOverlay">@style/RedButtonThemeOverlay</item>
+        <!-- customize colorButtonNormal for the disable color -->
+        <!-- customize colorAccent for the enabled color -->
+    </style>
+
+    <style name="RedButtonThemeOverlay">
+        <!-- For filled buttons, your theme's colorPrimary provides the default background color of the component -->
+        <item name="colorPrimary">@color/negativeColor</item>
+    </style>
+
+
+</resources>

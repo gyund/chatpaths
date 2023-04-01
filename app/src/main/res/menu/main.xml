@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/createCollection"
+        android:icon="@drawable/ic_baseline_add_textcolor_24"
+        android:title="@string/create"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/userDetailFragment"
+        android:title="@string/configure"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/organizeCollections"
+        android:title="@string/organize_collections"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/resetHelp"
+        android:orderInCategory="100"
+        android:title="@string/reset_help"
+        app:showAsAction="never" />
+</menu>
