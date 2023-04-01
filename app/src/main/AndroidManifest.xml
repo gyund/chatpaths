@@ -62,7 +62,6 @@
         </service>
 
         <activity
-            android:label="${applicationName}"
             android:name=".MainActivity"
             android:theme="@style/SplashTheme"
             android:exported="true">
