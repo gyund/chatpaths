@@ -15,7 +15,7 @@ ext {
     // Year.Month.MajorVersion.patch
     app_version = getDate()
     app_major_version = 1
-    app_version_code = 131
+    app_version_code = 132
     app_version_name = "$app_version.$app_major_version.$app_version_code"
 
     def keystoreFilePropertyKey = "chatpathsKeyStoreFile"
@@ -124,7 +124,6 @@ dependencies {
     implementation 'androidx.preference:preference-ktx:1.2.0'
     implementation 'androidx.palette:palette-ktx:1.0.0'
     implementation 'androidx.fragment:fragment-ktx:1.5.6'
-//    implementation 'com.google.firebase:firebase-ads:19.6.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
     // In-app review
