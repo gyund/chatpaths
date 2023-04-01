@@ -18,6 +18,11 @@ ext {
     app_version_code = 132
     app_version_name = "$app_version.$app_major_version.$app_version_code"
 
+    storeFile = null
+    storePassword = null
+    keyAlias = null
+    keyPassword = null
+
     def keystoreFilePropertyKey = "chatpathsKeyStoreFile"
     if (project.hasProperty(keystoreFilePropertyKey)) {
         storeFile = file(project.getProperty(keystoreFilePropertyKey))
