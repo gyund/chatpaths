@@ -2,8 +2,16 @@
     <img src="https://repository-images.githubusercontent.com/621977748/fe1876d7-8b11-4fb1-adee-112fe2ce15d6" />
 </p>
 
-# chatpaths
-Non-verbal communication app for helping kids communicate with the world :)
+# Overview
+
+ChatPaths is a communication app for helping non-verbal kids communicate while on the go. Currently it supports:
+
+- Building and customizing personalized communication paths
+- Contrasting color scheme to support visual needs
+- Smart sorting algorithms to allow one-touch reordering of speech paths based on usage
+- Manual ordering and anchoring of paths you don't want sorted
+- Text to Speech prompting
+- Voice recording of prompts for better contextual and familiar cues
 
 [![Android CI](https://github.com/gyund/chatpaths/actions/workflows/android.yml/badge.svg)](https://github.com/gyund/chatpaths/actions/workflows/android.yml)
 
