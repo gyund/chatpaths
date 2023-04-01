@@ -5,6 +5,14 @@
 # chatpaths
 Non-verbal communication app for helping kids communicate with the world :)
 
+## Incorporated Works
+
+Chatpaths makes use of a number of 3rd party visual resources as well as compositions and 
+modifications of these resources to provide visuals. These include:
+
+- [googlefonts/noto-emoji](https://github.com/googlefonts/noto-emoji/blob/master/LICENSE)
+- [twitter/twemoji](https://github.com/twitter/twemoji/blob/master/LICENSE-GRAPHICS) 
+- [openmoji](https://github.com/hfg-gmuend/openmoji/blob/master/LICENSE.txt)
 
 ## Signing a Release
 
