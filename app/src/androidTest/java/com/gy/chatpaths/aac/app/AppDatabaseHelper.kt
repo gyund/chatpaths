@@ -15,9 +15,7 @@ import org.junit.rules.ErrorCollector
 open class AppDatabaseHelper {
     private lateinit var pathDao: PathDao
     private lateinit var pathCollectionDao: PathCollectionDao
-    private lateinit var pathToCollectionsDao: PathToCollectionsDao
     private lateinit var pathUserDao: PathUserDao
-    private lateinit var pathUserML: PathUserMLDao
     lateinit var db: AppDatabase
     lateinit var context: Context
     lateinit var repository: CPRepository
@@ -39,9 +37,7 @@ open class AppDatabaseHelper {
 
         pathDao = db.pathDao()
         pathCollectionDao = db.pathCollectionDao()
-        pathToCollectionsDao = db.pathToCollectionsDao()
         pathUserDao = db.pathUserDao()
-        pathUserML = db.pathUserMLDao()
     }
 
     @After
