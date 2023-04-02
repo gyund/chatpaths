@@ -1,6 +1,12 @@
-[![Android CI](https://github.com/gyund/chatpaths/actions/workflows/android.yml/badge.svg)](https://github.com/gyund/chatpaths/actions/workflows/android.yml)
-[![CodeQL](https://github.com/gyund/chatpaths/actions/workflows/codeql.yml/badge.svg)](https://github.com/gyund/chatpaths/actions/workflows/codeql.yml)
-[![Gradle Dependency Submission](https://github.com/gyund/chatpaths/actions/workflows/gradle-dependency-submission.yml/badge.svg)](https://github.com/gyund/chatpaths/actions/workflows/gradle-dependency-submission.yml)
+<p align="center">
+    <a href='https://github.com/gyund/chatpaths/actions/workflows/android.yml'><img src="https://github.com/gyund/chatpaths/actions/workflows/android.yml/badge.svg" /></a>
+    <a href='https://github.com/gyund/chatpaths/actions/workflows/codeql.yml'><img src="https://github.com/gyund/chatpaths/actions/workflows/codeql.yml/badge.svg" /></a>
+    <a href='https://github.com/gyund/chatpaths/actions/workflows/gradle-dependency-submission.yml'><img src="https://github.com/gyund/chatpaths/actions/workflows/gradle-dependency-submission.yml/badge.svg" /></a>
+</p>
+
+<p align="center">
+    <img src="https://repository-images.githubusercontent.com/621977748/fe1876d7-8b11-4fb1-adee-112fe2ce15d6" />
+</p>
 
 ChatPaths is a communication app for helping non-verbal kids communicate while on the go. Currently it supports:
 
@@ -12,12 +18,9 @@ ChatPaths is a communication app for helping non-verbal kids communicate while o
 - Voice recording of prompts for better contextual and familiar cues
 - Multiple user profiles to support therapy and classroom environments
 
-<p align="center">
-    <img src="https://repository-images.githubusercontent.com/621977748/fe1876d7-8b11-4fb1-adee-112fe2ce15d6" />
-</p>
 
 <p align="center">
-<a href='https://play.google.com/store/apps/details?id=com.gy.chatpaths.aac.app'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' style="max-width:100%;"/></a>
+    <a href='https://play.google.com/store/apps/details?id=com.gy.chatpaths.aac.app'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'"/></a>
 </p>
 
 ## Structure
