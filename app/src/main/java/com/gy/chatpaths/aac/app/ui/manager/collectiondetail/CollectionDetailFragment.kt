@@ -47,7 +47,6 @@ class CollectionDetailFragment : CommonFeatureFragment() {
                             setupCollectionImage(ctx, it)
                             binding.editName.setText(
                                 CollectionViewModel.getTitle(
-                                    ctx,
                                     it
                                 )
                             )
@@ -90,7 +89,7 @@ class CollectionDetailFragment : CommonFeatureFragment() {
         it: PathCollection
     ) {
         val drawable = CollectionViewModel.getDrawable(ctx, it)
-        if (CollectionViewModel.isDrawableDefault(ctx, it)) {
+        if (CollectionViewModel.isDrawableDefault(it)) {
             binding.overlay.cardViewOverlay.visibility = View.VISIBLE
             binding.overlay.overlayTextView.text = getString(R.string.configure_image_message)
         } else {

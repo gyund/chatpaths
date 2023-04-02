@@ -48,7 +48,7 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
         ActivityResultContracts.RequestPermission()
     ) {
         if (it) {
-            context?.let { ctx ->
+            context?.let { _ ->
                 launchPromptRecordingDialog()
             }
         }

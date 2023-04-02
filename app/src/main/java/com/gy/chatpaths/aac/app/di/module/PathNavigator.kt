@@ -93,7 +93,7 @@ class PathNavigator @Inject constructor() : LiveData<PathState>() {
         }
     }
 
-    private fun clearCache(andHistory: Boolean = false) {
+    private fun clearCache() {
         if (currentPath != null) {
             currentPath = null
         }
@@ -131,7 +131,7 @@ class PathNavigator @Inject constructor() : LiveData<PathState>() {
         return withContext(dispatcher) {
             collectionId = id
             currentUser.getUser()?.let {
-                clearCache(true)
+                clearCache()
                 initializeNextListRoot(it, id)
 
                 return@withContext next()
@@ -359,7 +359,7 @@ class PathNavigator @Inject constructor() : LiveData<PathState>() {
                 // fetch new data
                 collectionId?.let { id ->
                     currentUser.getUser()?.let {
-                        clearCache(true)
+                        clearCache()
                         initializeNextListRoot(it, id)
 
                         next()

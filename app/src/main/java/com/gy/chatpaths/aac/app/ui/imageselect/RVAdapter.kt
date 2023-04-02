@@ -2,7 +2,6 @@ package com.gy.chatpaths.aac.app.ui.imageselect
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gy.chatpaths.aac.app.BindableAdapter
@@ -64,12 +63,12 @@ class RVAdapter(
                 Log.d("RVAdapter", "image is not available: $resourceOrUri")
             }
             //binding.outercardview.setCardBackgroundColor(getColor(context, R.color.primaryDarkColor))
-            fun onPathClicked(it: View) {
+            fun onPathClicked() {
                 listener.selectImage(resourceOrUri)
             }
 
             binding.innercardview.setOnClickListener {
-                onPathClicked(it)
+                onPathClicked()
             }
         }
     }
