@@ -1,14 +1,23 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: "androidx.navigation.safeargs.kotlin"
-apply plugin: 'dagger.hilt.android.plugin'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id "androidx.navigation.safeargs.kotlin"
+    id 'dagger.hilt.android.plugin'
+    id("com.diffplug.spotless") version "6.17.0"
+}
 
 if (getGradle().getStartParameter().getTaskRequests().toString().contains("Release")) {
     apply plugin: 'com.google.gms.google-services'
     apply plugin: 'com.google.firebase.crashlytics'
 } else if (getGradle().getStartParameter().getTaskRequests().toString().contains("Debug")) {
 
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+    }
 }
 
 ext {
