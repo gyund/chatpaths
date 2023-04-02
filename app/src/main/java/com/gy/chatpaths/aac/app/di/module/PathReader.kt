@@ -69,7 +69,9 @@ class PathReader @Inject constructor(@ApplicationContext val context: Context) :
                 val agc = AutomaticGainControl.create(audioSessionId)
                 agc.enabled = true
                 agc
-            } else null
+            } else {
+                null
+            }
 
             fun onFailure(e: Exception) {
                 Log.d(TAG, "exception with play: $e")
@@ -95,7 +97,6 @@ class PathReader @Inject constructor(@ApplicationContext val context: Context) :
             }
         }
     }
-
 
     private fun read(paths: List<Path>) {
         val last = paths.lastOrNull()
@@ -127,7 +128,7 @@ class PathReader @Inject constructor(@ApplicationContext val context: Context) :
      */
     suspend fun readAfter(
         pathNavigator: PathNavigator,
-        code: suspend () -> Unit
+        code: suspend () -> Unit,
     ) {
         // Make a copy
         val pathToRead = pathNavigator.parentHistory.toMutableList()

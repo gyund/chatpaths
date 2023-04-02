@@ -22,14 +22,13 @@ class SmartchatViewModel @Inject constructor(
     val repository: CPRepository,
     val pathNavigator: PathNavigator,
     val currentUser: CurrentUser,
-    val inAppReview: InAppReview
+    val inAppReview: InAppReview,
 ) : ViewModel() {
 
     /**
      * Sets the current collection and reinitializes the path.
      */
     suspend fun setCurrentCollection(context: Context, collectionId: Int) {
-
         // Only initialize once
         if (null == pathNavigator.collectionId) {
             pathNavigator.setCollection(collectionId)

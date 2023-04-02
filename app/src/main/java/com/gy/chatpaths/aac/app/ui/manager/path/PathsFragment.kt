@@ -5,7 +5,12 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.fragment.app.viewModels
@@ -18,7 +23,11 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.gy.chatpaths.aac.app.*
+import com.gy.chatpaths.aac.app.CommonFeatureFragment
+import com.gy.chatpaths.aac.app.DrawableUtils
+import com.gy.chatpaths.aac.app.MainActivity
+import com.gy.chatpaths.aac.app.R
+import com.gy.chatpaths.aac.app.SwipeToDeleteCallback
 import com.gy.chatpaths.aac.app.databinding.DialogEditPathTitleBinding
 import com.gy.chatpaths.aac.app.databinding.FragmentPathsBinding
 import com.gy.chatpaths.aac.app.di.module.CurrentUser
@@ -30,7 +39,6 @@ import com.gy.chatpaths.aac.data.Path
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 @AndroidEntryPoint
 class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerListener {
@@ -47,6 +55,7 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
 
     @Inject
     lateinit var currentUser: CurrentUser
+
     @Inject
     lateinit var guidedTour: GuidedTour
 
@@ -55,8 +64,9 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentPathsBinding.inflate(layoutInflater, container, false)
         viewmodel.collectionId = args.collectionId
@@ -74,7 +84,6 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
                 context?.let { ctx ->
                     it?.apply {
                         lifecycleScope.launch {
-
                             if (0 == args.parentId) {
                                 val drawable =
                                     DatabaseConversionHelper.getCollectionDrawable(ctx, it)
@@ -117,7 +126,6 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
             }
         }
 
-
         binding.addFab.setOnClickListener {
             showAddPathDialog()
         }
@@ -133,12 +141,12 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
         return if (ro == true) {
             ContextCompat.getDrawable(
                 context,
-                R.drawable.ic_baseline_volume_up_24
+                R.drawable.ic_baseline_volume_up_24,
             )
         } else {
             ContextCompat.getDrawable(
                 context,
-                R.drawable.ic_baseline_volume_off_24
+                R.drawable.ic_baseline_volume_off_24,
             )
         }
     }
@@ -170,7 +178,6 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
 
     @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         return when (item.itemId) {
             R.id.readOutLoud -> {
                 toggleReadOutloud()
@@ -220,7 +227,6 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
                 .setNegativeButton(it.getString(R.string.cancel)) { _, _ -> }
                 .show()
         }
-
     }
 
     /**
@@ -261,7 +267,6 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
     }
 
     override fun showEditCollectionTitleDialog() {
-
         val alertView = DialogEditPathTitleBinding.inflate(layoutInflater)
         if (!binding.header.name.text.isNullOrBlank()) {
             alertView.editPathTitleView.setText(binding.header.name.text.toString())
@@ -275,7 +280,7 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
                 .setTitle(getString(R.string.edit_collection_dialog_title))
                 .setMessage(getString(R.string.edit_collection_dialog_message))
                 .setPositiveButton(
-                    getString(R.string.modify)
+                    getString(R.string.modify),
                 ) { _, _ ->
                     val collectionName = alertView.editPathTitleView.text.toString()
                     binding.header.name.text = collectionName
@@ -285,9 +290,9 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
                     }
                 }
                 .setNegativeButton(
-                    getString(R.string.cancel)
+                    getString(R.string.cancel),
                 ) { _, _ ->
-                    //nothing
+                    // nothing
                 }
                 .show()
         }
@@ -297,7 +302,6 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
         lifecycleScope.launch {
             viewmodel.setIsEnabled(pathId, enabled)
         }
-
     }
 
     override fun setPathPosition(pathId: Int, position: Int?) {
@@ -313,7 +317,6 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
     }
 
     override fun showAddPathDialog() {
-
         val alertView = DialogEditPathTitleBinding.inflate(layoutInflater)
 
         context?.let {
@@ -321,7 +324,7 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
                 .setView(alertView.root)
                 .setTitle(getString(R.string.add_path))
                 .setPositiveButton(
-                    getString(R.string.modify)
+                    getString(R.string.modify),
                 ) { _, _ ->
                     val pathName = alertView.editPathTitleView.text.toString()
 
@@ -331,14 +334,13 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
                     }
                 }
                 .setNegativeButton(
-                    getString(R.string.cancel)
+                    getString(R.string.cancel),
                 ) { _, _ ->
-                    //nothing
+                    // nothing
                 }
                 .show()
         }
     }
-
 
     private fun setupRecyclerView() {
         val frag = this
@@ -349,7 +351,7 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
                 else -> GridLayoutManager(context, columnCount)
             }
             // We attach in onResume
-            //binding.list.adapter = adapter
+            // binding.list.adapter = adapter
 
             val callback = SimpleItemTouchHelperCallback(adapter)
             itemTouchHelper = ItemTouchHelper(callback)
@@ -364,7 +366,7 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
 
                 override fun getSwipeDirs(
                     recyclerView: RecyclerView,
-                    viewHolder: RecyclerView.ViewHolder
+                    viewHolder: RecyclerView.ViewHolder,
                 ): Int {
                     viewHolder.itemView.getTag(R.id.collection_id)?.let {
                         return super.getSwipeDirs(recyclerView, viewHolder)
@@ -392,21 +394,20 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
             binding.addFab,
             GuidedTour.Dialog.PATH_ADD,
             getString(R.string.onboard_add_path_primary),
-            getString(R.string.onboard_add_path_secondary)
+            getString(R.string.onboard_add_path_secondary),
         ).addGuidedEntry(
             R.id.copyToUser,
             GuidedTour.Dialog.PATH_COPY_TO_USER,
             getString(R.string.onboard_path_copy_to_user_primary),
             getString(R.string.onboard_path_copy_to_user_secondary),
-            targetIcon = R.drawable.ic_baseline_content_copy_24
+            targetIcon = R.drawable.ic_baseline_content_copy_24,
         ).addGuidedEntry(
             R.id.readOutLoud,
             GuidedTour.Dialog.PATH_READ_OUT_LOUD,
             getString(R.string.onboard_path_read_out_loud_primary),
             getString(R.string.onboard_path_read_out_loud_secondary),
-            targetIcon = R.drawable.ic_baseline_volume_up_24
+            targetIcon = R.drawable.ic_baseline_volume_up_24,
         ).show(this)
-
     }
 
     override fun onStoreImageUri(uri: Uri) {
@@ -424,5 +425,4 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
             PathsFragmentDirections.actionPathsFragmentToImageSelectFragment()
         findNavController().navigate(action)
     }
-
 }

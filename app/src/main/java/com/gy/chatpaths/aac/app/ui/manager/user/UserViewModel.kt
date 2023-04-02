@@ -13,7 +13,7 @@ import javax.inject.Inject
 class UserViewModel @Inject constructor(
     val savedStateHandle: SavedStateHandle,
     val repository: CPRepository,
-    val currentUser: CurrentUser
+    val currentUser: CurrentUser,
 ) : ViewModel() {
 
     suspend fun setUser(user: PathUser) {

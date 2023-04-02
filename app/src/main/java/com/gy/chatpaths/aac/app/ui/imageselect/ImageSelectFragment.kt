@@ -2,7 +2,11 @@ package com.gy.chatpaths.aac.app.ui.imageselect
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -28,15 +32,16 @@ class ImageSelectFragment : Fragment(), ImageSelectListener {
 
     @Inject
     lateinit var currentUser: CurrentUser
+
     @Inject
     lateinit var firebase: Firebase
 
-    var adapter : RVAdapter? = null
+    var adapter: RVAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binder = FragmentImageselectBinding.inflate(layoutInflater, container, false)
 

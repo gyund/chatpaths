@@ -16,6 +16,4 @@ interface CPDataSource :
      */
     suspend fun translateStrings(context: Context)
     suspend fun copyCollectionToUser(srcUserId: Int, dstUserId: Int, collectionId: Int)
-
-
 }

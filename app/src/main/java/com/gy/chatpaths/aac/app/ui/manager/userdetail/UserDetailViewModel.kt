@@ -16,7 +16,7 @@ import kotlin.properties.Delegates
 @HiltViewModel
 class UserDetailViewModel @Inject constructor(
     val savedStateHandle: SavedStateHandle,
-    val repository: CPRepository
+    val repository: CPRepository,
 ) : ViewModel() {
 
     var userId by Delegates.notNull<Int>()
@@ -45,7 +45,7 @@ class UserDetailViewModel @Inject constructor(
         fun getLiveCollection(
             repository: CPRepository,
             userId: Int,
-            enabledOnly: Boolean
+            enabledOnly: Boolean,
         ): LiveData<List<PathCollection>> {
             return repository.getLivePathCollections(userId, enabledOnly)
         }
@@ -53,11 +53,9 @@ class UserDetailViewModel @Inject constructor(
         suspend fun getCollection(
             repository: CPRepository,
             userId: Int,
-            enabledOnly: Boolean
+            enabledOnly: Boolean,
         ): List<PathCollection> {
             return repository.getPathCollections(userId, enabledOnly)
         }
-
-
     }
 }

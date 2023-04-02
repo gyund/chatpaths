@@ -19,13 +19,13 @@ class LocalCPDataSourceTest {
 
     private lateinit var pathDao: PathDao
     private lateinit var db: AppDatabase
-    private lateinit var lds : LocalCPDataSource
+    private lateinit var lds: LocalCPDataSource
 
     @get:Rule
     var tempFolder: TemporaryFolder = TemporaryFolder()
 
     @Before
-    fun setUp()  {
+    fun setUp() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java).build()
         pathDao = db.pathDao()
@@ -35,8 +35,9 @@ class LocalCPDataSourceTest {
                 PathUser(
                     1,
                     "",
-                    null
-                ), false
+                    null,
+                ),
+                false,
             )
         }
     }
@@ -66,9 +67,10 @@ class LocalCPDataSourceTest {
         runBlocking {
             lds.addCollection(
                 PathCollection(
-                    1, 1,
-                    imageUri = fileUri
-                )
+                    1,
+                    1,
+                    imageUri = fileUri,
+                ),
             )
             lds.deleteImageIfNotUsed(fileUri)
             // File should not be deleted because it's in use
@@ -85,9 +87,10 @@ class LocalCPDataSourceTest {
         runBlocking {
             lds.addCollection(
                 PathCollection(
-                1, 1,
-                imageUri = null
-            )
+                    1,
+                    1,
+                    imageUri = null,
+                ),
             )
 
             lds.addPath(
@@ -97,7 +100,7 @@ class LocalCPDataSourceTest {
                 anchored = false,
                 position = null,
                 parentId = null,
-                title = null
+                title = null,
             )
             lds.deleteImageIfNotUsed(fileUri)
             // File should not be deleted because it's in use

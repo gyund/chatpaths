@@ -1,12 +1,15 @@
 package com.gy.chatpaths.aac.app
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
 import android.graphics.drawable.ColorDrawable
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-
 
 abstract class SwipeToDeleteCallback(context: Context) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -18,10 +21,9 @@ abstract class SwipeToDeleteCallback(context: Context) :
     private val backgroundColor = Color.parseColor("#f44336")
     private val clearPaint = Paint().apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
 
-
     override fun getMovementFlags(
         recyclerView: RecyclerView,
-        viewHolder: RecyclerView.ViewHolder
+        viewHolder: RecyclerView.ViewHolder,
     ): Int {
         /**
          * To disable "swipe" for specific item return 0 here.
@@ -36,7 +38,7 @@ abstract class SwipeToDeleteCallback(context: Context) :
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
-        target: RecyclerView.ViewHolder
+        target: RecyclerView.ViewHolder,
     ): Boolean {
         return false
     }
@@ -48,9 +50,8 @@ abstract class SwipeToDeleteCallback(context: Context) :
         dX: Float,
         dY: Float,
         actionState: Int,
-        isCurrentlyActive: Boolean
+        isCurrentlyActive: Boolean,
     ) {
-
         val itemView = viewHolder.itemView
         val itemHeight = itemView.bottom - itemView.top
         val isCanceled = dX == 0f && !isCurrentlyActive
@@ -61,7 +62,7 @@ abstract class SwipeToDeleteCallback(context: Context) :
                 itemView.right + dX,
                 itemView.top.toFloat(),
                 itemView.right.toFloat(),
-                itemView.bottom.toFloat()
+                itemView.bottom.toFloat(),
             )
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
             return
@@ -73,7 +74,7 @@ abstract class SwipeToDeleteCallback(context: Context) :
             itemView.right + dX.toInt(),
             itemView.top,
             itemView.right,
-            itemView.bottom
+            itemView.bottom,
         )
         background.draw(c)
 

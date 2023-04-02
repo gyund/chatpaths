@@ -4,8 +4,9 @@ import com.gy.chatpaths.aac.resource.R
 import com.gy.chatpaths.aac.resource.create.Collection
 import com.gy.chatpaths.aac.resource.create.Path
 
-class Want (collection: Collection
-) : Path (collection) {
+class Want(
+    collection: Collection,
+) : Path(collection) {
 
     init {
         setName(R.string.path_i_want)

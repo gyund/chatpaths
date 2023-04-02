@@ -17,7 +17,7 @@ import com.gy.chatpaths.aac.resource.create.Collection
  */
 class RVAdapter(
     private val context: Context,
-    private val listener: TemplateSelectionListener
+    private val listener: TemplateSelectionListener,
 ) : RecyclerView.Adapter<RVAdapter.ViewHolder>(), BindableAdapter<Collection> {
 
     private var values: List<Collection> = emptyList()
@@ -38,10 +38,9 @@ class RVAdapter(
         positions.forEach(this::notifyItemChanged)
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        //.inflate(R.layout.fragment_collections, parent, false)
+        // .inflate(R.layout.fragment_collections, parent, false)
         val binding = FragmentHomeCollectionsBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
@@ -60,19 +59,18 @@ class RVAdapter(
                 DrawableUtils.getDrawableImage(
                     binding.root.context,
                     collection.iconUri?.toString(),
-                    null
-                )
+                    null,
+                ),
             )
             binding.content.text = collection.name
 
             binding.outercardview.setCardBackgroundColor(
                 getColor(
                     context,
-                    R.color.primaryDarkColor
-                )
+                    R.color.primaryDarkColor,
+                ),
             )
             binding.potwView.visibility = View.GONE
-
 
             fun onPathClicked(it: View) {
                 listener.onTemplateSelected(collection)
@@ -99,5 +97,4 @@ class RVAdapter(
 //    init {
 //        setHasStableIds(true)
 //    }
-
 }

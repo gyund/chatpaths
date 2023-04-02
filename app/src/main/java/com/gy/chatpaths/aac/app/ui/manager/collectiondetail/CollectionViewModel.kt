@@ -15,7 +15,7 @@ import kotlin.properties.Delegates
 
 @HiltViewModel
 class CollectionViewModel @Inject constructor(
-    private val repository: CPRepository
+    private val repository: CPRepository,
 ) : ViewModel() {
 
     var collectionId by Delegates.notNull<Int>()
@@ -58,7 +58,7 @@ class CollectionViewModel @Inject constructor(
 
         suspend fun userImageIsNotSet(
             repository: CPRepository,
-            collectionId: Int
+            collectionId: Int,
         ): Boolean {
             val pc = repository.getPathCollection(collectionId)
             return pc?.imageUri?.isBlank() ?: return true

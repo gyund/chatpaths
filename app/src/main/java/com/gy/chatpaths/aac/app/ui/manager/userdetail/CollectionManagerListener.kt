@@ -9,5 +9,4 @@ interface CollectionManagerListener {
     fun updateCollectionOrder(collections: List<PathCollection>)
     fun editCollection(collectionId: Int)
     fun showDeleteCollectionDialog(collectionId: Int, onItemRemoved: (success: Boolean) -> Unit)
-
 }

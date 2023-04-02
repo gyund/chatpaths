@@ -54,7 +54,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      */
     private fun sendNotification(
         notification: RemoteMessage.Notification,
-        data: MutableMap<String, String>
+        data: MutableMap<String, String>,
     ) {
         val channelId =
             notification.channelId ?: getString(R.string.default_notification_channel_id)
@@ -72,7 +72,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val notificationManager = updateNotificationChannel(
             channelId,
             notificationBuilder,
-            getColorOverride(data)
+            getColorOverride(data),
         )
         notificationManager.notify(0, notificationBuilder.build())
     }
@@ -94,7 +94,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      */
     private fun setIntent(
         data: MutableMap<String, String>,
-        notificationBuilder: NotificationCompat.Builder
+        notificationBuilder: NotificationCompat.Builder,
     ) {
         val uri = getUriFromMessageData(data)
         if (null != uri) {
@@ -126,7 +126,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             this,
             0,
             intent,
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_ONE_SHOT
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_ONE_SHOT,
         )
     }
 
@@ -136,7 +136,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     private fun updateNotificationChannel(
         channelId: String,
         notificationBuilder: NotificationCompat.Builder,
-        @ColorInt colorOverride: Int?
+        @ColorInt colorOverride: Int?,
     ): NotificationManager {
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
@@ -160,7 +160,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val channel = NotificationChannel(
             channelId,
             channelName,
-            NotificationManager.IMPORTANCE_DEFAULT
+            NotificationManager.IMPORTANCE_DEFAULT,
         )
         notificationManager.createNotificationChannel(channel)
         return notificationManager
@@ -174,7 +174,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 this,
                 0,
                 intent,
-                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_ONE_SHOT
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_ONE_SHOT,
             )
         } else {
             null

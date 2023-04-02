@@ -3,9 +3,14 @@ package com.gy.chatpaths.aac.app.ui.manager.pathdetail
 import android.Manifest.permission.RECORD_AUDIO
 import android.net.Uri
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
@@ -31,7 +36,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
 
-
     private var _binding: FragmentPathDetailBinding? = null
     private val binding get() = _binding!!
 
@@ -45,7 +49,7 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
     lateinit var mediaRecordingDialog: MediaRecordingDialog
 
     private val recordAudioPermission = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
+        ActivityResultContracts.RequestPermission(),
     ) {
         if (it) {
             context?.let { _ ->
@@ -73,7 +77,6 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
                 null
             }
 
-
             mediaRecordingDialog.recordAudio(fragment, audioPromptUri, onDelete) { uri ->
                 if (null != uri) {
                     lifecycleScope.launch {
@@ -86,8 +89,9 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentPathDetailBinding.inflate(layoutInflater, container, false)
@@ -109,8 +113,8 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
                     binding.editName.setText(
                         DatabaseConversionHelper.getPathTitleString(
                             binding.root.context,
-                            this
-                        )
+                            this,
+                        ),
                     )
                     binding.anchorPath.isChecked = anchored
 
@@ -172,7 +176,7 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
                     val action =
                         PathsDetailFragmentDirections.actionPathsDetailFragmentToPathsFragment(
                             args.collectionId,
-                            args.pathId
+                            args.pathId,
                         )
                     findNavController().navigate(action)
                 }
@@ -197,13 +201,13 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
             binding.addFab,
             GuidedTour.Dialog.PATH_DETAIL_ADD_CHILD,
             getString(R.string.onboard_add_subpath_primary),
-            getString(R.string.onboard_add_subpath_secondary)
+            getString(R.string.onboard_add_subpath_secondary),
         ).addGuidedEntry(
             R.id.gotoChild,
             GuidedTour.Dialog.PATH_DETAIL_GOTO_CHILD,
             getString(R.string.onboard_goto_subpath_primary),
             getString(R.string.onboard_goto_subpath_secondary),
-            targetIcon = R.drawable.ic_baseline_subdirectory_arrow_right_24
+            targetIcon = R.drawable.ic_baseline_subdirectory_arrow_right_24,
         ).show(this)
     }
 
@@ -216,27 +220,25 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
             .setTitle(getString(R.string.add_child_path))
             .setMessage(getString(R.string.create_path_message))
             .setPositiveButton(
-                getString(R.string.create)
+                getString(R.string.create),
             ) { _, _ ->
                 lifecycleScope.launch {
                     viewmodel.getPath()?.apply {
-
                         viewmodel.addChildPath(alertView.editPathTitleView.text.toString())
                         // Now navigate to it
                         val action =
                             PathsDetailFragmentDirections.actionPathsDetailFragmentToPathsFragment(
                                 collectionId,
-                                pathId
+                                pathId,
                             )
                         findNavController().navigate(action)
                     }
-
                 }
             }
             .setNegativeButton(
-                getString(R.string.cancel)
+                getString(R.string.cancel),
             ) { _, _ ->
-                //nothing
+                // nothing
             }
             .show()
     }
@@ -271,7 +273,7 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
             DrawableUtils.getDrawableImage(
                 binding.root.context,
                 null,
-                R.drawable.ic_baseline_image_24
+                R.drawable.ic_baseline_image_24,
             )
             binding.overlay.cardViewOverlay.visibility = VISIBLE
             binding.overlay.overlayTextView.text = getString(R.string.configure_image_message)

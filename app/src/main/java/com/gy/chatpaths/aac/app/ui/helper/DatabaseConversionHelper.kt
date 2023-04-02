@@ -14,7 +14,7 @@ class DatabaseConversionHelper {
         private fun getCollectionDrawable(
             context: Context,
             primaryImage: String?,
-            secondaryImage: String?
+            secondaryImage: String?,
         ): Drawable? {
             val img = if (!primaryImage.isNullOrBlank()) {
                 DrawableUtils.getDrawableImage(context, primaryImage, null)
@@ -22,7 +22,7 @@ class DatabaseConversionHelper {
                 DrawableUtils.getDrawableImage(
                     context,
                     secondaryImage,
-                    R.drawable.ic_baseline_image_24
+                    R.drawable.ic_baseline_image_24,
                 )
             }
             return img
@@ -89,8 +89,5 @@ class DatabaseConversionHelper {
             //            if(null == title) {title = StringUtils.getStringFromStringResourceName(context, path.defaultTitleStringResource, null)}
             return path.name
         }
-
     }
-
-
 }

@@ -4,7 +4,12 @@ import android.content.Context
 import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -37,7 +42,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
 class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, CollectionManagerListener {
 
@@ -55,8 +59,10 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
 
     @Inject
     lateinit var currentUser: CurrentUser
+
     @Inject
     lateinit var guidedTour: GuidedTour
+
     @Inject
     lateinit var repository: CPRepository
 
@@ -69,8 +75,9 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = UserDetailBinding.inflate(layoutInflater, container, false)
 
@@ -108,8 +115,8 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
                                         DrawableUtils.getDrawableImage(
                                             ctx,
                                             pu.displayImage,
-                                            R.drawable.ic_baseline_image_24
-                                        )
+                                            R.drawable.ic_baseline_image_24,
+                                        ),
                                     )
                                 }
 
@@ -123,8 +130,6 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
                                 }
                             }
                         })
-
-
 
                         binding.deleteButton.setOnClickListener {
                             showDeleteUserDialog()
@@ -159,7 +164,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
                 templateId,
                 this,
                 repository,
-                args.userId
+                args.userId,
             ).setName(templateName).build()
         }
     }
@@ -197,7 +202,6 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
                 .setNegativeButton(it.getString(R.string.cancel)) { _, _ -> }
                 .show()
         }
-
     }
 
     override fun onDestroyView() {
@@ -240,7 +244,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
             else -> GridLayoutManager(context, columnCount)
         }
         // We attach in onResume
-        //binding.list.adapter = adapter
+        // binding.list.adapter = adapter
 
         val callback = SimpleItemTouchHelperCallback(adapter)
         itemTouchHelper = ItemTouchHelper(callback)
@@ -254,7 +258,6 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
 //
 //        }
 //        ItemTouchHelper(swipeHandler).attachToRecyclerView(binding.list)
-
     }
 
     private fun showDeleteUserDialog() {
@@ -293,15 +296,14 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
             binding.addFab,
             GuidedTour.Dialog.COLLECTION_ADD,
             getString(R.string.onboard_add_collection_primary),
-            getString(R.string.onboard_add_collection_secondary)
+            getString(R.string.onboard_add_collection_secondary),
         ).addGuidedEntry(
             R.id.fragmentTemplate,
             GuidedTour.Dialog.COLLECTION_ADD_TEMPLATE,
             getString(R.string.onboard_add_collection_template_primary),
             getString(R.string.onboard_add_collection_template_secondary),
-            targetIcon = R.drawable.ic_baseline_image_24
+            targetIcon = R.drawable.ic_baseline_image_24,
         ).show(this)
-
     }
 
     override fun onStoreImageUri(uri: Uri) {
@@ -330,14 +332,12 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
                 // if the insert fails, the username already exists
             }
             .setNegativeButton(getString(R.string.cancel)) { _, _ ->
-
             }
             .show()
         setUsernameValidationOnClickListener(m, binding, ::editUser)
     }
 
     private fun addCollectionDialog() {
-
         val binding = DialogEditCollectionBinding.inflate(layoutInflater)
         val m = MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.add_path_collection_dialog_title))
@@ -355,7 +355,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
     private fun setUsernameValidationOnClickListener(
         dialog: AlertDialog,
         binding: DialogUserNameBinding,
-        action: suspend (name: String) -> Boolean
+        action: suspend (name: String) -> Boolean,
     ) {
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
             if (binding.username.text.toString().isBlank()) {
@@ -400,7 +400,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
         val action =
             UserDetailFragmentDirections.actionUserDetailFragmentToCollectionDetailFragment(
                 collectionId,
-                args.usingCollection
+                args.usingCollection,
             )
         findNavController().navigate(action)
     }
@@ -409,7 +409,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
         fun AlertDialog.onCollectionValidated(
             fragment: Fragment,
             binding: DialogEditCollectionBinding,
-            action: suspend (name: String) -> Unit
+            action: suspend (name: String) -> Unit,
         ): AlertDialog {
             getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
                 if (binding.editCollectionTitleView.text.toString().isBlank()) {

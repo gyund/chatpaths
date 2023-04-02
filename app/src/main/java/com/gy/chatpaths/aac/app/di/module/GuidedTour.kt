@@ -26,9 +26,8 @@ class GuidedTour @Inject constructor() {
         val focalColour: Int?,
         val focalShape: Shape?,
         val target_id: Int? = null,
-        val targetIcon: Int? = null
+        val targetIcon: Int? = null,
     )
-
 
     private val list: Queue<Info> = LinkedList()
     private var current: MaterialTapTargetPrompt? = null
@@ -53,7 +52,7 @@ class GuidedTour @Inject constructor() {
         primaryText: String,
         secondaryText: String,
         focalColour: Int? = null,
-        focalShape: Shape? = null
+        focalShape: Shape? = null,
     ): GuidedTour {
         list.add(
             Info(
@@ -62,8 +61,8 @@ class GuidedTour @Inject constructor() {
                 primaryText = primaryText,
                 secondaryText = secondaryText,
                 focalColour = focalColour,
-                focalShape = focalShape
-            )
+                focalShape = focalShape,
+            ),
         )
         return this
     }
@@ -75,7 +74,7 @@ class GuidedTour @Inject constructor() {
         secondaryText: String,
         focalColour: Int? = null,
         focalShape: Shape? = null,
-        targetIcon: Int? = null
+        targetIcon: Int? = null,
     ): GuidedTour {
         list.add(
             Info(
@@ -86,8 +85,8 @@ class GuidedTour @Inject constructor() {
                 focalColour = focalColour,
                 focalShape = focalShape,
                 target_id = target,
-                targetIcon = targetIcon
-            )
+                targetIcon = targetIcon,
+            ),
         )
         return this
     }
@@ -111,15 +110,15 @@ class GuidedTour @Inject constructor() {
                         .setSecondaryTextColour(
                             activity.resources.getColor(
                                 R.color.background,
-                                null
-                            )
+                                null,
+                            ),
                         )
                         .setPrimaryTextTypeface(Typeface.DEFAULT_BOLD)
                         .setBackgroundColour(
                             it.resources.getColor(
                                 R.color.secondaryDarkColor,
-                                null
-                            )
+                                null,
+                            ),
                         )
                         .setPrimaryText(info.primaryText)
                         .setSecondaryText(info.secondaryText)
@@ -130,13 +129,12 @@ class GuidedTour @Inject constructor() {
                                 // User has pressed the prompt target
                                 prefs.edit().putInt(
                                     tourId,
-                                    VERSION
+                                    VERSION,
                                 ).apply()
                                 current = null
                                 // Show the next if it exists
                                 show(it)
                             }
-
                         }
                     info.focalColour?.let { color ->
                         builder.focalColour = color
@@ -180,11 +178,10 @@ class GuidedTour @Inject constructor() {
         Dialog.values().forEach {
             val tourId = CFG_PREFIX + it.name
             prefs?.edit()?.remove(
-                tourId
+                tourId,
             )?.apply()
         }
     }
-
 
     companion object {
         const val VERSION = 1
@@ -202,11 +199,11 @@ class GuidedTour @Inject constructor() {
         PATH_DETAIL_GOTO_CHILD,
         PATH_COPY_TO_USER,
         COLLECTION_ADD_TEMPLATE,
-        PATH_READ_OUT_LOUD
+        PATH_READ_OUT_LOUD,
     }
 
     enum class Shape {
         Round,
-        Rectangle
+        Rectangle,
     }
 }
