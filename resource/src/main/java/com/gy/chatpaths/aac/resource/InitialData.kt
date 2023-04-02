@@ -11,10 +11,8 @@ import kotlinx.coroutines.withContext
 
 class InitialData {
 
-
-
     companion object {
-        const val COLLECTION_ID_LETSCHAT   = 1
+        const val COLLECTION_ID_LETSCHAT = 1
 
         /**
          * Initialize/Update the database with factory values
@@ -25,7 +23,8 @@ class InitialData {
                 users.forEach {
                     repository.addUser(
                         it,
-                        overwrite = false)
+                        overwrite = false,
+                    )
                 }
                 Essentials(context, repository, 1).build()
                 Starter(context, repository, 1).build()
@@ -50,6 +49,5 @@ class InitialData {
 //
 //            return ml
 //        }
-
     }
 }

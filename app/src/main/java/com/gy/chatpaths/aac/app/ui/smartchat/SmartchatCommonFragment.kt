@@ -33,7 +33,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 /**
  * An example full-screen fragment that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -64,7 +63,7 @@ open class SmartchatCommonFragment : Fragment() {
         context.theme.resolveAttribute(
             com.google.android.material.R.attr.colorOnBackground,
             value,
-            true
+            true,
         )
         return value.data
     }
@@ -74,7 +73,7 @@ open class SmartchatCommonFragment : Fragment() {
         context.theme.resolveAttribute(
             com.google.android.material.R.attr.colorPrimaryVariant,
             value,
-            true
+            true,
         )
         return value.data
     }
@@ -83,14 +82,14 @@ open class SmartchatCommonFragment : Fragment() {
         arrayOf(
             getThemeColorOnBackground(requireContext()),
             getThemeAccentColor(requireContext()),
-            getThemeColorPrimaryVariant(requireContext())
+            getThemeColorPrimaryVariant(requireContext()),
         )
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentSmartchatRootBinding.inflate(layoutInflater)
 
@@ -98,7 +97,6 @@ open class SmartchatCommonFragment : Fragment() {
         lifecycleScope.launch {
             context?.apply {
                 user.getUser().also {
-
                     viewmodel.setCurrentCollection(this, args.collectionId)
 
                     // Observe the UI Changes
@@ -127,10 +125,9 @@ open class SmartchatCommonFragment : Fragment() {
                 binding.pathImage.setImageDrawable(null)
                 binding.pathDescription.text = null
                 binding.overlay.overlayTextView.text = null
-                //binding.imageOverlay.text = getString(R.string.hint_add_first_path)
+                // binding.imageOverlay.text = getString(R.string.hint_add_first_path)
             } else {
                 updateViewWithAnimations(it.currentPath)
-
             }
             if (it.parent == null) {
                 binding.parentTitle.text = null
@@ -153,7 +150,7 @@ open class SmartchatCommonFragment : Fragment() {
             it?.apply {
                 lifecycleScope.launch {
                     // NAvigator is bound to the user
-                    //pathNavigator.dataHasChanged()
+                    // pathNavigator.dataHasChanged()
                     binding.name.text = name
                 }
             }
@@ -162,7 +159,7 @@ open class SmartchatCommonFragment : Fragment() {
 
     private fun setupClickListeners() {
         binding.pathImage.setOnClickListener {
-            //it.playSoundEffect(NAVIGATION_DOWN)
+            // it.playSoundEffect(NAVIGATION_DOWN)
             lifecycleScope.launch {
                 pathReader.readAfter(viewmodel.pathNavigator) {
                     preAnimation = R.anim.flyup
@@ -194,7 +191,7 @@ open class SmartchatCommonFragment : Fragment() {
                 val action =
                     SmartchatCommonFragmentDirections.actionSmartchatCommonFragmentToPathsFragment(
                         collectionId = args.collectionId,
-                        parentId = cp?.parentId ?: 0
+                        parentId = cp?.parentId ?: 0,
                     )
                 findNavController().navigate(action)
             }
@@ -211,7 +208,7 @@ open class SmartchatCommonFragment : Fragment() {
                     val action =
                         SmartchatCommonFragmentDirections.actionSmartchatCommonFragmentToUserDetailFragment(
                             userId,
-                            true
+                            true,
                         )
                     it.findNavController().navigate(action)
                 }
@@ -243,7 +240,6 @@ open class SmartchatCommonFragment : Fragment() {
                 val loadedAnim = AnimationUtils.loadAnimation(requireContext(), preAnim)
                 loadedAnim.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationRepeat(animation: Animation?) {
-
                     }
 
                     override fun onAnimationEnd(animation: Animation?) {
@@ -256,7 +252,6 @@ open class SmartchatCommonFragment : Fragment() {
                             exitanim.setAnimationListener(object :
                                 Animation.AnimationListener {
                                 override fun onAnimationRepeat(animation: Animation?) {
-
                                 }
 
                                 override fun onAnimationEnd(animation: Animation?) {
@@ -265,7 +260,6 @@ open class SmartchatCommonFragment : Fragment() {
                                 }
 
                                 override fun onAnimationStart(animation: Animation?) {
-
                                 }
                             })
                             binding.pathImage.startAnimation(exitanim)
@@ -277,7 +271,6 @@ open class SmartchatCommonFragment : Fragment() {
                     }
 
                     override fun onAnimationStart(animation: Animation?) {
-
                     }
                 })
                 binding.pathImage.startAnimation(loadedAnim)
@@ -307,9 +300,8 @@ open class SmartchatCommonFragment : Fragment() {
     }
 
     private fun setupToolbar() {
-
         if (!viewmodel.pathNavigator.showDisabled) {
-            //activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            // activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             (activity as MainActivity).disableToolbar()
             binding.configureButton.text = getString(R.string.configure)
             binding.configureButton.setCompoundDrawables(null, null, null, null)
@@ -326,8 +318,11 @@ open class SmartchatCommonFragment : Fragment() {
                 ResourcesCompat.getDrawable(
                     resources,
                     R.drawable.ic_baseline_keyboard_return_24,
-                    requireContext().theme
-                ), null, null, null
+                    requireContext().theme,
+                ),
+                null,
+                null,
+                null,
             )
         }
     }
@@ -346,7 +341,7 @@ open class SmartchatCommonFragment : Fragment() {
             // NOTE: If the values aren't cleared, then edit text can prepopulate the wrong value
             binding.pathDescription.setText(
                 getStringTitle(current),
-                TextView.BufferType.SPANNABLE
+                TextView.BufferType.SPANNABLE,
             )
             binding.overlay.overlayTextView.text = null
 
@@ -358,9 +353,9 @@ open class SmartchatCommonFragment : Fragment() {
                     viewmodel.setTextColorFromDrawable(
                         binding.pathImage.drawable,
                         binding.pathDescription,
-                        colors[current.pathId % colors.size]
+                        colors[current.pathId % colors.size],
                     )
-                    //binding.overlay.overlayTextView.setTextColor(binding.pathDescription.currentTextColor.xor(0x00ffffff))
+                    // binding.overlay.overlayTextView.setTextColor(binding.pathDescription.currentTextColor.xor(0x00ffffff))
                 }
 
                 binding.pathDescription.visibility = View.VISIBLE
@@ -384,14 +379,14 @@ open class SmartchatCommonFragment : Fragment() {
                     val drawable = DrawableUtils.getDrawableImage(
                         context,
                         null,
-                        R.drawable.ic_baseline_image_24
+                        R.drawable.ic_baseline_image_24,
                     )
 
                     if (null != drawable) { // make sure we aren't missing the default image too instead of a theme
                         viewmodel.setTextColorFromDrawable(
                             drawable,
                             binding.pathDescription,
-                            colors[current.pathId % colors.size]
+                            colors[current.pathId % colors.size],
                         )
                     } else {
                         // The alternate color is derived off a moduli of the path id (deterministic)
@@ -405,7 +400,6 @@ open class SmartchatCommonFragment : Fragment() {
             binding.pathImage.tag = current.pathId
             binding.parentTitle.tag = current.parentId
             binding.wordCount.text = current.timesUsed.toString()
-
         }
     }
 
@@ -419,9 +413,7 @@ open class SmartchatCommonFragment : Fragment() {
         }
     }
 
-
     companion object {
-
 
         private var preAnimation: Int? = null
         private var postAnimation: Int? = null

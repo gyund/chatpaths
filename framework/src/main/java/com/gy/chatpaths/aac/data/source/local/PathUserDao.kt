@@ -1,7 +1,13 @@
 package com.gy.chatpaths.aac.data.source.local
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Transaction
+import androidx.room.Update
 import com.gy.chatpaths.aac.data.PathUser
 
 @Dao
@@ -16,7 +22,7 @@ interface PathUserDao {
     fun getCount(): Int
 
     @Query("SELECT COUNT(*) FROM PathUser WHERE displayImage = :uri")
-    fun getImageUseCount(uri: String) : Int
+    fun getImageUseCount(uri: String): Int
 
     @Query("SELECT * FROM PathUser WHERE userId = :userId")
     fun get(userId: Int): PathUser?
@@ -37,7 +43,7 @@ interface PathUserDao {
     fun populate(vararg pathUsers: PathUser) {
         insertOrIgnoreAll(*pathUsers)
         // Don't update user details because they may have changed the name
-        //update(*pathUsers)
+        // update(*pathUsers)
     }
 
     @Update

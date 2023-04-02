@@ -12,7 +12,7 @@ import com.gy.chatpaths.aac.app.databinding.FragmentImageselectImageBinding
  * [RecyclerView.Adapter] that can display a [UserPathCollectionPrefsView].
  */
 class RVAdapter(
-    private val listener: ImageSelectListener
+    private val listener: ImageSelectListener,
 ) : RecyclerView.Adapter<RVAdapter.ViewHolder>(), BindableAdapter<String> {
 
     private var values: List<String> = emptyList()
@@ -33,10 +33,9 @@ class RVAdapter(
         positions.forEach(this::notifyItemChanged)
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        //.inflate(R.layout.fragment_collections, parent, false)
+        // .inflate(R.layout.fragment_collections, parent, false)
         val binding = FragmentImageselectImageBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
@@ -55,14 +54,14 @@ class RVAdapter(
                 DrawableUtils.getDrawableImage(
                     binding.root.context,
                     resourceOrUri,
-                    null
-                )
+                    null,
+                ),
             )
 
             if (binding.pathImage.drawable == null) {
                 Log.d("RVAdapter", "image is not available: $resourceOrUri")
             }
-            //binding.outercardview.setCardBackgroundColor(getColor(context, R.color.primaryDarkColor))
+            // binding.outercardview.setCardBackgroundColor(getColor(context, R.color.primaryDarkColor))
             fun onPathClicked() {
                 listener.selectImage(resourceOrUri)
             }
@@ -84,5 +83,4 @@ class RVAdapter(
     init {
         setHasStableIds(false)
     }
-
 }

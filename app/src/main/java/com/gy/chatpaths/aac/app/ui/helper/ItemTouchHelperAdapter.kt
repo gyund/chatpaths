@@ -1,6 +1,5 @@
 package com.gy.chatpaths.aac.app.ui.helper
 
-
 /**
  * Interface to notify a [RecyclerView.Adapter] of moving and dismissal event from a [ ].
  *

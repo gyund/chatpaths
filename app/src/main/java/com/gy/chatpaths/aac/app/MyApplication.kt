@@ -11,7 +11,6 @@ class MyApplication : Application() {
 
     @Inject
     lateinit var firebase: Firebase
-
 }
 
 /**

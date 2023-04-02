@@ -11,7 +11,7 @@ import com.gy.chatpaths.aac.data.PathUser
 class SimpleItemRecyclerViewAdapter(
     private val context: Context,
     private val fragment: UserFragment,
-    private var values: List<PathUser>
+    private var values: List<PathUser>,
 ) :
     RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
 
@@ -40,8 +40,8 @@ class SimpleItemRecyclerViewAdapter(
             binding.image.setImageDrawable(
                 DrawableUtils.getDrawableImage(
                     context,
-                    user.displayImage
-                )
+                    user.displayImage,
+                ),
             )
             binding.content.text = user.name
 

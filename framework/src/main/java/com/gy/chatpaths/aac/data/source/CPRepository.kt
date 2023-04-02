@@ -17,7 +17,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-class CPRepository @Inject constructor(private val localDataSource : LocalCPDataSource) : CPDataSource {
+class CPRepository @Inject constructor(private val localDataSource: LocalCPDataSource) : CPDataSource {
 
     /**
      * Marks the cache as invalid, to force an update the next time data is requested. This variable
@@ -25,11 +25,11 @@ class CPRepository @Inject constructor(private val localDataSource : LocalCPData
      */
     var mCacheIsDirty = false
 
-    override suspend fun isInitialized() : Boolean {
+    override suspend fun isInitialized(): Boolean {
         return localDataSource.isInitialized()
     }
 
-    override suspend fun addUser(user: PathUser, overwrite: Boolean) : Int {
+    override suspend fun addUser(user: PathUser, overwrite: Boolean): Int {
         return localDataSource.addUser(user, overwrite)
     }
 
@@ -45,27 +45,28 @@ class CPRepository @Inject constructor(private val localDataSource : LocalCPData
         userId: Int,
         collectionId: Int,
         parentId: Int?,
-        showAll: Boolean
+        showAll: Boolean,
     ): List<Path>? {
         return localDataSource.getChildrenOfParent(
-                userId = userId,
-                collectionId = collectionId,
-                parentId = parentId,
-                showAll = showAll)
-
+            userId = userId,
+            collectionId = collectionId,
+            parentId = parentId,
+            showAll = showAll,
+        )
     }
 
     override suspend fun getChildOfParent(
         userId: Int,
         collectionId: Int,
         parentId: Int?,
-        showAll: Boolean
+        showAll: Boolean,
     ): Path? {
         return localDataSource.getChildOfParent(
             userId = userId,
             collectionId = collectionId,
             parentId = parentId,
-            showAll = showAll)
+            showAll = showAll,
+        )
     }
 
     override suspend fun getPathCollection(collectionId: Int): PathCollection? {
@@ -74,7 +75,7 @@ class CPRepository @Inject constructor(private val localDataSource : LocalCPData
 
     override suspend fun getPathCollections(
         userId: Int,
-        enabledOnly: Boolean
+        enabledOnly: Boolean,
     ): List<PathCollection> {
         return localDataSource.getPathCollections(userId, enabledOnly)
     }
@@ -99,12 +100,12 @@ class CPRepository @Inject constructor(private val localDataSource : LocalCPData
         return localDataSource.getLiveUser(userId)
     }
 
-    override suspend fun addCollection(collection: PathCollection) : Int {
+    override suspend fun addCollection(collection: PathCollection): Int {
         return localDataSource.addCollection(collection)
     }
 
     override suspend fun setCollectionTitle(collectionId: Int, title: String) {
-        localDataSource.setCollectionTitle(collectionId,title)
+        localDataSource.setCollectionTitle(collectionId, title)
     }
 
     override suspend fun setCollectionImage(collectionId: Int, uri: Uri?) {
@@ -112,19 +113,19 @@ class CPRepository @Inject constructor(private val localDataSource : LocalCPData
     }
 
     override suspend fun setCollectionIsVisible(userId: Int, collectionId: Int, enabled: Boolean) {
-        localDataSource.setCollectionIsVisible(userId,collectionId,enabled)
+        localDataSource.setCollectionIsVisible(userId, collectionId, enabled)
     }
 
     override suspend fun setCollectionPosition(userId: Int, collectionId: Int, position: Int) {
-        localDataSource.setCollectionPosition(userId,collectionId,position)
+        localDataSource.setCollectionPosition(userId, collectionId, position)
     }
 
     override suspend fun updateCollectionOrder(userId: Int, collections: List<PathCollection>) {
-        localDataSource.updateCollectionOrder(userId,collections)
+        localDataSource.updateCollectionOrder(userId, collections)
     }
 
     override suspend fun setCollectionAutoSort(userId: Int, collectionId: Int, enabled: Boolean) {
-        localDataSource.setCollectionAutoSort(userId,collectionId,enabled)
+        localDataSource.setCollectionAutoSort(userId, collectionId, enabled)
     }
 
     override suspend fun addPath(
@@ -134,8 +135,8 @@ class CPRepository @Inject constructor(private val localDataSource : LocalCPData
         imageUri: String?,
         parentId: Int?,
         position: Int?,
-        anchored: Boolean
-    ) : Int {
+        anchored: Boolean,
+    ): Int {
         return localDataSource.addPath(
             userId,
             collectionId,
@@ -143,19 +144,19 @@ class CPRepository @Inject constructor(private val localDataSource : LocalCPData
             imageUri,
             parentId,
             position,
-            anchored
+            anchored,
         )
     }
 
     override suspend fun deletePath(collectionId: Int, pathId: Int) {
-        localDataSource.deletePath(collectionId,pathId)
+        localDataSource.deletePath(collectionId, pathId)
     }
 
     override suspend fun setPathIsVisible(
         userId: Int,
         collectionId: Int,
         isVisible: Boolean,
-        pathId: Int
+        pathId: Int,
     ) {
         localDataSource.setPathIsVisible(userId, collectionId, isVisible, pathId)
     }
@@ -164,34 +165,34 @@ class CPRepository @Inject constructor(private val localDataSource : LocalCPData
         userId: Int,
         collectionId: Int,
         pathId: Int,
-        position: Int?
+        position: Int?,
     ) {
-        localDataSource.setPathPosition(userId,collectionId,pathId,position)
+        localDataSource.setPathPosition(userId, collectionId, pathId, position)
     }
 
     override suspend fun setPathIsAnchored(
         userId: Int,
         collectionId: Int,
         pathId: Int,
-        anchored: Boolean
+        anchored: Boolean,
     ) {
-        localDataSource.setPathIsAnchored(userId,collectionId,pathId,anchored)
+        localDataSource.setPathIsAnchored(userId, collectionId, pathId, anchored)
     }
 
     override suspend fun updatePathOrder(
         userId: Int,
         collectionId: Int,
-        paths: List<Path>
+        paths: List<Path>,
     ) {
-        localDataSource.updatePathOrder(userId,collectionId,paths)
+        localDataSource.updatePathOrder(userId, collectionId, paths)
     }
 
     override suspend fun getPathFromCollection(
         userId: Int,
         collectionId: Int,
-        pathId: Int
+        pathId: Int,
     ): Path? {
-        return localDataSource.getPathFromCollection(userId,collectionId,pathId)
+        return localDataSource.getPathFromCollection(userId, collectionId, pathId)
     }
 
     override suspend fun updatePathTitle(pathId: Int, title: String) {
@@ -240,9 +241,9 @@ class CPRepository @Inject constructor(private val localDataSource : LocalCPData
 
     override fun getLivePathCollections(
         userId: Int,
-        enabledOnly: Boolean
+        enabledOnly: Boolean,
     ): LiveData<List<PathCollection>> {
-        return localDataSource.getLivePathCollections(userId,enabledOnly)
+        return localDataSource.getLivePathCollections(userId, enabledOnly)
     }
 
     override suspend fun resetCollectionOrder(userId: Int) {
@@ -258,15 +259,15 @@ class CPRepository @Inject constructor(private val localDataSource : LocalCPData
     }
 
     override suspend fun setUserImage(userId: Int, uri: Uri) {
-        localDataSource.setUserImage(userId,uri)
+        localDataSource.setUserImage(userId, uri)
     }
 
     override fun getLivePath(
         userId: Int,
         collectionId: Int,
-        pathId: Int
+        pathId: Int,
     ): LiveData<Path?> {
-        return localDataSource.getLivePath(userId,collectionId,pathId)
+        return localDataSource.getLivePath(userId, collectionId, pathId)
     }
 
     override suspend fun getPath(pathId: Int): Path? {
@@ -278,8 +279,6 @@ class CPRepository @Inject constructor(private val localDataSource : LocalCPData
     }
 
     override suspend fun copyCollectionToUser(srcUserId: Int, dstUserId: Int, collectionId: Int) {
-        localDataSource.copyCollectionToUser(srcUserId,dstUserId,collectionId)
+        localDataSource.copyCollectionToUser(srcUserId, dstUserId, collectionId)
     }
-
-
 }

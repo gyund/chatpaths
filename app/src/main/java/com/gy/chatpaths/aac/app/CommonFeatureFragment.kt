@@ -36,7 +36,7 @@ abstract class CommonFeatureFragment : Fragment() {
     private var destinationUri: Uri? = null
 
     private val cropImageLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
+        ActivityResultContracts.StartActivityForResult(),
     ) { result: ActivityResult ->
         if (result.resultCode == Activity.RESULT_OK) {
             val resultUri = UCrop.getOutput(result.data!!)
@@ -46,13 +46,12 @@ abstract class CommonFeatureFragment : Fragment() {
         } else if (result.resultCode == Activity.RESULT_CANCELED) {
             Log.d("SCF", "Crop Canceled")
             destinationUri?.toFile()?.delete()
-
         }
         destinationUri = null
     }
 
     private val getImageLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
+        ActivityResultContracts.StartActivityForResult(),
     ) { result: ActivityResult ->
         if (result.resultCode == Activity.RESULT_OK) {
             val resultUri = result.data?.data
@@ -92,7 +91,6 @@ abstract class CommonFeatureFragment : Fragment() {
                 val uri = Uri.parse(userSelectedImage)
                 onStoreImageUri(uri)
             } catch (e: Exception) {
-
             }
         }
     }
@@ -114,24 +112,23 @@ abstract class CommonFeatureFragment : Fragment() {
                 .setTitle(getString(R.string.edit_image_dialog_title))
                 .setMessage(getString(R.string.edit_image_dialog_message))
                 .setPositiveButton(
-                    getString(android.R.string.ok)
+                    getString(android.R.string.ok),
                 ) { _, _ ->
                     openGalleryForImage()
                 }
                 .setNeutralButton(
-                    getString(R.string.reuse_image)
+                    getString(R.string.reuse_image),
                 ) { _, _ ->
                     navigateToImageSelectFragment()
                 }
                 .setNegativeButton(
-                    getString(R.string.cancel)
+                    getString(R.string.cancel),
                 ) { _, _ ->
-                    //nothing
+                    // nothing
                 }
                 .show()
         }
     }
-
 
     private fun showDeletePathImageDialog() {
         context?.let {
@@ -156,5 +153,4 @@ abstract class CommonFeatureFragment : Fragment() {
             return result
         }
     }
-
 }

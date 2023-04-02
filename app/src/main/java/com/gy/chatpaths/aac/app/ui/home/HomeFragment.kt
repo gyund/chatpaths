@@ -3,7 +3,12 @@ package com.gy.chatpaths.aac.app.ui.home
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -31,7 +36,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var columnCount: Int = 2
@@ -40,12 +44,16 @@ class HomeFragment : Fragment() {
 
     @Inject
     lateinit var currentUser: CurrentUser
+
     @Inject
     lateinit var firebase: Firebase
+
     @Inject
     lateinit var inAppReview: InAppReview
+
     @Inject
     lateinit var guidedTour: GuidedTour
+
     @Inject
     lateinit var repository: CPRepository
 
@@ -54,7 +62,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binder = FragmentHomeBinding.inflate(layoutInflater, container, false)
         collectionsViewModel.userId = currentUser.userId
@@ -79,7 +87,6 @@ class HomeFragment : Fragment() {
                 setupViewContents()
             }
         })
-
 
         this.setHasOptionsMenu(true)
         return binder.root
@@ -121,7 +128,6 @@ class HomeFragment : Fragment() {
                         //                                    }
                         //                                }
                     }
-
                 })
                 collectionsViewModel.getLiveCollection(true).observe(viewLifecycleOwner, {
                     lifecycleScope.launch {
@@ -178,7 +184,7 @@ class HomeFragment : Fragment() {
                     currentUser.getUser()?.let { user ->
                         val action = HomeFragmentDirections.actionUserFragmentToUserDetailFragment(
                             user.userId,
-                            false
+                            false,
                         )
                         findNavController().navigate(action)
                     }
@@ -190,7 +196,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun addCollectionDialog() {
-
         val binding = DialogEditCollectionBinding.inflate(layoutInflater)
         val m = MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.add_path_collection_dialog_title))
@@ -223,7 +228,7 @@ class HomeFragment : Fragment() {
                 templateId,
                 this,
                 repository,
-                currentUser.userId
+                currentUser.userId,
             ).setName(templateName).build()
         }
     }

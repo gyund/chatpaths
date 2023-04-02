@@ -1,25 +1,25 @@
 package com.gy.chatpaths.aac.app.di.module
 //
 //
-//import androidx.test.ext.junit.runners.AndroidJUnit4
-//import com.google.common.truth.Truth.assertThat
-//import com.gy.chatpaths.aac.app.AppDatabaseHelper
-//import com.gy.chatpaths.aac.data.PathUserDetail
-//import com.gy.chatpaths.aac.data.source.CPRepository
-//import com.gy.chatpaths.aac.data.source.local.AppDatabase
-//import com.gy.chatpaths.aac.data.source.local.LocalCPDataSource
-//import com.gy.chatpaths.aac.resource.InitialData
-//import kotlinx.coroutines.runBlocking
-//import org.junit.Test
-//import org.junit.runner.RunWith
+// import androidx.test.ext.junit.runners.AndroidJUnit4
+// import com.google.common.truth.Truth.assertThat
+// import com.gy.chatpaths.aac.app.AppDatabaseHelper
+// import com.gy.chatpaths.aac.data.PathUserDetail
+// import com.gy.chatpaths.aac.data.source.CPRepository
+// import com.gy.chatpaths.aac.data.source.local.AppDatabase
+// import com.gy.chatpaths.aac.data.source.local.LocalCPDataSource
+// import com.gy.chatpaths.aac.resource.InitialData
+// import kotlinx.coroutines.runBlocking
+// import org.junit.Test
+// import org.junit.runner.RunWith
 //
-///**
+// /**
 // * Example local unit test, which will execute on the development machine (host).
 // *
 // * See [testing documentation](http://d.android.com/tools/testing).
 // */
-//@RunWith(AndroidJUnit4::class)
-//class PathNavigatorTest : AppDatabaseHelper() {
+// @RunWith(AndroidJUnit4::class)
+// class PathNavigatorTest : AppDatabaseHelper() {
 //
 //    private suspend fun initializePathNavigator(oot: PathNavigator) {
 //
@@ -233,4 +233,4 @@ package com.gy.chatpaths.aac.app.di.module
 //    }
 //
 //
-//}
+// }

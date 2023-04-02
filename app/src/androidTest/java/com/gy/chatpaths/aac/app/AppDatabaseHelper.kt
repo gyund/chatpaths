@@ -4,7 +4,11 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.gy.chatpaths.aac.data.source.CPRepository
-import com.gy.chatpaths.aac.data.source.local.*
+import com.gy.chatpaths.aac.data.source.local.AppDatabase
+import com.gy.chatpaths.aac.data.source.local.LocalCPDataSource
+import com.gy.chatpaths.aac.data.source.local.PathCollectionDao
+import com.gy.chatpaths.aac.data.source.local.PathDao
+import com.gy.chatpaths.aac.data.source.local.PathUserDao
 import com.gy.chatpaths.aac.resource.InitialData
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -31,7 +35,6 @@ open class AppDatabaseHelper {
 
         val local = LocalCPDataSource(db)
         repository = CPRepository(local)
-
 
         InitialData.populate(context, repository)
 

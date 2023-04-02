@@ -34,7 +34,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -47,6 +46,7 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var firebase: Firebase
+
     @Inject
     lateinit var repository: CPRepository
 
@@ -103,15 +103,16 @@ class MainActivity : AppCompatActivity() {
                         false
                     }
                 }
-            }
+            },
         )
 
         setupRemoteConfig()
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home
-            ), binder.drawerLayout
+                R.id.nav_home,
+            ),
+            binder.drawerLayout,
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -167,7 +168,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun MenuItem.applyLinkToMenuItem(
         webUri: String,
-        packageName: String? = null
+        packageName: String? = null,
     ) {
         setOnMenuItemClickListener {
             sendViewIntent(webUri, packageName)
@@ -236,7 +237,7 @@ class MainActivity : AppCompatActivity() {
                 it.decorView.let { view ->
                     WindowInsetsControllerCompat(
                         it,
-                        view
+                        view,
                     ).show(WindowInsetsCompat.Type.statusBars())
                 }
             }
@@ -257,7 +258,7 @@ class MainActivity : AppCompatActivity() {
                 window?.decorView?.let { view ->
                     WindowInsetsControllerCompat(it, view).let { controller ->
                         controller.hide(
-                            WindowInsetsCompat.Type.statusBars()
+                            WindowInsetsCompat.Type.statusBars(),
                         )
                         controller.systemBarsBehavior =
                             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
@@ -275,5 +276,4 @@ class MainActivity : AppCompatActivity() {
             window?.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         }
     }
-
 }

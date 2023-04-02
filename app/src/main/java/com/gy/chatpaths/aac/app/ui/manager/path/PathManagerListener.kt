@@ -9,5 +9,4 @@ interface PathManagerListener {
     fun setIsEnabled(pathId: Int, enabled: Boolean)
     fun setPathPosition(pathId: Int, position: Int?)
     fun updatePathOrder(paths: List<Path>)
-
 }

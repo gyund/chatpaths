@@ -39,7 +39,7 @@ class MediaRecordingDialog @Inject constructor() {
         RECORDING,
         PLAYING,
         STOP_PLAYING,
-        STOP_RECORDING
+        STOP_RECORDING,
     }
 
     private var state = State.IDLE
@@ -60,7 +60,7 @@ class MediaRecordingDialog @Inject constructor() {
         fragment: Fragment,
         audioPromptUri: Uri?,
         onDelete: (() -> Unit)?,
-        onFinished: (uri: Uri?) -> Boolean
+        onFinished: (uri: Uri?) -> Boolean,
     ) {
         // initialize with the audioPromptUri if it's set
         val uri = fragment.context?.let {
@@ -97,20 +97,19 @@ class MediaRecordingDialog @Inject constructor() {
             layout.recordButtonToggleAction(uri)
         }
 
-
         // Display Dialog
         val mab = MaterialAlertDialogBuilder(layout.root.context)
             .setTitle(layout.root.context.getString(R.string.record_audio))
             .setView(layout.root)
             .setPositiveButton(
-                layout.root.context.getString(android.R.string.ok)
+                layout.root.context.getString(android.R.string.ok),
             ) { _, _ ->
                 if (!onFinished(uri)) {
                     onUserCancel() // delete the file
                 }
             }
             .setNegativeButton(
-                layout.root.context.getString(R.string.cancel)
+                layout.root.context.getString(R.string.cancel),
             ) { _, _ ->
                 // Delete the file
                 onUserCancel()
@@ -143,7 +142,7 @@ class MediaRecordingDialog @Inject constructor() {
     }
 
     private fun MediaPlayer.stopPlaying(
-        binding: DialogRecordAudioBinding
+        binding: DialogRecordAudioBinding,
     ) {
         stop()
         release()
@@ -157,8 +156,8 @@ class MediaRecordingDialog @Inject constructor() {
             setImageDrawable(
                 ContextCompat.getDrawable(
                     binding.root.context,
-                    R.drawable.ic_baseline_play_arrow_24
-                )
+                    R.drawable.ic_baseline_play_arrow_24,
+                ),
             )
         }
 
@@ -184,7 +183,7 @@ class MediaRecordingDialog @Inject constructor() {
 
     private fun MediaRecorder.stopRecording(
         binding: DialogRecordAudioBinding,
-        fileUri: Uri
+        fileUri: Uri,
     ) {
         // Stop can take a while sometimes, disable the button while processing
         binding.recordButton.isEnabled = false
@@ -209,17 +208,18 @@ class MediaRecordingDialog @Inject constructor() {
 
     private fun startPlaying(
         binding: DialogRecordAudioBinding,
-        fileUri: Uri
+        fileUri: Uri,
     ) {
         binding.apply {
             player = MediaPlayer()
             player?.let {
-
                 var agc = if (AutomaticGainControl.isAvailable()) {
                     val agc = AutomaticGainControl.create(it.audioSessionId)
                     agc.enabled = true
                     agc
-                } else null
+                } else {
+                    null
+                }
 
                 fun onFailure(e: Exception) {
                     Log.d(TAG, "exception with play: $e")
@@ -241,13 +241,13 @@ class MediaRecordingDialog @Inject constructor() {
                     originalPlayButtonTintList = playButton.backgroundTintList
                     playButton.apply {
                         backgroundTintList = ColorStateList.valueOf(
-                            ContextCompat.getColor(root.context, R.color.negativeColor)
+                            ContextCompat.getColor(root.context, R.color.negativeColor),
                         )
                         setImageDrawable(
                             ContextCompat.getDrawable(
                                 root.context,
-                                R.drawable.ic_baseline_stop_24
-                            )
+                                R.drawable.ic_baseline_stop_24,
+                            ),
                         )
                     }
                     it.setOnCompletionListener {
@@ -266,11 +266,9 @@ class MediaRecordingDialog @Inject constructor() {
 
     private fun startRecording(
         binding: DialogRecordAudioBinding,
-        fileUri: Uri
+        fileUri: Uri,
     ) {
-
         binding.apply {
-
             recorder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 MediaRecorder(root.context)
             } else {
@@ -296,12 +294,11 @@ class MediaRecordingDialog @Inject constructor() {
                     originalRecordButtonTintList = recordButton.backgroundTintList
 
                     recordButton.backgroundTintList = ColorStateList.valueOf(
-                        ContextCompat.getColor(root.context, R.color.negativeColor)
+                        ContextCompat.getColor(root.context, R.color.negativeColor),
                     )
                     // Disable play while recording
                     playButton.isEnabled = false
                     state = State.RECORDING
-
                 } catch (e: IOException) {
                     onFailure(e)
                 } catch (e: RuntimeException) {

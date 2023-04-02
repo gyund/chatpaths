@@ -6,9 +6,10 @@ import com.gy.chatpaths.aac.resource.create.Collection
 import com.gy.chatpaths.aac.resource.create.Path
 import com.gy.chatpaths.aac.resource.template.paths.Breakfast as PathBreakfast
 
-class Breakfast(context: Context,
-                repository: CPRepository,
-                userId: Int
+class Breakfast(
+    context: Context,
+    repository: CPRepository,
+    userId: Int,
 ) : Collection(context, repository, userId) {
 
     init {

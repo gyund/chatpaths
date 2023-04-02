@@ -39,7 +39,7 @@ class InAppReview @Inject constructor(@ApplicationContext val context: Context) 
      * Show an inapp review dialog only if the user qualifies
      */
     fun showInAppReviewDialog(
-        activity: AppCompatActivity
+        activity: AppCompatActivity,
     ) {
         recordDialogRequested()
 
@@ -49,7 +49,6 @@ class InAppReview @Inject constructor(@ApplicationContext val context: Context) 
         val maxCount = firebase.getReviewCheckFrequency()
 
         try {
-
             if (count % maxCount == maxCount - 1) {
                 val manager = if (BuildConfig.DEBUG) {
                     Toast.makeText(context, "Review Triggered", Toast.LENGTH_SHORT).show()
@@ -77,5 +76,4 @@ class InAppReview @Inject constructor(@ApplicationContext val context: Context) 
             FirebaseCrashlytics.getInstance().recordException(e)
         }
     }
-
 }

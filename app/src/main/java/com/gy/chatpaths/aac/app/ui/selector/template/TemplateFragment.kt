@@ -18,11 +18,16 @@ import com.gy.chatpaths.aac.app.databinding.FragmentHomeBinding
 import com.gy.chatpaths.aac.app.di.module.CurrentUser
 import com.gy.chatpaths.aac.app.ui.manager.userdetail.UserDetailFragment.Companion.onCollectionValidated
 import com.gy.chatpaths.aac.resource.create.Collection
-import com.gy.chatpaths.aac.resource.template.collection.*
+import com.gy.chatpaths.aac.resource.template.collection.Breakfast
+import com.gy.chatpaths.aac.resource.template.collection.Dinner
+import com.gy.chatpaths.aac.resource.template.collection.Essentials
+import com.gy.chatpaths.aac.resource.template.collection.Family
+import com.gy.chatpaths.aac.resource.template.collection.Lunch
+import com.gy.chatpaths.aac.resource.template.collection.Problem
+import com.gy.chatpaths.aac.resource.template.collection.Starter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 @AndroidEntryPoint
 class TemplateFragment : Fragment(), TemplateSelectionListener {
@@ -36,7 +41,7 @@ class TemplateFragment : Fragment(), TemplateSelectionListener {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binder = FragmentHomeBinding.inflate(layoutInflater, container, false)
         // Apply configs if new ones were received in the background
@@ -83,7 +88,7 @@ class TemplateFragment : Fragment(), TemplateSelectionListener {
                             Lunch(context, currentUser.repository, currentUser.userId),
                             Dinner(context, currentUser.repository, currentUser.userId),
                             Problem(context, currentUser.repository, currentUser.userId),
-                            Family(context, currentUser.repository, currentUser.userId)
+                            Family(context, currentUser.repository, currentUser.userId),
                         )
 
                         collections.apply {
@@ -114,7 +119,6 @@ class TemplateFragment : Fragment(), TemplateSelectionListener {
                 .setTitle(getString(R.string.add_path_collection_dialog_title))
                 .setMessage(getString(R.string.add_path_collection_dialog_name))
                 .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
-
                 }
                 .setNegativeButton(getString(R.string.cancel)) { _, _ ->
                     pendingTemplateId = null

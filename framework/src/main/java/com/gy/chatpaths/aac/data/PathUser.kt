@@ -6,11 +6,11 @@ import androidx.room.PrimaryKey
 
 @Entity(
     indices = [
-        Index("name",unique = true)
-    ]
+        Index("name", unique = true),
+    ],
 )
 data class PathUser(
     @PrimaryKey(autoGenerate = true) var userId: Int,
     var name: String,
-    var displayImage: String?
+    var displayImage: String?,
 )

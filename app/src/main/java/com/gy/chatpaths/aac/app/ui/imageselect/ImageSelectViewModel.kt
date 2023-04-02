@@ -7,16 +7,14 @@ import com.gy.chatpaths.aac.resource.UriHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-
 @HiltViewModel
 class ImageSelectViewModel @Inject constructor(
-    val repository: CPRepository
+    val repository: CPRepository,
 ) : ViewModel() {
-
 
     private suspend fun addLocalStorageImages(
         list: MutableList<String>,
-        searchText: String? = null
+        searchText: String? = null,
     ) {
         val filteredFiles =
             repository.getPathImages(searchText).filter { // we only want the user images

@@ -12,5 +12,5 @@ data class PathCollection(
     val imageUri: String? = null,
     var displayOrder: Int? = null,
     @ColumnInfo(defaultValue = "1") var enabled: Boolean = true,
-    @ColumnInfo(defaultValue = "0") var autoSort: Boolean = false
+    @ColumnInfo(defaultValue = "0") var autoSort: Boolean = false,
 )

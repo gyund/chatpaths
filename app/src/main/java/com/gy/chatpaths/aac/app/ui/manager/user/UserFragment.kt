@@ -2,7 +2,12 @@ package com.gy.chatpaths.aac.app.ui.manager.user
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -37,8 +42,9 @@ class UserFragment : Fragment() {
     lateinit var guidedTour: GuidedTour
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = UserFragmentBinding.inflate(layoutInflater, container, false)
         context?.let {
@@ -70,7 +76,7 @@ class UserFragment : Fragment() {
                 GuidedTour.Dialog.USER_ADD,
                 getString(R.string.onboard_user_add_primary),
                 getString(R.string.onboard_user_add_secondary),
-                targetIcon = R.drawable.ic_baseline_person_add_24
+                targetIcon = R.drawable.ic_baseline_person_add_24,
             ).show(this)
         }
 
@@ -109,21 +115,19 @@ class UserFragment : Fragment() {
                         // if the insert fails, the username already exists
                     }
                     .setNegativeButton(getString(R.string.cancel)) { _, _ ->
-
                     }
                     .show()
                 setUsernameValidationOnClickListener(madb, binding, ::_addUser)
             }
 
             showAddUserDialog()
-
         }
     }
 
     private fun setUsernameValidationOnClickListener(
         dialog: AlertDialog,
         binding: DialogUserNameBinding,
-        action: suspend (name: String) -> Boolean
+        action: suspend (name: String) -> Boolean,
     ) {
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
             if (binding.username.text.toString().isBlank()) {
@@ -174,6 +178,4 @@ class UserFragment : Fragment() {
             findNavController().navigate(action)
         }
     }
-
 }
-

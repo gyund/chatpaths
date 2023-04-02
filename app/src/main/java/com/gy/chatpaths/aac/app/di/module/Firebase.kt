@@ -10,7 +10,6 @@ import com.gy.chatpaths.aac.app.R
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
 @Singleton
 class Firebase @Inject constructor() {
 
@@ -49,7 +48,6 @@ class Firebase @Inject constructor() {
         remoteConfig?.activate()
     }
 
-
     fun getReviewCheckFrequency(): Long {
         var maxCount = 50L
         remoteConfig?.apply {
@@ -60,5 +58,4 @@ class Firebase @Inject constructor() {
         }
         return maxCount
     }
-
 }

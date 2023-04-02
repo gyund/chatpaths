@@ -12,7 +12,7 @@ import kotlin.properties.Delegates
 
 @HiltViewModel
 class PathsDetailViewModel @Inject constructor(
-    val repository: CPRepository
+    val repository: CPRepository,
 ) : ViewModel() {
 
     var collectionId by Delegates.notNull<Int>()
@@ -55,7 +55,7 @@ class PathsDetailViewModel @Inject constructor(
     suspend fun deletePath() {
         repository.deletePath(
             collectionId = collectionId,
-            pathId = pathId
+            pathId = pathId,
         )
     }
 
@@ -69,10 +69,9 @@ class PathsDetailViewModel @Inject constructor(
                 userId = it.userId,
                 collectionId = collectionId,
                 pathId = pathId,
-                anchored = anchored
+                anchored = anchored,
             )
         }
-
     }
 
     /**
@@ -91,7 +90,7 @@ class PathsDetailViewModel @Inject constructor(
                 imageUri = null,
                 parentId = parent,
                 position = position,
-                anchored = false
+                anchored = false,
             )
         }
     }
@@ -118,6 +117,4 @@ class PathsDetailViewModel @Inject constructor(
             repository.deleteAudioPrompt(pathId)
         }
     }
-
-
 }
