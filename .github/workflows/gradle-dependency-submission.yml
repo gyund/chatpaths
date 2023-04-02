@@ -6,6 +6,7 @@ on:
 
 jobs:
   gradle-action-detection:
+    needs: build
     runs-on: ubuntu-latest
     # The Dependency Submission API requires write permission
     permissions:
