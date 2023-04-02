@@ -287,7 +287,7 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
             MaterialAlertDialogBuilder(it)
                 .setTitle(it.getString(R.string.delete_path_dialog_title))
                 .setMessage(it.getString(R.string.delete_path_dialog_message))
-                .setPositiveButton(it.getString(R.string.ok)) { _, _ ->
+                .setPositiveButton(it.getString(android.R.string.ok)) { _, _ ->
                     lifecycleScope.launch {
                         viewmodel.deletePath()
                         findNavController().navigateUp()

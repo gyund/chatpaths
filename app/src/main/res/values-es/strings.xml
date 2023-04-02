@@ -39,7 +39,6 @@
     <string name="default_text">Defecto</string>
     <string name="edit_image_dialog_title">Cambiar imagen</string>
     <string name="edit_image_dialog_message">¿Quieres que esta imagen se comparta con otros perfiles de ruta?</string>
-    <string name="ok">Okay</string>
     <string name="modify">Modificar</string>
 
     <string name="add_path">agregar ruta</string>

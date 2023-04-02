@@ -120,7 +120,7 @@ class CollectionDetailFragment : CommonFeatureFragment() {
             MaterialAlertDialogBuilder(this)
                 .setTitle(this.getString(R.string.delete_collection_title))
                 .setMessage(this.getString(R.string.delete_collection_message))
-                .setPositiveButton(this.getString(R.string.ok)) { _, _ ->
+                .setPositiveButton(this.getString(android.R.string.ok)) { _, _ ->
                     lifecycleScope.launch {
                         collectionViewModel.delete(collectionId)
                         if (args.usingCollection) {

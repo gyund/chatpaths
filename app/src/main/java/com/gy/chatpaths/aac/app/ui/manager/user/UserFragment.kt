@@ -105,7 +105,7 @@ class UserFragment : Fragment() {
                     .setTitle("Add user")
                     .setMessage("Enter a name")
                     .setView(binding.root)
-                    .setPositiveButton(getString(R.string.ok)) { _, _ ->
+                    .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
                         // if the insert fails, the username already exists
                     }
                     .setNegativeButton(getString(R.string.cancel)) { _, _ ->
