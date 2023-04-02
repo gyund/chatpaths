@@ -44,7 +44,6 @@
     <string name="default_text">Default</string>
     <string name="edit_image_dialog_title">Change image</string>
     <string name="edit_image_dialog_message">Do you want this image to be shared with other path profiles?</string>
-    <string name="ok">OK</string>
     <string name="modify">Modify</string>
 
     <string name="add_path">add path</string>

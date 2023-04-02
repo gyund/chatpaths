@@ -210,7 +210,7 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
             MaterialAlertDialogBuilder(it)
                 .setTitle(getString(R.string.copy_to_user_dialog_title))
                 .setMessage(getString(R.string.copy_to_user_dialog_message))
-                .setPositiveButton(it.getString(R.string.ok)) { _, _ ->
+                .setPositiveButton(it.getString(android.R.string.ok)) { _, _ ->
                     lifecycleScope.launch {
                         val action =
                             PathsFragmentDirections.actionPathsFragmentToUserSelectorFragment()
@@ -242,7 +242,7 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
             MaterialAlertDialogBuilder(it)
                 .setTitle(getString(R.string.switch_users_after_copy_path_dialog_title))
                 .setMessage(getString(R.string.switch_users_after_copy_path_dialog_message))
-                .setPositiveButton(it.getString(R.string.ok)) { _, _ ->
+                .setPositiveButton(it.getString(android.R.string.ok)) { _, _ ->
                     lifecycleScope.launch {
                         currentUser.setUser(userId)
                         val action = PathsFragmentDirections.actionGlobalNavHome()

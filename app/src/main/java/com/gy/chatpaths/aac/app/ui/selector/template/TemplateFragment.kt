@@ -113,7 +113,7 @@ class TemplateFragment : Fragment(), TemplateSelectionListener {
                 .setView(binding.root)
                 .setTitle(getString(R.string.add_path_collection_dialog_title))
                 .setMessage(getString(R.string.add_path_collection_dialog_name))
-                .setPositiveButton(getString(R.string.ok)) { _, _ ->
+                .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
 
                 }
                 .setNegativeButton(getString(R.string.cancel)) { _, _ ->

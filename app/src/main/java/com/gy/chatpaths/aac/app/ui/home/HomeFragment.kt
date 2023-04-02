@@ -196,7 +196,7 @@ class HomeFragment : Fragment() {
             .setTitle(getString(R.string.add_path_collection_dialog_title))
             .setMessage(getString(R.string.add_path_collection_dialog_name))
             .setView(binding.root)
-            .setPositiveButton(getString(R.string.ok)) { _, _ ->
+            .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
             }
             .setNegativeButton(getString(R.string.cancel)) { _, _ ->
             }

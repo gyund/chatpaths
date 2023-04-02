@@ -63,10 +63,12 @@ class MainActivity : AppCompatActivity() {
 //                    "Extras received at onNewIntent:  Key: $it Value: $value"
 //                )
 //            }
-            val uri: String = get("uri").toString()
-            if (uri.isNotEmpty()) {
-                // grab URI and navigate to it
-                sendViewIntent(uri, null)
+            val uri: String? = getString("uri")
+            if (uri != null) {
+                if (uri.isNotEmpty()) {
+                    // grab URI and navigate to it
+                    sendViewIntent(uri, null)
+                }
             }
         }
 

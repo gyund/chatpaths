@@ -103,7 +103,7 @@ class MediaRecordingDialog @Inject constructor() {
             .setTitle(layout.root.context.getString(R.string.record_audio))
             .setView(layout.root)
             .setPositiveButton(
-                layout.root.context.getString(R.string.ok)
+                layout.root.context.getString(android.R.string.ok)
             ) { _, _ ->
                 if (!onFinished(uri)) {
                     onUserCancel() // delete the file

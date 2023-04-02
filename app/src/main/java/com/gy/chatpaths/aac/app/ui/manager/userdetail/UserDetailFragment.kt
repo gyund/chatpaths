@@ -187,7 +187,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
             MaterialAlertDialogBuilder(it)
                 .setTitle(getString(R.string.add_from_template_dialog_title))
                 .setMessage(getString(R.string.add_from_template_dialog_message))
-                .setPositiveButton(it.getString(R.string.ok)) { _, _ ->
+                .setPositiveButton(it.getString(android.R.string.ok)) { _, _ ->
                     lifecycleScope.launch {
                         val action =
                             UserDetailFragmentDirections.actionUserDetailFragmentToTemplateFragment()
@@ -211,7 +211,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
             MaterialAlertDialogBuilder(this)
                 .setTitle(this.getString(R.string.delete_collection_title))
                 .setMessage(this.getString(R.string.delete_collection_message))
-                .setPositiveButton(this.getString(R.string.ok)) { _, _ ->
+                .setPositiveButton(this.getString(android.R.string.ok)) { _, _ ->
                     lifecycleScope.launch {
                         collectionsViewModel.removeCollection(collectionId)
                         if (args.usingCollection) {
@@ -262,7 +262,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
             MaterialAlertDialogBuilder(it)
                 .setTitle(it.getString(R.string.delete_user_dialog_title))
                 .setMessage(it.getString(R.string.delete_user_dialog_message))
-                .setPositiveButton(it.getString(R.string.ok)) { _, _ ->
+                .setPositiveButton(it.getString(android.R.string.ok)) { _, _ ->
                     setCurrentUserButtonState()
                     lifecycleScope.launch {
                         context?.apply {
@@ -326,7 +326,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
             .setTitle(getString(R.string.edit_user_dialog_title))
             .setMessage(getString(R.string.edit_user_dialog_message))
             .setView(binding.root)
-            .setPositiveButton(getString(R.string.ok)) { _, _ ->
+            .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
                 // if the insert fails, the username already exists
             }
             .setNegativeButton(getString(R.string.cancel)) { _, _ ->
@@ -343,7 +343,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
             .setTitle(getString(R.string.add_path_collection_dialog_title))
             .setMessage(getString(R.string.add_path_collection_dialog_name))
             .setView(binding.root)
-            .setPositiveButton(getString(R.string.ok)) { _, _ ->
+            .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
             }
             .setNegativeButton(getString(R.string.cancel)) { _, _ ->
             }.show()

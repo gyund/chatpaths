@@ -114,7 +114,7 @@ abstract class CommonFeatureFragment : Fragment() {
                 .setTitle(getString(R.string.edit_image_dialog_title))
                 .setMessage(getString(R.string.edit_image_dialog_message))
                 .setPositiveButton(
-                    getString(R.string.ok)
+                    getString(android.R.string.ok)
                 ) { _, _ ->
                     openGalleryForImage()
                 }
@@ -138,7 +138,7 @@ abstract class CommonFeatureFragment : Fragment() {
             MaterialAlertDialogBuilder(it)
                 .setTitle(it.getString(R.string.delete_image_dialog_title))
                 .setMessage(it.getString(R.string.delete_image_dialog_message))
-                .setPositiveButton(it.getString(R.string.ok)) { _, _ ->
+                .setPositiveButton(it.getString(android.R.string.ok)) { _, _ ->
                     lifecycleScope.launch {
                         onDeleteImage()
                     }

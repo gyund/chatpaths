@@ -123,7 +123,7 @@ class GuidedTour @Inject constructor() {
                         )
                         .setPrimaryText(info.primaryText)
                         .setSecondaryText(info.secondaryText)
-                        .setPromptStateChangeListener { prompt, state ->
+                        .setPromptStateChangeListener { _, state ->
                             if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED ||
                                 state == MaterialTapTargetPrompt.STATE_DISMISSED
                             ) {

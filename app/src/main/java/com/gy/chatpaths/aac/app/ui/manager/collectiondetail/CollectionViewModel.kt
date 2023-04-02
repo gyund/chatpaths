@@ -64,7 +64,7 @@ class CollectionViewModel @Inject constructor(
             return pc?.imageUri?.isBlank() ?: return true
         }
 
-        fun isDrawableDefault(context: Context, collection: PathCollection): Boolean {
+        fun isDrawableDefault(collection: PathCollection): Boolean {
             return collection.imageUri.isNullOrBlank()
         }
 
@@ -76,7 +76,7 @@ class CollectionViewModel @Inject constructor(
             return img
         }
 
-        fun getTitle(context: Context, collection: PathCollection): String? {
+        fun getTitle(collection: PathCollection): String? {
             return collection.name
         }
 
