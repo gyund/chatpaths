@@ -22,7 +22,7 @@ on:
 
 jobs:
   analyze:
-    needs: build
+    workflows: "Android CI"
     name: Analyze
     runs-on: ubuntu-latest
     permissions:

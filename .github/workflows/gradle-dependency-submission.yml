@@ -6,7 +6,7 @@ on:
 
 jobs:
   gradle-action-detection:
-    needs: build
+    workflows: "Android CI"
     runs-on: ubuntu-latest
     # The Dependency Submission API requires write permission
     permissions:
