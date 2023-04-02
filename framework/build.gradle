@@ -63,7 +63,7 @@ dependencies {
 	implementation 'androidx.appcompat:appcompat:1.6.1'
 	implementation 'androidx.preference:preference-ktx:1.2.0'
 	implementation platform('com.google.firebase:firebase-bom:31.4.0')
-	implementation 'com.google.firebase:firebase-crashlytics-ktx'
+	implementation 'com.google.firebase:firebase-crashlytics-ktx:18.3.6'
 	testImplementation 'androidx.test.ext:truth:1.5.0'
 	testImplementation 'junit:junit:4.13.2'
 	androidTestImplementation 'com.google.truth:truth:1.1.3'
