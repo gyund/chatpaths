@@ -1,0 +1,13 @@
+spotless {
+    java {
+        cleanthat()
+        googleJavaFormat()
+    }
+    kotlin {
+        target '**/*.kt'
+        ktlint()
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
+}

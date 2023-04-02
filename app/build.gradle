@@ -14,12 +14,7 @@ if (getGradle().getStartParameter().getTaskRequests().toString().contains("Relea
 
 }
 
-spotless {
-    java {
-        cleanthat()
-        googleJavaFormat()
-    }
-}
+apply from: "$project.rootDir/spotless.gradle"
 
 ext {
     // Year.Month.MajorVersion.patch

@@ -6,12 +6,7 @@ plugins {
     id("com.diffplug.spotless") version "6.17.0"
 }
 
-spotless {
-    java {
-        cleanthat()
-        googleJavaFormat()
-    }
-}
+apply from: "$project.rootDir/spotless.gradle"
 
 android {
     compileSdkVersion 33
