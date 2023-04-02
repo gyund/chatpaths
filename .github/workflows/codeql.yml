@@ -88,5 +88,5 @@ jobs:
     - uses: github/codeql-action/upload-sarif@v2
       if: success() || failure()
       with:
-        sarif_file: build/report.sarif
+        sarif_file: results/java.sarif
         category: lint
