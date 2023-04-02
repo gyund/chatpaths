@@ -12,17 +12,21 @@
 name: "CodeQL"
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ "main" ]
-#   schedule:
-#     - cron: '39 10 * * 2'
+  workflow_run:
+    workflows: [ "Android CI" ]
+    branches: [ main ]
+    types:
+      - completed
+#  push:
+#    branches: [ "main" ]
+#  pull_request:
+#    # The branches below must be a subset of the branches above
+#    branches: [ "main" ]
+##   schedule:
+##     - cron: '39 10 * * 2'
 
 jobs:
   analyze:
-    workflows: "Android CI"
     name: Analyze
     runs-on: ubuntu-latest
     permissions:
