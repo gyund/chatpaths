@@ -2,6 +2,7 @@
     <a href='https://github.com/gyund/chatpaths/actions/workflows/android.yml'><img src="https://github.com/gyund/chatpaths/actions/workflows/android.yml/badge.svg" /></a>
     <a href='https://github.com/gyund/chatpaths/actions/workflows/codeql.yml'><img src="https://github.com/gyund/chatpaths/actions/workflows/codeql.yml/badge.svg" /></a>
     <a href='https://github.com/gyund/chatpaths/actions/workflows/gradle-dependency-submission.yml'><img src="https://github.com/gyund/chatpaths/actions/workflows/gradle-dependency-submission.yml/badge.svg" /></a>
+    <a href="https://cla-assistant.io/gyund/chatpaths"><img src="https://cla-assistant.io/readme/badge/gyund/chatpaths" alt="CLA assistant" /></a>
 </p>
 
 <p align="center">
