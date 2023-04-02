@@ -32,7 +32,6 @@ ChatPaths is a communication app for helping non-verbal kids communicate while o
 ├── resources              # Graphics, Paths, Descriptions
 ```
 
-
 ## Incorporated Works
 
 Chatpaths makes use of a number of 3rd party visual resources as well as compositions and 
