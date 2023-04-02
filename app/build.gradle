@@ -14,7 +14,7 @@ if (getGradle().getStartParameter().getTaskRequests().toString().contains("Relea
 
 }
 
-apply from: "$project.rootDir/spotless.gradle"
+apply from: "$project.rootDir/common.gradle"
 
 ext {
 	// Year.Month.MajorVersion.patch
