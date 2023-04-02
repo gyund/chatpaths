@@ -6,9 +6,10 @@ import com.gy.chatpaths.aac.resource.create.Collection
 import com.gy.chatpaths.aac.resource.create.Path
 import com.gy.chatpaths.aac.resource.template.paths.Dinner as PathDinner
 
-class Dinner(context: Context,
-             repository: CPRepository,
-             userId: Int
+class Dinner(
+    context: Context,
+    repository: CPRepository,
+    userId: Int,
 ) : Collection(context, repository, userId) {
 
     init {

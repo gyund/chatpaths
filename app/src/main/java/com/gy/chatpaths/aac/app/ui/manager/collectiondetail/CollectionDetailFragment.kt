@@ -29,8 +29,9 @@ class CollectionDetailFragment : CommonFeatureFragment() {
     private val args: CollectionDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentCollectionDetailBinding.inflate(layoutInflater, container, false)
@@ -47,8 +48,8 @@ class CollectionDetailFragment : CommonFeatureFragment() {
                             setupCollectionImage(ctx, it)
                             binding.editName.setText(
                                 CollectionViewModel.getTitle(
-                                    it
-                                )
+                                    it,
+                                ),
                             )
                         }
                     }
@@ -60,7 +61,6 @@ class CollectionDetailFragment : CommonFeatureFragment() {
             }
         }
 
-
         binding.deleteButton.setOnClickListener {
             showDeleteCollectionDialog(args.collectionId)
         }
@@ -69,11 +69,10 @@ class CollectionDetailFragment : CommonFeatureFragment() {
             lifecycleScope.launch {
                 collectionViewModel.updateDisplayName(
                     args.collectionId,
-                    binding.editName.text.toString()
+                    binding.editName.text.toString(),
                 )
                 view.findNavController().navigateUp()
             }
-
         }
 
         return binding.root
@@ -86,7 +85,7 @@ class CollectionDetailFragment : CommonFeatureFragment() {
 
     private fun setupCollectionImage(
         ctx: Context,
-        it: PathCollection
+        it: PathCollection,
     ) {
         val drawable = CollectionViewModel.getDrawable(ctx, it)
         if (CollectionViewModel.isDrawableDefault(it)) {

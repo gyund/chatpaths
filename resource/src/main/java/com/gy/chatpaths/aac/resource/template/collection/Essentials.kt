@@ -6,9 +6,10 @@ import com.gy.chatpaths.aac.resource.R
 import com.gy.chatpaths.aac.resource.create.Collection
 import com.gy.chatpaths.aac.resource.create.Path
 
-class Essentials(context: Context,
-                 repository: CPRepository,
-                 userId: Int
+class Essentials(
+    context: Context,
+    repository: CPRepository,
+    userId: Int,
 ) : Collection(context, repository, userId) {
 
     init {
@@ -25,7 +26,7 @@ class Essentials(context: Context,
             path().setName(R.string.path_drink).setIcon(R.drawable.ic_drink),
             path().setName(R.string.path_bathroom).setIcon(R.drawable.ic_bathroom),
             path().setName(R.string.path_more).setIcon(R.drawable.ic_more),
-            path().setName(R.string.path_all_done).setIcon(R.drawable.ic_all_done)
+            path().setName(R.string.path_all_done).setIcon(R.drawable.ic_all_done),
         )
     }
 }

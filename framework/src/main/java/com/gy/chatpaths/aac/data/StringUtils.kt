@@ -3,7 +3,6 @@ package com.gy.chatpaths.aac.data
 import android.content.Context
 import androidx.annotation.StringRes
 
-
 class StringUtils {
     companion object {
         /**
@@ -20,7 +19,7 @@ class StringUtils {
                     context.resources.getIdentifier(
                         resourceName,
                         "string",
-                        context.packageName
+                        context.packageName,
                     )
                 return when {
                     0 != resId -> context.getString(resId) // return
@@ -28,7 +27,7 @@ class StringUtils {
                     else -> null // return
                 }
             }
-            if(resourceName.isNullOrBlank()) return null
+            if (resourceName.isNullOrBlank()) return null
             return getStringFromResource()
         }
     }

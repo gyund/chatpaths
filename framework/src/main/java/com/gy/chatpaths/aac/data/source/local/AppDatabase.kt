@@ -8,8 +8,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.gy.chatpaths.aac.data.*
-
+import com.gy.chatpaths.aac.data.BuildConfig
+import com.gy.chatpaths.aac.data.Path
+import com.gy.chatpaths.aac.data.PathCollection
+import com.gy.chatpaths.aac.data.PathUser
 
 @Database(
     entities = [
@@ -17,7 +19,7 @@ import com.gy.chatpaths.aac.data.*
         PathCollection::class,
         PathUser::class,
     ],
-    version = AppDatabase.DATABASE_VERSION
+    version = AppDatabase.DATABASE_VERSION,
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun pathDao(): PathDao
@@ -34,7 +36,7 @@ abstract class AppDatabase : RoomDatabase() {
 
         fun inMigrationTransaction(
             database: SupportSQLiteDatabase,
-            migrationProcedure: () -> Unit
+            migrationProcedure: () -> Unit,
         ) {
             database.beginTransaction()
             database.execSQL("PRAGMA foreign_keys=off;")
@@ -126,27 +128,26 @@ abstract class AppDatabase : RoomDatabase() {
                 val tableTempPath = "TEMP_PATH"
                 val tableTempCollections = "TEMP_COLLECTIONS"
 
-
                 database.beginTransaction()
                 database.execSQL("PRAGMA foreign_keys=off;")
 
                 updateCollections(database, tableTempCollections)
-                updatePaths(database,tableTempPath)
+                updatePaths(database, tableTempPath)
 
-                database.execSQL("DROP TABLE `${tablePath}`")
-                database.execSQL("DROP TABLE `${tablePathCollections}`")
+                database.execSQL("DROP TABLE `$tablePath`")
+                database.execSQL("DROP TABLE `$tablePathCollections`")
 
-                database.execSQL("ALTER TABLE `${tableTempPath}` RENAME TO `${tablePath}`")
-                database.execSQL("ALTER TABLE `${tableTempCollections}` RENAME TO `${tablePathCollections}`")
+                database.execSQL("ALTER TABLE `$tableTempPath` RENAME TO `$tablePath`")
+                database.execSQL("ALTER TABLE `$tableTempCollections` RENAME TO `$tablePathCollections`")
 
                 val prefix = "android.resource://" + BuildConfig.LIBRARY_PACKAGE_NAME + "/drawable"
 
-                database.execSQL("UPDATE `${tablePath}` SET imageUri = `replace`(imageUri, 'ic_', '${prefix}/ic_') WHERE imageUri LIKE 'ic_%'")
-                database.execSQL("UPDATE `${tablePathCollections}` SET imageUri = `replace`(imageUri, 'ic_', '${prefix}/ic_') WHERE imageUri LIKE 'ic_%'")
+                database.execSQL("UPDATE `$tablePath` SET imageUri = `replace`(imageUri, 'ic_', '$prefix/ic_') WHERE imageUri LIKE 'ic_%'")
+                database.execSQL("UPDATE `$tablePathCollections` SET imageUri = `replace`(imageUri, 'ic_', '$prefix/ic_') WHERE imageUri LIKE 'ic_%'")
 
                 // Create temporary index for migrating data
-                database.execSQL("CREATE INDEX IF NOT EXISTS `index_PathCollection_oldCollectionId` ON `${tablePathCollections}` (`oldCollectionId`)")
-                database.execSQL("CREATE INDEX IF NOT EXISTS `index_Path_oldPathId` ON `${tablePath}` (`oldPathId`)")
+                database.execSQL("CREATE INDEX IF NOT EXISTS `index_PathCollection_oldCollectionId` ON `$tablePathCollections` (`oldCollectionId`)")
+                database.execSQL("CREATE INDEX IF NOT EXISTS `index_Path_oldPathId` ON `$tablePath` (`oldPathId`)")
 
                 // Update collection index
                 database.execSQL("UPDATE Path SET collectionId = (SELECT collectionId FROM PathCollection AS pc WHERE Path.collectionId = pc.oldCollectionId AND Path.userId = pc.userId)")
@@ -178,7 +179,7 @@ abstract class AppDatabase : RoomDatabase() {
 
             private fun printTable(database: SupportSQLiteDatabase, tableName: String) {
                 Log.d("MIGRATE", "Printing table $tableName")
-                val cursor = database.query("SELECT * FROM `${tableName}`")
+                val cursor = database.query("SELECT * FROM `$tableName`")
                 Log.d("MIGRATE", DatabaseUtils.dumpCursorToString(cursor))
             }
 
@@ -187,17 +188,18 @@ abstract class AppDatabase : RoomDatabase() {
 
             fun updatePaths(
                 database: SupportSQLiteDatabase,
-                TABLE_NAME: String) {
-
-                database.execSQL("CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pathId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `oldPathId` INTEGER NOT NULL, `userId` INTEGER NOT NULL, `collectionId` INTEGER NOT NULL, `parentId` INTEGER, `defaultPosition` INTEGER, `name` TEXT, `imageUri` TEXT, `enabled` INTEGER NOT NULL DEFAULT 1, `anchored` INTEGER NOT NULL DEFAULT 0, `timesUsed` INTEGER NOT NULL DEFAULT 0, `position` INTEGER, FOREIGN KEY(`userId`) REFERENCES `PathUser`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`collectionId`) REFERENCES `PathCollection`(`collectionId`) ON UPDATE NO ACTION ON DELETE CASCADE )")
-                database.execSQL("INSERT INTO `${TABLE_NAME}` (`oldPathId`,`userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` ) SELECT u.pathId ,u.userId, u.collectionId, u.parentId, u.defaultPosition, COALESCE(u.userTitle,u.defaultTitleStringResource), COALESCE(u.userIndividualImageUri, u.userSharedImageUri, u.defaultImageResource), COALESCE(u.enabled,1), COALESCE(u.anchored,0), COALESCE(u.timesUsed,0), u.position FROM `${pudView}` AS u WHERE u.collectionId < 9999 OR u.collectionId > 10000")
+                TABLE_NAME: String,
+            ) {
+                database.execSQL("CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`pathId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `oldPathId` INTEGER NOT NULL, `userId` INTEGER NOT NULL, `collectionId` INTEGER NOT NULL, `parentId` INTEGER, `defaultPosition` INTEGER, `name` TEXT, `imageUri` TEXT, `enabled` INTEGER NOT NULL DEFAULT 1, `anchored` INTEGER NOT NULL DEFAULT 0, `timesUsed` INTEGER NOT NULL DEFAULT 0, `position` INTEGER, FOREIGN KEY(`userId`) REFERENCES `PathUser`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`collectionId`) REFERENCES `PathCollection`(`collectionId`) ON UPDATE NO ACTION ON DELETE CASCADE )")
+                database.execSQL("INSERT INTO `$TABLE_NAME` (`oldPathId`,`userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` ) SELECT u.pathId ,u.userId, u.collectionId, u.parentId, u.defaultPosition, COALESCE(u.userTitle,u.defaultTitleStringResource), COALESCE(u.userIndividualImageUri, u.userSharedImageUri, u.defaultImageResource), COALESCE(u.enabled,1), COALESCE(u.anchored,0), COALESCE(u.timesUsed,0), u.position FROM `$pudView` AS u WHERE u.collectionId < 9999 OR u.collectionId > 10000")
             }
 
             fun updateCollections(
                 database: SupportSQLiteDatabase,
-                TABLE_NAME: String) {
-                database.execSQL("CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`collectionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `oldCollectionId` INTEGER, `userId` INTEGER NOT NULL, `name` TEXT, `imageUri` TEXT, `displayOrder` INTEGER, `enabled` INTEGER NOT NULL DEFAULT 1, `autoSort` INTEGER NOT NULL DEFAULT 0)")
-                database.execSQL("INSERT INTO `${TABLE_NAME}` (`oldCollectionId`, `userId`, `name`, `imageUri`, `displayOrder`, `enabled` ) SELECT c.collectionId, COALESCE(c.userId,1), COALESCE(c.userDisplayName,c.name), COALESCE(c.displayImage, c.userDisplayImage), c.displayOrder, COALESCE(c.enabled,1) AS enabled  FROM `${upcView}` AS c")
+                TABLE_NAME: String,
+            ) {
+                database.execSQL("CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`collectionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `oldCollectionId` INTEGER, `userId` INTEGER NOT NULL, `name` TEXT, `imageUri` TEXT, `displayOrder` INTEGER, `enabled` INTEGER NOT NULL DEFAULT 1, `autoSort` INTEGER NOT NULL DEFAULT 0)")
+                database.execSQL("INSERT INTO `$TABLE_NAME` (`oldCollectionId`, `userId`, `name`, `imageUri`, `displayOrder`, `enabled` ) SELECT c.collectionId, COALESCE(c.userId,1), COALESCE(c.userDisplayName,c.name), COALESCE(c.displayImage, c.userDisplayImage), c.displayOrder, COALESCE(c.enabled,1) AS enabled  FROM `$upcView` AS c")
             }
 
             /**
@@ -205,24 +207,25 @@ abstract class AppDatabase : RoomDatabase() {
              */
             fun updateCollectionsFinal(
                 database: SupportSQLiteDatabase,
-                TABLE_NAME: String) {
-                database.execSQL("CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`collectionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `name` TEXT, `imageUri` TEXT, `displayOrder` INTEGER, `enabled` INTEGER NOT NULL DEFAULT 1, `autoSort` INTEGER NOT NULL DEFAULT 0)")
-                database.execSQL("INSERT INTO `${TABLE_NAME}` (`collectionId`, `userId`, `name`, `imageUri`, `displayOrder`, `enabled`, `autoSort` ) SELECT `collectionId`, `userId`, `name`, `imageUri`, `displayOrder`, `enabled` , `autoSort` FROM `${tablePathCollections}`")
-                database.execSQL("DROP TABLE `${tablePathCollections}`")
+                TABLE_NAME: String,
+            ) {
+                database.execSQL("CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`collectionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `name` TEXT, `imageUri` TEXT, `displayOrder` INTEGER, `enabled` INTEGER NOT NULL DEFAULT 1, `autoSort` INTEGER NOT NULL DEFAULT 0)")
+                database.execSQL("INSERT INTO `$TABLE_NAME` (`collectionId`, `userId`, `name`, `imageUri`, `displayOrder`, `enabled`, `autoSort` ) SELECT `collectionId`, `userId`, `name`, `imageUri`, `displayOrder`, `enabled` , `autoSort` FROM `$tablePathCollections`")
+                database.execSQL("DROP TABLE `$tablePathCollections`")
 
-                database.execSQL("ALTER TABLE `${TABLE_NAME}` RENAME TO `${tablePathCollections}`")
+                database.execSQL("ALTER TABLE `$TABLE_NAME` RENAME TO `$tablePathCollections`")
             }
 
             fun updatePathsFinal(
                 database: SupportSQLiteDatabase,
-                TABLE_NAME: String) {
+                TABLE_NAME: String,
+            ) {
+                database.execSQL("CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`pathId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `collectionId` INTEGER NOT NULL, `parentId` INTEGER, `defaultPosition` INTEGER, `name` TEXT, `imageUri` TEXT, `enabled` INTEGER NOT NULL DEFAULT 1, `anchored` INTEGER NOT NULL DEFAULT 0, `timesUsed` INTEGER NOT NULL DEFAULT 0, `position` INTEGER, FOREIGN KEY(`userId`) REFERENCES `PathUser`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`collectionId`) REFERENCES `PathCollection`(`collectionId`) ON UPDATE NO ACTION ON DELETE CASCADE )")
+                database.execSQL("INSERT INTO `$TABLE_NAME` (`pathId`, `userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` ) SELECT `pathId`, `userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` FROM `$tablePath`")
 
-                database.execSQL("CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pathId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `collectionId` INTEGER NOT NULL, `parentId` INTEGER, `defaultPosition` INTEGER, `name` TEXT, `imageUri` TEXT, `enabled` INTEGER NOT NULL DEFAULT 1, `anchored` INTEGER NOT NULL DEFAULT 0, `timesUsed` INTEGER NOT NULL DEFAULT 0, `position` INTEGER, FOREIGN KEY(`userId`) REFERENCES `PathUser`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`collectionId`) REFERENCES `PathCollection`(`collectionId`) ON UPDATE NO ACTION ON DELETE CASCADE )")
-                database.execSQL("INSERT INTO `${TABLE_NAME}` (`pathId`, `userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` ) SELECT `pathId`, `userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` FROM `${tablePath}`")
+                database.execSQL("DROP TABLE `$tablePath`")
 
-                database.execSQL("DROP TABLE `${tablePath}`")
-
-                database.execSQL("ALTER TABLE `${TABLE_NAME}` RENAME TO `${tablePath}`")
+                database.execSQL("ALTER TABLE `$TABLE_NAME` RENAME TO `$tablePath`")
             }
         }
 
@@ -238,15 +241,14 @@ abstract class AppDatabase : RoomDatabase() {
 
             fun updatePaths(
                 database: SupportSQLiteDatabase,
-                TABLE_NAME: String
+                TABLE_NAME: String,
             ) {
-
-                database.execSQL("CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pathId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `collectionId` INTEGER NOT NULL, `parentId` INTEGER, `defaultPosition` INTEGER, `name` TEXT, `imageUri` TEXT, `audioPromptUri` TEXT, `enabled` INTEGER NOT NULL DEFAULT 1, `anchored` INTEGER NOT NULL DEFAULT 0, `timesUsed` INTEGER NOT NULL DEFAULT 0, `position` INTEGER, FOREIGN KEY(`userId`) REFERENCES `PathUser`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`collectionId`) REFERENCES `PathCollection`(`collectionId`) ON UPDATE NO ACTION ON DELETE CASCADE )")
-                database.execSQL("INSERT INTO `${TABLE_NAME}` (`pathId`, `userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` ) SELECT u.pathId ,u.userId, u.collectionId, u.parentId, u.defaultPosition, u.name, u.imageUri, u.enabled, u.anchored, u.timesUsed, u.position FROM `${tablePath}` AS u")
+                database.execSQL("CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`pathId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `collectionId` INTEGER NOT NULL, `parentId` INTEGER, `defaultPosition` INTEGER, `name` TEXT, `imageUri` TEXT, `audioPromptUri` TEXT, `enabled` INTEGER NOT NULL DEFAULT 1, `anchored` INTEGER NOT NULL DEFAULT 0, `timesUsed` INTEGER NOT NULL DEFAULT 0, `position` INTEGER, FOREIGN KEY(`userId`) REFERENCES `PathUser`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`collectionId`) REFERENCES `PathCollection`(`collectionId`) ON UPDATE NO ACTION ON DELETE CASCADE )")
+                database.execSQL("INSERT INTO `$TABLE_NAME` (`pathId`, `userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` ) SELECT u.pathId ,u.userId, u.collectionId, u.parentId, u.defaultPosition, u.name, u.imageUri, u.enabled, u.anchored, u.timesUsed, u.position FROM `$tablePath` AS u")
 
                 // Make temp table the new table
-                database.execSQL("DROP TABLE `${tablePath}`")
-                database.execSQL("ALTER TABLE `${TABLE_NAME}` RENAME TO `${tablePath}`")
+                database.execSQL("DROP TABLE `$tablePath`")
+                database.execSQL("ALTER TABLE `$TABLE_NAME` RENAME TO `$tablePath`")
 
                 database.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS `index_Path_pathId` ON `Path` (`pathId`)")
                 database.execSQL("CREATE INDEX IF NOT EXISTS `index_Path_userId_collectionId_parentId` ON `Path` (`userId`, `collectionId`, `parentId`)")
@@ -257,7 +259,7 @@ abstract class AppDatabase : RoomDatabase() {
         private val ALL_MIGRATIONS = arrayOf<Migration>(
 //            MIGRATION_10_11,
             MIGRATION_11_12,
-            MIGRATION_12_13
+            MIGRATION_12_13,
         )
 
         private val DESTRUCTIVE_MIGRATION_VERSIONS = arrayOf(
@@ -270,7 +272,7 @@ abstract class AppDatabase : RoomDatabase() {
             7,
             8,
             9,
-            10
+            10,
         )
 
         @Deprecated("Only Repository Classes should access this class directly")
@@ -283,7 +285,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     @Suppress("DEPRECATION") AppDatabase::class.java,
-                    "sc_database"
+                    "sc_database",
                 ).let {
                     return@let buildDatabase(it)
                 }
@@ -301,9 +303,9 @@ abstract class AppDatabase : RoomDatabase() {
             it.fallbackToDestructiveMigrationFrom(*DESTRUCTIVE_MIGRATION_VERSIONS.toIntArray())
             it.addMigrations(*ALL_MIGRATIONS)
             it.fallbackToDestructiveMigrationOnDowngrade() // for BETA cases
-            //if(BuildConfig.DEBUG) {
+            // if(BuildConfig.DEBUG) {
             //    it.fallbackToDestructiveMigration()
-            //}
+            // }
             return it.build()
         }
 
@@ -312,7 +314,5 @@ abstract class AppDatabase : RoomDatabase() {
             INSTANCE?.close()
             INSTANCE = null
         }
-
-
     }
 }

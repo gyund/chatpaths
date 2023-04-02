@@ -2,14 +2,20 @@ package com.gy.chatpaths.aac.data.source.local
 
 import android.content.ContentResolver
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Transaction
+import androidx.room.Update
 import com.gy.chatpaths.aac.data.Path
 
 @Dao
 interface PathDao {
 
     @Query("SELECT COUNT(*) FROM path")
-    fun getCount() : Int
+    fun getCount(): Int
 
     @Query("SELECT * FROM path")
     fun getAll(): List<Path>
@@ -34,43 +40,46 @@ interface PathDao {
     fun findWithParentById(id: Int, collectionId: Int): Path?
 
     @Query("SELECT * FROM Path WHERE  collectionId = :collectionId AND parentId = :parentId AND enabled = 1 AND userId = :userId ORDER BY anchored DESC, position NOT NULL DESC, position")
-    fun getChildrenByParent(userId: Int,
-                            collectionId: Int,
-                            parentId: Int
+    fun getChildrenByParent(
+        userId: Int,
+        collectionId: Int,
+        parentId: Int,
     ): MutableList<Path>?
 
     @Query("SELECT * FROM Path WHERE  collectionId = :collectionId AND parentId = :parentId AND userId = :userId ORDER BY anchored DESC, position NOT NULL DESC, position")
-    fun getChildrenByParentAll(userId: Int,
-                            collectionId: Int,
-                            parentId: Int
+    fun getChildrenByParentAll(
+        userId: Int,
+        collectionId: Int,
+        parentId: Int,
     ): MutableList<Path>?
 
     @Query("SELECT * FROM Path WHERE  collectionId = :collectionId AND parentId IS NULL AND enabled = 1 AND userId = :userId ORDER BY anchored DESC, position NOT NULL DESC, position")
-    fun getChildrenOfNull(userId: Int,
-                          collectionId: Int
+    fun getChildrenOfNull(
+        userId: Int,
+        collectionId: Int,
     ): MutableList<Path>?
 
     @Query("SELECT * FROM Path WHERE  collectionId = :collectionId AND parentId IS NULL AND userId = :userId ORDER BY anchored DESC, position NOT NULL DESC, position")
-    fun getChildrenOfNullAll(userId: Int,
-                          collectionId: Int
+    fun getChildrenOfNullAll(
+        userId: Int,
+        collectionId: Int,
     ): MutableList<Path>?
-
 
     @Transaction
     fun getChildrenAuto(
         userId: Int,
         collectionId: Int,
         parentId: Int?,
-        showAll: Boolean
+        showAll: Boolean,
     ): MutableList<Path>? {
-        return if(null == parentId) {
-            if(showAll) {
+        return if (null == parentId) {
+            if (showAll) {
                 getChildrenOfNullAll(userId, collectionId)
             } else {
                 getChildrenOfNull(userId, collectionId)
             }
         } else {
-            if(showAll) {
+            if (showAll) {
                 getChildrenByParentAll(userId, collectionId, parentId)
             } else {
                 getChildrenByParent(userId, collectionId, parentId)
@@ -78,11 +87,10 @@ interface PathDao {
         }
     }
 
-
     @Query("SELECT * FROM Path WHERE collectionId = :collectionId AND parentId IS NULL AND enabled = 1 AND userId = :userId  ORDER BY position DESC")
     fun getRootPathsForCollection(
         userId: Int,
-        collectionId: Int
+        collectionId: Int,
     ): Array<Path>?
 
     @Query("SELECT * FROM Path WHERE collectionId = :collectionId AND parentId IS NULL AND userId = :userId ORDER BY position DESC")
@@ -93,7 +101,7 @@ interface PathDao {
     fun getChildPathsForCollectionById(
         userId: Int,
         collectionId: Int,
-        parentId: Int
+        parentId: Int,
     ): Array<Path>?
 
     @Transaction
@@ -101,7 +109,7 @@ interface PathDao {
     fun getAllChildPathsForCollectionById(
         userId: Int,
         collectionId: Int,
-        parentId: Int
+        parentId: Int,
     ): Array<Path>?
 
     @Query("SELECT DISTINCT imageUri FROM path WHERE imageUri IS NOT NULL")
@@ -162,7 +170,7 @@ interface PathDao {
     fun setPathTitle(pathId: Int, title: String)
 
     @Query("SELECT imageUri FROM Path WHERE userId = :userId AND imageUri IS NOT NULL AND imageUri NOT LIKE '${ContentResolver.SCHEME_ANDROID_RESOURCE}%' ")
-    fun getUserIndividualImages(userId : Int) : List<String>
+    fun getUserIndividualImages(userId: Int): List<String>
 
     @Query("SELECT imageUri FROM Path WHERE pathId = :pathId")
     fun getImageUri(pathId: Int): String?

@@ -20,8 +20,8 @@ class UriHelper {
          */
         fun getUriToDrawable(
             context: Context,
-            @AnyRes drawableId: Int
-        ): Uri  = getUriToDrawable(context.resources, drawableId)
+            @AnyRes drawableId: Int,
+        ): Uri = getUriToDrawable(context.resources, drawableId)
 
         /**
          * get uri to drawable or any other resource type if u wish
@@ -31,7 +31,7 @@ class UriHelper {
          */
         private fun getUriToDrawable(
             resources: Resources,
-            drawableId: Int
+            drawableId: Int,
         ) = Uri.Builder().scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
             .authority(resources.getResourcePackageName(drawableId))
             .appendPath(resources.getResourceTypeName(drawableId))
@@ -41,7 +41,8 @@ class UriHelper {
         fun getResourceUris(
             context: Context,
             list: MutableList<String>,
-            searchText: String? = null) {
+            searchText: String? = null,
+        ) {
             val imgList = context.resources.obtainTypedArray(R.array.images)
 
             for (i in 0 until imgList.length()) {

@@ -5,7 +5,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.gy.chatpaths.aac.resource.UriHelper
 
-open class Path (val collection: Collection) {
+open class Path(val collection: Collection) {
 
     var name: String? = null
     var iconUri: Uri? = null
@@ -16,7 +16,7 @@ open class Path (val collection: Collection) {
         initializeChildren()
     }
 
-    protected fun initializeChildren() : MutableList<Path> {
+    protected fun initializeChildren(): MutableList<Path> {
         return mutableListOf()
     }
 
@@ -29,16 +29,15 @@ open class Path (val collection: Collection) {
             imageUri = iconUri.toString(),
             parentId = parentPath,
             position = position,
-            anchored = false
+            anchored = false,
         )
 
         collection.repository.setPathIsAnchored(
             userId = collection.userId,
             collectionId = collectionId,
             pathId = id,
-            anchored = anchored
+            anchored = anchored,
         )
-
 
         // add children
         children.forEachIndexed { index, path ->
@@ -47,19 +46,19 @@ open class Path (val collection: Collection) {
         }
     }
 
-    fun path() : Path {
+    fun path(): Path {
         return Path(collection)
     }
 
     /**
      * Name of the collection
      */
-    fun setName(name: String) : Path {
+    fun setName(name: String): Path {
         this.name = name
         return this
     }
 
-    fun setName(@StringRes name: Int) : Path {
+    fun setName(@StringRes name: Int): Path {
         this.name = collection.context.getString(name)
         return this
     }
@@ -71,21 +70,20 @@ open class Path (val collection: Collection) {
      * This method will create a drawable URI that can be used
      * store the drawable information in a database.
      */
-    fun setIcon(@DrawableRes res: Int) : Path {
+    fun setIcon(@DrawableRes res: Int): Path {
         iconUri = UriHelper.getUriToDrawable(collection.context, res)
         return this
     }
 
-    fun anchored() : Path {
+    fun anchored(): Path {
         anchored = true
         return this
     }
 
-    fun addChild(path: Path) : Path {
+    fun addChild(path: Path): Path {
         children.add(path)
         return this
     }
 
-
-    constructor(path: Path) :this(path.collection)
+    constructor(path: Path) : this(path.collection)
 }

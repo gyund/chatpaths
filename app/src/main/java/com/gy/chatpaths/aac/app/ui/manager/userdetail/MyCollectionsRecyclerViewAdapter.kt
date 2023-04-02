@@ -15,14 +15,13 @@ import com.gy.chatpaths.aac.app.ui.helper.OnStartDragListener
 import com.gy.chatpaths.aac.data.PathCollection
 import java.util.*
 
-
 /**
  * [RecyclerView.Adapter] that can display a [PathCollection].
  */
 class MyCollectionsRecyclerViewAdapter(
     private val listener: CollectionManagerListener,
     private val viewmodel: UserCollectionsViewModel,
-    private val dragStartListener: OnStartDragListener
+    private val dragStartListener: OnStartDragListener,
 ) : RecyclerView.Adapter<MyCollectionsRecyclerViewAdapter.ViewHolder>(),
     BindableAdapter<PathCollection>,
     ItemTouchHelperAdapter {
@@ -55,7 +54,7 @@ class MyCollectionsRecyclerViewAdapter(
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         super.onDetachedFromRecyclerView(recyclerView)
         Log.d("RV", "detached from RV")
-        //updateAllPreferences()
+        // updateAllPreferences()
     }
 
     private fun updateAllPreferences() {
@@ -78,14 +77,14 @@ class MyCollectionsRecyclerViewAdapter(
                 notifyItemInserted(values.lastIndex)
             }
         }
-        //values = items.toMutableList()
-        //notifyDataSetChanged()
+        // values = items.toMutableList()
+        // notifyDataSetChanged()
     }
 
     fun removeAt(position: Int) {
         val item = values.removeAt(position)
         listener.showDeleteCollectionDialog(item.collectionId) {
-            when(it) {
+            when (it) {
                 true -> {
                     // If we don't navigate away, then remove this collection from the RV
                     viewmodel.removeCollection(item.collectionId)
@@ -107,10 +106,9 @@ class MyCollectionsRecyclerViewAdapter(
         positions.forEach(this::notifyItemChanged)
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        //.inflate(R.layout.fragment_collections, parent, false)
+        // .inflate(R.layout.fragment_collections, parent, false)
         val binding = FragmentCollectionsBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
@@ -124,26 +122,27 @@ class MyCollectionsRecyclerViewAdapter(
     override fun onItemMove(fromPosition: Int, toPosition: Int) {
         Collections.swap(values, fromPosition, toPosition)
         notifyItemMoved(fromPosition, toPosition)
-        //notifyDataSetChanged()
+        // notifyDataSetChanged()
     }
 
     override fun onItemDismiss(position: Int) {
         Log.d("RV", "onItemDismiss")
-        //mItems.remove(position);
+        // mItems.remove(position);
         notifyItemRemoved(position)
     }
 
-    inner class ViewHolder(val binding: FragmentCollectionsBinding) : RecyclerView.ViewHolder(
-        binding.root
-    ),
+    inner class ViewHolder(val binding: FragmentCollectionsBinding) :
+        RecyclerView.ViewHolder(
+            binding.root,
+        ),
         ItemTouchHelperViewHolder {
 
         fun bind(collection: PathCollection) {
             binding.pathImage.setImageDrawable(
                 UserCollectionsViewModel.getDrawable(
                     binding.root.context,
-                    collection
-                )
+                    collection,
+                ),
             )
             binding.content.text =
                 UserCollectionsViewModel.getTitle(binding.root.context, collection)

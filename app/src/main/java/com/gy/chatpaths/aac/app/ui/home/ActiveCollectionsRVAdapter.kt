@@ -14,7 +14,7 @@ import com.gy.chatpaths.aac.app.ui.manager.userdetail.UserCollectionsViewModel
 import com.gy.chatpaths.aac.data.PathCollection
 
 class ActiveCollectionsRVAdapter(
-    private val context: Context
+    private val context: Context,
 ) : RecyclerView.Adapter<ActiveCollectionsRVAdapter.ViewHolder>(), BindableAdapter<PathCollection> {
 
     private var values: List<PathCollection> = emptyList()
@@ -35,10 +35,9 @@ class ActiveCollectionsRVAdapter(
         positions.forEach(this::notifyItemChanged)
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        //.inflate(R.layout.fragment_collections, parent, false)
+        // .inflate(R.layout.fragment_collections, parent, false)
         val binding = FragmentHomeCollectionsBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
@@ -56,8 +55,8 @@ class ActiveCollectionsRVAdapter(
             binding.pathImage.setImageDrawable(
                 UserCollectionsViewModel.getDrawable(
                     binding.root.context,
-                    collection
-                )
+                    collection,
+                ),
             )
             binding.content.text =
                 UserCollectionsViewModel.getTitle(binding.root.context, collection)
@@ -65,11 +64,10 @@ class ActiveCollectionsRVAdapter(
             binding.outercardview.setCardBackgroundColor(
                 getColor(
                     context,
-                    R.color.primaryDarkColor
-                )
+                    R.color.primaryDarkColor,
+                ),
             )
             binding.potwView.visibility = View.GONE
-
 
             fun onPathClicked(it: View) {
                 val action =
@@ -98,5 +96,4 @@ class ActiveCollectionsRVAdapter(
     init {
         setHasStableIds(true)
     }
-
 }

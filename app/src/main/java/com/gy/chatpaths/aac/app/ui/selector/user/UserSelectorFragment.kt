@@ -29,14 +29,17 @@ class UserSelectorFragment : Fragment() {
 
     @Inject
     lateinit var currentUser: CurrentUser
+
     @Inject
     lateinit var firebase: Firebase
+
     @Inject
     lateinit var guidedTour: GuidedTour
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = UserFragmentBinding.inflate(layoutInflater, container, false)
         context?.let {
@@ -68,5 +71,4 @@ class UserSelectorFragment : Fragment() {
     private fun <T> Fragment.setNavigationResult(result: T, key: String) {
         findNavController().previousBackStackEntry?.savedStateHandle?.set(key, result)
     }
-
 }

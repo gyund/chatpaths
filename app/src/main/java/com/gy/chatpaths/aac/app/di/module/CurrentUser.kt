@@ -13,7 +13,7 @@ import javax.inject.Inject
 @Module
 @InstallIn(ActivityComponent::class)
 class CurrentUser @Inject constructor(
-    @ApplicationContext val context: Context
+    @ApplicationContext val context: Context,
 ) {
 
     @Inject
@@ -57,8 +57,9 @@ class CurrentUser @Inject constructor(
         PathUser(
             userId = 0,
             name = name,
-            displayImage = null
-        ), false
+            displayImage = null,
+        ),
+        false,
     )
 
     suspend fun delete() {

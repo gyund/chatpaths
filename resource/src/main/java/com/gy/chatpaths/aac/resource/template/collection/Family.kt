@@ -6,9 +6,10 @@ import com.gy.chatpaths.aac.resource.create.Collection
 import com.gy.chatpaths.aac.resource.create.Path
 import com.gy.chatpaths.aac.resource.template.paths.Family as PathFamily
 
-class Family(context: Context,
-             repository: CPRepository,
-             userId: Int
+class Family(
+    context: Context,
+    repository: CPRepository,
+    userId: Int,
 ) : Collection(context, repository, userId) {
 
     init {

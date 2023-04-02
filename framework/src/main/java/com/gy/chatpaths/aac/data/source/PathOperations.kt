@@ -12,13 +12,14 @@ interface PathOperations {
         userId: Int,
         collectionId: Int,
         parentId: Int?,
-        showAll: Boolean
+        showAll: Boolean,
     ): List<Path>?
     suspend fun getChildOfParent(
         userId: Int,
         collectionId: Int,
         parentId: Int?,
-        showAll: Boolean): Path?
+        showAll: Boolean,
+    ): Path?
 
     suspend fun addPath(
         userId: Int,
@@ -27,14 +28,13 @@ interface PathOperations {
         imageUri: String?,
         parentId: Int?,
         position: Int?,
-        anchored: Boolean
-    ) : Int
+        anchored: Boolean,
+    ): Int
     suspend fun deletePath(collectionId: Int, pathId: Int)
     suspend fun setPathIsVisible(userId: Int, collectionId: Int, isVisible: Boolean, pathId: Int)
     suspend fun setPathPosition(userId: Int, collectionId: Int, pathId: Int, position: Int?)
     suspend fun setPathIsAnchored(userId: Int, collectionId: Int, pathId: Int, anchored: Boolean)
     suspend fun setPathImageUser(pathId: Int, imageUri: String?, userId: Int)
-
 
     suspend fun updatePathOrder(userId: Int, collectionId: Int, paths: List<Path>)
     suspend fun getPathFromCollection(userId: Int, collectionId: Int, pathId: Int): Path?

@@ -6,10 +6,9 @@ import com.gy.chatpaths.aac.data.PathCollection
 
 interface CollectionOperations {
     fun getLiveCollection(collectionId: Int): LiveData<PathCollection?>
-    fun getLivePathCollections(userId: Int, enabledOnly: Boolean) : LiveData<List<PathCollection>>
-    suspend fun getPathCollection(collectionId: Int) : PathCollection?
+    fun getLivePathCollections(userId: Int, enabledOnly: Boolean): LiveData<List<PathCollection>>
+    suspend fun getPathCollection(collectionId: Int): PathCollection?
     suspend fun getPathCollections(userId: Int, enabledOnly: Boolean): List<PathCollection>
-
 
     suspend fun addCollection(collection: PathCollection): Int
     suspend fun updateCollection(collection: PathCollection)
@@ -31,6 +30,4 @@ interface CollectionOperations {
     suspend fun incrementPathCount(userId: Int, pathCollectionId: Int, pathId: Int)
     suspend fun sortCollection(userId: Int, pathCollectionId: Int)
     suspend fun resetCollectionStatistics(userId: Int, pathCollectionId: Int)
-
-
 }

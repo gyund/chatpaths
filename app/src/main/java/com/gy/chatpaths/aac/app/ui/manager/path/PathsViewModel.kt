@@ -14,7 +14,7 @@ import kotlin.properties.Delegates
 @HiltViewModel
 class PathsViewModel @Inject constructor(
     val repository: CPRepository,
-    val currentUser: CurrentUser
+    val currentUser: CurrentUser,
 ) : ViewModel() {
 
     var collectionId by Delegates.notNull<Int>()
@@ -34,11 +34,10 @@ class PathsViewModel @Inject constructor(
                 userId = user.userId,
                 collectionId = collectionId,
                 parentId = parentId,
-                showAll = true
+                showAll = true,
             )
         }
     }
-
 
     suspend fun setCollectionImage(uri: Uri) {
         repository.setCollectionImage(collectionId, uri)
@@ -57,7 +56,7 @@ class PathsViewModel @Inject constructor(
                 imageUri = null,
                 parentId = parentId,
                 position = null,
-                anchored = false
+                anchored = false,
             )
         }
     }
@@ -68,10 +67,9 @@ class PathsViewModel @Inject constructor(
                 userId = this.userId,
                 collectionId = collectionId,
                 isVisible = enabled,
-                pathId = pathId
+                pathId = pathId,
             )
         }
-
     }
 
     suspend fun setPathPosition(pathId: Int, position: Int?) {
@@ -80,7 +78,7 @@ class PathsViewModel @Inject constructor(
                 userId = this.userId,
                 collectionId = collectionId,
                 pathId = pathId,
-                position = position
+                position = position,
             )
         }
     }
@@ -133,7 +131,7 @@ class PathsViewModel @Inject constructor(
         repository.copyCollectionToUser(
             srcUserId = currentUser.userId,
             dstUserId = userId,
-            collectionId = collectionId
+            collectionId = collectionId,
         )
     }
 }

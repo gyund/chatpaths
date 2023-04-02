@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toFile
 import com.gy.chatpaths.aac.data.Path
 
-
 class DrawableUtils {
     companion object {
 
@@ -41,7 +40,7 @@ class DrawableUtils {
                     context.resources.getIdentifier(
                         altUri,
                         "drawable",
-                        context.packageName
+                        context.packageName,
                     )
                 return if (0 != imgId) {
                     ContextCompat.getDrawable(context, imgId) // return
@@ -53,7 +52,6 @@ class DrawableUtils {
             }
         }
 
-
         /**
          * Get a drawable from a resource string, like ic_raise_hand, or a URI
          *
@@ -64,12 +62,14 @@ class DrawableUtils {
         fun getDrawableImage(
             context: Context,
             resourceNameOrUri: String?,
-            @DrawableRes defaultResource: Int? = null
+            @DrawableRes defaultResource: Int? = null,
         ): Drawable? {
-            if (resourceNameOrUri.isNullOrBlank()) return getDefaultResource(
-                context,
-                defaultResource
-            )
+            if (resourceNameOrUri.isNullOrBlank()) {
+                return getDefaultResource(
+                    context,
+                    defaultResource,
+                )
+            }
             return getDrawableAsResource(context, resourceNameOrUri)
                 ?: getDrawableFromUri(context, resourceNameOrUri)
                 ?: getDefaultResource(context, defaultResource)
@@ -78,7 +78,7 @@ class DrawableUtils {
         fun getDrawableImage(
             context: Context,
             path: Path,
-            @DrawableRes defaultResource: Int? = null
+            @DrawableRes defaultResource: Int? = null,
         ): Drawable? {
             return getDrawableImage(context, path.imageUri, defaultResource)
         }

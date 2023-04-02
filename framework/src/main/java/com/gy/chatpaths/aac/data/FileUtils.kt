@@ -7,7 +7,7 @@ import java.io.File
 class FileUtils {
     companion object {
         fun deleteUriImage(imageUriString: String) {
-            if(imageUriString.isBlank()) return
+            if (imageUriString.isBlank()) return
             try {
                 val uri = Uri.parse(imageUriString)
                 uri.path?.let { path ->
@@ -20,7 +20,7 @@ class FileUtils {
                         }
                     }
                 }
-            } catch ( e : Exception) {
+            } catch (e: Exception) {
                 // NOTHING JUST RETURN NULL
             }
         }

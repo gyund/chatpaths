@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-
 /**
  * An implementation of [ItemTouchHelper.Callback] that enables basic drag & drop and
  * swipe-to-dismiss. Drag events are automatically started by an item long-press.<br></br>
@@ -27,7 +26,7 @@ class SimpleItemTouchHelperCallback(private val mAdapter: ItemTouchHelperAdapter
 
     override fun getMovementFlags(
         recyclerView: RecyclerView,
-        viewHolder: RecyclerView.ViewHolder
+        viewHolder: RecyclerView.ViewHolder,
     ): Int {
         val dragFlags: Int = ItemTouchHelper.UP or ItemTouchHelper.DOWN
         val swipeFlags: Int = ItemTouchHelper.START or ItemTouchHelper.END
@@ -37,7 +36,7 @@ class SimpleItemTouchHelperCallback(private val mAdapter: ItemTouchHelperAdapter
     override fun onMove(
         recyclerView: RecyclerView,
         source: RecyclerView.ViewHolder,
-        target: RecyclerView.ViewHolder
+        target: RecyclerView.ViewHolder,
     ): Boolean {
         if (source.itemViewType == target.itemViewType) {
             Log.d("SimpleCallback", "${source.itemViewType} == ${target.itemViewType}")

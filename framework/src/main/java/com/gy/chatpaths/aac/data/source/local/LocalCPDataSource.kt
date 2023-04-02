@@ -8,13 +8,16 @@ import androidx.core.net.toFile
 import androidx.lifecycle.LiveData
 import androidx.room.withTransaction
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.gy.chatpaths.aac.data.*
+import com.gy.chatpaths.aac.data.FileUtils
+import com.gy.chatpaths.aac.data.Path
+import com.gy.chatpaths.aac.data.PathCollection
+import com.gy.chatpaths.aac.data.PathUser
+import com.gy.chatpaths.aac.data.StringUtils
 import com.gy.chatpaths.aac.data.source.CPDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
-
 
 @Singleton
 class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource {
@@ -28,24 +31,22 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
     override suspend fun translateStrings(context: Context) {
         withContext(Dispatchers.IO) {
             db.runInTransaction {
-                db.pathDao().getAll().forEach{
-                    if(true == it.name?.startsWith("path_")) {
+                db.pathDao().getAll().forEach {
+                    if (true == it.name?.startsWith("path_")) {
                         val transTitle = StringUtils.getStringFromStringResourceName(context, it.name, null)
-                        if(null != transTitle) {
+                        if (null != transTitle) {
                             db.pathDao().setPathTitle(it.pathId, transTitle)
                         }
                     }
-
                 }
-                db.pathCollectionDao().getAll().forEach{
-                    if(true == it.name?.startsWith("col_")) {
+                db.pathCollectionDao().getAll().forEach {
+                    if (true == it.name?.startsWith("col_")) {
                         val transTitle = StringUtils.getStringFromStringResourceName(context, it.name, null)
-                        if(null != transTitle) {
+                        if (null != transTitle) {
                             it.name = transTitle
                             db.pathCollectionDao().update(it)
                         }
                     }
-
                 }
             }
         }
@@ -69,11 +70,10 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
                         null,
                         null,
                         dstUserId,
-                        newCollectionId
+                        newCollectionId,
                     )
                 }
             }
-
         }
     }
 
@@ -83,7 +83,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
         srcParentId: Int?,
         dstParentId: Int?,
         dstUserId: Int,
-        dstCollectionId: Int
+        dstCollectionId: Int,
     ) {
         val children = db.pathDao().getChildrenAuto(srcUserId, srcCollectionId, srcParentId, true)
         children?.forEach {
@@ -95,7 +95,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
                 imageUri = it.imageUri,
                 parentId = dstParentId,
                 position = it.position,
-                anchored = it.anchored
+                anchored = it.anchored,
             )
             addChildrenNoSuspend(
                 srcUserId = srcUserId,
@@ -103,14 +103,14 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
                 srcParentId = it.pathId,
                 dstParentId = pathId,
                 dstUserId = dstUserId,
-                dstCollectionId = dstCollectionId
+                dstCollectionId = dstCollectionId,
             )
         }
     }
 
-    override suspend fun addUser(user: PathUser, overwrite: Boolean) : Int {
+    override suspend fun addUser(user: PathUser, overwrite: Boolean): Int {
         return withContext(Dispatchers.IO) {
-            return@withContext if(overwrite) {
+            return@withContext if (overwrite) {
                 db.pathUserDao().insert(user).toInt()
             } else {
                 db.pathUserDao().insertOrIgnore(user).toInt()
@@ -134,26 +134,26 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
         userId: Int,
         collectionId: Int,
         parentId: Int?,
-        showAll: Boolean
+        showAll: Boolean,
     ): List<Path>? {
-        var result : MutableList<Path>? = null
+        var result: MutableList<Path>? = null
         withContext(Dispatchers.IO) {
             db.runInTransaction {
                 result = db.pathDao().getChildrenAuto(
                     userId = userId,
                     collectionId = collectionId,
                     parentId = parentId,
-                    showAll = showAll
+                    showAll = showAll,
                 )
 
                 result?.let {
-                    db.pathCollectionDao().getById(collectionId)?.let {prefs ->
-                        if(prefs.autoSort) {
+                    db.pathCollectionDao().getById(collectionId)?.let { prefs ->
+                        if (prefs.autoSort) {
                             val newList = mutableListOf<Path>()
 
                             // Get the anchored elements off the list and added to the new list
-                            while(it.isNotEmpty()) {
-                                if(it.first().anchored) {
+                            while (it.isNotEmpty()) {
+                                if (it.first().anchored) {
                                     newList.add(it.removeFirst())
                                 } else {
                                     break
@@ -184,10 +184,10 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
         userId: Int,
         collectionId: Int,
         parentId: Int?,
-        showAll: Boolean
-    ) : Path? {
-        return getChildrenOfParent(userId,collectionId,parentId,showAll)?.let {
-            return@let if(it.isNotEmpty()) {
+        showAll: Boolean,
+    ): Path? {
+        return getChildrenOfParent(userId, collectionId, parentId, showAll)?.let {
+            return@let if (it.isNotEmpty()) {
                 it.first()
             } else {
                 null
@@ -203,7 +203,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
 
     override suspend fun getPathCollections(
         userId: Int,
-        enabledOnly: Boolean
+        enabledOnly: Boolean,
     ): List<PathCollection> {
         return withContext(Dispatchers.IO) {
             return@withContext if (enabledOnly) {
@@ -237,8 +237,6 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
                     orphanedImage?.apply {
                         deleteImageIfNotUsed(this)
                     }
-
-
                 }
             }
         }
@@ -264,7 +262,8 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
         withContext(Dispatchers.IO) {
             db.pathDao().resetPathOrderToDefaults(
                 userId,
-                pathCollectionId)
+                pathCollectionId,
+            )
         }
     }
 
@@ -273,7 +272,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
             db.pathDao()
                 .reorderPathsAutomatically(
                     userId,
-                    pathCollectionId
+                    pathCollectionId,
                 )
         }
     }
@@ -283,7 +282,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
             db.pathDao()
                 .resetTimesUsed(
                     userId,
-                    pathCollectionId
+                    pathCollectionId,
                 )
         }
     }
@@ -308,7 +307,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
         withContext(Dispatchers.IO) {
             db.runInTransaction {
                 val collection = db.pathCollectionDao().getById(collectionId)
-                if(uri == null) {
+                if (uri == null) {
                     db.pathCollectionDao().deleteUserDisplayImage(collectionId)
                 } else {
                     db.pathCollectionDao().setImage(collectionId, uri.toString())
@@ -326,7 +325,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
             db.pathCollectionDao().setCollectionEnabled(
                 userId = userId,
                 collectionId = collectionId,
-                enabled = enabled
+                enabled = enabled,
             )
         }
     }
@@ -336,10 +335,9 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
             db.pathCollectionDao().setCollectionPosition(
                 userId = userId,
                 collectionId = collectionId,
-                position = position
+                position = position,
             )
         }
-
     }
 
     override suspend fun updateCollectionOrder(userId: Int, collections: List<PathCollection>) {
@@ -348,7 +346,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
                 db.pathCollectionDao().setCollectionPosition(
                     userId = userId,
                     collectionId = collection.collectionId,
-                    position = index
+                    position = index,
                 )
             }
         }
@@ -359,7 +357,8 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
             db.pathCollectionDao().setCollectionAutosort(
                 userId,
                 collectionId,
-                enabled)
+                enabled,
+            )
         }
     }
 
@@ -370,8 +369,8 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
         imageUri: String?,
         parentId: Int?,
         position: Int?,
-        anchored: Boolean
-    ) : Int {
+        anchored: Boolean,
+    ): Int {
         return withContext(Dispatchers.IO) {
             return@withContext addPathNoSuspend(
                 collectionId,
@@ -380,7 +379,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
                 title,
                 imageUri,
                 anchored,
-                userId
+                userId,
             )
         }
     }
@@ -392,7 +391,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
         title: String?,
         imageUri: String?,
         anchored: Boolean,
-        userId: Int
+        userId: Int,
     ): Int {
         val path = Path(
             pathId = 0,
@@ -405,7 +404,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
             anchored = anchored,
             enabled = true,
             userId = userId,
-            timesUsed = 0
+            timesUsed = 0,
         )
 
         return db.pathDao().insert(path).toInt()
@@ -415,11 +414,12 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
         uri?.let {
             // Scan DB for image
             // if not in columns with image, delete
-            if( 0 == db.pathDao().getImageUseCount(it) &&
+            if (0 == db.pathDao().getImageUseCount(it) &&
                 0 == db.pathCollectionDao().getImageUseCount(it) &&
-                0 == db.pathUserDao().getImageUseCount(it)) {
+                0 == db.pathUserDao().getImageUseCount(it)
+            ) {
                 // We can't delete resources
-                if(!it.startsWith(ContentResolver.SCHEME_ANDROID_RESOURCE)) {
+                if (!it.startsWith(ContentResolver.SCHEME_ANDROID_RESOURCE)) {
                     Log.d("LCPDS", "deleting image uri: $it")
                     FileUtils.deleteUriImage(it)
                 }
@@ -431,7 +431,6 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
         withContext(Dispatchers.IO) {
             var img: String? = null
             db.runInTransaction {
-
                 db.pathDao().getImageUri(pathId)?.apply {
                     img = this
                 }
@@ -448,14 +447,14 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
         userId: Int,
         collectionId: Int,
         isVisible: Boolean,
-        pathId: Int
+        pathId: Int,
     ) {
         withContext(Dispatchers.IO) {
             db.pathDao().setPathEnable(
                 userId,
                 collectionId,
                 pathId,
-                isVisible
+                isVisible,
             )
         }
     }
@@ -464,7 +463,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
         userId: Int,
         collectionId: Int,
         pathId: Int,
-        position: Int?
+        position: Int?,
     ) {
         withContext(Dispatchers.IO) {
             db.pathDao().setPathPosition(userId, collectionId, pathId, position)
@@ -475,7 +474,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
         userId: Int,
         collectionId: Int,
         pathId: Int,
-        anchored: Boolean
+        anchored: Boolean,
     ) {
         withContext(Dispatchers.IO) {
             db.runInTransaction {
@@ -487,7 +486,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
     override suspend fun updatePathOrder(
         userId: Int,
         collectionId: Int,
-        paths: List<Path>
+        paths: List<Path>,
     ) {
         withContext(Dispatchers.IO) {
             db.runInTransaction {
@@ -498,13 +497,13 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
         }
     }
 
-    override suspend fun getPathFromCollection(userId: Int, collectionId: Int, pathId: Int) : Path?{
+    override suspend fun getPathFromCollection(userId: Int, collectionId: Int, pathId: Int): Path? {
         return withContext(Dispatchers.IO) {
             db.pathDao().get(userId, collectionId, pathId)
         }
     }
 
-    suspend fun getPathById(pathId: Int) : Path? {
+    suspend fun getPathById(pathId: Int): Path? {
         return withContext(Dispatchers.IO) {
             db.pathDao().getById(pathId)
         }
@@ -523,7 +522,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
 
                 db.pathDao().setImageUri(
                     pathId = pathId,
-                    imageUri = imageUri
+                    imageUri = imageUri,
                 )
 
                 img?.let {
@@ -596,7 +595,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
         withContext(Dispatchers.IO) {
             db.runInTransaction {
                 val orphanedImages = mutableListOf<String>()
-                orphanedImages.addAll(db.pathCollectionDao().getUserImages( userId = collection.userId))
+                orphanedImages.addAll(db.pathCollectionDao().getUserImages(userId = collection.userId))
                 orphanedImages.addAll(db.pathDao().getUserIndividualImages(userId = collection.userId))
                 db.pathCollectionDao().deleteById(collection.collectionId)
                 collection.imageUri?.apply {
@@ -607,7 +606,7 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
     }
 
     override suspend fun deleteCollection(collectionId: Int) {
-        withContext(Dispatchers.IO){
+        withContext(Dispatchers.IO) {
             db.withTransaction {
                 db.pathCollectionDao().getById(collectionId)?.apply {
                     deleteCollection(this)

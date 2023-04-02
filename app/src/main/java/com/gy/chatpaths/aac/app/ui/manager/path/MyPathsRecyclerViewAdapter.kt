@@ -18,14 +18,13 @@ import com.gy.chatpaths.aac.app.ui.helper.OnStartDragListener
 import com.gy.chatpaths.aac.data.Path
 import java.util.*
 
-
 /**
  * [RecyclerView.Adapter] that can display a [UserPathCollectionPrefsView].
  */
 class MyPathsRecyclerViewAdapter(
     private val listener: PathManagerListener,
     private val viewmodel: PathsViewModel,
-    private val dragStartListener: OnStartDragListener
+    private val dragStartListener: OnStartDragListener,
 ) : RecyclerView.Adapter<MyPathsRecyclerViewAdapter.ViewHolder>(),
     BindableAdapter<Path>,
     ItemTouchHelperAdapter {
@@ -73,7 +72,7 @@ class MyPathsRecyclerViewAdapter(
      */
     override fun setData(items: List<Path>) {
         // do a dumb find
-        //var dataChanged = false
+        // var dataChanged = false
 //        items.forEachIndexed() {index, newitem->
 //            // if the item is in the list, ignore it, because the user probably has the latest value
 //            val existingItem = values.find {existing->
@@ -95,7 +94,7 @@ class MyPathsRecyclerViewAdapter(
 //            }
 //        }
 //        //values = items.toMutableList()
-        //if(dataChanged) notifyDataSetChanged()
+        // if(dataChanged) notifyDataSetChanged()
         values.clear()
         values.addAll(items)
         notifyDataSetChanged()
@@ -115,10 +114,9 @@ class MyPathsRecyclerViewAdapter(
         positions.forEach(this::notifyItemChanged)
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        //.inflate(R.layout.fragment_collections, parent, false)
+        // .inflate(R.layout.fragment_collections, parent, false)
         val binding = PathItemBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
@@ -132,18 +130,19 @@ class MyPathsRecyclerViewAdapter(
     override fun onItemMove(fromPosition: Int, toPosition: Int) {
         Collections.swap(values, fromPosition, toPosition)
         notifyItemMoved(fromPosition, toPosition)
-        //notifyDataSetChanged()
+        // notifyDataSetChanged()
     }
 
     override fun onItemDismiss(position: Int) {
         Log.d("RV", "onItemDismiss")
-        //mItems.remove(position);
+        // mItems.remove(position);
         notifyItemRemoved(position)
     }
 
-    inner class ViewHolder(val binding: PathItemBinding) : RecyclerView.ViewHolder(
-        binding.root
-    ),
+    inner class ViewHolder(val binding: PathItemBinding) :
+        RecyclerView.ViewHolder(
+            binding.root,
+        ),
         ItemTouchHelperViewHolder {
 
         fun bind(path: Path) {
@@ -151,8 +150,8 @@ class MyPathsRecyclerViewAdapter(
                 DrawableUtils.getDrawableImage(
                     binding.root.context,
                     path,
-                    R.drawable.ic_baseline_image_24
-                )
+                    R.drawable.ic_baseline_image_24,
+                ),
             )
 
             binding.content.text = path.name

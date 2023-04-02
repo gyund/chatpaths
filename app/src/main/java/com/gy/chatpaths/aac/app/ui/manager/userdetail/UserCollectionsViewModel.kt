@@ -2,7 +2,11 @@ package com.gy.chatpaths.aac.app.ui.manager.userdetail
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.gy.chatpaths.aac.app.ui.helper.DatabaseConversionHelper
 import com.gy.chatpaths.aac.data.PathCollection
 import com.gy.chatpaths.aac.data.source.CPRepository
@@ -14,7 +18,7 @@ import kotlin.properties.Delegates
 @HiltViewModel
 class UserCollectionsViewModel @Inject constructor(
     val savedStateHandle: SavedStateHandle,
-    val repository: CPRepository
+    val repository: CPRepository,
 ) : ViewModel() {
 
     /** Lazy load RoomDatabase stuff so we can use lifecycle management to initialize them on the
@@ -41,7 +45,7 @@ class UserCollectionsViewModel @Inject constructor(
         val pc = PathCollection(
             collectionId = 0, // new
             name = name,
-            userId = userId
+            userId = userId,
         )
 
         try {
@@ -87,7 +91,6 @@ class UserCollectionsViewModel @Inject constructor(
             return collection.name
         }
     }
-
 
     init {
         this.collectionsPositions = MutableLiveData(mutableSetOf())

@@ -17,7 +17,7 @@ data class PathState(
     val hasPrevious: Boolean,
     val hasNext: Boolean,
     val currentPath: Path?,
-    val parent: Path?
+    val parent: Path?,
 )
 
 /**
@@ -43,6 +43,7 @@ class PathNavigator @Inject constructor() : LiveData<PathState>() {
 
     @Inject
     lateinit var currentUser: CurrentUser
+
     @Inject
     lateinit var repository: CPRepository
 
@@ -75,7 +76,6 @@ class PathNavigator @Inject constructor() : LiveData<PathState>() {
 
     private val _parentHistory: MutableList<Path> = mutableListOf()
     val parentHistory: List<Path> = _parentHistory
-
 
     private fun hasNext(): Boolean {
         return if (showDisabled) {
@@ -116,7 +116,7 @@ class PathNavigator @Inject constructor() : LiveData<PathState>() {
             currentPath = currentPath,
             hasPrevious = hasPrevious(),
             hasNext = hasNext(),
-            parent = _parentHistory.lastOrNull()
+            parent = _parentHistory.lastOrNull(),
         )
         Log.d("pathstate", ps.toString())
         return ps
@@ -145,7 +145,7 @@ class PathNavigator @Inject constructor() : LiveData<PathState>() {
             userId = it.userId,
             collectionId = id,
             parentId = null,
-            showAll = showDisabled
+            showAll = showDisabled,
         )?.apply {
             nextList.addAll(this)
             nextList.reverse()
@@ -223,14 +223,14 @@ class PathNavigator @Inject constructor() : LiveData<PathState>() {
                     repository.incrementPathCount(
                         userId = cp.userId,
                         pathCollectionId = cp.collectionId,
-                        pathId = cp.pathId
+                        pathId = cp.pathId,
                     )
                 }
                 repository.getChildrenOfParent(
                     userId = cp.userId,
                     collectionId = cp.collectionId,
                     parentId = cp.pathId,
-                    showAll = showDisabled
+                    showAll = showDisabled,
                 )?.apply {
                     if (this.isNotEmpty()) {
                         _parentHistory.add(cp)
@@ -272,7 +272,7 @@ class PathNavigator @Inject constructor() : LiveData<PathState>() {
                             userId = it.userId,
                             collectionId = cp.collectionId,
                             parentId = parent?.parentId,
-                            showAll = showDisabled
+                            showAll = showDisabled,
                         )?.apply {
                             nextList.addAll(this)
                             nextList.reverse()
@@ -328,7 +328,7 @@ class PathNavigator @Inject constructor() : LiveData<PathState>() {
                 userId = path.userId,
                 collectionId = path.collectionId,
                 parentId = path.parentId,
-                showAll = showDisabled
+                showAll = showDisabled,
             )?.apply {
                 clearCache()
                 nextList.addAll(this)
