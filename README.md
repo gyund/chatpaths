@@ -21,13 +21,10 @@ ChatPaths is a communication app for helping non-verbal kids communicate while o
 ## Structure
 
 ```
-chatpaths
-    |
-    ----- app       = core UI & DI code
-    |
-    ----- framework = database & DAO
-    |
-    ----- resource  = images
+.
+├── app                    # Mobile app
+├── framework              # DAOs 
+├── resources              # Graphics, Paths, Descriptions
 ```
 
 
