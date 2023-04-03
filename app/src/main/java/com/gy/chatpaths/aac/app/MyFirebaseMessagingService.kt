@@ -16,7 +16,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     private val TAG = "myFBMS"
 
     override fun onNewToken(token: String) {
-        Log.d(TAG, "New FCM Token: $token")
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "New FCM Token: $token")
+        }
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
