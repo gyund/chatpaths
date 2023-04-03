@@ -1,8 +1,9 @@
 name: Gradle Dependency Submission
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+      paths-ignore:
+        - 'docs/**'
 
 jobs:
   gradle-action-detection:
