@@ -10,8 +10,6 @@ plugins {
 if (getGradle().getStartParameter().getTaskRequests().toString().contains("Release")) {
 	apply plugin: 'com.google.gms.google-services'
 	apply plugin: 'com.google.firebase.crashlytics'
-} else if (getGradle().getStartParameter().getTaskRequests().toString().contains("Debug")) {
-
 }
 
 apply from: "$project.rootDir/common.gradle"
