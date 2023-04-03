@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration.ORIENTATION_PORTRAIT
+import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -306,7 +307,15 @@ open class SmartchatCommonFragment : Fragment() {
             binding.configureButton.text = getString(R.string.configure)
             binding.configureButton.setCompoundDrawables(null, null, null, null)
         } else {
-            activity?.window?.decorView?.systemUiVisibility = 0
+            activity?.window?.apply {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    decorView.windowInsetsController?.hide(0)
+                } else {
+                    @Suppress("DEPRECATION")
+                    decorView.systemUiVisibility = 0
+                }
+            }
+
             (activity as MainActivity).enableToolbar()
             if (ORIENTATION_PORTRAIT == activity?.resources?.configuration?.orientation) {
                 binding.configureButton.text = null
