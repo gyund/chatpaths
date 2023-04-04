@@ -144,6 +144,8 @@ jobs:
         run: chmod +x gradlew
 
       - name: Run connected tests
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         uses: ReactiveCircus/android-emulator-runner@v2
         with:
           api-level: 30
@@ -151,4 +153,4 @@ jobs:
           force-avd-creation: false
           disable-animations: true
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          script: ./gradlew connectedCheck
+          script: ./gradlew connectedCheck test jacocoTestReport coverallsJacoco
