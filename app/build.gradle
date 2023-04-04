@@ -83,6 +83,10 @@ android {
 			versionNameSuffix '.debug'
 			manifestPlaceholders applicationName: 'ChatPaths Debug'
 		}
+		github {
+			testCoverageEnabled true
+			manifestPlaceholders applicationName: 'ChatPaths Debug'
+		}
 		releaseWithDebug {
 			pseudoLocalesEnabled true
 			versionNameSuffix '.debug'
