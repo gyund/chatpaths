@@ -153,4 +153,4 @@ jobs:
           force-avd-creation: false
           disable-animations: true
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          script: ./gradlew connectedCheck test jacocoTestReport coverallsJacoco
+          script: ./gradlew connectedCheck test coverallsJacoco
