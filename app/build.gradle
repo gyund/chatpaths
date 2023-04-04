@@ -7,6 +7,7 @@ plugins {
 	id("com.diffplug.spotless") version "6.17.0"
 	id 'jacoco'
 	id("com.github.nbaztec.coveralls-jacoco") version "1.2.15"
+	id("jacoco-report-aggregation")
 }
 
 if (getGradle().getStartParameter().getTaskRequests().toString().contains("Release")) {
@@ -84,6 +85,7 @@ android {
 			pseudoLocalesEnabled true
 			versionNameSuffix '.debug'
 			manifestPlaceholders applicationName: 'ChatPaths Debug'
+			testCoverageEnabled true
 		}
 		releaseWithDebug {
 			pseudoLocalesEnabled true

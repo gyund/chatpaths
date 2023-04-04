@@ -5,6 +5,7 @@ plugins {
 	id("com.diffplug.spotless") version "6.17.0"
 	id 'jacoco'
 	id("com.github.nbaztec.coveralls-jacoco") version "1.2.15"
+	id("jacoco-report-aggregation")
 }
 
 apply from: "$project.rootDir/common.gradle"
@@ -27,6 +28,9 @@ android {
 		}
 		releaseWithDebug {
 			debuggable true
+		}
+		debug {
+			testCoverageEnabled true
 		}
 	}
 	compileOptions {
