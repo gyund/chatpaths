@@ -21,7 +21,7 @@ All new features should be written in Kotlin and any Java code should be convert
 
 ### Prefer Coroutines to RxJava
 
-When deciding between implementing something using RxJava and Coroutines, please prefer Coroutines. 
+When deciding between implementing something using RxJava and Coroutines, please prefer Coroutines.
 
 
 ### Continuous Integration
