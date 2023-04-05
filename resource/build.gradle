@@ -19,6 +19,7 @@ android {
 
 	buildTypes {
 		github {
+			initWith debug
 			testCoverageEnabled true
 		}
 		release {

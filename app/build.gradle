@@ -84,14 +84,11 @@ android {
 			manifestPlaceholders applicationName: 'ChatPaths Debug'
 		}
 		github {
-			testCoverageEnabled true
-			manifestPlaceholders applicationName: 'ChatPaths Debug'
+			initWith debug
 		}
 		releaseWithDebug {
-			pseudoLocalesEnabled true
-			versionNameSuffix '.debug'
+			initWith debug
 			debuggable true
-			manifestPlaceholders applicationName: 'ChatPaths RDebug'
 			signingConfig signingConfigs.debug
 		}
 		release {
