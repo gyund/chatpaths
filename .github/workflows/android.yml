@@ -24,6 +24,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew :app:assembleDebug
+    - name: Run Unit Tests
+      run: ./gradlew testGithubUnitTest
 
   format:
     needs: build
@@ -151,4 +153,4 @@ jobs:
           force-avd-creation: false
           disable-animations: true
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          script: ./gradlew test connectedCheck coverallsJacoco
+          script: ./gradlew connectedCheck
