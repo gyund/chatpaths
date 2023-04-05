@@ -79,12 +79,10 @@ android {
 
 	buildTypes {
 		debug {
+			testCoverageEnabled true
 			pseudoLocalesEnabled true
 			versionNameSuffix '.debug'
 			manifestPlaceholders applicationName: 'ChatPaths Debug'
-		}
-		github {
-			initWith debug
 		}
 		releaseWithDebug {
 			initWith debug
