@@ -1,4 +1,4 @@
-package com.gy.chatpaths.aac.data
+package com.gy.chatpaths.model
 
 import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry

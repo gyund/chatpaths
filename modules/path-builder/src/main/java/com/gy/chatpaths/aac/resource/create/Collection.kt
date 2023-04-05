@@ -4,8 +4,8 @@ import android.content.Context
 import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.gy.chatpaths.aac.data.PathCollection
-import com.gy.chatpaths.aac.data.source.CPRepository
+import com.gy.chatpaths.model.PathCollection
+import com.gy.chatpaths.model.source.CPRepository
 import com.gy.chatpaths.aac.resource.UriHelper
 import com.gy.chatpaths.aac.resource.template.collection.Breakfast
 import com.gy.chatpaths.aac.resource.template.collection.Dinner

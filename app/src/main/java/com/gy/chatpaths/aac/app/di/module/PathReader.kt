@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.preference.PreferenceManager
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.gy.chatpaths.aac.app.R
-import com.gy.chatpaths.aac.data.Path
+import com.gy.chatpaths.model.Path
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.FragmentComponent

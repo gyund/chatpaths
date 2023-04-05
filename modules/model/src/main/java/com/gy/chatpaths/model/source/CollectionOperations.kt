@@ -1,8 +1,8 @@
-package com.gy.chatpaths.aac.data.source
+package com.gy.chatpaths.model.source
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
-import com.gy.chatpaths.aac.data.PathCollection
+import com.gy.chatpaths.model.PathCollection
 
 interface CollectionOperations {
     fun getLiveCollection(collectionId: Int): LiveData<PathCollection?>

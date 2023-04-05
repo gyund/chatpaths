@@ -33,8 +33,8 @@ import com.gy.chatpaths.aac.app.di.module.CurrentUser
 import com.gy.chatpaths.aac.app.di.module.GuidedTour
 import com.gy.chatpaths.aac.app.ui.helper.OnStartDragListener
 import com.gy.chatpaths.aac.app.ui.helper.SimpleItemTouchHelperCallback
-import com.gy.chatpaths.aac.data.PathCollection
-import com.gy.chatpaths.aac.data.source.CPRepository
+import com.gy.chatpaths.model.PathCollection
+import com.gy.chatpaths.model.source.CPRepository
 import com.gy.chatpaths.aac.resource.create.Collection
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers

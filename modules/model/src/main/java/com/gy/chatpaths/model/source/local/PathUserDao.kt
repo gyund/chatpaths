@@ -1,4 +1,4 @@
-package com.gy.chatpaths.aac.data.source.local
+package com.gy.chatpaths.model.source.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -8,7 +8,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
-import com.gy.chatpaths.aac.data.PathUser
+import com.gy.chatpaths.model.PathUser
 
 @Dao
 interface PathUserDao {

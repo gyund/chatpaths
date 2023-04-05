@@ -1,4 +1,4 @@
-package com.gy.chatpaths.aac.data.source.local
+package com.gy.chatpaths.model.source.local
 
 import android.content.ContentResolver
 import android.content.Context
@@ -8,12 +8,12 @@ import androidx.core.net.toFile
 import androidx.lifecycle.LiveData
 import androidx.room.withTransaction
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.gy.chatpaths.aac.data.FileUtils
-import com.gy.chatpaths.aac.data.Path
-import com.gy.chatpaths.aac.data.PathCollection
-import com.gy.chatpaths.aac.data.PathUser
-import com.gy.chatpaths.aac.data.StringUtils
-import com.gy.chatpaths.aac.data.source.CPDataSource
+import com.gy.chatpaths.model.FileUtils
+import com.gy.chatpaths.model.Path
+import com.gy.chatpaths.model.PathCollection
+import com.gy.chatpaths.model.PathUser
+import com.gy.chatpaths.model.StringUtils
+import com.gy.chatpaths.model.source.CPDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

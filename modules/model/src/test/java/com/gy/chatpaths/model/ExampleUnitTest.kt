@@ -1,4 +1,4 @@
-package com.gy.chatpaths.aac.data
+package com.gy.chatpaths.model
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

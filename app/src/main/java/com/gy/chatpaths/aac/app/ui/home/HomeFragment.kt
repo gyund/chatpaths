@@ -30,7 +30,7 @@ import com.gy.chatpaths.aac.app.di.module.GuidedTour
 import com.gy.chatpaths.aac.app.di.module.InAppReview
 import com.gy.chatpaths.aac.app.ui.manager.userdetail.UserCollectionsViewModel
 import com.gy.chatpaths.aac.app.ui.manager.userdetail.UserDetailFragment.Companion.onCollectionValidated
-import com.gy.chatpaths.aac.data.source.CPRepository
+import com.gy.chatpaths.model.source.CPRepository
 import com.gy.chatpaths.aac.resource.create.Collection
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

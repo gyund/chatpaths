@@ -1,9 +1,9 @@
 package com.gy.chatpaths.aac.resource
 
 import android.content.Context
-import com.gy.chatpaths.aac.data.PathUser
+import com.gy.chatpaths.model.PathUser
 import com.gy.chatpaths.aac.data.R
-import com.gy.chatpaths.aac.data.source.CPRepository
+import com.gy.chatpaths.model.source.CPRepository
 import com.gy.chatpaths.aac.resource.template.collection.Essentials
 import com.gy.chatpaths.aac.resource.template.collection.Starter
 import kotlinx.coroutines.Dispatchers

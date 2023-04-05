@@ -1,4 +1,4 @@
-package com.gy.chatpaths.aac.data.source.local
+package com.gy.chatpaths.model.source.local
 
 import android.content.Context
 import android.database.DatabaseUtils
@@ -9,9 +9,9 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.gy.chatpaths.aac.data.BuildConfig
-import com.gy.chatpaths.aac.data.Path
-import com.gy.chatpaths.aac.data.PathCollection
-import com.gy.chatpaths.aac.data.PathUser
+import com.gy.chatpaths.model.Path
+import com.gy.chatpaths.model.PathCollection
+import com.gy.chatpaths.model.PathUser
 
 @Database(
     entities = [

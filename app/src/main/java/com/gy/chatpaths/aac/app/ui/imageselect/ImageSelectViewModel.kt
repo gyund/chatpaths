@@ -2,7 +2,7 @@ package com.gy.chatpaths.aac.app.ui.imageselect
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import com.gy.chatpaths.aac.data.source.CPRepository
+import com.gy.chatpaths.model.source.CPRepository
 import com.gy.chatpaths.aac.resource.UriHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

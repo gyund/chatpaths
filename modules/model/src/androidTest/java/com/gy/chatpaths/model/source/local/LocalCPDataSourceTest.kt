@@ -1,12 +1,12 @@
-package com.gy.chatpaths.aac.data.source.local
+package com.gy.chatpaths.model.source.local
 
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.filters.MediumTest
 import com.google.common.truth.Truth.assertThat
-import com.gy.chatpaths.aac.data.PathCollection
-import com.gy.chatpaths.aac.data.PathUser
+import com.gy.chatpaths.model.PathCollection
+import com.gy.chatpaths.model.PathUser
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before

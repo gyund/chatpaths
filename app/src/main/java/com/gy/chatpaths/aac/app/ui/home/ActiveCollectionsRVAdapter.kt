@@ -11,7 +11,7 @@ import com.gy.chatpaths.aac.app.BindableAdapter
 import com.gy.chatpaths.aac.app.R
 import com.gy.chatpaths.aac.app.databinding.FragmentHomeCollectionsBinding
 import com.gy.chatpaths.aac.app.ui.manager.userdetail.UserCollectionsViewModel
-import com.gy.chatpaths.aac.data.PathCollection
+import com.gy.chatpaths.model.PathCollection
 
 class ActiveCollectionsRVAdapter(
     private val context: Context,

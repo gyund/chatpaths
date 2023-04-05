@@ -6,7 +6,7 @@ package com.gy.chatpaths.aac.app
 // import androidx.test.ext.junit.runners.AndroidJUnit4
 // import com.google.common.truth.Truth.assertThat
 // import com.gy.chatpaths.aac.app.di.module.CurrentUser
-// import com.gy.chatpaths.aac.data.source.CPRepository
+// import com.gy.chatpaths.CPRepository
 // import com.gy.chatpaths.aac.data.source.local.*
 // import InitialData
 // import kotlinx.coroutines.runBlocking

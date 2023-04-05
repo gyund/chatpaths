@@ -5,9 +5,9 @@ package com.gy.chatpaths.aac.app.di.module
 // import com.google.common.truth.Truth.assertThat
 // import com.gy.chatpaths.aac.app.AppDatabaseHelper
 // import com.gy.chatpaths.aac.data.PathUserDetail
-// import com.gy.chatpaths.aac.data.source.CPRepository
-// import com.gy.chatpaths.aac.data.source.local.AppDatabase
-// import com.gy.chatpaths.aac.data.source.local.LocalCPDataSource
+// import com.gy.chatpaths.CPRepository
+// import com.gy.chatpaths.AppDatabase
+// import com.gy.chatpaths.LocalCPDataSource
 // import InitialData
 // import kotlinx.coroutines.runBlocking
 // import org.junit.Test

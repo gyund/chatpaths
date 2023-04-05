@@ -1,12 +1,12 @@
-package com.gy.chatpaths.aac.data.source
+package com.gy.chatpaths.model.source
 
 import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.LiveData
-import com.gy.chatpaths.aac.data.Path
-import com.gy.chatpaths.aac.data.PathCollection
-import com.gy.chatpaths.aac.data.PathUser
-import com.gy.chatpaths.aac.data.source.local.LocalCPDataSource
+import com.gy.chatpaths.model.Path
+import com.gy.chatpaths.model.PathCollection
+import com.gy.chatpaths.model.PathUser
+import com.gy.chatpaths.model.source.local.LocalCPDataSource
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -17,7 +17,8 @@ import javax.inject.Singleton
  */
 
 @Singleton
-class CPRepository @Inject constructor(private val localDataSource: LocalCPDataSource) : CPDataSource {
+class CPRepository @Inject constructor(private val localDataSource: LocalCPDataSource) :
+    CPDataSource {
 
     /**
      * Marks the cache as invalid, to force an update the next time data is requested. This variable

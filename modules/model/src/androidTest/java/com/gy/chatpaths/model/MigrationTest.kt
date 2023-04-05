@@ -1,4 +1,4 @@
-package com.gy.chatpaths.aac.data
+package com.gy.chatpaths.model
 
 import androidx.room.Room
 import androidx.room.testing.MigrationTestHelper
@@ -7,8 +7,8 @@ import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
-import com.gy.chatpaths.aac.data.source.local.AppDatabase
-import com.gy.chatpaths.aac.data.source.local.LocalCPDataSource
+import com.gy.chatpaths.model.source.local.AppDatabase
+import com.gy.chatpaths.model.source.local.LocalCPDataSource
 import kotlinx.coroutines.runBlocking
 import org.junit.Rule
 import org.junit.Test

@@ -2,8 +2,8 @@ package com.gy.chatpaths.aac.app
 //
 // import androidx.test.ext.junit.runners.AndroidJUnit4
 // import com.google.common.truth.Truth.assertThat
-// import com.gy.chatpaths.aac.data.source.CPRepository
-// import com.gy.chatpaths.aac.data.source.local.LocalCPDataSource
+// import com.gy.chatpaths.CPRepository
+// import com.gy.chatpaths.LocalCPDataSource
 // import kotlinx.coroutines.runBlocking
 // import org.junit.Test
 // import org.junit.runner.RunWith

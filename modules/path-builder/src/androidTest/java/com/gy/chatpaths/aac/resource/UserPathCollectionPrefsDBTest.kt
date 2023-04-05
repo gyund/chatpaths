@@ -6,8 +6,8 @@ package com.gy.chatpaths.aac.resource
 // import androidx.test.core.app.ApplicationProvider
 // import androidx.test.ext.junit.runners.AndroidJUnit4
 // import com.google.common.truth.Truth.assertThat
-// import com.gy.chatpaths.aac.data.PathCollection
-// import com.gy.chatpaths.aac.data.PathUser
+// import com.gy.chatpaths.PathCollection
+// import com.gy.chatpaths.PathUser
 // import com.gy.chatpaths.aac.data.source.local.*
 // import org.junit.After
 // import org.junit.Before
