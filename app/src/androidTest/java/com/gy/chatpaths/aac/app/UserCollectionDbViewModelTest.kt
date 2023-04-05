@@ -8,7 +8,7 @@ package com.gy.chatpaths.aac.app
 // import com.gy.chatpaths.aac.app.di.module.CurrentUser
 // import com.gy.chatpaths.aac.data.source.CPRepository
 // import com.gy.chatpaths.aac.data.source.local.*
-// import com.gy.chatpaths.aac.resource.InitialData
+// import InitialData
 // import kotlinx.coroutines.runBlocking
 // import org.junit.After
 // import org.junit.Before

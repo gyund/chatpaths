@@ -43,7 +43,7 @@ package com.gy.chatpaths.aac.resource
 //        repository = CPRepository(local)
 //
 //
-//        com.gy.chatpaths.aac.resource.InitialData.populate(context, repository)
+//        InitialData.populate(context, repository)
 //
 //        pathDao = db.pathDao()
 //        pathCollectionDao = db.pathCollectionDao()

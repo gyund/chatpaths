@@ -38,7 +38,7 @@ package com.gy.chatpaths.aac.resource
 //        pathUserDao = db.pathUserDao()
 //        pathUserML = db.pathUserMLDao()
 //
-//        val paths = com.gy.chatpaths.aac.resource.InitialData.listOfPaths()
+//        val paths = InitialData.listOfPaths()
 //
 //        val pc = arrayOf(
 //            PathCollection(1,"c1",null, null, null, 1,false)
