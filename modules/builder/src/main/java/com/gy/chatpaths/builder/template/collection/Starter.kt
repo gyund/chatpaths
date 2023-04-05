@@ -1,7 +1,6 @@
 package com.gy.chatpaths.builder.template.collection
 
 import android.content.Context
-import com.gy.chatpaths.model.source.CPRepository
 import com.gy.chatpaths.aac.resource.R
 import com.gy.chatpaths.builder.create.Collection
 import com.gy.chatpaths.builder.create.Path
@@ -9,6 +8,7 @@ import com.gy.chatpaths.builder.template.paths.ChatWords
 import com.gy.chatpaths.builder.template.paths.LetsGo
 import com.gy.chatpaths.builder.template.paths.SomethingsWrong
 import com.gy.chatpaths.builder.template.paths.Want
+import com.gy.chatpaths.model.source.CPRepository
 
 class Starter(
     context: Context,

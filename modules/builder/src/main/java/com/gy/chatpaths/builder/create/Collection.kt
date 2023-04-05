@@ -4,8 +4,6 @@ import android.content.Context
 import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.gy.chatpaths.model.PathCollection
-import com.gy.chatpaths.model.source.CPRepository
 import com.gy.chatpaths.builder.UriHelper
 import com.gy.chatpaths.builder.template.collection.Breakfast
 import com.gy.chatpaths.builder.template.collection.Dinner
@@ -14,6 +12,8 @@ import com.gy.chatpaths.builder.template.collection.Family
 import com.gy.chatpaths.builder.template.collection.Lunch
 import com.gy.chatpaths.builder.template.collection.Problem
 import com.gy.chatpaths.builder.template.collection.Starter
+import com.gy.chatpaths.model.PathCollection
+import com.gy.chatpaths.model.source.CPRepository
 
 /**
  * This is a class for creating a collection
