@@ -30,7 +30,7 @@ ChatPaths is a communication app for helping non-verbal kids communicate while o
 ├── app                    # Mobile app
 ├── modules              
 │   ├── model              # repository, DAOs, helpers
-│   ├── path-builder       # utilities to build canned path heirarchies
+│   ├── builder            # utilities to build canned path collection heirarchies
 ```
 
 ## Incorporated Works

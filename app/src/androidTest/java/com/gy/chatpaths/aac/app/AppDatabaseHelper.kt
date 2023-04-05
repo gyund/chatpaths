@@ -9,7 +9,7 @@ import com.gy.chatpaths.model.source.local.LocalCPDataSource
 import com.gy.chatpaths.model.source.local.PathCollectionDao
 import com.gy.chatpaths.model.source.local.PathDao
 import com.gy.chatpaths.model.source.local.PathUserDao
-import com.gy.chatpaths.aac.resource.InitialData
+import com.gy.chatpaths.builder.InitialData
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
