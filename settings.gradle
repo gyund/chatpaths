@@ -1,5 +1,7 @@
-include ':framework'
-include ':app'
-//project(':framework').projectDir = new File(rootDir, 'app/framework/')
 rootProject.name = "ChatPaths"
-include ':resource'
+
+include ':app'
+include ':modules:model'
+//project(':framework').projectDir = new File(rootDir, 'app/framework/')
+
+include ':modules:builder'

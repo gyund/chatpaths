@@ -1,35 +1,14 @@
-spotless {
-    format 'misc', {
-        // define the files to apply `misc` to
-        target '*.gradle', '*.md', '.gitignore'
 
-        // define the steps to apply to those files
-        trimTrailingWhitespace()
-        indentWithTabs() // or spaces. Takes an integer argument if you don't like 4
-        endWithNewline()
-    }
-    java {
-        cleanthat()
-        googleJavaFormat()
-    }
-    kotlin {
-        target '**/*.kt'
-        ktlint()
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
-    }
-}
 android {
-    lint {
-        // If set to true (default), stops the build if errors are found.
-        abortOnError false
-        // If set to true, lint only reports errors.
+	lint {
+		// If set to true (default), stops the build if errors are found.
+		abortOnError false
+		// If set to true, lint only reports errors.
 //        ignoreWarnings true
-        // If set to true, lint also checks all dependencies as part of its analysis.
-        // Recommended for projects consisting of an app with library dependencies.
-        checkDependencies true
-    }
+		// If set to true, lint also checks all dependencies as part of its analysis.
+		// Recommended for projects consisting of an app with library dependencies.
+		checkDependencies true
+	}
 //    lintOptions {
 //        baseline file("lint-baseline.xml")
 //    }

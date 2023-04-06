@@ -23,7 +23,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew :app:assembleDebug
+      run: ./gradlew :app:assembleDebug testDebugUnitTest
 
   format:
     needs: build
@@ -151,4 +151,4 @@ jobs:
           force-avd-creation: false
           disable-animations: true
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          script: ./gradlew connectedCheck
+          script: ./gradlew connectedDebugAndroidTest

@@ -4,9 +4,9 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.gy.chatpaths.aac.app.di.module.CurrentUser
-import com.gy.chatpaths.aac.data.Path
-import com.gy.chatpaths.aac.data.PathCollection
-import com.gy.chatpaths.aac.data.source.CPRepository
+import com.gy.chatpaths.model.Path
+import com.gy.chatpaths.model.PathCollection
+import com.gy.chatpaths.model.source.CPRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlin.properties.Delegates

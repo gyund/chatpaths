@@ -1,32 +1,65 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url "https://jitpack.io" }
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0"
-        classpath 'com.google.gms:google-services:4.3.15'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.4'
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3"
-        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.45'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
+	ext {
+		lifecycle_version = '2.6.1'
+		room_version = '2.5.1'
+		hilt_version = '2.45'
+	}
+	repositories {
+		google()
+		mavenCentral()
+		maven { url "https://jitpack.io" }
+	}
+	dependencies {
+		classpath 'com.android.tools.build:gradle:7.4.2'
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0"
+		classpath 'com.google.gms:google-services:4.3.15'
+		classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.4'
+		classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3"
+		classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
+		// NOTE: Do not place your application dependencies here; they belong
+		// in the individual module build.gradle files
+	}
+}
+
+plugins {
+	id 'com.diffplug.spotless' version "6.17.0"
+//    id 'jacoco'
+//    id("com.github.nbaztec.coveralls-jacoco") version "1.2.15"
+//    id 'jacoco-report-aggregation'
+}
+
+apply plugin: 'base'
+apply plugin: 'com.diffplug.spotless'
+
+spotless {
+	format 'misc', {
+		// define the files to apply `misc` to
+		target '*.gradle', '*.md', '.gitignore'
+
+		// define the steps to apply to those files
+		trimTrailingWhitespace()
+		indentWithTabs() // or spaces. Takes an integer argument if you don't like 4
+		endWithNewline()
+	}
+//    java {
+//        cleanthat()
+//        googleJavaFormat()
+//    }
+	kotlin {
+		target '**/*.kt'
+		ktlint()
+		trimTrailingWhitespace()
+		indentWithSpaces()
+		endWithNewline()
+	}
 }
 
 allprojects {
-    repositories {
-        google()
-        maven { url "https://jitpack.io" }  //Make sure to add this in your project for uCrop
-        mavenCentral()
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
+	repositories {
+		google()
+		maven { url "https://jitpack.io" }  //Make sure to add this in your project for uCrop
+		mavenCentral()
+	}
 }

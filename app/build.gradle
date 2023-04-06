@@ -4,7 +4,7 @@ plugins {
 	id 'kotlin-kapt'
 	id "androidx.navigation.safeargs.kotlin"
 	id 'dagger.hilt.android.plugin'
-	id("com.diffplug.spotless") version "6.17.0"
+
 }
 
 if (getGradle().getStartParameter().getTaskRequests().toString().contains("Release")) {
@@ -79,15 +79,14 @@ android {
 
 	buildTypes {
 		debug {
+			testCoverageEnabled true
 			pseudoLocalesEnabled true
 			versionNameSuffix '.debug'
 			manifestPlaceholders applicationName: 'ChatPaths Debug'
 		}
 		releaseWithDebug {
-			pseudoLocalesEnabled true
-			versionNameSuffix '.debug'
+			initWith debug
 			debuggable true
-			manifestPlaceholders applicationName: 'ChatPaths RDebug'
 			signingConfig signingConfigs.debug
 		}
 		release {
@@ -126,7 +125,7 @@ dependencies {
 	implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
 	implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 	implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.5.3'
-	implementation project(path: ':framework')
+	implementation project(path: ':modules:model')
 	implementation 'androidx.cardview:cardview:1.0.0'
 	implementation 'androidx.recyclerview:recyclerview:1.3.0'
 	implementation 'androidx.preference:preference-ktx:1.2.0'
@@ -137,7 +136,7 @@ dependencies {
 	// In-app review
 	implementation 'com.google.android.play:core:1.10.3'
 	implementation 'com.google.android.play:core-ktx:1.8.1'
-	implementation project(path: ':resource')
+	implementation project(path: ':modules:builder')
 
 
 	testImplementation 'junit:junit:4.13.2'
@@ -153,13 +152,11 @@ dependencies {
 	androidTestImplementation 'org.mockito:mockito-android:5.2.0'
 
 	// Lifecycle
-	def lifecycle_version = '2.6.1'
 	implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 	implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 	implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 	implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
 
-	def room_version = '2.5.1'
 	implementation "androidx.room:room-runtime:$room_version"
 	kapt "androidx.room:room-compiler:$room_version" // For Kotlin use kapt instead of annotationProcessor
 	implementation "androidx.room:room-ktx:$room_version"
@@ -180,17 +177,17 @@ dependencies {
 //    implementation 'com.github.AppIntro:AppIntro:6.1.0'
 	implementation 'uk.co.samuelwall:material-tap-target-prompt:3.3.2'
 
-	implementation 'com.google.dagger:hilt-android:2.45'
-	kapt 'com.google.dagger:hilt-compiler:2.45'
+	implementation "com.google.dagger:hilt-android:$hilt_version"
+	kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
 
 	// For instrumentation tests
-	androidTestImplementation 'com.google.dagger:hilt-android-testing:2.45'
-	kaptAndroidTest 'com.google.dagger:hilt-compiler:2.45'
+	androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+	kaptAndroidTest "com.google.dagger:hilt-compiler:$hilt_version"
 
 	// For local unit tests
-	testImplementation 'com.google.dagger:hilt-android-testing:2.45'
-	kaptTest 'com.google.dagger:hilt-compiler:2.45'
+	testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+	kaptTest "com.google.dagger:hilt-compiler:$hilt_version"
 
 	// Kotlin + coroutines
 //    implementation 'androidx.work:work-runtime-ktx:2.7.0-alpha05'

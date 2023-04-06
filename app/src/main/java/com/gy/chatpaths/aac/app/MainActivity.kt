@@ -27,9 +27,9 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.gy.chatpaths.aac.app.databinding.ActivityMainBinding
 import com.gy.chatpaths.aac.app.di.module.Firebase
-import com.gy.chatpaths.aac.data.source.CPRepository
-import com.gy.chatpaths.aac.data.source.local.AppDatabase
-import com.gy.chatpaths.aac.resource.InitialData
+import com.gy.chatpaths.builder.InitialData
+import com.gy.chatpaths.model.source.CPRepository
+import com.gy.chatpaths.model.source.local.AppDatabase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

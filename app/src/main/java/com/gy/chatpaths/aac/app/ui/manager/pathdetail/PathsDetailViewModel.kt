@@ -3,8 +3,8 @@ package com.gy.chatpaths.aac.app.ui.manager.pathdetail
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gy.chatpaths.aac.data.Path
-import com.gy.chatpaths.aac.data.source.CPRepository
+import com.gy.chatpaths.model.Path
+import com.gy.chatpaths.model.source.CPRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
