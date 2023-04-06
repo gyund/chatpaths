@@ -8,6 +8,8 @@ android {
 		// If set to true, lint also checks all dependencies as part of its analysis.
 		// Recommended for projects consisting of an app with library dependencies.
 		checkDependencies true
+		// if true, treat all warnings as errors
+		warningsAsErrors true
 	}
 //    lintOptions {
 //        baseline file("lint-baseline.xml")
