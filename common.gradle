@@ -1,15 +1,10 @@
 
 android {
-	lint {
-		// If set to true (default), stops the build if errors are found.
-		abortOnError false
-		// If set to true, lint only reports errors.
-//        ignoreWarnings true
-		// If set to true, lint also checks all dependencies as part of its analysis.
-		// Recommended for projects consisting of an app with library dependencies.
-		checkDependencies true
-		// if true, treat all warnings as errors
-		warningsAsErrors true
+	lintOptions {
+		error 'DiscouragedApi', 'ClickableViewAccessibility', 'Untranslatable', 'UseCompatTextViewDrawableXml'
+
+		xmlReport true
+		htmlReport true
 	}
 //    lintOptions {
 //        baseline file("lint-baseline.xml")

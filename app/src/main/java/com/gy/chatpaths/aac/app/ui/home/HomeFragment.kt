@@ -161,7 +161,6 @@ class HomeFragment : Fragment() {
         inflater.inflate(R.menu.main, menu)
     }
 
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val navController = findNavController()
 
