@@ -41,7 +41,7 @@ class CollectionDetailFragment : CommonFeatureFragment() {
 
         lifecycleScope.launch {
             collectionViewModel.getLivePathCollectionInfo(args.collectionId)
-                .observe(viewLifecycleOwner, {
+                .observe(viewLifecycleOwner) {
                     // Update the view whenever it changes or is updated
                     it?.apply {
                         context?.let { ctx ->
@@ -53,7 +53,7 @@ class CollectionDetailFragment : CommonFeatureFragment() {
                             )
                         }
                     }
-                })
+                }
             binding.displayImage.setOnClickListener {
                 lifecycleScope.launch {
                     showEditImageDialog(collectionViewModel.getImage())

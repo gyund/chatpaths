@@ -73,7 +73,6 @@ class ImageSelectFragment : Fragment(), ImageSelectListener {
         super.onDestroyView()
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.image_select, menu)
         val search = menu.findItem(R.id.app_bar_search).actionView as SearchView
