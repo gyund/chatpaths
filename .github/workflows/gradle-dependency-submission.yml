@@ -24,8 +24,9 @@ jobs:
       - name: Gradle Dependency Submission
         uses: mikepenz/gradle-dependency-submission@v0.8.6
         with:
-          sub-module-mode: COMBINED
           gradle-build-module: |-
             :app
+            :modules:builder
+            :modules:model
           
 
