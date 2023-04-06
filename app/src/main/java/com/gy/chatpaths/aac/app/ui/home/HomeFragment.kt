@@ -103,7 +103,7 @@ class HomeFragment : Fragment() {
 
             lifecycleScope.launch {
                 buildTemplateIfNeeded()
-                currentUser.getUserLive().observe(viewLifecycleOwner, {
+                currentUser.getUserLive().observe(viewLifecycleOwner) {
                     // The userId is only valid after validate is called
                     it?.apply {
                         val navigationView =
@@ -128,8 +128,8 @@ class HomeFragment : Fragment() {
                         //                                    }
                         //                                }
                     }
-                })
-                collectionsViewModel.getLiveCollection(true).observe(viewLifecycleOwner, {
+                }
+                collectionsViewModel.getLiveCollection(true).observe(viewLifecycleOwner) {
                     lifecycleScope.launch {
                         context?.apply {
                             val collections = collectionsViewModel.getCollection(true)
@@ -139,7 +139,7 @@ class HomeFragment : Fragment() {
                             }
                         }
                     }
-                })
+                }
             }
         }
     }
@@ -157,12 +157,11 @@ class HomeFragment : Fragment() {
         super.onResume()
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main, menu)
     }
 
-    @Deprecated("Deprecated in Java")
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val navController = findNavController()
 
