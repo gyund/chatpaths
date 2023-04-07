@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
-import com.gy.chatpaths.aac.app.R
 import com.gy.chatpaths.aac.app.databinding.FragmentLicenseBinding
 
 class LicenseFragment : Fragment() {

@@ -24,8 +24,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
-import com.google.firebase.FirebaseApp
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.gy.chatpaths.aac.app.databinding.ActivityMainBinding
 import com.gy.chatpaths.aac.app.di.module.Firebase
@@ -211,7 +209,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupFirebase() {
-        if(!BuildConfig.FLAVOR.contains("nofirebase")) {
+        if (!BuildConfig.FLAVOR.contains("nofirebase")) {
             fun isTestDevice(): Boolean {
                 val testLabSetting =
                     Settings.System.getString(contentResolver, "firebase.test.lab")
