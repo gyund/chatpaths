@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <defaultsMap>
     <entry>
+        <key>uri_help</key>
+        <value>https://sites.google.com/view/chatpaths/faq</value>
+    </entry>
+    <entry>
         <key>uri_facebook</key>
         <value>https://www.facebook.com/ChatPaths</value>
     </entry>
