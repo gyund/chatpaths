@@ -1,5 +1,6 @@
 package com.gy.chatpaths.builder
 
+import android.annotation.SuppressLint
 import android.content.ContentResolver
 import android.content.Context
 import android.content.res.Resources
@@ -67,7 +68,10 @@ class UriHelper {
 
         /**
          * Retrieves a translated set of words that can help find an image by using contains
+         *
+         * @note we need to use getIdentifier so we can search find the resource mapping to the correct image
          */
+        @SuppressLint("DiscouragedApi")
         private fun getSearchString(context: Context, name: String): String {
             context.resources.configuration.locales.apply {
                 if (!isEmpty) {
