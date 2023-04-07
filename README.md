@@ -21,7 +21,7 @@ ChatPaths is a communication app for helping non-verbal kids communicate while o
 
 
 <p align="center">
-	<a href='https://play.google.com/store/apps/details?id=com.gy.chatpaths.aac.app'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'"/></a>
+	<a href='https://play.google.com/store/apps/details?id=com.gy.chatpaths.aac.app'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 </p>
 
 ## Structure
@@ -33,6 +33,16 @@ ChatPaths is a communication app for helping non-verbal kids communicate while o
 │   ├── builder            # utilities to build canned path collection heirarchies
 │   ├── model              # repository, DAOs, helpers
 ```
+
+## Additional Notes
+
+### Image Search
+
+Built in search functionality for paths uses translations that can be found [here](modules/builder/src/main/res/values/images.xml).
+The function `getSearchString` found in the [UriHelper](modules/builder/src/main/java/com/gy/chatpaths/builder/UriHelper.kt)
+is used to convert a search query from the user's native language to english, so that we can access
+the appropriate resource string identified in english. This is a bit weird, and there's probably
+a better way to do this.
 
 ## Incorporated Works
 

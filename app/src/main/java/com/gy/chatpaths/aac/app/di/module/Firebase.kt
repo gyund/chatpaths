@@ -1,5 +1,7 @@
 package com.gy.chatpaths.aac.app.di.module
 
+import android.content.Context
+import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
@@ -7,23 +9,25 @@ import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.gy.chatpaths.aac.app.BuildConfig
 import com.gy.chatpaths.aac.app.R
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class Firebase @Inject constructor() {
+class Firebase @Inject constructor(@ApplicationContext appContext: Context) {
 
     var remoteConfig: FirebaseRemoteConfig? = null
         private set
 
     fun setAnalytics(enabled: Boolean) {
-        if (BuildConfig.BUILD_TYPE != "debug") {
+        if (BuildConfig.FLAVOR.contains("WithFirebase")) {
             Firebase.analytics.setAnalyticsCollectionEnabled(enabled)
         }
     }
 
     init {
-        if (BuildConfig.BUILD_TYPE != "debug") {
+        if (BuildConfig.FLAVOR.contains("WithFirebase")) {
+            FirebaseApp.initializeApp(appContext)
             remoteConfig = Firebase.remoteConfig
         }
 

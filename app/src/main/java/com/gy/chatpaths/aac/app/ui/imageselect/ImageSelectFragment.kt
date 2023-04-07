@@ -24,7 +24,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class ImageSelectFragment : Fragment(), ImageSelectListener {
-    private val viewmodel: ImageSelectViewModel by viewModels()
+    protected val viewmodel: ImageSelectViewModel by viewModels()
 
     private var columnCount: Int = 2
     private var _binder: FragmentImageselectBinding? = null
@@ -73,7 +73,6 @@ class ImageSelectFragment : Fragment(), ImageSelectListener {
         super.onDestroyView()
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.image_select, menu)
         val search = menu.findItem(R.id.app_bar_search).actionView as SearchView

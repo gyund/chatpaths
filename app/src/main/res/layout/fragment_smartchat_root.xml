@@ -144,14 +144,14 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
-            android:drawableEnd="@drawable/ic_baseline_star_24"
             android:drawablePadding="4dp"
             android:gravity="left|center_vertical"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="RtlHardcoded"
-            tools:text="5" />
+            tools:text="5"
+            app:drawableEndCompat="@drawable/ic_baseline_star_24" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"

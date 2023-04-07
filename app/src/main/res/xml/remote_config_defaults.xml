@@ -5,6 +5,10 @@
         <value>https://www.facebook.com/ChatPaths</value>
     </entry>
     <entry>
+        <key>uri_github</key>
+        <value>https://github.com/gyund/chatpaths</value>
+    </entry>
+    <entry>
         <key>review_check_interval</key>
         <value>30</value>
     </entry>

@@ -23,7 +23,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew :app:assembleDebug testDebugUnitTest
+      run: ./gradlew :app:assembleWithoutFirebaseDebug testWithoutFirebaseDebugUnitTest
 
   format:
     needs: build
@@ -58,7 +58,7 @@ jobs:
         run: ./gradlew lint
       - uses: yutailang0119/action-android-lint@v3.1.0
         with:
-          report-path: build/reports/*.xml # Support glob patterns by https://www.npmjs.com/package/@actions/glob
+          report-path: '**/build/reports/*.xml' # Support glob patterns by https://www.npmjs.com/package/@actions/glob
         continue-on-error: false # If annotations contain error of severity, action-android-lint exit 1.
 
   analysis:
@@ -109,7 +109,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew clean :app:assembleDebug -S
+      run: ./gradlew clean :app:assembleWithoutFirebaseDebug -S
 
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
@@ -151,4 +151,4 @@ jobs:
           force-avd-creation: false
           disable-animations: true
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          script: ./gradlew connectedDebugAndroidTest
+          script: ./gradlew connectedWithoutFirebaseDebugAndroidTest

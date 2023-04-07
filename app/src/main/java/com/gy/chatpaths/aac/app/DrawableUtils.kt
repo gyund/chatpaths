@@ -1,5 +1,6 @@
 package com.gy.chatpaths.aac.app
 
+import android.annotation.SuppressLint
 import android.content.ContentResolver
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -32,6 +33,11 @@ class DrawableUtils {
                 null
             }
 
+        /**
+         * @note we need to use getIdentifier, even though it is discouraged, because if
+         * we're using a built in resource, we have to get the original resource id.
+         */
+        @SuppressLint("DiscouragedApi")
         private fun getDrawableAsResource(context: Context, resourceNameOrUri: String): Drawable? {
             return if (resourceNameOrUri.startsWith(ContentResolver.SCHEME_ANDROID_RESOURCE)) {
                 val altUri = resourceNameOrUri.substringAfterLast('/')

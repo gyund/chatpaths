@@ -119,7 +119,9 @@ abstract class AppDatabase : RoomDatabase() {
 //                database.execSQL("CREATE VIEW `${VIEW_NAME}` AS SELECT PU.userId, P.pathId, P.imageResource as defaultImageResource, P.defaultTitleStringResource, P2C.parentId, P2C.defaultPosition, PC.collectionId, COALESCE(PUML.enabled,1) as enabled, PUML.anchored, COALESCE(PUML.timesUsed,0) as timesUsed, COALESCE(PUML.position,P2C.defaultPosition,null) as position, UPC.title AS userTitle, UPC.imageResource AS userSharedImageUri, UPUI.imageResource AS userIndividualImageUri FROM PathUser AS PU INNER JOIN Path AS P INNER JOIN PathToCollections AS P2C ON P2C.pathId = P.pathId LEFT JOIN UserPathCustomizations AS UPC ON P.pathId = UPC.pathId LEFT JOIN PathUserML AS PUML ON PUML.userId = PU.userId AND PUML.pathId = P.pathId AND PUML.pathCollectionId = P2C.pathCollectionId LEFT JOIN PathCollection AS PC ON PC.collectionId = P2C.pathCollectionId LEFT JOIN UserPathUniqueImages AS UPUI ON UPUI.userId = PU.userId AND UPUI.pathId = P.pathId")
 //            }
 //        }
-
+        /**
+         * @note this migration is no longer needed but is still used in testing
+         */
         private val MIGRATION_11_12 = object : Migration(11, 12) {
             val tablePath = "Path"
             val tablePathCollections = "PathCollection"

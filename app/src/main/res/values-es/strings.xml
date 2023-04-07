@@ -19,17 +19,6 @@
     <string name="configure_image_message">Toque para configurar la imagen</string>
 
     <string name="licenses">Licencias</string>
-    <string name="license_text">
-    "El arte de googlefonts / noto-emoji tiene licencia de Apache License 2.0\n"
-    "Algunas ilustraciones se han modificado / combinado para formar imágenes compuestas\n"
-    "github.com/googlefonts/noto-emoji/blob/master/LICENSE\n\n"
-
-    "gráficos de twitter / twemoji con licencia CC-BY 4.0\n"
-    "github.com/twitter/twemoji/blob/master/LICENSE-GRAPHICS\n\n"
-
-    "gráficos openmoji con licencia CC-BY 4.0\n"
-    "openmoji.org\n\n"
-    </string>
     <string name="cancel">@android:string/cancel</string>
     <string name="editPathTitleHint">nueva descripción de ruta</string>
     <string name="switch_users">Cambiar de usuario</string>
@@ -66,7 +55,6 @@
     <string name="edit_user_dialog_title">Editar usuario</string>
     <string name="edit_user_dialog_message">Ingresa un nombre</string>
     <string name="add_path_collection_dialog_title">Agregar colección de ruta</string>
-    <string name="add_path_collection_dialog_name" translatable="false">@string/edit_user_dialog_message</string>
     <string name="error_empty_string_not_allowed">no se permite cadena vacía</string>
     <string name="save">save</string>
     <string name="path_collection_details_fragment_title">Detalle de la colección Path</string>

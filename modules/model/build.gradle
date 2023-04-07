@@ -47,9 +47,6 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 //            consumerProguardFiles 'proguard-rules.pro'
 		}
-		releaseWithDebug {
-			debuggable true
-		}
 	}
 
 	compileOptions {
@@ -57,11 +54,21 @@ android {
 		targetCompatibility JavaVersion.VERSION_1_8
 	}
 	namespace 'com.gy.chatpaths.aac.data'
+	flavorDimensions 'google'
+	productFlavors {
+		WithoutFirebase {
+			getIsDefault().set(true) // that does the magic
+			dimension 'google'
+		}
+		WithFirebase {
+			dimension 'google'
+		}
+	}
 }
 
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
-	implementation 'androidx.core:core-ktx:1.9.0'
+	implementation 'androidx.core:core-ktx:1.10.0'
 	implementation 'androidx.appcompat:appcompat:1.6.1'
 	implementation 'androidx.preference:preference-ktx:1.2.0'
 	implementation platform('com.google.firebase:firebase-bom:31.4.0')
@@ -95,7 +102,7 @@ dependencies {
 	testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
 	kaptTest "com.google.dagger:hilt-compiler:$hilt_version"
 
-	implementation "androidx.core:core-ktx:1.9.0"
+	implementation "androidx.core:core-ktx:1.10.0"
 	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.20'
 
 }

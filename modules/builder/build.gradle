@@ -25,9 +25,6 @@ android {
 			minifyEnabled true
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 		}
-		releaseWithDebug {
-			debuggable true
-		}
 	}
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
@@ -39,11 +36,21 @@ android {
 	buildToolsVersion '30.0.3'
 	compileSdkVersion 33
 	namespace 'com.gy.chatpaths.aac.resource'
+	flavorDimensions 'google'
+	productFlavors {
+		WithoutFirebase {
+			getIsDefault().set(true) // that does the magic
+			dimension 'google'
+		}
+		WithFirebase {
+			dimension 'google'
+		}
+	}
 }
 
 dependencies {
 
-	implementation 'androidx.core:core-ktx:1.9.0'
+	implementation 'androidx.core:core-ktx:1.10.0'
 	implementation 'androidx.appcompat:appcompat:1.6.1'
 	implementation 'com.google.android.material:material:1.8.0'
 	implementation('org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4')

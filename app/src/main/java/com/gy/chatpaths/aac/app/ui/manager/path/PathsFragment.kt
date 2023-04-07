@@ -167,7 +167,6 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
         }
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.manager_path_fragment_menu, menu)
 
@@ -176,7 +175,6 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
         }
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.readOutLoud -> {

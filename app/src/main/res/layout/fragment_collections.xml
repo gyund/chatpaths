@@ -24,6 +24,7 @@
         android:layout_margin="@dimen/text_margin"
         android:layout_weight="10"
         android:textAppearance="?attr/textAppearanceListItem"
+        android:textIsSelectable="false"
         android:textSize="18sp"
         tools:text="Let's Chat" />
 
@@ -41,5 +42,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical|end"
         android:scaleType="center"
-        android:src="@drawable/ic_baseline_reorder_24" />
+        android:src="@drawable/ic_baseline_reorder_24"
+        tools:ignore="ContentDescription" />
 </LinearLayout>

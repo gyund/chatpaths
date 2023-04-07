@@ -3,7 +3,6 @@ package com.gy.chatpaths.aac.app.ui.manager.userdetail
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gy.chatpaths.aac.app.BindableAdapter
@@ -57,7 +56,7 @@ class MyCollectionsRecyclerViewAdapter(
         // updateAllPreferences()
     }
 
-    private fun updateAllPreferences() {
+    protected fun updateAllPreferences() {
         listener.updateCollectionOrder(values)
     }
 
@@ -158,13 +157,6 @@ class MyCollectionsRecyclerViewAdapter(
 
             binding.root.setOnClickListener {
                 listener.editCollection(collection.collectionId)
-            }
-
-            binding.handle.setOnTouchListener { _, event ->
-                if (event.action == MotionEvent.ACTION_DOWN) {
-                    dragStartListener.onStartDrag(this)
-                }
-                return@setOnTouchListener false
             }
         }
 

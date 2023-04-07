@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="GradleDependency" severity="warning" />
+    <issue id="LogConditional" severity="warning" />
+    <issue id="UnusedResources" severity="warning" />
+    <issue id="VectorPath" severity="warning" />
+    <issue id="DuplicateStrings" severity="warning" />
+    <issue id="IconLocation" severity="warning" />
+    <issue id="LintWarning" severity="warning" />
+    <issue id="NotifyDataSetChanged" severity="warning" />
+    <issue id="UnusedIds" severity="warning" />
+    <issue id="ConvertToWebp" severity="warning" />
+    <issue id="SelectableText" severity="warning" />
+    <issue id="InvalidPackage" severity="warning" />
+
+    <!-- For v26 any dpi folder, which is needed for adaptive icons -->
+    <issue id="ObsoleteSdkInt" severity="warning" />
+
+
+    <!-- The following must be at the bottom of your file!
+         All lint issues (not listed above) will be treated as errors. -->
+    <issue id="all" severity="error" />
+</lint>

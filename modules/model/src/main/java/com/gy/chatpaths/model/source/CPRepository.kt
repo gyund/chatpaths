@@ -1,6 +1,5 @@
 package com.gy.chatpaths.model.source
 
-import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import com.gy.chatpaths.model.Path
@@ -273,10 +272,6 @@ class CPRepository @Inject constructor(private val localDataSource: LocalCPDataS
 
     override suspend fun getPath(pathId: Int): Path? {
         return localDataSource.getPath(pathId)
-    }
-
-    override suspend fun translateStrings(context: Context) {
-        localDataSource.translateStrings(context)
     }
 
     override suspend fun copyCollectionToUser(srcUserId: Int, dstUserId: Int, collectionId: Int) {

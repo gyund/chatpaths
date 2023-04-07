@@ -1,7 +1,6 @@
 package com.gy.chatpaths.model.source.local
 
 import android.content.ContentResolver
-import android.content.Context
 import android.net.Uri
 import android.util.Log
 import androidx.core.net.toFile
@@ -12,7 +11,6 @@ import com.gy.chatpaths.model.FileUtils
 import com.gy.chatpaths.model.Path
 import com.gy.chatpaths.model.PathCollection
 import com.gy.chatpaths.model.PathUser
-import com.gy.chatpaths.model.StringUtils
 import com.gy.chatpaths.model.source.CPDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -25,30 +23,6 @@ class LocalCPDataSource @Inject constructor(val db: AppDatabase) : CPDataSource 
     override suspend fun isInitialized(): Boolean {
         return withContext(Dispatchers.IO) {
             return@withContext db.pathUserDao().getCount() > 0
-        }
-    }
-
-    override suspend fun translateStrings(context: Context) {
-        withContext(Dispatchers.IO) {
-            db.runInTransaction {
-                db.pathDao().getAll().forEach {
-                    if (true == it.name?.startsWith("path_")) {
-                        val transTitle = StringUtils.getStringFromStringResourceName(context, it.name, null)
-                        if (null != transTitle) {
-                            db.pathDao().setPathTitle(it.pathId, transTitle)
-                        }
-                    }
-                }
-                db.pathCollectionDao().getAll().forEach {
-                    if (true == it.name?.startsWith("col_")) {
-                        val transTitle = StringUtils.getStringFromStringResourceName(context, it.name, null)
-                        if (null != transTitle) {
-                            it.name = transTitle
-                            db.pathCollectionDao().update(it)
-                        }
-                    }
-                }
-            }
         }
     }
 

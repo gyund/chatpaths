@@ -23,13 +23,12 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
-import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.gy.chatpaths.aac.app.databinding.ActivityMainBinding
 import com.gy.chatpaths.aac.app.di.module.Firebase
 import com.gy.chatpaths.builder.InitialData
 import com.gy.chatpaths.model.source.CPRepository
-import com.gy.chatpaths.model.source.local.AppDatabase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -39,10 +38,9 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG = "CPActivity"
     private var _binder: ActivityMainBinding? = null
-    private val binder get() = _binder!!
+    protected val binder get() = _binder!!
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     @Inject
     lateinit var firebase: Firebase
@@ -82,7 +80,6 @@ class MainActivity : AppCompatActivity() {
             // Pull the update while we're in the splash screen
 
             initializeDatabase()
-            updateData()
             onDatabaseInitialized.postValue(true)
         }
 
@@ -105,6 +102,13 @@ class MainActivity : AppCompatActivity() {
                 }
             },
         )
+
+        binder.navView.menu.findItem(R.id.license)?.apply {
+            setOnMenuItemClickListener {
+                launchLicenseActivity()
+                return@setOnMenuItemClickListener true
+            }
+        }
 
         setupRemoteConfig()
 
@@ -134,8 +138,12 @@ class MainActivity : AppCompatActivity() {
         _binder = null
     }
 
+    fun launchLicenseActivity() {
+        startActivity(Intent(this, OssLicensesMenuActivity::class.java))
+    }
+
     private fun setupRemoteConfig() {
-        if (BuildConfig.BUILD_TYPE != "debug") {
+        if (BuildConfig.FLAVOR.contains("WithFirebase")) {
             firebase.remoteConfig?.apply {
                 activate().addOnCompleteListener {
                     if (!it.isComplete) return@addOnCompleteListener
@@ -159,6 +167,12 @@ class MainActivity : AppCompatActivity() {
                     if (uriFacebook.isNotBlank()) {
                         binder.navView.menu.findItem(R.id.facebook)?.apply {
                             applyLinkToMenuItem(uriFacebook)
+                        }
+                    }
+                    val uriGithub = getString("uri_github")
+                    if (uriGithub.isNotBlank()) {
+                        binder.navView.menu.findItem(R.id.github)?.apply {
+                            applyLinkToMenuItem(uriGithub)
                         }
                     }
                 }
@@ -195,25 +209,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupFirebase() {
-        fun isTestDevice(): Boolean {
-            val testLabSetting =
-                Settings.System.getString(contentResolver, "firebase.test.lab")
-            return "true".equals(testLabSetting)
-        }
+        if (BuildConfig.FLAVOR.contains("WithFirebase")) {
+            fun isTestDevice(): Boolean {
+                val testLabSetting =
+                    Settings.System.getString(contentResolver, "firebase.test.lab")
+                return "true".equals(testLabSetting)
+            }
 
-        val collectionEnabled = !(isTestDevice() || BuildConfig.DEBUG)
-        firebase.setAnalytics(collectionEnabled)
-    }
-
-    /**
-     * We need to migrate the data from database 11 and below so
-     * strings are already translated in the database
-     */
-    private suspend fun updateData() {
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        if (sharedPreferences.getInt("migration", 0) < 12) {
-            repository.translateStrings(this)
-            sharedPreferences.edit().putInt("migration", AppDatabase.DATABASE_VERSION).apply()
+            val collectionEnabled = !(isTestDevice() || BuildConfig.DEBUG)
+            firebase.setAnalytics(collectionEnabled)
         }
     }
 

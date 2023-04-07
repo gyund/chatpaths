@@ -97,14 +97,14 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
 
                     val collections = collectionsViewModel.getLiveCollection(false)
                     withContext(Dispatchers.Main) { // now that we know collections are retrieved, we can observer them
-                        collections.observe(viewLifecycleOwner, {
+                        collections.observe(viewLifecycleOwner) {
                             adapter.setData(it)
-                        })
-                        collectionsViewModel.collectionsPositions.observe(viewLifecycleOwner, {
+                        }
+                        collectionsViewModel.collectionsPositions.observe(viewLifecycleOwner) {
                             adapter.changedPositions(it)
-                        })
+                        }
 
-                        selectedUserDetailViewModel.getUserLive().observe(viewLifecycleOwner, {
+                        selectedUserDetailViewModel.getUserLive().observe(viewLifecycleOwner) {
                             it?.let { pu ->
 
                                 // got our selected user, update their info when it changes
@@ -129,7 +129,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
                                     binding.deleteButton.isEnabled = true
                                 }
                             }
-                        })
+                        }
 
                         binding.deleteButton.setOnClickListener {
                             showDeleteUserDialog()
@@ -169,12 +169,10 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
         }
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.manager_user_detail_fragment_menu, menu)
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val navController = findNavController()
 
