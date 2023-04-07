@@ -7,7 +7,7 @@ plugins {
 	id 'com.google.android.gms.oss-licenses-plugin'
 }
 
-if (!getGradle().getStartParameter().getTaskRequests().toString().contains("Nofirebase")) {
+if (!getGradle().getStartParameter().getTaskRequests().toString().contains("WithoutFirebase")) {
 	apply plugin: 'com.google.gms.google-services'
 	apply plugin: 'com.google.firebase.crashlytics'
 }
@@ -107,11 +107,11 @@ android {
 	namespace 'com.gy.chatpaths.aac.app'
 	flavorDimensions 'google'
 	productFlavors {
-		nofirebase {
+		WithoutFirebase {
 			getIsDefault().set(true) // that does the magic
 			dimension 'google'
 		}
-		firebase {
+		WithFirebase {
 			dimension 'google'
 		}
 	}

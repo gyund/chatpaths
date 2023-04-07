@@ -56,11 +56,11 @@ android {
 	namespace 'com.gy.chatpaths.aac.data'
 	flavorDimensions 'google'
 	productFlavors {
-		nofirebase {
+		WithoutFirebase {
 			getIsDefault().set(true) // that does the magic
 			dimension 'google'
 		}
-		firebase {
+		WithFirebase {
 			dimension 'google'
 		}
 	}

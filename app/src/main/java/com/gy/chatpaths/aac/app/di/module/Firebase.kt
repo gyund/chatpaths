@@ -20,13 +20,13 @@ class Firebase @Inject constructor(@ApplicationContext appContext: Context) {
         private set
 
     fun setAnalytics(enabled: Boolean) {
-        if (!BuildConfig.FLAVOR.contains("nofirebase")) {
+        if (BuildConfig.FLAVOR.contains("WithFirebase")) {
             Firebase.analytics.setAnalyticsCollectionEnabled(enabled)
         }
     }
 
     init {
-        if (!BuildConfig.FLAVOR.contains("nofirebase")) {
+        if (BuildConfig.FLAVOR.contains("WithFirebase")) {
             FirebaseApp.initializeApp(appContext)
             remoteConfig = Firebase.remoteConfig
         }

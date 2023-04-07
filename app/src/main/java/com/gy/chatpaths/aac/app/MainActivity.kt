@@ -143,7 +143,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRemoteConfig() {
-        if (!BuildConfig.FLAVOR.contains("nofirebase")) {
+        if (BuildConfig.FLAVOR.contains("WithFirebase")) {
             firebase.remoteConfig?.apply {
                 activate().addOnCompleteListener {
                     if (!it.isComplete) return@addOnCompleteListener
@@ -209,7 +209,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupFirebase() {
-        if (!BuildConfig.FLAVOR.contains("nofirebase")) {
+        if (BuildConfig.FLAVOR.contains("WithFirebase")) {
             fun isTestDevice(): Boolean {
                 val testLabSetting =
                     Settings.System.getString(contentResolver, "firebase.test.lab")
