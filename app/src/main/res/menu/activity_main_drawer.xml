@@ -26,6 +26,10 @@
             android:id="@+id/facebook"
             android:title="@string/visit_facebook"
             android:visible="false" />
+        <item
+            android:id="@+id/github"
+            android:title="@string/visit_github"
+            android:visible="false" />
     </group>
     <group>
         <item
@@ -33,7 +37,7 @@
             android:title="@string/feedback"
             android:visible="false" />
         <item
-            android:id="@+id/licenseFragment"
+            android:id="@+id/license"
             android:title="@string/licenses" />
     </group>
 </menu>

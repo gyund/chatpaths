@@ -23,6 +23,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.gy.chatpaths.aac.app.databinding.ActivityMainBinding
@@ -103,6 +105,13 @@ class MainActivity : AppCompatActivity() {
             },
         )
 
+        binder.navView.menu.findItem(R.id.license)?.apply {
+            setOnMenuItemClickListener {
+                launchLicenseActivity()
+                return@setOnMenuItemClickListener true
+            }
+        }
+
         setupRemoteConfig()
 
         appBarConfiguration = AppBarConfiguration(
@@ -131,6 +140,10 @@ class MainActivity : AppCompatActivity() {
         _binder = null
     }
 
+    fun launchLicenseActivity() {
+        startActivity(Intent(this, OssLicensesMenuActivity::class.java))
+    }
+
     private fun setupRemoteConfig() {
         if (!BuildConfig.FLAVOR.contains("nofirebase")) {
             firebase.remoteConfig?.apply {
@@ -156,6 +169,12 @@ class MainActivity : AppCompatActivity() {
                     if (uriFacebook.isNotBlank()) {
                         binder.navView.menu.findItem(R.id.facebook)?.apply {
                             applyLinkToMenuItem(uriFacebook)
+                        }
+                    }
+                    val uriGithub = getString("uri_github")
+                    if (uriGithub.isNotBlank()) {
+                        binder.navView.menu.findItem(R.id.github)?.apply {
+                            applyLinkToMenuItem(uriGithub)
                         }
                     }
                 }
@@ -192,14 +211,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupFirebase() {
-        fun isTestDevice(): Boolean {
-            val testLabSetting =
-                Settings.System.getString(contentResolver, "firebase.test.lab")
-            return "true".equals(testLabSetting)
-        }
+        if(!BuildConfig.FLAVOR.contains("nofirebase")) {
+            fun isTestDevice(): Boolean {
+                val testLabSetting =
+                    Settings.System.getString(contentResolver, "firebase.test.lab")
+                return "true".equals(testLabSetting)
+            }
 
-        val collectionEnabled = !(isTestDevice() || BuildConfig.DEBUG)
-        firebase.setAnalytics(collectionEnabled)
+            val collectionEnabled = !(isTestDevice() || BuildConfig.DEBUG)
+            firebase.setAnalytics(collectionEnabled)
+        }
     }
 
     private suspend fun initializeDatabase() {

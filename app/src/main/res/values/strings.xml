@@ -139,5 +139,6 @@
     <string name="record_audio_description">This feature lets you record in your own voice what to say when the path is selected instead of using text to speech.</string>
     <string name="pro">pro</string>
     <string name="tts_unavailable">TTS is unavailable</string>
+    <string name="visit_github" translatable="false">Github</string>
 
 </resources>
