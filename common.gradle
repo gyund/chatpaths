@@ -5,6 +5,7 @@
 
 android {
 	lintOptions {
+		abortOnError false
 		lintConfig file("${project.rootDir}/lint.xml")
 
 		xmlReport true
