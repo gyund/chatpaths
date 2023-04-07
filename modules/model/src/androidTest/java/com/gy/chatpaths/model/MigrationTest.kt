@@ -602,6 +602,9 @@ class MigrationTest {
 //                        }
 //                    }
                     11 -> {
+                        /**
+                         * @note This test should not validate translations, we have removed the code to do that post migration, but nobody will have this old database.
+                         */
                         runBlocking {
                             assertThat(data.getCollectionCount()).isEqualTo(39)
                             assertThat(data.getPathCount()).isEqualTo(735)

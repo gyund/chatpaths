@@ -25,12 +25,10 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.gy.chatpaths.aac.app.BuildConfig
 import com.gy.chatpaths.aac.app.databinding.ActivityMainBinding
 import com.gy.chatpaths.aac.app.di.module.Firebase
 import com.gy.chatpaths.builder.InitialData
 import com.gy.chatpaths.model.source.CPRepository
-import com.gy.chatpaths.model.source.local.AppDatabase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -83,7 +81,6 @@ class MainActivity : AppCompatActivity() {
             // Pull the update while we're in the splash screen
 
             initializeDatabase()
-            updateData()
             onDatabaseInitialized.postValue(true)
         }
 
@@ -204,18 +201,6 @@ class MainActivity : AppCompatActivity() {
 
         val collectionEnabled = !(isTestDevice() || BuildConfig.DEBUG)
         firebase.setAnalytics(collectionEnabled)
-    }
-
-    /**
-     * We need to migrate the data from database 11 and below so
-     * strings are already translated in the database
-     */
-    private suspend fun updateData() {
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        if (sharedPreferences.getInt("migration", 0) < 12) {
-            repository.translateStrings(this)
-            sharedPreferences.edit().putInt("migration", AppDatabase.DATABASE_VERSION).apply()
-        }
     }
 
     private suspend fun initializeDatabase() {
