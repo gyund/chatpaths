@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "",
+        "mobilesdk_app_id": "12345",
         "android_client_info": {
-          "package_name": "com.chatpaths.app"
+          "package_name": "com.gy.chatpaths.aac.app"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gy.chatpaths.aac.app",
+            "certificate_hash": ""
+          }
+        },
         {
           "client_id": "",
           "client_type": 3
@@ -33,13 +41,14 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": ""
     },
     {
       "client_info": {
         "mobilesdk_app_id": "12345",
         "android_client_info": {
-          "package_name": "com.gy.chatpaths.aac.app"
+          "package_name": "com.gy.chatpaths.aac.app.debug"
         }
       },
       "oauth_client": [
@@ -47,7 +56,7 @@
           "client_id": "",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.gy.chatpaths.aac.app",
+            "package_name": "com.gy.chatpaths.aac.app.debug",
             "certificate_hash": ""
           }
         },

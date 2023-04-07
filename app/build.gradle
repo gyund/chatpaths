@@ -81,6 +81,7 @@ android {
 			pseudoLocalesEnabled true
 			versionNameSuffix '.debug'
 			manifestPlaceholders applicationName: 'ChatPaths Debug'
+			applicationIdSuffix '.debug'
 		}
 		release {
 			minifyEnabled true
