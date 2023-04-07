@@ -159,13 +159,6 @@ class MyCollectionsRecyclerViewAdapter(
             binding.root.setOnClickListener {
                 listener.editCollection(collection.collectionId)
             }
-
-            binding.handle.setOnTouchListener { _, event ->
-                if (event.action == MotionEvent.ACTION_DOWN) {
-                    dragStartListener.onStartDrag(this)
-                }
-                return@setOnTouchListener false
-            }
         }
 
         override fun onItemSelected() {
