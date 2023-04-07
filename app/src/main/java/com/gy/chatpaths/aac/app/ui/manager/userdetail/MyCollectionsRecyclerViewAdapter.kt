@@ -3,7 +3,6 @@ package com.gy.chatpaths.aac.app.ui.manager.userdetail
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gy.chatpaths.aac.app.BindableAdapter
