@@ -23,7 +23,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew :app:assembleDebug testDebugUnitTest
+      run: ./gradlew :app:assembleNofirebaseDebug testNofirebaseDebugUnitTest
 
   format:
     needs: build
@@ -109,7 +109,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew clean :app:assembleDebug -S
+      run: ./gradlew clean :app:assembleNofirebaseDebug -S
 
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
@@ -151,4 +151,4 @@ jobs:
           force-avd-creation: false
           disable-animations: true
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          script: ./gradlew connectedDebugAndroidTest
+          script: ./gradlew connectedNofirebaseDebugAndroidTest
