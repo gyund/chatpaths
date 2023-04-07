@@ -14,9 +14,6 @@
             android:id="@+id/action_userFragment_to_userDetailFragment"
             app:destination="@id/userDetailFragment" />
         <action
-            android:id="@+id/action_nav_home_to_licenseFragment2"
-            app:destination="@id/licenseFragment" />
-        <action
             android:id="@+id/action_nav_home_to_settingsFragment"
             app:destination="@id/settingsFragment" />
         <action
@@ -29,11 +26,6 @@
             android:id="@+id/action_nav_home_to_templateFragment"
             app:destination="@id/templateFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/licenseFragment"
-        android:name="com.gy.chatpaths.aac.app.ui.license.LicenseFragment"
-        android:label="License Info"
-        tools:layout="@layout/fragment_license" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.gy.chatpaths.aac.app.ui.home.SettingsFragment"

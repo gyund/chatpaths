@@ -19,17 +19,6 @@
     <string name="configure_image_message">Toque para configurar la imagen</string>
 
     <string name="licenses">Licencias</string>
-    <string name="license_text">
-    "El arte de googlefonts / noto-emoji tiene licencia de Apache License 2.0\n"
-    "Algunas ilustraciones se han modificado / combinado para formar imágenes compuestas\n"
-    "github.com/googlefonts/noto-emoji/blob/master/LICENSE\n\n"
-
-    "gráficos de twitter / twemoji con licencia CC-BY 4.0\n"
-    "github.com/twitter/twemoji/blob/master/LICENSE-GRAPHICS\n\n"
-
-    "gráficos openmoji con licencia CC-BY 4.0\n"
-    "openmoji.org\n\n"
-    </string>
     <string name="cancel">@android:string/cancel</string>
     <string name="editPathTitleHint">nueva descripción de ruta</string>
     <string name="switch_users">Cambiar de usuario</string>

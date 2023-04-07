@@ -23,17 +23,6 @@
     <string name="oops_help">Restart the path or go to the parent path</string>
 
     <string name="licenses">Licenses</string>
-    <string name="license_text">
-        "googlefonts/noto-emoji artwork is licensed under the Apache License 2.0\n"
-        "Some artwork has been modified/combined to form composite images\n"
-        "github.com/googlefonts/noto-emoji/blob/master/LICENSE\n\n"
-
-        "twitter/twemoji graphics licensed under CC-BY 4.0\n"
-        "github.com/twitter/twemoji/blob/master/LICENSE-GRAPHICS\n\n"
-
-        "openmoji graphics licensed under CC-BY 4.0\n"
-        "openmoji.org\n\n"
-    </string>
 
     <string name="cancel">@android:string/cancel</string>
     <string name="editPathTitleHint">new path description</string>

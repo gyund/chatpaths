@@ -4,7 +4,6 @@ plugins {
 	id 'kotlin-kapt'
 	id "androidx.navigation.safeargs.kotlin"
 	id 'dagger.hilt.android.plugin'
-	id 'com.google.android.gms.oss-licenses-plugin'
 }
 
 apply from: "$project.rootDir/common.gradle"
@@ -110,6 +109,7 @@ android {
 			dimension 'google'
 			apply plugin: 'com.google.gms.google-services'
 			apply plugin: 'com.google.firebase.crashlytics'
+			apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 		}
 	}
 }
