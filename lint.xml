@@ -8,6 +8,11 @@
     <issue id="IconLocation" severity="warning" />
     <issue id="LintWarning" severity="warning" />
     <issue id="NotifyDataSetChanged" severity="warning" />
+    <issue id="UnusedIds" severity="warning" />
+
+    <!-- For v26 any dpi folder, which is needed for adaptive icons -->
+    <issue id="ObsoleteSdkInt" severity="warning" />
+
 
     <!-- The following must be at the bottom of your file!
          All lint issues (not listed above) will be treated as errors. -->

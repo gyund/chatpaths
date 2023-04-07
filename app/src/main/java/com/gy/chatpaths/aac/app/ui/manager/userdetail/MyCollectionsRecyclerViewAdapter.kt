@@ -56,7 +56,7 @@ class MyCollectionsRecyclerViewAdapter(
         // updateAllPreferences()
     }
 
-    private fun updateAllPreferences() {
+    protected fun updateAllPreferences() {
         listener.updateCollectionOrder(values)
     }
 

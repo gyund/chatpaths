@@ -41,7 +41,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 open class SmartchatCommonFragment : Fragment() {
     private var _binding: FragmentSmartchatRootBinding? = null
-    private val binding get() = _binding!!
+    protected val binding get() = _binding!!
 
     @Inject
     lateinit var user: CurrentUser
@@ -288,7 +288,7 @@ open class SmartchatCommonFragment : Fragment() {
         }
     }
 
-    private fun setNavEnabled(enabled: Boolean) {
+    protected fun setNavEnabled(enabled: Boolean) {
         binding.pathImage.isEnabled = enabled
         binding.prevPath.isEnabled = enabled
         binding.nextPath.isEnabled = enabled

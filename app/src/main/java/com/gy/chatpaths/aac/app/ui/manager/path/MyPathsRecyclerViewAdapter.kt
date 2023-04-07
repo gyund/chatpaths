@@ -60,7 +60,7 @@ class MyPathsRecyclerViewAdapter(
 //        updateAllPreferences()
 //    }
 //
-    private fun updateAllPreferences() {
+    protected fun updateAllPreferences() {
         listener.updatePathOrder(values)
 //        values.forEachIndexed { index, path ->
 //            listener.setPathPosition(path.pathId, index)

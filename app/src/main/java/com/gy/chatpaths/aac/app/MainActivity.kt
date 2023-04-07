@@ -38,10 +38,9 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG = "CPActivity"
     private var _binder: ActivityMainBinding? = null
-    private val binder get() = _binder!!
+    protected val binder get() = _binder!!
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     @Inject
     lateinit var firebase: Firebase

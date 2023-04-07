@@ -24,7 +24,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class ImageSelectFragment : Fragment(), ImageSelectListener {
-    private val viewmodel: ImageSelectViewModel by viewModels()
+    protected val viewmodel: ImageSelectViewModel by viewModels()
 
     private var columnCount: Int = 2
     private var _binder: FragmentImageselectBinding? = null
