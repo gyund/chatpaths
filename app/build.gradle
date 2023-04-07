@@ -16,7 +16,7 @@ ext {
 	// Year.Month.MajorVersion.patch
 	app_version = getDate()
 	app_major_version = 1
-	app_version_code = 132
+	app_version_code = 135
 	app_version_name = "$app_version.$app_major_version.$app_version_code"
 
 	storeFile = null
@@ -174,7 +174,7 @@ dependencies {
 	implementation 'com.google.firebase:firebase-config-ktx:21.3.0'
 
 
-	implementation 'com.github.yalantis:ucrop:2.2.8-native'
+	implementation 'com.github.yalantis:ucrop:2.2.8'
 //    implementation 'com.squareup.picasso:picasso:2.71828'
 
 	// Onboarding
