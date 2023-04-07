@@ -36,7 +36,8 @@
             app:layout_constraintEnd_toEndOf="@+id/pathImage"
             app:layout_constraintStart_toEndOf="@+id/pathImage"
             app:srcCompat="@drawable/ic_anchor"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            tools:ignore="ContentDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -64,5 +65,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical|end"
         android:scaleType="center"
-        android:src="@drawable/ic_baseline_reorder_24" />
+        android:src="@drawable/ic_baseline_reorder_24"
+        tools:ignore="ContentDescription" />
 </LinearLayout>

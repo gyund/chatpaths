@@ -3,7 +3,6 @@ package com.gy.chatpaths.aac.app.ui.manager.path
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -175,13 +174,6 @@ class MyPathsRecyclerViewAdapter(
                         pathId = path.pathId,
                     )
                 it.findNavController().navigate(action)
-            }
-
-            binding.handle.setOnTouchListener { _, event ->
-                if (event.action == MotionEvent.ACTION_DOWN) {
-                    dragStartListener.onStartDrag(this)
-                }
-                return@setOnTouchListener false
             }
         }
 

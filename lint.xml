@@ -10,6 +10,8 @@
     <issue id="NotifyDataSetChanged" severity="warning" />
     <issue id="UnusedIds" severity="warning" />
     <issue id="ConvertToWebp" severity="warning" />
+    <issue id="SelectableText" severity="warning" />
+    <issue id="InvalidPackage" severity="warning" />
 
     <!-- For v26 any dpi folder, which is needed for adaptive icons -->
     <issue id="ObsoleteSdkInt" severity="warning" />
