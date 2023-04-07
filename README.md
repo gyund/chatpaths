@@ -49,9 +49,12 @@ a better way to do this.
 Chatpaths makes use of a number of 3rd party visual resources as well as compositions and
 modifications of these resources to provide visuals. These include:
 
-- [googlefonts/noto-emoji](https://github.com/googlefonts/noto-emoji/blob/master/LICENSE)
-- [twitter/twemoji](https://github.com/twitter/twemoji/blob/master/LICENSE-GRAPHICS)
-- [openmoji](https://github.com/hfg-gmuend/openmoji/blob/master/LICENSE.txt)
+| Site                                                                                    | License                                                                  |
+|-----------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| [googlefonts/noto-emoji](https://github.com/googlefonts/noto-emoji/blob/master/LICENSE) | ![License](https://img.shields.io/github/license/googlefonts/noto-emoji) |
+| [twitter/twemoji](https://github.com/twitter/twemoji/blob/master/LICENSE-GRAPHICS)      | ![License](https://img.shields.io/github/license/twitter/twemoji)        |
+| [openmoji](https://github.com/hfg-gmuend/openmoji/blob/master/LICENSE.txt)              | ![License](https://img.shields.io/github/license/hfg-gmuend/openmoji)    |
+
 
 ## Signing a Release
 
