@@ -90,7 +90,7 @@ abstract class CommonFeatureFragment : Fragment() {
             try {
                 val uri = Uri.parse(userSelectedImage)
                 onStoreImageUri(uri)
-            } catch (e: Exception) {
+            } catch (_: Exception) {
             }
         }
     }
