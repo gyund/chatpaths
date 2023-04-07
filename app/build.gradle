@@ -16,7 +16,7 @@ ext {
 	// Year.Month.MajorVersion.patch
 	app_version = getDate()
 	app_major_version = 1
-	app_version_code = 133
+	app_version_code = 134
 	app_version_name = "$app_version.$app_major_version.$app_version_code"
 
 	storeFile = null
