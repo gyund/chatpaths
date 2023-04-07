@@ -25,6 +25,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.gy.chatpaths.aac.app.BuildConfig
 import com.gy.chatpaths.aac.app.databinding.ActivityMainBinding
 import com.gy.chatpaths.aac.app.di.module.Firebase
 import com.gy.chatpaths.builder.InitialData
@@ -135,7 +136,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRemoteConfig() {
-        if (BuildConfig.BUILD_TYPE != "debug") {
+        if (!BuildConfig.FLAVOR.contains("nofirebase")) {
             firebase.remoteConfig?.apply {
                 activate().addOnCompleteListener {
                     if (!it.isComplete) return@addOnCompleteListener

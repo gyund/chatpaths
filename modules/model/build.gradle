@@ -47,9 +47,6 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 //            consumerProguardFiles 'proguard-rules.pro'
 		}
-		releaseWithDebug {
-			debuggable true
-		}
 	}
 
 	compileOptions {
@@ -57,6 +54,16 @@ android {
 		targetCompatibility JavaVersion.VERSION_1_8
 	}
 	namespace 'com.gy.chatpaths.aac.data'
+	flavorDimensions 'google'
+	productFlavors {
+		nofirebase {
+			getIsDefault().set(true) // that does the magic
+			dimension 'google'
+		}
+		firebase {
+			dimension 'google'
+		}
+	}
 }
 
 dependencies {

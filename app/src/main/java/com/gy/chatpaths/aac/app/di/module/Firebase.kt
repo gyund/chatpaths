@@ -17,13 +17,13 @@ class Firebase @Inject constructor() {
         private set
 
     fun setAnalytics(enabled: Boolean) {
-        if (BuildConfig.BUILD_TYPE != "debug") {
+        if (!BuildConfig.FLAVOR.contains("nofirebase")) {
             Firebase.analytics.setAnalyticsCollectionEnabled(enabled)
         }
     }
 
     init {
-        if (BuildConfig.BUILD_TYPE != "debug") {
+        if (!BuildConfig.FLAVOR.contains("nofirebase")) {
             remoteConfig = Firebase.remoteConfig
         }
 

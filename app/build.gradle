@@ -84,11 +84,6 @@ android {
 			versionNameSuffix '.debug'
 			manifestPlaceholders applicationName: 'ChatPaths Debug'
 		}
-		releaseWithDebug {
-			initWith debug
-			debuggable true
-			signingConfig signingConfigs.debug
-		}
 		release {
 			minifyEnabled true
 			shrinkResources true
@@ -110,6 +105,16 @@ android {
 	}
 	dynamicFeatures = []
 	namespace 'com.gy.chatpaths.aac.app'
+	flavorDimensions 'google'
+	productFlavors {
+		nofirebase {
+			getIsDefault().set(true) // that does the magic
+			dimension 'google'
+		}
+		firebase {
+			dimension 'google'
+		}
+	}
 }
 
 dependencies {
