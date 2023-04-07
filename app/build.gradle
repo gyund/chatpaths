@@ -7,11 +7,6 @@ plugins {
 	id 'com.google.android.gms.oss-licenses-plugin'
 }
 
-if (getGradle().getStartParameter().getTaskRequests().toString().contains("WithFirebase")) {
-	apply plugin: 'com.google.gms.google-services'
-	apply plugin: 'com.google.firebase.crashlytics'
-}
-
 apply from: "$project.rootDir/common.gradle"
 
 ext {
@@ -113,6 +108,8 @@ android {
 		}
 		WithFirebase {
 			dimension 'google'
+			apply plugin: 'com.google.gms.google-services'
+			apply plugin: 'com.google.firebase.crashlytics'
 		}
 	}
 }
