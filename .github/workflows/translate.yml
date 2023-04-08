@@ -17,7 +17,7 @@ jobs:
   translateAndroid:
 
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: Checkout Repository
@@ -26,11 +26,9 @@ jobs:
       - name: Translate strings.xml to supported languages
         uses: ashishb/android-auto-translate@master
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
-        with:
-          committer: "ashishb's Translation Bot <ashishb+android-auto-translate@ashishb.net>"
-          title: "[Bot]Auto-generated translations for non-English languages"
-          body: "Auto-generated translations by [Android Auto Translate](https://github.com/ashishb/android-auto-translate) bot"
-          branch: create-pull-request/translations-for-pr-${{ github.event.pull_request.number }}
-          base: ${{ github.ref }}
+      - name: Commit Translations
+          run: |
+            git config --global user.name 'Translation Bot'
+            git config --global user.email 'gyund@users.noreply.github.com'
+            git commit -am "Automated Translation"
+            git push
