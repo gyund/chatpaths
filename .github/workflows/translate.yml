@@ -4,8 +4,8 @@ name: Automatically Translate Android App
 on:  # yamllint disable-line rule:truthy
   push:
     branches: ["master", "main"]
-    paths:
-      - "**/strings.xml"
+#     paths:
+#       - "**/strings.xml"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
