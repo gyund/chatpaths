@@ -23,7 +23,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.base_ref }}
 
       - name: Translate strings.xml to supported languages
         uses: ashishb/android-auto-translate@master
