@@ -2,10 +2,6 @@
 name: Automatically Translate Android App
 
 on:  # yamllint disable-line rule:truthy
-  push:
-    branches: ["main"]
-    paths:
-    - "**/strings.xml"
   pull_request:
     branches: ["main"]
     paths:
@@ -37,4 +33,4 @@ jobs:
           title: "[Bot]Auto-generated translations for PR #${{ github.event.pull_request.number }}"
           body: "Auto-generated translations by [Android Auto Translate](https://github.com/ashishb/android-auto-translate) bot"
           branch: create-pull-request/translations-for-pr-${{ github.event.pull_request.number }}
-          base: ${GITHUB_REF_NAME}
+          base: ${{ github.ref_name }}
