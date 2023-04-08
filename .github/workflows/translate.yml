@@ -33,5 +33,5 @@ jobs:
         run: |
           git config --global user.name 'Translation Bot'
           git config --global user.email 'gyund@users.noreply.github.com'
-          git status --porcelain || git commit -am "Automated Translation"
+          git commit -am "Automated Translation" || echo "already up-to date"
           git push
