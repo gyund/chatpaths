@@ -4,6 +4,7 @@ name: Automatically Translate Android App
 on:  # yamllint disable-line rule:truthy
   pull_request:
     branches: ["main"]
+    types: ['opened', 'edited', 'reopened', 'synchronize', 'ready_for_review']
     paths:
     - "**/strings.xml"
 
@@ -15,7 +16,7 @@ jobs:
 
   # Run locally with "act -j translateAndroid"
   translateAndroid:
-
+    if: '! github.event.pull_request.draft'
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
