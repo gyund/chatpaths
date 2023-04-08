@@ -15,8 +15,6 @@ jobs:
 
   # Run locally with "act -j translateAndroid"
   translateAndroid:
-    permissions:
-      pull-requests: write
 
     runs-on: ubuntu-latest
     timeout-minutes: 15
