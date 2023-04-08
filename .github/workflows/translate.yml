@@ -27,8 +27,8 @@ jobs:
         uses: ashishb/android-auto-translate@master
 
       - name: Commit Translations
-          run: |
-            git config --global user.name 'Translation Bot'
-            git config --global user.email 'gyund@users.noreply.github.com'
-            git commit -am "Automated Translation"
-            git push
+        run: |
+          git config --global user.name 'Translation Bot'
+          git config --global user.email 'gyund@users.noreply.github.com'
+          git commit -am "Automated Translation"
+          git push
