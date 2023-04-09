@@ -35,5 +35,5 @@ jobs:
           committer: "ashishb's Translation Bot <ashishb+android-auto-translate@ashishb.net>"
           title: "[Bot]Auto-generated translations for non-English languages"
           body: "Auto-generated translations by [Android Auto Translate](https://github.com/ashishb/android-auto-translate) bot"
-
+          branch: translate-pr-${{ github.head_ref }}
 
