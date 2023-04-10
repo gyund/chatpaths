@@ -222,7 +222,7 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
                         findNavController().navigate(action)
                     }
                 }
-                .setNegativeButton(it.getString(R.string.cancel)) { _, _ -> }
+                .setNegativeButton(it.getString(android.R.string.cancel)) { _, _ -> }
                 .show()
         }
     }
@@ -253,7 +253,7 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
                         findNavController().navigate(action)
                     }
                 }
-                .setNegativeButton(it.getString(R.string.cancel)) { _, _ -> }
+                .setNegativeButton(it.getString(android.R.string.cancel)) { _, _ -> }
                 .show()
         }
     }
@@ -288,7 +288,7 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
                     }
                 }
                 .setNegativeButton(
-                    getString(R.string.cancel),
+                    getString(android.R.string.cancel),
                 ) { _, _ ->
                     // nothing
                 }
@@ -332,7 +332,7 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
                     }
                 }
                 .setNegativeButton(
-                    getString(R.string.cancel),
+                    getString(android.R.string.cancel),
                 ) { _, _ ->
                     // nothing
                 }

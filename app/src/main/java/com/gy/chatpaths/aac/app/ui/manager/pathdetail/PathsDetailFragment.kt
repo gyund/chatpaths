@@ -234,7 +234,7 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
                 }
             }
             .setNegativeButton(
-                getString(R.string.cancel),
+                getString(android.R.string.cancel),
             ) { _, _ ->
                 // nothing
             }
@@ -293,7 +293,7 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
                         findNavController().navigateUp()
                     }
                 }
-                .setNegativeButton(it.getString(R.string.cancel)) { _, _ -> }
+                .setNegativeButton(it.getString(android.R.string.cancel)) { _, _ -> }
                 .show()
         }
     }

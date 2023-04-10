@@ -24,7 +24,6 @@
 
     <string name="licenses">Licenses</string>
 
-    <string name="cancel">@android:string/cancel</string>
     <string name="editPathTitleHint">new path description</string>
     <string name="switch_users">Switch Users</string>
     <string name="new_path_text">new path</string>

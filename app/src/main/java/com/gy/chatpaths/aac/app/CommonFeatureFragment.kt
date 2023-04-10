@@ -122,7 +122,7 @@ abstract class CommonFeatureFragment : Fragment() {
                     navigateToImageSelectFragment()
                 }
                 .setNegativeButton(
-                    getString(R.string.cancel),
+                    getString(android.R.string.cancel),
                 ) { _, _ ->
                     // nothing
                 }
@@ -140,7 +140,7 @@ abstract class CommonFeatureFragment : Fragment() {
                         onDeleteImage()
                     }
                 }
-                .setNegativeButton(it.getString(R.string.cancel)) { _, _ -> }
+                .setNegativeButton(it.getString(android.R.string.cancel)) { _, _ -> }
                 .show()
         }
     }

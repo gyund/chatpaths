@@ -109,7 +109,7 @@ class MediaRecordingDialog @Inject constructor() {
                 }
             }
             .setNegativeButton(
-                layout.root.context.getString(R.string.cancel),
+                layout.root.context.getString(android.R.string.cancel),
             ) { _, _ ->
                 // Delete the file
                 onUserCancel()

@@ -163,28 +163,28 @@
         <item>@drawable/ic_yes</item>
     </string-array>
 
-    <string name="search_all_done">all_done</string>
+    <string name="search_all_done">all done</string>
     <string name="search_apple">apple</string>
-    <string name="search_apple_green">apple_green</string>
+    <string name="search_apple_green">green apple</string>
     <string name="search_avocado">avocado</string>
     <string name="search_baby">baby</string>
     <string name="search_banana">banana</string>
     <string name="search_bath">bath</string>
     <string name="search_bathroom">bathroom</string>
-    <string name="search_bathroom_school">bathroom_school</string>
+    <string name="search_bathroom_school">school bathroom</string>
     <string name="search_bed">bed</string>
     <string name="search_bread">bread</string>
-    <string name="search_break_rest">break_rest</string>
+    <string name="search_break_rest">break rest</string>
     <string name="search_broccoli">broccoli</string>
     <string name="search_brother">brother</string>
     <string name="search_butter">butter</string>
     <string name="search_cake">cake</string>
     <string name="search_candy">candy</string>
-    <string name="search_candy_bar">candy_bar</string>
+    <string name="search_candy_bar">candy bar</string>
     <string name="search_carrot">carrot</string>
     <string name="search_cereal">cereal</string>
     <string name="search_chat">chat</string>
-    <string name="search_chat_words">chat_words</string>
+    <string name="search_chat_words">chat words</string>
     <string name="search_cheese">cheese</string>
     <string name="search_cherry">cherry</string>
     <string name="search_chicken_nuggets">chicken_nuggets</string>

@@ -197,7 +197,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
                         findNavController().navigate(action)
                     }
                 }
-                .setNegativeButton(it.getString(R.string.cancel)) { _, _ -> }
+                .setNegativeButton(it.getString(android.R.string.cancel)) { _, _ -> }
                 .show()
         }
     }
@@ -225,7 +225,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
                         }
                     }
                 }
-                .setNegativeButton(this.getString(R.string.cancel)) { _, _ ->
+                .setNegativeButton(this.getString(android.R.string.cancel)) { _, _ ->
                     onItemRemoved(false)
                 }
                 .setOnCancelListener {
@@ -274,7 +274,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
                         }
                     }
                 }
-                .setNegativeButton(it.getString(R.string.cancel)) { _, _ -> }
+                .setNegativeButton(it.getString(android.R.string.cancel)) { _, _ -> }
                 .show()
         }
     }
@@ -329,7 +329,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
             .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
                 // if the insert fails, the username already exists
             }
-            .setNegativeButton(getString(R.string.cancel)) { _, _ ->
+            .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
             }
             .show()
         setUsernameValidationOnClickListener(m, binding, ::editUser)
@@ -343,7 +343,7 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
             .setView(binding.root)
             .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
             }
-            .setNegativeButton(getString(R.string.cancel)) { _, _ ->
+            .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
             }.show()
         m.onCollectionValidated(this, binding) {
             collectionsViewModel.addCollection(it)
