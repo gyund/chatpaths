@@ -174,7 +174,7 @@ dependencies {
 	implementation 'com.google.firebase:firebase-config-ktx:21.3.0'
 
 
-	implementation 'com.github.yalantis:ucrop:2.2.8'
+	implementation 'com.github.yalantis:ucrop:2.2.8-native'
 //    implementation 'com.squareup.picasso:picasso:2.71828'
 
 	// Onboarding
