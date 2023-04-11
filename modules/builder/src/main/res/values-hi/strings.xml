@@ -33,6 +33,7 @@
     <string name="path_tablet">टैबलेट का उपयोग करने के लिए</string>
     <string name="path_mad">गुस्से में पागल</string>
     <string name="path_sick">मैं बीमार महसूस कर रहा हूं</string>
+    <string name="path_more">अधिक</string>
     <string name="path_tired">थका हुआ</string>
     <string name="path_something_hurts">कुछ दर्द होता है</string>
     <string name="path_help">मदद</string>
@@ -68,6 +69,7 @@
     <string name="path_eggplant">बैंगन</string>
     <string name="path_watermelon">तरबूज</string>
     <string name="path_hot_dog">हॉट डॉग</string>
+    <string name="path_bath">स्नान</string>
     <string name="path_swim">तैरना</string>
     <string name="path_lets_go">चल दर</string>
     <string name="path_home">घर</string>
@@ -76,6 +78,8 @@
     <string name="path_living_room">बैठक</string>
     
     <string name="path_bathtub_shower">बाथटब, शॉवर</string>
+    <string name="path_bedroom">शयनकक्ष</string>
+    <string name="path_somewhere_at_school">कहीं स्कूल में</string>
     <string name="path_classroom">कक्षा</string>
     <string name="path_outside">बाहर</string>
     <string name="path_table">मेज</string>
@@ -93,6 +97,7 @@
     <string name="path_fruit">फल</string>
     <string name="path_potato_red">लाल आलू</string>
     <string name="path_onion">प्याज</string>
+    <string name="path_radish">मूली</string>
     <string name="path_pepper_red">लाल मिर्च</string>
     <string name="path_beets">बीट</string>
     <string name="path_grapefruit">चकोतरा</string>
@@ -101,9 +106,11 @@
     <string name="path_red_grapes">लाल अंगूर</string>
     <string name="path_raspberry">रसभरी</string>
     <string name="path_apple">सेब</string>
+    <string name="path_tomato_yellow">पीला टमाटर</string>
     <string name="path_potato_sweet">शकरकंद</string>
     <string name="path_corn">भुट्टा</string>
     <string name="path_summer_squash">पका हुआ कद्दू</string>
+    <string name="path_pumpkin">कद्दू</string>
     <string name="path_pepper_yellow">पीली काली मिर्च</string>
     <string name="path_carrot">गाजर</string>
     <string name="path_butternut_squash">बटरनट स्क्वाश</string>
@@ -111,6 +118,7 @@
     <string name="path_pineapple">अनन्नास</string>
     <string name="path_peach">आड़ू</string>
     <string name="path_mango">आम</string>
+    <string name="path_orange">नारंगी</string>
     <string name="path_apricot">खुबानी</string>
     <string name="path_nectarine">nectarine</string>
     <string name="path_lemon">नींबू</string>
@@ -153,6 +161,7 @@
     <string name="path_cheese">पनीर</string>
     <string name="path_food_sweet">मिष्ठान भोजन</string>
     <string name="path_doughnut">डोनट</string>
+    <string name="path_pretzel">बिस्कुट</string>
     <string name="path_candy">कैंडी</string>
     <string name="path_candy_bar">कैंडी बार</string>
     <string name="path_honey">शहद</string>
@@ -165,10 +174,13 @@
     <string name="path_windy">तूफ़ानी</string>
     <string name="path_mushroom">मशरूम</string>
     <string name="path_waffle">वफ़ल</string>
+    <string name="path_butter">मक्खन</string>
     <string name="path_placeholder">स्टार्टर पथ</string>
+    <string name="path_something_to_say">कहने के लिए कुछ</string>
     <string name="path_whats_wrong">क्या गलत</string>
     <string name="path_hungry">भूखा</string>
     <string name="path_uncomfortable">असुविधाजनक</string>
+    <string name="path_why_mad">तुम पागल क्यों हो</string>
     <string name="path_wanted_something">कुछ चाहता था</string>
     <string name="path_dont_like">पसंद नहीं</string>
     <string name="path_dont_like_something">कुछ पसंद नहीं है</string>
@@ -245,6 +257,7 @@
     <string name="search_food_cold">भोजन की ठंड</string>
     <string name="search_food_green">फूड ग्रीन</string>
     <string name="search_food_red">भोजन लाल</string>
+    <string name="search_food_sweet">मीठा भोजन</string>
     <string name="search_food_warm">फूड वार्म</string>
     <string name="search_food_white_brown">भोजन सफेद भूरा</string>
     <string name="search_food_yellow_orange">भोजन पीला नारंगी</string>
@@ -303,6 +316,7 @@
     <string name="search_pancakes">पेनकेक्स</string>
     <string name="search_pasta">पास्ता</string>
     <string name="search_peach">आड़ू</string>
+    <string name="search_pear">नाशपाती</string>
     <string name="search_pear_green">हरी नाशपाती</string>
     <string name="search_pear_yellow">पीला नाशपाती</string>
     <string name="search_pepper_red">लाल मिर्च</string>
@@ -317,6 +331,8 @@
     <string name="search_pumpkin">कद्दू</string>
     <string name="search_question">सवाल</string>
     <string name="search_read_a_book">एक किताब पढ़ी</string>
+    <string name="search_refrigerator">फ्रिज</string>
+    <string name="search_rug_carpet">गलीचा कालीन</string>
     <string name="search_sad">उदास</string>
     <string name="search_salad">सलाद</string>
     <string name="search_sandwich">सैंडविच</string>

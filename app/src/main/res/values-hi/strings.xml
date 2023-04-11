@@ -3,6 +3,7 @@
     <string name="updates_notification_channel_name">फ़ीचर अपडेट</string>
     <string name="promo_notification_channel_name">पदोन्नति</string>
 
+    <string name="visit_facebook">फेसबुक पर जाएं</string>
     <string name="action_settings">समायोजन</string>
 
     <string name="menu_home">पथ का चयन करें</string>
@@ -36,6 +37,7 @@
     <string name="delete">मिटाना</string>
     <string name="add_user">उपयोगकर्ता जोड़ें</string>
     <string name="name_of_user">उपयोगकर्ता का नाम</string>
+    <string name="user_already_exists">उपयोगकर्ता पहले से मौजूद है</string>
     <string name="user_empty_not_allowed">खाली उपयोगकर्ता नाम की अनुमति नहीं है</string>
     <string name="no_email">कोई ई-मेल उपलब्ध नहीं है</string>
     <string name="settings">समायोजन</string>
@@ -82,13 +84,17 @@
     <string name="onboard_add_collection_secondary">पथों का एक नया संग्रह बनाएं</string>
     <string name="onboard_user_add_primary">उपयोगकर्ता जोड़ें</string>
     <string name="onboard_user_add_secondary">अलग -अलग प्रोफाइल का प्रबंधन करें ताकि आप विशिष्ट आवश्यकताओं को पूरा करने के लिए जल्दी से स्वैप कर सकें</string>
+    <string name="auto_sort">ऑटो-सॉर्ट</string>
+    <string name="new_collection_edittext_description">नया संग्रह विवरण</string>
     <string name="add_template">टेम्पलेट जोड़ें</string>
     <string name="copy_to_user">उपयोगकर्ता को कॉपी करें</string>
     <string name="select_a_user">एक उपयोगकर्ता का चयन करें</string>
+    <string name="goto_child">में नेविगेट करें</string>
     <string name="choose_a_template">एक टेम्पलेट चुनें</string>
     <string name="onboard_goto_subpath_primary">गोटो उपपाथ</string>
     <string name="onboard_goto_subpath_secondary">सबपैथ में गहराई से गोता लगाने के लिए इस शॉर्टकट का उपयोग करें</string>
     <string name="onboard_path_copy_to_user_primary">उपयोगकर्ता को कॉपी करें</string>
+    <string name="onboard_path_copy_to_user_secondary">समय बचाने के लिए किसी अन्य उपयोगकर्ता को वर्तमान संग्रह की प्रतिलिपि बनाएँ</string>
     <string name="onboard_add_collection_template_primary">टेम्पलेट जोड़ें</string>
     <string name="onboard_add_collection_template_secondary">अपने उपयोगकर्ता के लिए पथों का एक पूर्वनिर्धारित सेट डालें</string>
     <string name="add_from_template_dialog_title">टेम्पलेट से जोड़ें?</string>
