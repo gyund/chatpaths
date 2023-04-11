@@ -112,7 +112,7 @@ class UserFragment : Fragment() {
                     .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
                         // if the insert fails, the username already exists
                     }
-                    .setNegativeButton(getString(R.string.cancel)) { _, _ ->
+                    .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
                     }
                     .show()
                 setUsernameValidationOnClickListener(madb, binding, ::_addUser)

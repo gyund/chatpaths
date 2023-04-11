@@ -201,7 +201,7 @@ class HomeFragment : Fragment() {
             .setView(binding.root)
             .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
             }
-            .setNegativeButton(getString(R.string.cancel)) { _, _ ->
+            .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
             }
             .setNeutralButton(getString(R.string.add_template)) { _, _ ->
                 val action = HomeFragmentDirections.actionNavHomeToTemplateFragment()

@@ -120,7 +120,7 @@ class TemplateFragment : Fragment(), TemplateSelectionListener {
                 .setMessage(getString(R.string.add_path_collection_dialog_name))
                 .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
                 }
-                .setNegativeButton(getString(R.string.cancel)) { _, _ ->
+                .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
                     pendingTemplateId = null
                 }
                 .setOnCancelListener {

@@ -130,7 +130,7 @@ class CollectionDetailFragment : CommonFeatureFragment() {
                         }
                     }
                 }
-                .setNegativeButton(this.getString(R.string.cancel)) { _, _ -> }
+                .setNegativeButton(this.getString(android.R.string.cancel)) { _, _ -> }
                 .show()
         }
     }

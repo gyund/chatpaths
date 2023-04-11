@@ -44,6 +44,10 @@ is used to convert a search query from the user's native language to english, so
 the appropriate resource string identified in english. This is a bit weird, and there's probably
 a better way to do this.
 
+Basically, if you add a new image to the system, you have to add a corresponding `search_<name>` entry.
+The application will iterate through each image and retrieve the translation. If the string
+being searched for is part of the string name, then it is selected for display.
+
 ## Incorporated Works
 
 Chatpaths makes use of a number of 3rd party visual resources as well as compositions and

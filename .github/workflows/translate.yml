@@ -1,0 +1,44 @@
+---
+name: Automatically Translate Android App
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches: ["main"]
+    types: ['opened', 'edited', 'reopened', 'synchronize', 'ready_for_review']
+    paths:
+    - "**/strings.xml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  # Run locally with "act -j translateAndroid"
+  translateAndroid:
+    if: '! github.event.pull_request.draft'
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Translate strings.xml to supported languages
+        uses: gyund/android-auto-translate@delay
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          committer: "ashishb's Translation Bot <ashishb+android-auto-translate@ashishb.net>"
+          title: "[Bot]Auto-generated translations for non-English languages"
+          body: "Auto-generated translations by [Android Auto Translate](https://github.com/ashishb/android-auto-translate) bot"
+          branch: translate-pr-${{ github.head_ref }}
+
