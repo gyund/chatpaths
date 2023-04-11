@@ -1,2 +1,123 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='utf-8'?>
+<resources><string name="default_notification_channel_name">आम</string>
+    <string name="updates_notification_channel_name">फ़ीचर अपडेट</string>
+    <string name="promo_notification_channel_name">पदोन्नति</string>
+
+    <string name="visit_facebook">फेसबुक पर जाएं</string>
+    <string name="action_settings">समायोजन</string>
+
+    <string name="menu_home">पथ का चयन करें</string>
+
+
+    <string name="path_image_contentdescription">चैट वर्ड के साथ क्लिपआर्ट</string>
+    <string name="prevpath_image_contentdescription">पहले का</string>
+    <string name="nextpath_image_contentdescription">अगला</string>
+    <string name="oops_button_text">मुझसे गलती हो गयी</string>
+    <string name="configure">कॉन्फ़िगर</string>
+    <string name="leave_configure">कॉन्फ़िगरेशन मोड छोड़ दें</string>
+    <string name="oops_help">पथ को पुनरारंभ करें या मूल पथ पर जाएं</string>
+
+    <string name="licenses">लाइसेंस</string>
+
+    <string name="editPathTitleHint">नया पथ विवरण</string>
+    <string name="switch_users">उपयोगकर्ताओं को स्विच करें</string>
+    <string name="new_path_text">नया रास्ता</string>
+    <string name="create_path_message">आप इस पथ को क्या नाम देना चाहते हैं?</string>
+    <string name="create">बनाएं</string>
+    <string name="default_text">गलती करना</string>
+    <string name="edit_image_dialog_title">चित्र को बदलें</string>
+    <string name="edit_image_dialog_message">क्या आप चाहते हैं कि यह छवि अन्य पथ प्रोफाइल के साथ साझा की जाए?</string>
+    <string name="modify">संशोधित</string>
+
+    <string name="add_path">मार्ग जोड़ें</string>
+    <string name="add_child_path">बाल पथ जोड़ें</string>
+    <string name="reset">रीसेट</string>
+    <string name="path_order">पथ आदेश</string>
+    <string name="statistics">आंकड़े</string>
+    <string name="delete">मिटाना</string>
+    <string name="add_user">उपयोगकर्ता जोड़ें</string>
+    <string name="name_of_user">उपयोगकर्ता का नाम</string>
+    <string name="user_already_exists">उपयोगकर्ता पहले से मौजूद है</string>
+    <string name="user_empty_not_allowed">खाली उपयोगकर्ता नाम की अनुमति नहीं है</string>
+    <string name="no_email">कोई ई-मेल उपलब्ध नहीं है</string>
+    <string name="settings">समायोजन</string>
+    <string name="feedback">प्रतिक्रिया</string>
+    <string name="email_us">हमें ईमेल करें</string>
+    <string name="fixed_color_preference_title">नियत पाठ रंग</string>
+    <string name="fixed_path_text_summary_on_text">पथ एक निश्चित पाठ रंग का उपयोग करते हैं</string>
+    <string name="fixed_path_text_summary_off_text">पथ छवि से अपने पाठ का रंग प्राप्त करते हैं</string>
+    <string name="path">पथ</string>
+    <string name="user_details_fragment_title">उपयोगकर्ता विवरण</string>
+    <string name="user_fragment_title">उपयोगकर्ताओं</string>
+    <string name="edit_user_dialog_title">यूजर को संपादित करो</string>
+    <string name="edit_user_dialog_message">नाम डालें</string>
+    <string name="add_path_collection_dialog_title">पथ संग्रह जोड़ें</string>
+    <string name="error_empty_string_not_allowed">खाली स्ट्रिंग की अनुमति नहीं है</string>
+    <string name="save">बचाना</string>
+    <string name="path_collection_details_fragment_title">पथ संग्रह विवरण</string>
+    <string name="delete_image_dialog_title">छवि निकालें?</string>
+    <string name="delete_image_dialog_message">क्या आप इस छवि को हटाना चाहते हैं?</string>
+    <string name="help">मदद</string>
+    <string name="path_of_the_week">सप्ताह का मार्ग</string>
+    <string name="organize_collections">स्वचालित रूप से व्यवस्थित करें</string>
+    <string name="edit_collection_dialog_title">संग्रह का नाम संपादित करें</string>
+    <string name="edit_collection_dialog_message">इस संग्रह को एक नाम दें</string>
+    <string name="delete_path_dialog_title">पथ हटाएं?</string>
+    <string name="delete_path_dialog_message">क्या आप सुनिश्चित हैं कि आप इस पथ को हटाना चाहते हैं?</string>
+    <string name="paths_fragment_name">संग्रह संपादित करें</string>
+    <string name="paths_detail_fragment_name">पथ की जानकारी</string>
+    <string name="anchor_path_title">लंगर पथ</string>
+    <string name="anchor_path_tooltip">इस रास्ते को सामने की ओर लंगर डालते हैं और इसे छाँटने से रोकता है</string>
+    <string name="delete_collection_title">संग्रह हटाएं?</string>
+    <string name="delete_collection_message">क्या आप इस संग्रह को मिटाना चाहते हैं?इस एक्शन को वापस नहीं किया जा सकता।</string>
+    <string name="delete_user_dialog_title">उपभोक्ता मिटायें?</string>
+    <string name="delete_user_dialog_message">क्या आप सुनिश्चित हैं कि आप इस उपयोगकर्ता को हटाना चाहते हैं?</string>
+    <string name="reuse_image">पुन: उपयोग छवि</string>
+    <string name="imageSelectFragmentTitle">छवि चुने</string>
+    <string name="configure_image_message">छवि कॉन्फ़िगर करने के लिए टैप करें</string>
+    <string name="onboard_add_subpath_primary">उप-पथ जोड़ें</string>
+    <string name="onboard_add_subpath_secondary">जब वे इस पथ को टैप करते हैं तो उपयोगकर्ता को नेविगेट करने के लिए एक बच्चे के पथ को जोड़ने के लिए + साइन टैप करें</string>
+    <string name="onboard_add_path_primary">मार्ग जोड़ें</string>
+    <string name="onboard_add_path_secondary">एक पथ जोड़ने के लिए + साइन टैप करें</string>
+    <string name="reset_help">मदद रीसेट करें</string>
+    <string name="onboard_add_collection_primary">संग्रह जोड़ें</string>
+    <string name="onboard_add_collection_secondary">पथों का एक नया संग्रह बनाएं</string>
+    <string name="onboard_user_add_primary">उपयोगकर्ता जोड़ें</string>
+    <string name="onboard_user_add_secondary">अलग -अलग प्रोफाइल का प्रबंधन करें ताकि आप विशिष्ट आवश्यकताओं को पूरा करने के लिए जल्दी से स्वैप कर सकें</string>
+    <string name="auto_sort">ऑटो-सॉर्ट</string>
+    <string name="new_collection_edittext_description">नया संग्रह विवरण</string>
+    <string name="add_template">टेम्पलेट जोड़ें</string>
+    <string name="copy_to_user">उपयोगकर्ता को कॉपी करें</string>
+    <string name="select_a_user">एक उपयोगकर्ता का चयन करें</string>
+    <string name="goto_child">में नेविगेट करें</string>
+    <string name="choose_a_template">एक टेम्पलेट चुनें</string>
+    <string name="onboard_goto_subpath_primary">गोटो उपपाथ</string>
+    <string name="onboard_goto_subpath_secondary">सबपैथ में गहराई से गोता लगाने के लिए इस शॉर्टकट का उपयोग करें</string>
+    <string name="onboard_path_copy_to_user_primary">उपयोगकर्ता को कॉपी करें</string>
+    <string name="onboard_path_copy_to_user_secondary">समय बचाने के लिए किसी अन्य उपयोगकर्ता को वर्तमान संग्रह की प्रतिलिपि बनाएँ</string>
+    <string name="onboard_add_collection_template_primary">टेम्पलेट जोड़ें</string>
+    <string name="onboard_add_collection_template_secondary">अपने उपयोगकर्ता के लिए पथों का एक पूर्वनिर्धारित सेट डालें</string>
+    <string name="add_from_template_dialog_title">टेम्पलेट से जोड़ें?</string>
+    <string name="add_from_template_dialog_message">क्या आप एक क्यूरेटेड कलेक्शन जोड़ना चाहेंगे?</string>
+    <string name="copy_to_user_dialog_message">क्या आप इस पथ को किसी अन्य उपयोगकर्ता के लिए कॉपी करना चाहते हैं?</string>
+    <string name="copy_to_user_dialog_title">उपयोगकर्ता को कॉपी करें?</string>
+    <string name="switch_users_after_copy_path_dialog_title">सफलता!उपयोगकर्ताओं को स्विच करें?</string>
+    <string name="switch_users_after_copy_path_dialog_message">क्या आप अब इस उपयोगकर्ता पर स्विच करना चाहते हैं कि पथ को कॉपी किया गया है?</string>
+    <string name="keep_awake_preference_title">जागते रहना</string>
+    <string name="keep_awake_preference_summary_on">उपयोग में रहते हुए स्क्रीन को जागृत रखें</string>
+    <string name="keep_awake_preference_summary_off">स्क्रीन को जागृत रखने के लिए सिस्टम डिफ़ॉल्ट का उपयोग करें</string>
+    <string name="general_preference_title">आम</string>
+    <string name="read_out_loud_preference_summary_off">पथों को नेविगेट करते समय जोर से पढ़ें</string>
+    <string name="read_out_loud_preference_summary_on">पथ को नेविगेट करते समय जोर से पढ़ें</string>
+    <string name="read_out_loud_preference_title">ज़ोर से पढ़ो</string>
+    <string name="onboard_path_read_out_loud_primary">ज़ोर से पढ़ो</string>
+    <string name="onboard_path_read_out_loud_secondary">पाथ को जोर से पढ़ें क्योंकि वे एक वाक्य में पथ को संयोजित करने के लिए नेविगेट करते हैं</string>
+    <string name="facebook_message">फेसबुक संदेश</string>
+    <string name="search">खोज</string>
+    <string name="record_audio">आवाज रिकॉर्ड करना</string>
+    <string name="record_audio_button_description">आवाज रिकॉर्ड करना</string>
+    <string name="play_recording_button_description">प्ले रिकॉर्डिंग</string>
+    <string name="record_audio_description">यह सुविधा आपको अपनी आवाज में रिकॉर्ड करने की सुविधा देती है कि जब पाठ का उपयोग करने के बजाय पथ का चयन किया जाता है तो क्या कहना है।</string>
+    <string name="pro">समर्थक</string>
+    <string name="tts_unavailable">टीटीएस अनुपलब्ध है</string>
+    </resources>
