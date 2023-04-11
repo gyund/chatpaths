@@ -1,2 +1,119 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='utf-8'?>
+<resources><string name="updates_notification_channel_name">Mises à jour des fonctionnalités</string>
+    <string name="promo_notification_channel_name">Promotion</string>
+
+    <string name="visit_facebook">Visiter Facebook</string>
+
+    <string name="action_settings">Paramètres</string>
+
+    <string name="menu_home">Sélectionner le chemin</string>
+
+
+    <string name="path_image_contentdescription">Clipart avec mot de chat</string>
+    <string name="oops_button_text">j\'ai fait une erreur</string>
+    <string name="configure">Configurer</string>
+    <string name="leave_configure">mode de configuration</string>
+    <string name="oops_help">Redémarrez le chemin ou allez sur le chemin parent</string>
+
+    <string name="licenses">Licence</string>
+
+    <string name="editPathTitleHint">Nouveau chemin description</string>
+    <string name="switch_users">Changer les utilisateurs</string>
+    <string name="new_path_text">nouveau chemin</string>
+    <string name="create_path_message">Comment voulez-vous nommer ce chemin?</string>
+    <string name="create">Créer</string>
+    <string name="default_text">Défaut</string>
+    <string name="edit_image_dialog_title">Changer l\'image</string>
+    <string name="edit_image_dialog_message">Voulez-vous que cette image soit partagée avec d\'autres profils de chemin?</string>
+    <string name="modify">Modifier</string>
+
+    <string name="add_path">ajouter le chemin</string>
+    <string name="add_child_path">Ajouter le chemin de l\'enfant</string>
+    <string name="reset">réinitialiser</string>
+    <string name="path_order">ordre du chemin</string>
+    <string name="statistics">statistiques</string>
+    <string name="delete">Supprimer</string>
+    <string name="add_user">Ajouter l\'utilisateur</string>
+    <string name="name_of_user">nom de l\'utilisateur</string>
+    <string name="user_already_exists">l\'utilisateur existe déjà</string>
+    <string name="user_empty_not_allowed">Le nom d\'utilisateur vide n\'est pas autorisé</string>
+    <string name="no_email">Aucun e-mail disponible</string>
+    <string name="settings">Paramètres</string>
+    <string name="feedback">Retour</string>
+    <string name="email_us">Envoyez-nous un email</string>
+    <string name="fixed_color_preference_title">Couleur du texte fixe</string>
+    <string name="fixed_path_text_summary_on_text">Les chemins utilisent une couleur de texte fixe</string>
+    <string name="fixed_path_text_summary_off_text">Les chemins dérivent leur couleur de texte de l\'image</string>
+    <string name="path">Chemin</string>
+    <string name="user_details_fragment_title">Coordonnées</string>
+    <string name="edit_user_dialog_title">Modifier l\'utilisateur</string>
+    <string name="edit_user_dialog_message">Entrez un nom</string>
+    <string name="add_path_collection_dialog_title">Ajouter la collection de chemins</string>
+    <string name="error_empty_string_not_allowed">La chaîne vide n\'est pas autorisée</string>
+    <string name="save">sauvegarder</string>
+    <string name="path_collection_details_fragment_title">Détail de collecte de chemins</string>
+    <string name="delete_image_dialog_title">Supprimer l\'image?</string>
+    <string name="delete_image_dialog_message">Voulez-vous supprimer cette image?</string>
+    <string name="help">Aider</string>
+    <string name="path_of_the_week">Chemin de la semaine</string>
+    <string name="organize_collections">Organisez automatiquement</string>
+    <string name="edit_collection_dialog_title">Modifier le nom de la collection</string>
+    <string name="edit_collection_dialog_message">Donnez un nom à cette collection</string>
+    <string name="delete_path_dialog_title">Supprimer le chemin?</string>
+    <string name="delete_path_dialog_message">Êtes-vous sûr de vouloir supprimer ce chemin?</string>
+    <string name="paths_fragment_name">Modifier la collection</string>
+    <string name="paths_detail_fragment_name">Informations sur le chemin</string>
+    <string name="anchor_path_title">Chemin d\'ancrage</string>
+    <string name="anchor_path_tooltip">Ancre ce chemin à l\'avant et l\'empêche d\'être trié</string>
+    <string name="delete_collection_title">Supprimer la collection?</string>
+    <string name="delete_collection_message">Êtes-vous sûr de vouloir supprimer cette collection?Cette action ne peut pas être annulée.</string>
+    <string name="delete_user_dialog_title">Supprimer l\'utilisateur?</string>
+    <string name="delete_user_dialog_message">Êtes-vous sûr de vouloir supprimer cet utilisateur?</string>
+    <string name="reuse_image">réutiliser l\'image</string>
+    <string name="imageSelectFragmentTitle">Sélectionner l\'image</string>
+    <string name="configure_image_message">Appuyez pour configurer l\'image</string>
+    <string name="onboard_add_subpath_primary">Ajouter le sous-chemin</string>
+    <string name="onboard_add_subpath_secondary">Appuyez sur le signe + pour ajouter un chemin d\'enfant pour que l\'utilisateur navigue lorsqu\'il appuye sur ce chemin</string>
+    <string name="onboard_add_path_primary">Ajouter le chemin</string>
+    <string name="onboard_add_path_secondary">Appuyez sur le signe + pour ajouter un chemin</string>
+    <string name="reset_help">Réinitialiser l\'aide</string>
+    <string name="onboard_add_collection_primary">Ajouter la collecte</string>
+    <string name="onboard_add_collection_secondary">Créer une nouvelle collection de chemins</string>
+    <string name="onboard_user_add_primary">Ajouter l\'utilisateur</string>
+    <string name="onboard_user_add_secondary">Gérer les profils séparés afin que vous puissiez rapidement échanger pour répondre aux besoins spécifiques</string>
+    <string name="auto_sort">sort automatique</string>
+    <string name="new_collection_edittext_description">nouvelle description de la collection</string>
+    <string name="add_template">Ajouter un modèle</string>
+    <string name="copy_to_user">Copier à l\'utilisateur</string>
+    <string name="select_a_user">Sélectionnez un utilisateur</string>
+    <string name="goto_child">se rendre dans</string>
+    <string name="choose_a_template">Choisissez un modèle</string>
+    <string name="onboard_goto_subpath_primary">Goto Sous-chemin</string>
+    <string name="onboard_goto_subpath_secondary">Utilisez ce raccourci pour plonger plus profondément dans les sous-cheminées</string>
+    <string name="onboard_path_copy_to_user_primary">Copier à l\'utilisateur</string>
+    <string name="onboard_path_copy_to_user_secondary">Copiez la collection actuelle à un autre utilisateur pour gagner du temps</string>
+    <string name="onboard_add_collection_template_primary">Ajouter un modèle</string>
+    <string name="onboard_add_collection_template_secondary">Insérer un ensemble de chemins prédéfinis pour votre utilisateur</string>
+    <string name="add_from_template_dialog_title">Ajouter à partir du modèle?</string>
+    <string name="add_from_template_dialog_message">Souhaitez-vous ajouter une collection organisée?</string>
+    <string name="copy_to_user_dialog_message">Voulez-vous copier ce chemin vers un autre utilisateur?</string>
+    <string name="copy_to_user_dialog_title">Copier à l\'utilisateur?</string>
+    <string name="switch_users_after_copy_path_dialog_title">Succès!Changer les utilisateurs?</string>
+    <string name="switch_users_after_copy_path_dialog_message">Voulez-vous passer à cet utilisateur maintenant que le chemin est copié?</string>
+    <string name="keep_awake_preference_title">Reste éveillé</string>
+    <string name="keep_awake_preference_summary_on">Gardez l\'écran éveillé pendant votre utilisation</string>
+    <string name="keep_awake_preference_summary_off">Utilisez la valeur par défaut du système pour garder l\'écran éveillé</string>
+    <string name="read_out_loud_preference_summary_off">Ne lisez pas à haute voix en naviguant sur des chemins</string>
+    <string name="read_out_loud_preference_summary_on">Lisez à haute voix tout en naviguant sur les chemins</string>
+    <string name="read_out_loud_preference_title">Lire à voix haute</string>
+    <string name="onboard_path_read_out_loud_primary">Lire à voix haute</string>
+    <string name="onboard_path_read_out_loud_secondary">Lisez les chemins à haute voix alors qu\'ils se sont navigués pour combiner les chemins dans une phrase</string>
+    <string name="facebook_message">Message Facebook</string>
+    <string name="search">Recherche</string>
+    <string name="record_audio">Enregistrer la voix</string>
+    <string name="record_audio_button_description">Enregistrer la voix</string>
+    <string name="play_recording_button_description">Jouer à l\'enregistrement</string>
+    <string name="record_audio_description">Cette fonctionnalité vous permet d\'enregistrer dans votre propre voix quoi dire lorsque le chemin est sélectionné au lieu d\'utiliser du texte pour la parole.</string>
+    <string name="pro">pro</string>
+    <string name="tts_unavailable">TTS n\'est pas disponible</string>
+    </resources>
