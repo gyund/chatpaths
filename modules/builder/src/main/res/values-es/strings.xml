@@ -237,6 +237,7 @@
     <string name="search_chicken_nuggets">Nuggets de pollo</string>
     <string name="search_chinese_food">comida china</string>
     <string name="search_classroom">aula</string>
+    <string name="search_cold">frío</string>
     <string name="search_cookie">Galleta</string>
     <string name="search_corn">maíz</string>
     <string name="search_crescent_moon_right">luna creciente derecha</string>
@@ -339,6 +340,7 @@
     <string name="search_sandwich">sándwich</string>
     <string name="search_school">escuela</string>
     <string name="search_shower">ducha</string>
+    <string name="search_sick">enfermo</string>
     <string name="search_sister">hermana</string>
     <string name="search_smartchat">chat inteligente</string>
     <string name="search_something_hurts">Algo duele</string>
@@ -353,6 +355,7 @@
     <string name="search_table">mesa</string>
     <string name="search_tablet">tableta ipad</string>
     <string name="search_ticket">boleto</string>
+    <string name="search_tired">cansado</string>
     <string name="search_tomato">tomate</string>
     <string name="search_tomato_yellow">tomate amarillo</string>
     <string name="search_tongue">lengua</string>
