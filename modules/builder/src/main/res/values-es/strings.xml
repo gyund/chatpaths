@@ -6,6 +6,7 @@
     <string name="col_title_foodfinder">Buscador de alimentos</string>
     <string name="col_title_essentials">Esencial</string>
     <string name="col_title_breakfast">Desayuno</string>
+    <string name="col_title_lunch">Almuerzo</string>
     <string name="col_title_dinner">Cena</string>
     <string name="col_title_dessert">Postre</string>
     <string name="col_title_places_home">Lugares en casa</string>
@@ -15,6 +16,7 @@
     <string name="col_title_vegetables">Verduras</string>
 
 
+    <string name="path_empty_string">vacío</string>
     <string name="path_chat_words">pedido</string>
     <string name="path_i_want">Quiero</string>
     <string name="path_something_is_wrong">Algo esta mal</string>
@@ -33,6 +35,7 @@
     <string name="path_mad">loco furioso</string>
     <string name="path_sick">me siento enferma</string>
     <string name="path_more">más</string>
+    <string name="path_tired">cansado</string>
     <string name="path_something_hurts">Algo duele</string>
     <string name="path_help">ayuda</string>
     <string name="path_all_done">todo listo</string>
@@ -57,7 +60,9 @@
     <string name="path_dont_know">No sé</string>
     <string name="path_sad">molesto (triste)</string>
     <string name="path_hot">caliente</string>
+    <string name="path_cold">frío</string>
     <string name="path_chicken_nuggets">Nuggets de pollo</string>
+    <string name="path_wet">mojado</string>
     <string name="path_pizza">pizza</string>
     <string name="path_strawberry">fresa</string>
     <string name="path_tomato">tomate</string>
@@ -168,12 +173,15 @@
     <string name="path_pita">Agave</string>
     <string name="path_salad">ensalada</string>
     <string name="path_steak">bife</string>
+    <string name="path_windy">ventoso</string>
     <string name="path_mushroom">champiñón</string>
     <string name="path_waffle">gofre</string>
     <string name="path_butter">manteca</string>
     <string name="path_placeholder">camino de arranque</string>
     <string name="path_something_to_say">algo que decir</string>
     <string name="path_whats_wrong">qué ocurre</string>
+    <string name="path_hungry">hambriento</string>
+    <string name="path_uncomfortable">incómodo</string>
     <string name="path_why_mad">Por qué estás enojado</string>
     <string name="path_wanted_something">quería algo</string>
     <string name="path_dont_like">no me gusta</string>
@@ -277,6 +285,7 @@
     <string name="search_hot">caliente</string>
     <string name="search_hot_dog">Hot dog</string>
     <string name="search_hug">abrazo</string>
+    <string name="search_hungry">hambriento</string>
     <string name="search_i_want">deseo</string>
     <string name="search_ice_cream_cone">cucurucho de helado</string>
     <string name="search_ice_cream_dish">plato de helado</string>
@@ -291,6 +300,7 @@
     <string name="search_lime">cal</string>
     <string name="search_living_room">sala de estar</string>
     <string name="search_lollypop">chupete</string>
+    <string name="search_mad">loco</string>
     <string name="search_milk_bottle">botella de leche</string>
     <string name="search_milk_glass">vaso de leche</string>
     <string name="search_more">más</string>
@@ -352,7 +362,9 @@
     <string name="search_vegetable_yellow_orange">vegetal amarillo o naranja</string>
     <string name="search_waffle">gofre</string>
     <string name="search_watermelon">sandía</string>
+    <string name="search_wet">mojado</string>
     <string name="search_wheelchair_motorized">silla de ruedas motorizada</string>
     <string name="search_window">ventana</string>
+    <string name="search_windy">ventoso</string>
     <string name="search_yes">Sí</string>
 </resources>
