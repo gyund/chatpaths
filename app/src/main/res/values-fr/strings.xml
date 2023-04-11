@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<resources><string name="updates_notification_channel_name">Mises à jour des fonctionnalités</string>
+<resources>
+    <string name="default_notification_channel_name">Général</string>
+    <string name="updates_notification_channel_name">Mises à jour des fonctionnalités</string>
     <string name="promo_notification_channel_name">Promotion</string>
 
     <string name="visit_facebook">Visiter Facebook</string>
@@ -10,6 +12,8 @@
 
 
     <string name="path_image_contentdescription">Clipart avec mot de chat</string>
+    <string name="prevpath_image_contentdescription">précédent</string>
+    <string name="nextpath_image_contentdescription">prochain</string>
     <string name="oops_button_text">j\'ai fait une erreur</string>
     <string name="configure">Configurer</string>
     <string name="leave_configure">mode de configuration</string>
@@ -46,6 +50,7 @@
     <string name="fixed_path_text_summary_off_text">Les chemins dérivent leur couleur de texte de l\'image</string>
     <string name="path">Chemin</string>
     <string name="user_details_fragment_title">Coordonnées</string>
+    <string name="user_fragment_title">Utilisateurs</string>
     <string name="edit_user_dialog_title">Modifier l\'utilisateur</string>
     <string name="edit_user_dialog_message">Entrez un nom</string>
     <string name="add_path_collection_dialog_title">Ajouter la collection de chemins</string>
@@ -103,6 +108,7 @@
     <string name="keep_awake_preference_title">Reste éveillé</string>
     <string name="keep_awake_preference_summary_on">Gardez l\'écran éveillé pendant votre utilisation</string>
     <string name="keep_awake_preference_summary_off">Utilisez la valeur par défaut du système pour garder l\'écran éveillé</string>
+    <string name="general_preference_title">Général</string>
     <string name="read_out_loud_preference_summary_off">Ne lisez pas à haute voix en naviguant sur des chemins</string>
     <string name="read_out_loud_preference_summary_on">Lisez à haute voix tout en naviguant sur les chemins</string>
     <string name="read_out_loud_preference_title">Lire à voix haute</string>

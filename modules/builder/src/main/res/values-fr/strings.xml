@@ -34,6 +34,7 @@
     <string name="path_mad">en colère / fou</string>
     <string name="path_sick">Je me sens malade</string>
     <string name="path_more">plus</string>
+    <string name="path_tired">fatigué</string>
     <string name="path_something_hurts">quelque chose fait mal</string>
     <string name="path_help">aider</string>
     <string name="path_all_done">terminé</string>
@@ -57,6 +58,8 @@
     <string name="path_pancakes">Crêpes</string>
     <string name="path_dont_know">Je ne sais pas</string>
     <string name="path_sad">bouleversé (triste)</string>
+    <string name="path_hot">chaud</string>
+    <string name="path_cold">froid</string>
     <string name="path_chicken_nuggets">Nuggets de poulet</string>
     <string name="path_wet">humide</string>
     <string name="path_pizza">pizza</string>
@@ -140,6 +143,7 @@
     <string name="path_honeydew">miellat</string>
     <string name="path_grapes_green">raisins verts</string>
     <string name="path_grapes_red">raisins rouges</string>
+    <string name="path_avocado">avocat</string>
     <string name="path_apple_green">pomme verte</string>
     <string name="path_olives_black">olives noires</string>
     <string name="path_rasins">se mettre en rabat</string>
@@ -163,16 +167,19 @@
     <string name="path_candy_bar">barre de bonbons</string>
     <string name="path_honey">Miel</string>
     <string name="path_cake">gâteau</string>
+    <string name="path_fries">frites</string>
     <string name="path_lollypop">sucette</string>
     <string name="path_pita">Pita</string>
     <string name="path_salad">salade</string>
     <string name="path_steak">steak</string>
+    <string name="path_windy">venteux</string>
     <string name="path_mushroom">champignon</string>
     <string name="path_waffle">gaufre</string>
     <string name="path_butter">beurre</string>
     <string name="path_placeholder">chemin de démarrage</string>
     <string name="path_something_to_say">quelque chose à dire</string>
     <string name="path_whats_wrong">qu\'est-ce qui ne va pas</string>
+    <string name="path_hungry">affamé</string>
     <string name="path_uncomfortable">inconfortable</string>
     <string name="path_why_mad">pourquoi es-tu énervé</string>
     <string name="path_wanted_something">Je voulais quelque chose</string>
@@ -205,6 +212,7 @@
     <string name="search_all_done">terminé</string>
     <string name="search_apple">pomme</string>
     <string name="search_apple_green">pomme verte</string>
+    <string name="search_avocado">avocat</string>
     <string name="search_baby">bébé</string>
     <string name="search_banana">banane</string>
     <string name="search_bath">bain</string>
@@ -228,11 +236,13 @@
     <string name="search_chicken_nuggets">Nuggets de poulet</string>
     <string name="search_chinese_food">nourriture chinoise</string>
     <string name="search_classroom">Salle de classe</string>
+    <string name="search_cold">froid</string>
     <string name="search_cookie">biscuit</string>
     <string name="search_corn">maïs</string>
     <string name="search_crescent_moon_right">Crescent Moon à droite</string>
     <string name="search_cucumber">concombre</string>
     <string name="search_cupcake">cupcake</string>
+    <string name="search_different">différent</string>
     <string name="search_dont_know">Je ne sais pas</string>
     <string name="search_dont_like">N\'aime pas</string>
     <string name="search_doughnut">Donut</string>
@@ -253,6 +263,7 @@
     <string name="search_food_white_brown">nourriture blanche marron</string>
     <string name="search_food_yellow_orange">nourriture jaune orange</string>
     <string name="search_foot">pied</string>
+    <string name="search_fries">frites</string>
     <string name="search_fruit_blue_purple">Fruit bleu violet</string>
     <string name="search_fruit_green">vert fruit</string>
     <string name="search_fruit_red">fruit</string>
@@ -271,7 +282,10 @@
     <string name="search_help">aider</string>
     <string name="search_home">maison</string>
     <string name="search_honey">Miel</string>
+    <string name="search_hot">chaud</string>
     <string name="search_hot_dog">Hot-dog</string>
+    <string name="search_hug">embrasser</string>
+    <string name="search_hungry">affamé</string>
     <string name="search_i_want">je veux</string>
     <string name="search_ice_cream_cone">Cornet de glace</string>
     <string name="search_ice_cream_dish">plat de crème glacée</string>
@@ -286,6 +300,7 @@
     <string name="search_lime">chaux</string>
     <string name="search_living_room">salon</string>
     <string name="search_lollypop">sucette</string>
+    <string name="search_mad">fou</string>
     <string name="search_milk_bottle">bouteille de lait</string>
     <string name="search_milk_glass">verre de lait</string>
     <string name="search_more">plus</string>
@@ -339,6 +354,7 @@
     <string name="search_table">tableau</string>
     <string name="search_tablet">tablette iPad</string>
     <string name="search_ticket">billet</string>
+    <string name="search_tired">fatigué</string>
     <string name="search_tomato">tomate</string>
     <string name="search_tomato_yellow">tomate jaune</string>
     <string name="search_tongue">langue</string>
@@ -351,5 +367,6 @@
     <string name="search_wet">humide</string>
     <string name="search_wheelchair_motorized">fauteuil roulant motorisé</string>
     <string name="search_window">fenêtre</string>
+    <string name="search_windy">venteux</string>
     <string name="search_yes">Oui</string>
 </resources>
