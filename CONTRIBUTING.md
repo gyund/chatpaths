@@ -16,12 +16,12 @@ We use [Spotless](https://github.com/diffplug/spotless) to maintain a consistent
 
 ### Kotlin
 
-All new features should be written in Kotlin and any Java code should be converted to Kotlin at the first opportunity.
+All features should be written in Kotlin.
 
 
 ### Prefer Coroutines to RxJava
 
-When deciding between implementing something using RxJava and Coroutines, please prefer Coroutines.
+When deciding between implementing something using RxJava and Coroutines, please use coroutines.
 
 
 ### Continuous Integration
