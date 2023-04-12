@@ -18,6 +18,7 @@ ChatPaths is a communication app for helping non-verbal kids communicate while o
 - Text to Speech prompting
 - Voice recording of prompts for better contextual and familiar cues
 - Multiple user profiles to support therapy and classroom environments
+- Localization support for english, spanish, french, and hindi
 
 
 <p align="center">
