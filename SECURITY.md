@@ -9,4 +9,4 @@
 
 ## Reporting a Vulnerability
 
-If you find a security issue or vulnerability, please contact us directly via a private message. Please note, We don't provide any bounties.
+If you find a security issue or vulnerability, please contact us directly via a private message. Please note, we don't provide any bounties.
