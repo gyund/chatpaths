@@ -1,7 +1,5 @@
 <p align="center">
-		<a href='https://www.gnu.org/licenses/gpl-3.0'><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" /></a>
-	<a href='https://github.com/gyund/chatpaths/actions/workflows/android.yml'><img src="https://github.com/gyund/chatpaths/actions/workflows/android.yml/badge.svg" /></a>
-	<a href='https://github.com/gyund/chatpaths/actions/workflows/gradle-dependency-submission.yml'><img src="https://github.com/gyund/chatpaths/actions/workflows/gradle-dependency-submission.yml/badge.svg" /></a>
+	<a href='https://www.gnu.org/licenses/gpl-3.0'><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" /></a>
 	<a href="https://cla-assistant.io/gyund/chatpaths"><img src="https://cla-assistant.io/readme/badge/gyund/chatpaths" alt="CLA assistant" /></a>
 </p>
 
