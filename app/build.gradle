@@ -16,7 +16,7 @@ ext {
 	// Year.Month.MajorVersion.patch
 	app_version = getDate()
 	app_major_version = 1
-	app_version_code = 135
+	app_version_code = 137
 	app_version_name = "$app_version.$app_major_version.$app_version_code"
 
 	storeFile = null
@@ -61,7 +61,7 @@ android {
 		targetSdkVersion 33
 		versionCode app_version_code
 		versionName app_version_name
-		resConfigs 'en', 'es'
+		resConfigs 'en', 'es', 'fr', 'hi'
 
 
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
