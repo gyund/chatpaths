@@ -68,6 +68,6 @@ dependencies {
 	androidTestImplementation "androidx.room:room-testing:$room_version"
 
 	testImplementation 'androidx.test.ext:truth:1.5.0'
-	androidTestImplementation 'com.google.truth:truth:1.1.3'
-	androidTestImplementation 'com.google.truth.extensions:truth-java8-extension:1.1.3'
+	androidTestImplementation 'com.google.truth:truth:1.1.5'
+	androidTestImplementation 'com.google.truth.extensions:truth-java8-extension:1.1.5'
 }
