@@ -1,4 +1,4 @@
-rootProject.name = "ChatPaths"
+rootProject.name = "chatpaths"
 
 include ':app'
 include ':modules:model'
