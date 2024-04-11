@@ -7,11 +7,11 @@ plugins {
 apply from: "$project.rootDir/common.gradle"
 
 android {
-	compileSdk 33
+	compileSdk 34
 
 	defaultConfig {
 		minSdk 27
-		targetSdk 33
+		targetSdk 34
 
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		consumerProguardFiles "consumer-rules.pro"
@@ -27,14 +27,13 @@ android {
 		}
 	}
 	compileOptions {
-		sourceCompatibility JavaVersion.VERSION_1_8
-		targetCompatibility JavaVersion.VERSION_1_8
+		sourceCompatibility JavaVersion.VERSION_17
+		targetCompatibility JavaVersion.VERSION_17
 	}
 	kotlinOptions {
 		jvmTarget = '1.8'
 	}
-	buildToolsVersion '30.0.3'
-	compileSdkVersion 33
+	compileSdk 34
 	namespace 'com.gy.chatpaths.aac.resource'
 	flavorDimensions 'google'
 	productFlavors {
@@ -46,13 +45,18 @@ android {
 			dimension 'google'
 		}
 	}
+	lint {
+		htmlReport true
+		lintConfig file("$rootDir/lint.xml")
+		xmlReport true
+	}
 }
 
 dependencies {
 
-	implementation 'androidx.core:core-ktx:1.10.0'
+	implementation 'androidx.core:core-ktx:1.12.0'
 	implementation 'androidx.appcompat:appcompat:1.6.1'
-	implementation 'com.google.android.material:material:1.8.0'
+	implementation 'com.google.android.material:material:1.11.0'
 	implementation('org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4')
 	implementation project(path: ':modules:model')
 	testImplementation 'junit:junit:4.13.2'
@@ -60,12 +64,11 @@ dependencies {
 	androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
 	// Room Dependencies
-	def room_version = '2.5.1'
-	implementation "androidx.room:room-runtime:$room_version"
-	kapt "androidx.room:room-compiler:$room_version"
+	implementation "androidx.room:room-runtime:2.6.1"
+	kapt "androidx.room:room-compiler:2.6.1"
 	// For Kotlin use kapt instead of annotationProcessor
-	implementation "androidx.room:room-ktx:$room_version"
-	androidTestImplementation "androidx.room:room-testing:$room_version"
+	implementation "androidx.room:room-ktx:2.6.1"
+	androidTestImplementation "androidx.room:room-testing:2.6.1"
 
 	testImplementation 'androidx.test.ext:truth:1.5.0'
 	androidTestImplementation 'com.google.truth:truth:1.1.3'

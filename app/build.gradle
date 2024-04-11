@@ -38,8 +38,7 @@ static def getDate() {
 }
 
 android {
-	compileSdkVersion 33
-	buildToolsVersion '30.0.3'
+	compileSdk 34
 
 	signingConfigs {
 		release {
@@ -58,10 +57,10 @@ android {
 		applicationId "com.gy.chatpaths.aac.app"
 		// The Billing API must be 3+ and sdk 26 is 2.0
 		minSdkVersion 27
-		targetSdkVersion 33
+		targetSdkVersion 34
 		versionCode app_version_code
 		versionName app_version_name
-		resConfigs 'en', 'es', 'fr', 'hi'
+		resourceConfigurations += ['en', 'es', 'fr', 'hi']
 
 
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -95,8 +94,8 @@ android {
 		dataBinding = true
 	}
 	compileOptions {
-		sourceCompatibility JavaVersion.VERSION_1_8
-		targetCompatibility JavaVersion.VERSION_1_8
+		sourceCompatibility JavaVersion.VERSION_17
+		targetCompatibility JavaVersion.VERSION_17
 	}
 	kotlinOptions {
 		jvmTarget = '1.8'
@@ -113,29 +112,34 @@ android {
 			dimension 'google'
 		}
 	}
+	lint {
+		htmlReport true
+		lintConfig file("$rootDir/lint.xml")
+		xmlReport true
+	}
 }
 
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
-	implementation 'androidx.core:core-ktx:1.10.0'
+	implementation 'androidx.core:core-ktx:1.12.0'
 	implementation 'androidx.appcompat:appcompat:1.6.1'
-	implementation 'androidx.core:core-splashscreen:1.0.0'
+	implementation 'androidx.core:core-splashscreen:1.0.1'
 	implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-	implementation 'com.google.android.material:material:1.8.0'
+	implementation 'com.google.android.material:material:1.11.0'
 	implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-	implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-	implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-	implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-	implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-	implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.5.3'
+	implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7'
+	implementation 'androidx.navigation:navigation-ui-ktx:2.7.7'
+	implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7'
+	implementation 'androidx.navigation:navigation-ui-ktx:2.7.7'
+	implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.7.7'
 	implementation project(path: ':modules:model')
 	implementation 'androidx.cardview:cardview:1.0.0'
-	implementation 'androidx.recyclerview:recyclerview:1.3.0'
-	implementation 'androidx.preference:preference-ktx:1.2.0'
+	implementation 'androidx.recyclerview:recyclerview:1.3.2'
+	implementation 'androidx.preference:preference-ktx:1.2.1'
 	implementation 'androidx.palette:palette-ktx:1.0.0'
-	implementation 'androidx.fragment:fragment-ktx:1.5.6'
+	implementation 'androidx.fragment:fragment-ktx:1.6.2'
 	implementation 'androidx.viewpager2:viewpager2:1.0.0'
-	implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
+	implementation 'com.google.android.gms:play-services-oss-licenses:17.0.1'
 
 	// In-app review
 	implementation 'com.google.android.play:core:1.10.3'
@@ -156,22 +160,22 @@ dependencies {
 	androidTestImplementation 'org.mockito:mockito-android:5.2.0'
 
 	// Lifecycle
-	implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
-	implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-	implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-	implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
+	implementation "androidx.lifecycle:lifecycle-common-java8:2.7.0"
+	implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
+	implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.7.0"
+	implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0"
 
-	implementation "androidx.room:room-runtime:$room_version"
-	kapt "androidx.room:room-compiler:$room_version" // For Kotlin use kapt instead of annotationProcessor
-	implementation "androidx.room:room-ktx:$room_version"
-	testImplementation "androidx.room:room-testing:$room_version"
+	implementation "androidx.room:room-runtime:2.6.1"
+	kapt "androidx.room:room-compiler:2.6.1" // For Kotlin use kapt instead of annotationProcessor
+	implementation "androidx.room:room-ktx:2.6.1"
+	testImplementation "androidx.room:room-testing:2.6.1"
 
 	// Firebase
-	implementation platform('com.google.firebase:firebase-bom:31.5.0')
-	implementation 'com.google.firebase:firebase-crashlytics-ktx:18.3.6'
-	implementation 'com.google.firebase:firebase-analytics-ktx:21.2.1'
-	implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'
-	implementation 'com.google.firebase:firebase-config-ktx:21.3.0'
+	implementation platform('com.google.firebase:firebase-bom:32.8.0')
+	implementation 'com.google.firebase:firebase-crashlytics-ktx:18.6.3'
+	implementation 'com.google.firebase:firebase-analytics-ktx:21.6.1'
+	implementation 'com.google.firebase:firebase-messaging-ktx:23.4.1'
+	implementation 'com.google.firebase:firebase-config-ktx:21.6.3'
 
 
 	implementation 'com.github.yalantis:ucrop:2.2.8'
@@ -181,17 +185,17 @@ dependencies {
 //    implementation 'com.github.AppIntro:AppIntro:6.1.0'
 	implementation 'uk.co.samuelwall:material-tap-target-prompt:3.3.2'
 
-	implementation "com.google.dagger:hilt-android:$hilt_version"
-	kapt "com.google.dagger:hilt-compiler:$hilt_version"
+	implementation "com.google.dagger:hilt-android:2.51.1"
+	kapt "com.google.dagger:hilt-compiler:2.51.1"
 
 
 	// For instrumentation tests
-	androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
-	kaptAndroidTest "com.google.dagger:hilt-compiler:$hilt_version"
+	androidTestImplementation "com.google.dagger:hilt-android-testing:2.51.1"
+	kaptAndroidTest "com.google.dagger:hilt-compiler:2.51.1"
 
 	// For local unit tests
-	testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
-	kaptTest "com.google.dagger:hilt-compiler:$hilt_version"
+	testImplementation "com.google.dagger:hilt-android-testing:2.51.1"
+	kaptTest "com.google.dagger:hilt-compiler:2.51.1"
 
 	// Kotlin + coroutines
 //    implementation 'androidx.work:work-runtime-ktx:2.7.0-alpha05'
@@ -200,10 +204,10 @@ dependencies {
 	//implementation "androidx.work:work-gcm:$work_version"
 
 	// optional - Test helpers
-	androidTestImplementation "androidx.work:work-testing:2.8.1"
-	implementation "androidx.core:core-ktx:1.10.0"
-	implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
-	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.20'
+	androidTestImplementation "androidx.work:work-testing:2.9.0"
+	implementation "androidx.core:core-ktx:1.12.0"
+	implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
+	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.23'
 }
 
 kapt {
