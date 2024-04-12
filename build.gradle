@@ -1,23 +1,18 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-	ext {
-		lifecycle_version = '2.6.1'
-		room_version = '2.5.1'
-		hilt_version = '2.45'
-	}
 	repositories {
 		google()
 		mavenCentral()
 		maven { url "https://jitpack.io" }
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:8.3.2'
-		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.21"
-		classpath 'com.google.gms:google-services:4.4.1'
-		classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.9'
-		classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.7.7"
-		classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
-		classpath("com.google.android.gms:oss-licenses-plugin:0.10.6")
+		classpath libs.gradle
+		classpath libs.kotlin.gradle.plugin
+		classpath libs.google.services
+		classpath libs.firebase.crashlytics.gradle
+		classpath libs.androidx.navigation.safe.args.gradle.plugin
+		classpath libs.hilt.android.gradle.plugin
+		classpath libs.oss.licenses.plugin
 
 		// NOTE: Do not place your application dependencies here; they belong
 		// in the individual module build.gradle files
@@ -26,6 +21,7 @@ buildscript {
 
 plugins {
 	id 'com.diffplug.spotless' version "6.18.0"
+//	id 'com.google.devtools.ksp' version '1.8.10-1.0.9' apply false
 //    id 'jacoco'
 //    id("com.github.nbaztec.coveralls-jacoco") version "1.2.15"
 //    id 'jacoco-report-aggregation'

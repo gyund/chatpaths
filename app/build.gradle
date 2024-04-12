@@ -8,6 +8,7 @@ plugins {
 	id 'com.google.gms.google-services'
 	id 'com.google.firebase.crashlytics'
 	id 'com.google.android.gms.oss-licenses-plugin'
+//	id 'com.google.devtools.ksp'
 }
 
 apply from: "$project.rootDir/common.gradle"
@@ -121,81 +122,81 @@ android {
 
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
-	implementation 'androidx.core:core-ktx:1.12.0'
-	implementation 'androidx.appcompat:appcompat:1.6.1'
-	implementation 'androidx.core:core-splashscreen:1.0.1'
-	implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-	implementation 'com.google.android.material:material:1.11.0'
-	implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-	implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7'
-	implementation 'androidx.navigation:navigation-ui-ktx:2.7.7'
-	implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7'
-	implementation 'androidx.navigation:navigation-ui-ktx:2.7.7'
-	implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.7.7'
+	implementation libs.androidx.core.ktx
+	implementation libs.androidx.appcompat
+	implementation libs.androidx.core.splashscreen
+	implementation libs.androidx.legacy.support.v4
+	implementation libs.material
+	implementation libs.androidx.constraintlayout
+	implementation libs.androidx.navigation.fragment.ktx
+	implementation libs.androidx.navigation.ui.ktx
+	implementation libs.androidx.navigation.fragment.ktx
+	implementation libs.androidx.navigation.ui.ktx
+	implementation libs.androidx.navigation.dynamic.features.fragment
 	implementation project(path: ':modules:model')
-	implementation 'androidx.cardview:cardview:1.0.0'
-	implementation 'androidx.recyclerview:recyclerview:1.3.2'
-	implementation 'androidx.preference:preference-ktx:1.2.1'
-	implementation 'androidx.palette:palette-ktx:1.0.0'
-	implementation 'androidx.fragment:fragment-ktx:1.6.2'
-	implementation 'androidx.viewpager2:viewpager2:1.0.0'
-	implementation 'com.google.android.gms:play-services-oss-licenses:17.0.1'
+	implementation libs.androidx.cardview
+	implementation libs.androidx.recyclerview
+	implementation libs.androidx.preference.ktx
+	implementation libs.androidx.palette.ktx
+	implementation libs.androidx.fragment.ktx
+	implementation libs.androidx.viewpager2
+	implementation libs.play.services.oss.licenses
 
 	// In-app review
-	implementation 'com.google.android.play:core:1.10.3'
-	implementation 'com.google.android.play:core-ktx:1.8.1'
+	implementation libs.core
+	implementation libs.core.ktx
 	implementation project(path: ':modules:builder')
 
 
-	testImplementation 'junit:junit:4.13.2'
-	testImplementation 'androidx.test.ext:truth:1.5.0'
-	androidTestImplementation 'com.google.truth:truth:1.1.3'
-	androidTestImplementation 'com.google.truth.extensions:truth-java8-extension:1.1.3'
-	androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-	androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-	androidTestImplementation 'androidx.test:runner:1.5.2'
-	androidTestUtil 'androidx.test:orchestrator:1.4.2'
-	testImplementation 'org.mockito:mockito-core:5.3.1'
-	androidTestImplementation 'org.mockito:mockito-core:5.3.1'
-	androidTestImplementation 'org.mockito:mockito-android:5.2.0'
+	testImplementation libs.junit
+	testImplementation libs.androidx.truth
+	androidTestImplementation libs.truth
+	androidTestImplementation libs.truth.java8.extension
+	androidTestImplementation libs.androidx.junit
+	androidTestImplementation libs.androidx.espresso.core
+	androidTestImplementation libs.androidx.runner
+	androidTestUtil libs.androidx.orchestrator
+	testImplementation libs.mockito.core
+	androidTestImplementation libs.mockito.core
+	androidTestImplementation libs.mockito.android
 
 	// Lifecycle
-	implementation "androidx.lifecycle:lifecycle-common-java8:2.7.0"
-	implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
-	implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.7.0"
-	implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0"
+	implementation libs.androidx.lifecycle.common.java8
+	implementation libs.androidx.lifecycle.viewmodel.ktx
+	implementation libs.androidx.lifecycle.livedata.ktx
+	implementation libs.androidx.lifecycle.viewmodel.savedstate
 
-	implementation "androidx.room:room-runtime:2.6.1"
-	kapt "androidx.room:room-compiler:2.6.1" // For Kotlin use kapt instead of annotationProcessor
-	implementation "androidx.room:room-ktx:2.6.1"
-	testImplementation "androidx.room:room-testing:2.6.1"
+	implementation libs.androidx.room.runtime
+	kapt libs.androidx.room.compiler // For Kotlin use kapt instead of annotationProcessor
+	implementation libs.androidx.room.ktx
+	testImplementation libs.androidx.room.testing
 
 	// Firebase
-	implementation platform('com.google.firebase:firebase-bom:32.8.0')
-	implementation 'com.google.firebase:firebase-crashlytics-ktx:18.6.3'
-	implementation 'com.google.firebase:firebase-analytics-ktx:21.6.1'
-	implementation 'com.google.firebase:firebase-messaging-ktx:23.4.1'
-	implementation 'com.google.firebase:firebase-config-ktx:21.6.3'
+	implementation platform(libs.firebase.bom)
+	implementation libs.firebase.crashlytics.ktx
+	implementation libs.firebase.analytics.ktx
+	implementation libs.firebase.messaging.ktx
+	implementation libs.firebase.config.ktx
 
 
-	implementation 'com.github.yalantis:ucrop:2.2.8'
+	implementation libs.ucrop
 //    implementation 'com.squareup.picasso:picasso:2.71828'
 
 	// Onboarding
 //    implementation 'com.github.AppIntro:AppIntro:6.1.0'
-	implementation 'uk.co.samuelwall:material-tap-target-prompt:3.3.2'
+	implementation libs.material.tap.target.prompt
 
-	implementation "com.google.dagger:hilt-android:2.51.1"
-	kapt "com.google.dagger:hilt-compiler:2.51.1"
+	implementation libs.hilt.android
+	kapt libs.hilt.compiler
 
 
 	// For instrumentation tests
-	androidTestImplementation "com.google.dagger:hilt-android-testing:2.51.1"
-	kaptAndroidTest "com.google.dagger:hilt-compiler:2.51.1"
+	androidTestImplementation libs.hilt.android.testing
+	kaptAndroidTest libs.hilt.compiler
 
 	// For local unit tests
-	testImplementation "com.google.dagger:hilt-android-testing:2.51.1"
-	kaptTest "com.google.dagger:hilt-compiler:2.51.1"
+	testImplementation libs.hilt.android.testing
+	kaptTest libs.hilt.compiler
 
 	// Kotlin + coroutines
 //    implementation 'androidx.work:work-runtime-ktx:2.7.0-alpha05'
@@ -204,10 +205,10 @@ dependencies {
 	//implementation "androidx.work:work-gcm:$work_version"
 
 	// optional - Test helpers
-	androidTestImplementation "androidx.work:work-testing:2.9.0"
-	implementation "androidx.core:core-ktx:1.12.0"
-	implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
-	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.23'
+	androidTestImplementation libs.androidx.work.testing
+	implementation libs.androidx.core.ktx
+	implementation libs.androidx.lifecycle.viewmodel.ktx
+	implementation libs.kotlin.stdlib.jdk7
 }
 
 kapt {

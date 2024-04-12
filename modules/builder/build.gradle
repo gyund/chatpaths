@@ -54,23 +54,23 @@ android {
 
 dependencies {
 
-	implementation 'androidx.core:core-ktx:1.12.0'
-	implementation 'androidx.appcompat:appcompat:1.6.1'
-	implementation 'com.google.android.material:material:1.11.0'
-	implementation('org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4')
+	implementation libs.core.ktx
+	implementation libs.androidx.appcompat
+	implementation libs.material
+	implementation libs.kotlinx.coroutines.android
 	implementation project(path: ':modules:model')
-	testImplementation 'junit:junit:4.13.2'
-	androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-	androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+	testImplementation libs.junit
+	androidTestImplementation libs.junit
+	androidTestImplementation libs.androidx.espresso.core
 
 	// Room Dependencies
-	implementation "androidx.room:room-runtime:2.6.1"
-	kapt "androidx.room:room-compiler:2.6.1"
+	implementation libs.androidx.room.runtime
+	kapt libs.androidx.room.compiler
 	// For Kotlin use kapt instead of annotationProcessor
-	implementation "androidx.room:room-ktx:2.6.1"
-	androidTestImplementation "androidx.room:room-testing:2.6.1"
+	implementation libs.androidx.room.ktx
+	androidTestImplementation libs.androidx.room.testing
 
-	testImplementation 'androidx.test.ext:truth:1.5.0'
-	androidTestImplementation 'com.google.truth:truth:1.1.3'
-	androidTestImplementation 'com.google.truth.extensions:truth-java8-extension:1.1.3'
+	testImplementation libs.androidx.truth
+	androidTestImplementation libs.truth
+	androidTestImplementation libs.truth.java8.extension
 }
