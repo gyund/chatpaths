@@ -74,14 +74,14 @@ android {
 		javaCompileOptions {
 			annotationProcessorOptions {
 				arguments += [
-						"room.schemaLocation":"$projectDir/com/gy/chatpaths/aac/app/model/schemas".toString(),
+						"room.schemaLocation":"$projectDir/schemas".toString(),
 						"room.incremental":"true",
 						"room.expandProjection":"true"]
 			}
 		}
 		sourceSets {
 			// Adds exported schema location as test app assets.
-			androidTest.assets.srcDirs += files("$projectDir/com/gy/chatpaths/aac/app/model/schemas".toString())
+			androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
 		}
 	}
 	testOptions {
