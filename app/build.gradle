@@ -2,7 +2,7 @@ plugins {
 	id 'com.android.application'
 	id 'kotlin-android'
 	id 'kotlin-kapt'
-	id "androidx.navigation.safeargs.kotlin"
+	id 'androidx.navigation.safeargs.kotlin'
 	id 'dagger.hilt.android.plugin'
 
 	id 'com.google.gms.google-services'
@@ -109,15 +109,15 @@ android {
 		buildConfig = true
 	}
 	compileOptions {
-		sourceCompatibility JavaVersion.VERSION_17
-		targetCompatibility JavaVersion.VERSION_17
+		sourceCompatibility JavaVersion.VERSION_11
+		targetCompatibility JavaVersion.VERSION_11
 	}
 	kotlinOptions {
-		jvmTarget = '17'
+		jvmTarget = '11'
 	}
 	dynamicFeatures = []
 	namespace 'com.gy.chatpaths.aac.app'
-	flavorDimensions 'google'
+	flavorDimensions = ['google']
 	productFlavors {
 		WithoutFirebase {
 			getIsDefault().set(true) // that does the magic
