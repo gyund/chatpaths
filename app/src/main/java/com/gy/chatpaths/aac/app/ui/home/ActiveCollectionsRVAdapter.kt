@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gy.chatpaths.aac.app.BindableAdapter
 import com.gy.chatpaths.aac.app.R
 import com.gy.chatpaths.aac.app.databinding.FragmentHomeCollectionsBinding
-import com.gy.chatpaths.aac.app.ui.manager.userdetail.UserCollectionsViewModel
 import com.gy.chatpaths.aac.app.model.PathCollection
+import com.gy.chatpaths.aac.app.ui.manager.userdetail.UserCollectionsViewModel
 
 class ActiveCollectionsRVAdapter(
     private val context: Context,

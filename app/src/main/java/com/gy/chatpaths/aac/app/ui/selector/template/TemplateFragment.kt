@@ -13,10 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.gy.chatpaths.aac.app.MainActivity
 import com.gy.chatpaths.aac.app.R
-import com.gy.chatpaths.aac.app.databinding.DialogEditCollectionBinding
-import com.gy.chatpaths.aac.app.databinding.FragmentHomeBinding
-import com.gy.chatpaths.aac.app.di.module.CurrentUser
-import com.gy.chatpaths.aac.app.ui.manager.userdetail.UserDetailFragment.Companion.onCollectionValidated
 import com.gy.chatpaths.aac.app.builder.create.Collection
 import com.gy.chatpaths.aac.app.builder.template.collection.Breakfast
 import com.gy.chatpaths.aac.app.builder.template.collection.Dinner
@@ -25,6 +21,10 @@ import com.gy.chatpaths.aac.app.builder.template.collection.Family
 import com.gy.chatpaths.aac.app.builder.template.collection.Lunch
 import com.gy.chatpaths.aac.app.builder.template.collection.Problem
 import com.gy.chatpaths.aac.app.builder.template.collection.Starter
+import com.gy.chatpaths.aac.app.databinding.DialogEditCollectionBinding
+import com.gy.chatpaths.aac.app.databinding.FragmentHomeBinding
+import com.gy.chatpaths.aac.app.di.module.CurrentUser
+import com.gy.chatpaths.aac.app.ui.manager.userdetail.UserDetailFragment.Companion.onCollectionValidated
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
