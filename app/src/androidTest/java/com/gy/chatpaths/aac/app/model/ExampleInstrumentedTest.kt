@@ -16,6 +16,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.gy.chatpaths.aac.data.test", appContext.packageName)
+        assertEquals("com.gy.chatpaths.aac.app", appContext.packageName)
     }
 }
