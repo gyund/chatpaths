@@ -135,7 +135,7 @@ jobs:
     strategy:
       matrix:
         api-level: [27, 34]
-        google_apis: ["google_apis"]
+        target: ["google_apis"]
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -163,7 +163,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
-          google_apis: ${{matrix.google_apis}}
+          target: ${{matrix.target}}
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
@@ -173,7 +173,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
-          google_apis: ${{matrix.google_apis}}
+          target: ${{matrix.target}}
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
