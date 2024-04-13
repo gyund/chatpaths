@@ -11,7 +11,7 @@ import com.gy.chatpaths.aac.app.databinding.FragmentCollectionsBinding
 import com.gy.chatpaths.aac.app.ui.helper.ItemTouchHelperAdapter
 import com.gy.chatpaths.aac.app.ui.helper.ItemTouchHelperViewHolder
 import com.gy.chatpaths.aac.app.ui.helper.OnStartDragListener
-import com.gy.chatpaths.model.PathCollection
+import com.gy.chatpaths.aac.app.model.PathCollection
 import java.util.*
 
 /**

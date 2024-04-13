@@ -28,7 +28,7 @@ import com.gy.chatpaths.aac.app.databinding.FragmentPathDetailBinding
 import com.gy.chatpaths.aac.app.di.module.GuidedTour
 import com.gy.chatpaths.aac.app.di.module.MediaRecordingDialog
 import com.gy.chatpaths.aac.app.ui.helper.DatabaseConversionHelper
-import com.gy.chatpaths.model.Path
+import com.gy.chatpaths.aac.app.model.Path
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

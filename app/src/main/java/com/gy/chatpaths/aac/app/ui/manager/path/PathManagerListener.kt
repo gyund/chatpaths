@@ -1,6 +1,6 @@
 package com.gy.chatpaths.aac.app.ui.manager.path
 
-import com.gy.chatpaths.model.Path
+import com.gy.chatpaths.aac.app.model.Path
 
 interface PathManagerListener {
     fun showAddPathDialog()

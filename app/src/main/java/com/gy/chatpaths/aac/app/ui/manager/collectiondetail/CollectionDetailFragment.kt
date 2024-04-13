@@ -15,7 +15,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.gy.chatpaths.aac.app.CommonFeatureFragment
 import com.gy.chatpaths.aac.app.R
 import com.gy.chatpaths.aac.app.databinding.FragmentCollectionDetailBinding
-import com.gy.chatpaths.model.PathCollection
+import com.gy.chatpaths.aac.app.model.PathCollection
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

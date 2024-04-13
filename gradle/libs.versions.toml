@@ -19,7 +19,7 @@ gradle = "8.3.2"
 hiltAndroid = "2.51.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
-kotlinGradlePlugin = "1.8.21"
+kotlinGradlePlugin = "1.9.21"
 kotlinStdlibJdk7 = "1.9.23"
 kotlinxCoroutinesAndroid = "1.8.0"
 legacySupportV4 = "1.0.0"
@@ -35,8 +35,10 @@ paletteKtx = "1.0.0"
 playServicesOssLicenses = "17.0.1"
 preferenceKtx = "1.2.1"
 recyclerview = "1.3.2"
+review = "2.0.1"
 roomRuntime = "2.6.1"
 runner = "1.5.2"
+symbolProcessingApi = "1.9.21-1.0.15"
 truth = "1.5.0"
 truthVersion = "1.4.2"
 ucrop = "2.2.8"
@@ -75,12 +77,12 @@ androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref =
 androidx-work-testing = { module = "androidx.work:work-testing", version.ref = "workTesting" }
 core = { module = "com.google.android.play:core", version.ref = "core" }
 core-ktx = { module = "com.google.android.play:core-ktx", version.ref = "coreKtxVersion" }
-firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx", version.ref = "firebaseAnalyticsKtx" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics", version.ref = "firebaseAnalyticsKtx" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
-firebase-config-ktx = { module = "com.google.firebase:firebase-config-ktx", version.ref = "firebaseConfigKtx" }
+firebase-config = { module = "com.google.firebase:firebase-config", version.ref = "firebaseConfigKtx" }
 firebase-crashlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsGradle" }
-firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx", version.ref = "firebaseCrashlyticsKtx" }
-firebase-messaging-ktx = { module = "com.google.firebase:firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics", version.ref = "firebaseCrashlyticsKtx" }
+firebase-messaging = { module = "com.google.firebase:firebase-messaging", version.ref = "firebaseMessagingKtx" }
 google-services = { module = "com.google.gms:google-services", version.ref = "googleServices" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
@@ -97,6 +99,9 @@ mockito-android = { module = "org.mockito:mockito-android", version.ref = "mocki
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 oss-licenses-plugin = { module = "com.google.android.gms:oss-licenses-plugin", version.ref = "ossLicensesPlugin" }
 play-services-oss-licenses = { module = "com.google.android.gms:play-services-oss-licenses", version.ref = "playServicesOssLicenses" }
+review = { module = "com.google.android.play:review", version.ref = "review" }
+review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "review" }
+symbol-processing-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "symbolProcessingApi" }
 truth = { module = "com.google.truth:truth", version.ref = "truthVersion" }
 truth-java8-extension = { module = "com.google.truth.extensions:truth-java8-extension", version.ref = "truthVersion" }
 ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }

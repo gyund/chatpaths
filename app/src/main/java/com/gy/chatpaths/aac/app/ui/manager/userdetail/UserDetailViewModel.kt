@@ -5,9 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gy.chatpaths.model.PathCollection
-import com.gy.chatpaths.model.PathUser
-import com.gy.chatpaths.model.source.CPRepository
+import com.gy.chatpaths.aac.app.model.PathCollection
+import com.gy.chatpaths.aac.app.model.PathUser
+import com.gy.chatpaths.aac.app.model.source.CPRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

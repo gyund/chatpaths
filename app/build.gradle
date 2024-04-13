@@ -70,6 +70,19 @@ android {
 		// "pm clear" command after each test invocation. This command ensures
 		// that the app's state is completely cleared between tests.
 		testInstrumentationRunnerArguments clearPackageData: 'true'
+
+		javaCompileOptions {
+			annotationProcessorOptions {
+				arguments += [
+						"room.schemaLocation":"$projectDir/com/gy/chatpaths/aac/app/model/schemas".toString(),
+						"room.incremental":"true",
+						"room.expandProjection":"true"]
+			}
+		}
+		sourceSets {
+			// Adds exported schema location as test app assets.
+			androidTest.assets.srcDirs += files("$projectDir/com/gy/chatpaths/aac/app/model/schemas".toString())
+		}
 	}
 	testOptions {
 		execution 'ANDROIDX_TEST_ORCHESTRATOR'
@@ -93,13 +106,14 @@ android {
 	buildFeatures {
 		viewBinding true
 		dataBinding = true
+		buildConfig = true
 	}
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_17
 		targetCompatibility JavaVersion.VERSION_17
 	}
 	kotlinOptions {
-		jvmTarget = '1.8'
+		jvmTarget = '17'
 	}
 	dynamicFeatures = []
 	namespace 'com.gy.chatpaths.aac.app'
@@ -122,7 +136,7 @@ android {
 
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
-	implementation libs.androidx.core.ktx
+//	implementation libs.androidx.core.ktx
 	implementation libs.androidx.appcompat
 	implementation libs.androidx.core.splashscreen
 	implementation libs.androidx.legacy.support.v4
@@ -133,7 +147,7 @@ dependencies {
 	implementation libs.androidx.navigation.fragment.ktx
 	implementation libs.androidx.navigation.ui.ktx
 	implementation libs.androidx.navigation.dynamic.features.fragment
-	implementation project(path: ':modules:model')
+//	implementation project(path: ':modules:model')
 	implementation libs.androidx.cardview
 	implementation libs.androidx.recyclerview
 	implementation libs.androidx.preference.ktx
@@ -143,9 +157,13 @@ dependencies {
 	implementation libs.play.services.oss.licenses
 
 	// In-app review
-	implementation libs.core
-	implementation libs.core.ktx
-	implementation project(path: ':modules:builder')
+//	implementation libs.core
+//	implementation libs.core.ktx
+//	implementation project(path: ':modules:builder')
+	implementation libs.review
+
+	// For Kotlin users, also add the Kotlin extensions library for Play In-App Review:
+	implementation libs.review.ktx
 
 
 	testImplementation libs.junit
@@ -166,17 +184,19 @@ dependencies {
 	implementation libs.androidx.lifecycle.livedata.ktx
 	implementation libs.androidx.lifecycle.viewmodel.savedstate
 
+	// Room Dependencies
 	implementation libs.androidx.room.runtime
-	kapt libs.androidx.room.compiler // For Kotlin use kapt instead of annotationProcessor
+	kapt libs.androidx.room.compiler
+	// For Kotlin use kapt instead of annotationProcessor
 	implementation libs.androidx.room.ktx
-	testImplementation libs.androidx.room.testing
+	androidTestImplementation libs.androidx.room.testing
 
 	// Firebase
 	implementation platform(libs.firebase.bom)
-	implementation libs.firebase.crashlytics.ktx
-	implementation libs.firebase.analytics.ktx
-	implementation libs.firebase.messaging.ktx
-	implementation libs.firebase.config.ktx
+	implementation libs.firebase.crashlytics
+	implementation libs.firebase.analytics
+	implementation libs.firebase.messaging
+	implementation libs.firebase.config
 
 
 	implementation libs.ucrop
@@ -206,7 +226,7 @@ dependencies {
 
 	// optional - Test helpers
 	androidTestImplementation libs.androidx.work.testing
-	implementation libs.androidx.core.ktx
+//	implementation libs.androidx.core.ktx
 	implementation libs.androidx.lifecycle.viewmodel.ktx
 	implementation libs.kotlin.stdlib.jdk7
 }

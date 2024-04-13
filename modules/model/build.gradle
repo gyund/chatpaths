@@ -80,7 +80,7 @@ dependencies {
 	implementation libs.androidx.appcompat
 	implementation libs.androidx.preference.ktx
 	implementation platform(libs.firebase.bom)
-	implementation libs.firebase.crashlytics.ktx
+	implementation libs.firebase.crashlytics
 	testImplementation libs.androidx.truth
 	testImplementation libs.junit
 	androidTestImplementation libs.truth
