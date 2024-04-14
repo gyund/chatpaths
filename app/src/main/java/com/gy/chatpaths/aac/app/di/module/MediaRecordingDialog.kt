@@ -16,11 +16,10 @@ import com.gy.chatpaths.aac.app.R
 import com.gy.chatpaths.aac.app.databinding.DialogRecordAudioBinding
 import java.io.File
 import java.io.IOException
-import java.util.*
+import java.util.UUID
 
 class MediaRecordingDialog {
-
-    val TAG = "MediaRecordingDialog"
+    private val tag = "MediaRecordingDialog"
 
     private var recorder: MediaRecorder? = null
     private var player: MediaPlayer? = null
@@ -57,14 +56,15 @@ class MediaRecordingDialog {
         onFinished: (uri: Uri?) -> Boolean,
     ) {
         // initialize with the audioPromptUri if it's set
-        val uri = fragment.context?.let {
-            val path = it.filesDir.path + File.separator + UUID.randomUUID().toString() + ".3gp"
-            try {
-                Uri.fromFile(File(path))
-            } catch (e: RuntimeException) {
-                null
+        val uri =
+            fragment.context?.let {
+                val path = it.filesDir.path + File.separator + UUID.randomUUID().toString() + ".3gp"
+                try {
+                    Uri.fromFile(File(path))
+                } catch (e: RuntimeException) {
+                    null
+                }
             }
-        }
 
         // Don't continue if we don't have a file handle
         if (null == uri) {
@@ -92,25 +92,26 @@ class MediaRecordingDialog {
         }
 
         // Display Dialog
-        val mab = MaterialAlertDialogBuilder(layout.root.context)
-            .setTitle(layout.root.context.getString(R.string.record_audio))
-            .setView(layout.root)
-            .setPositiveButton(
-                layout.root.context.getString(android.R.string.ok),
-            ) { _, _ ->
-                if (!onFinished(uri)) {
-                    onUserCancel() // delete the file
+        val mab =
+            MaterialAlertDialogBuilder(layout.root.context)
+                .setTitle(layout.root.context.getString(R.string.record_audio))
+                .setView(layout.root)
+                .setPositiveButton(
+                    layout.root.context.getString(android.R.string.ok),
+                ) { _, _ ->
+                    if (!onFinished(uri)) {
+                        onUserCancel() // delete the file
+                    }
                 }
-            }
-            .setNegativeButton(
-                layout.root.context.getString(android.R.string.cancel),
-            ) { _, _ ->
-                // Delete the file
-                onUserCancel()
-            }
-            .setOnCancelListener {
-                onUserCancel()
-            }
+                .setNegativeButton(
+                    layout.root.context.getString(android.R.string.cancel),
+                ) { _, _ ->
+                    // Delete the file
+                    onUserCancel()
+                }
+                .setOnCancelListener {
+                    onUserCancel()
+                }
         onDelete?.apply {
             mab.setNeutralButton(layout.root.context.getString(R.string.delete)) { _, _ ->
                 this()
@@ -135,9 +136,7 @@ class MediaRecordingDialog {
         }
     }
 
-    private fun MediaPlayer.stopPlaying(
-        binding: DialogRecordAudioBinding,
-    ) {
+    private fun MediaPlayer.stopPlaying(binding: DialogRecordAudioBinding) {
         stop()
         release()
         player = null
@@ -183,9 +182,10 @@ class MediaRecordingDialog {
         binding.recordButton.isEnabled = false
         try {
             stop()
-        } catch (e: RuntimeException) { // invalid file
+        } catch (e: RuntimeException) {
+            // invalid file
             // ok already stopped
-            Log.d(TAG, "error stopping recording: $e")
+            Log.d(tag, "error stopping recording: $e")
             fileUri.toFile().delete()
         }
         release()
@@ -207,16 +207,17 @@ class MediaRecordingDialog {
         binding.apply {
             player = MediaPlayer()
             player?.let {
-                var agc = if (AutomaticGainControl.isAvailable()) {
-                    val agc = AutomaticGainControl.create(it.audioSessionId)
-                    agc.enabled = true
-                    agc
-                } else {
-                    null
-                }
+                var agc =
+                    if (AutomaticGainControl.isAvailable()) {
+                        val agc = AutomaticGainControl.create(it.audioSessionId)
+                        agc.enabled = true
+                        agc
+                    } else {
+                        null
+                    }
 
                 fun onFailure(e: Exception) {
-                    Log.d(TAG, "exception with play: $e")
+                    Log.d(tag, "exception with play: $e")
                     FirebaseCrashlytics.getInstance().recordException(e)
                     player = null
                     agc?.release()
@@ -234,9 +235,10 @@ class MediaRecordingDialog {
 
                     originalPlayButtonTintList = playButton.backgroundTintList
                     playButton.apply {
-                        backgroundTintList = ColorStateList.valueOf(
-                            ContextCompat.getColor(root.context, R.color.negativeColor),
-                        )
+                        backgroundTintList =
+                            ColorStateList.valueOf(
+                                ContextCompat.getColor(root.context, R.color.negativeColor),
+                            )
                         setImageDrawable(
                             ContextCompat.getDrawable(
                                 root.context,
@@ -263,11 +265,12 @@ class MediaRecordingDialog {
         fileUri: Uri,
     ) {
         binding.apply {
-            recorder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                MediaRecorder(root.context)
-            } else {
-                MediaRecorder()
-            }
+            recorder =
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    MediaRecorder(root.context)
+                } else {
+                    MediaRecorder()
+                }
             recorder?.apply {
                 setAudioSource(MediaRecorder.AudioSource.MIC)
                 setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
@@ -275,7 +278,7 @@ class MediaRecordingDialog {
                 setOutputFile(fileUri.path)
 
                 fun onFailure(e: Exception) {
-                    Log.d(TAG, "exception with record: $e")
+                    Log.d(tag, "exception with record: $e")
                     FirebaseCrashlytics.getInstance().recordException(e)
                     recorder = null
                 }
@@ -287,9 +290,10 @@ class MediaRecordingDialog {
                     // Update UI
                     originalRecordButtonTintList = recordButton.backgroundTintList
 
-                    recordButton.backgroundTintList = ColorStateList.valueOf(
-                        ContextCompat.getColor(root.context, R.color.negativeColor),
-                    )
+                    recordButton.backgroundTintList =
+                        ColorStateList.valueOf(
+                            ContextCompat.getColor(root.context, R.color.negativeColor),
+                        )
                     // Disable play while recording
                     playButton.isEnabled = false
                     state = State.RECORDING

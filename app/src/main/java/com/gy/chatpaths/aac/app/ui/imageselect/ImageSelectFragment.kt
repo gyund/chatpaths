@@ -27,6 +27,8 @@ class ImageSelectFragment : Fragment(), ImageSelectListener {
     protected val viewmodel: ImageSelectViewModel by viewModels()
 
     private var columnCount: Int = 2
+
+    @Suppress("ktlint:standard:property-naming")
     private var _binder: FragmentImageselectBinding? = null
     private val binder get() = _binder!!
 
@@ -45,17 +47,19 @@ class ImageSelectFragment : Fragment(), ImageSelectListener {
     ): View {
         _binder = FragmentImageselectBinding.inflate(layoutInflater, container, false)
 
-        columnCount = when (resources.configuration.orientation) {
-            Configuration.ORIENTATION_LANDSCAPE -> 4
-            else -> 3
-        }
+        columnCount =
+            when (resources.configuration.orientation) {
+                Configuration.ORIENTATION_LANDSCAPE -> 4
+                else -> 3
+            }
 
         context?.let { context ->
             adapter = RVAdapter(this)
-            binder.recycler.layoutManager = when {
-                columnCount <= 1 -> LinearLayoutManager(context)
-                else -> GridLayoutManager(context, columnCount)
-            }
+            binder.recycler.layoutManager =
+                when {
+                    columnCount <= 1 -> LinearLayoutManager(context)
+                    else -> GridLayoutManager(context, columnCount)
+                }
             binder.recycler.adapter = adapter
 
             lifecycleScope.launch {
@@ -73,25 +77,30 @@ class ImageSelectFragment : Fragment(), ImageSelectListener {
         super.onDestroyView()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    override fun onCreateOptionsMenu(
+        menu: Menu,
+        inflater: MenuInflater,
+    ) {
         inflater.inflate(R.menu.image_select, menu)
         val search = menu.findItem(R.id.app_bar_search).actionView as SearchView
 
         search.apply {
-            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(text: String?): Boolean {
-                    // nothing
-                    return true
-                }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    lifecycleScope.launch {
-                        val images = viewmodel.getImages(context, newText)
-                        adapter?.setData(images)
+            setOnQueryTextListener(
+                object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(text: String?): Boolean {
+                        // nothing
+                        return true
                     }
-                    return true
-                }
-            })
+
+                    override fun onQueryTextChange(newText: String?): Boolean {
+                        lifecycleScope.launch {
+                            val images = viewmodel.getImages(context, newText)
+                            adapter?.setData(images)
+                        }
+                        return true
+                    }
+                },
+            )
         }
     }
 
@@ -100,7 +109,10 @@ class ImageSelectFragment : Fragment(), ImageSelectListener {
         findNavController().navigateUp()
     }
 
-    private fun <T> Fragment.setNavigationResult(result: T, key: String) {
+    private fun <T> Fragment.setNavigationResult(
+        result: T,
+        key: String,
+    ) {
         findNavController().previousBackStackEntry?.savedStateHandle?.set(key, result)
     }
 }

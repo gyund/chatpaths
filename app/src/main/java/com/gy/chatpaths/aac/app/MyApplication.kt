@@ -8,7 +8,6 @@ import javax.inject.Inject
 
 @HiltAndroidApp
 class MyApplication : Application() {
-
     @Inject
     lateinit var firebase: Firebase
 }
@@ -19,14 +18,14 @@ class MyApplication : Application() {
  *
  */
 @Keep
-fun keep() = listOf(
-    androidx.navigation.ui.R.anim.nav_default_enter_anim,
-    androidx.navigation.ui.R.anim.nav_default_exit_anim,
-    androidx.navigation.ui.R.anim.nav_default_pop_enter_anim,
-    androidx.navigation.ui.R.anim.nav_default_pop_exit_anim,
-
-    androidx.navigation.ui.R.animator.nav_default_enter_anim,
-    androidx.navigation.ui.R.animator.nav_default_exit_anim,
-    androidx.navigation.ui.R.animator.nav_default_pop_enter_anim,
-    androidx.navigation.ui.R.animator.nav_default_pop_exit_anim,
-)
+fun keep() =
+    listOf(
+        androidx.navigation.ui.R.anim.nav_default_enter_anim,
+        androidx.navigation.ui.R.anim.nav_default_exit_anim,
+        androidx.navigation.ui.R.anim.nav_default_pop_enter_anim,
+        androidx.navigation.ui.R.anim.nav_default_pop_exit_anim,
+        androidx.navigation.ui.R.animator.nav_default_enter_anim,
+        androidx.navigation.ui.R.animator.nav_default_exit_anim,
+        androidx.navigation.ui.R.animator.nav_default_pop_enter_anim,
+        androidx.navigation.ui.R.animator.nav_default_pop_exit_anim,
+    )

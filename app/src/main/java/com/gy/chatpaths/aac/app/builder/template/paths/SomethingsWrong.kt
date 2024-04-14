@@ -7,7 +7,6 @@ import com.gy.chatpaths.aac.app.builder.create.Path
 class SomethingsWrong(
     collection: Collection,
 ) : Path(collection) {
-
     init {
         setName(R.string.path_something_is_wrong)
         setIcon(R.drawable.ic_something_is_wrong)

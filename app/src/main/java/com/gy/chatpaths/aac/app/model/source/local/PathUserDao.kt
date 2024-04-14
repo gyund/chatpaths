@@ -50,7 +50,10 @@ interface PathUserDao {
     fun update(vararg pathUsers: PathUser)
 
     @Query("UPDATE PathUser SET name = :name WHERE userId = :id")
-    fun updateName(id: Int, name: String)
+    fun updateName(
+        id: Int,
+        name: String,
+    )
 
     @Query("UPDATE PathUser SET displayImage = NULL WHERE userId = :id")
     fun deleteDisplayImage(id: Int)

@@ -28,7 +28,6 @@ import kotlinx.coroutines.launch
  */
 @AndroidEntryPoint
 abstract class CommonFeatureFragment : Fragment() {
-
     /**
      * When a dialog completes and [openGalleryForImage] is called. When the image is selected
      * and cropping is complete, then this will be called to tell the fragment to store the
@@ -43,26 +42,31 @@ abstract class CommonFeatureFragment : Fragment() {
 
     private var destinationUri: Uri? = null
 
-    private val cropImageLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult(),
-    ) { result: ActivityResult ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val resultUri = UCrop.getOutput(result.data!!)
-            resultUri?.let {
-                onStoreImageUri(it)
+    private val cropImageLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult(),
+        ) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val resultUri = UCrop.getOutput(result.data!!)
+                resultUri?.let {
+                    onStoreImageUri(it)
+                }
+            } else if (result.resultCode == Activity.RESULT_CANCELED) {
+                Log.d("SCF", "Crop Canceled")
+                destinationUri?.toFile()?.delete()
             }
-        } else if (result.resultCode == Activity.RESULT_CANCELED) {
-            Log.d("SCF", "Crop Canceled")
-            destinationUri?.toFile()?.delete()
+            destinationUri = null
         }
-        destinationUri = null
-    }
 
-    private fun cropImage(sourceUri: Uri, destinationUri: Uri) {
+    private fun cropImage(
+        sourceUri: Uri,
+        destinationUri: Uri,
+    ) {
         this.destinationUri = destinationUri
-        val intent = UCrop.of(sourceUri, destinationUri)
-            .withAspectRatio(5f, 5f)
-            .getIntent(requireActivity())
+        val intent =
+            UCrop.of(sourceUri, destinationUri)
+                .withAspectRatio(5f, 5f)
+                .getIntent(requireActivity())
         cropImageLauncher.launch(intent)
     }
 
@@ -72,7 +76,7 @@ abstract class CommonFeatureFragment : Fragment() {
             (
                 ContextCompat.checkSelfPermission(context, READ_MEDIA_IMAGES) == PERMISSION_GRANTED ||
                     ContextCompat.checkSelfPermission(context, READ_MEDIA_VIDEO) == PERMISSION_GRANTED
-                )
+            )
         ) {
             // Full access on Android 13 (API level 33) or higher
         } else if (
@@ -89,10 +93,11 @@ abstract class CommonFeatureFragment : Fragment() {
         return true
     }
 
-    private var requestPermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { results ->
-        // Handle permission requests results
-        // See the permission example in the Android platform samples: https://github.com/android/platform-samples
-    }
+    private var requestPermission =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { results ->
+            // Handle permission requests results
+            // See the permission example in the Android platform samples: https://github.com/android/platform-samples
+        }
 
     private val pickMedia =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->

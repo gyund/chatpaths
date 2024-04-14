@@ -44,8 +44,9 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, CollectionManagerListener {
-
     private val columnCount: Int = 1
+
+    @Suppress("ktlint:standard:property-naming")
     private var _binding: UserDetailBinding? = null
     private val binding get() = _binding!!
 
@@ -169,7 +170,10 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    override fun onCreateOptionsMenu(
+        menu: Menu,
+        inflater: MenuInflater,
+    ) {
         inflater.inflate(R.menu.manager_user_detail_fragment_menu, menu)
     }
 
@@ -208,7 +212,10 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
         _binding = null
     }
 
-    override fun showDeleteCollectionDialog(collectionId: Int, onItemRemoved: (success: Boolean) -> Unit) {
+    override fun showDeleteCollectionDialog(
+        collectionId: Int,
+        onItemRemoved: (success: Boolean) -> Unit,
+    ) {
         context?.apply {
             MaterialAlertDialogBuilder(this)
                 .setTitle(this.getString(R.string.delete_collection_title))
@@ -237,10 +244,11 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
 
     private fun setupRecyclerView() {
         adapter = MyCollectionsRecyclerViewAdapter(this, collectionsViewModel, this)
-        binding.list.layoutManager = when {
-            columnCount <= 1 -> LinearLayoutManager(context)
-            else -> GridLayoutManager(context, columnCount)
-        }
+        binding.list.layoutManager =
+            when {
+                columnCount <= 1 -> LinearLayoutManager(context)
+                else -> GridLayoutManager(context, columnCount)
+            }
         // We attach in onResume
         // binding.list.adapter = adapter
 
@@ -322,29 +330,31 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
 
     private fun createEditUserDialog() {
         val binding = DialogUserNameBinding.inflate(layoutInflater)
-        val m = MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(R.string.edit_user_dialog_title))
-            .setMessage(getString(R.string.edit_user_dialog_message))
-            .setView(binding.root)
-            .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
-                // if the insert fails, the username already exists
-            }
-            .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
-            }
-            .show()
+        val m =
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle(getString(R.string.edit_user_dialog_title))
+                .setMessage(getString(R.string.edit_user_dialog_message))
+                .setView(binding.root)
+                .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
+                    // if the insert fails, the username already exists
+                }
+                .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
+                }
+                .show()
         setUsernameValidationOnClickListener(m, binding, ::editUser)
     }
 
     private fun addCollectionDialog() {
         val binding = DialogEditCollectionBinding.inflate(layoutInflater)
-        val m = MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(R.string.add_path_collection_dialog_title))
-            .setMessage(getString(R.string.add_path_collection_dialog_name))
-            .setView(binding.root)
-            .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
-            }
-            .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
-            }.show()
+        val m =
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle(getString(R.string.add_path_collection_dialog_title))
+                .setMessage(getString(R.string.add_path_collection_dialog_name))
+                .setView(binding.root)
+                .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
+                }
+                .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
+                }.show()
         m.onCollectionValidated(this, binding) {
             collectionsViewModel.addCollection(it)
         }
@@ -376,13 +386,19 @@ class UserDetailFragment : CommonFeatureFragment(), OnStartDragListener, Collect
         return currentUser.updateName(name)
     }
 
-    override fun setIsEnabled(collectionId: Int, enabled: Boolean) {
+    override fun setIsEnabled(
+        collectionId: Int,
+        enabled: Boolean,
+    ) {
         lifecycleScope.launch {
             collectionsViewModel.setIsEnabled(collectionId, enabled)
         }
     }
 
-    override fun setCollectionPosition(collectionId: Int, position: Int) {
+    override fun setCollectionPosition(
+        collectionId: Int,
+        position: Int,
+    ) {
         lifecycleScope.launch {
             collectionsViewModel.setCollectionPosition(collectionId, position)
         }

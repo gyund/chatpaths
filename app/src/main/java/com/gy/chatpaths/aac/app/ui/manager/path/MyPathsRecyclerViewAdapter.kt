@@ -15,7 +15,7 @@ import com.gy.chatpaths.aac.app.model.Path
 import com.gy.chatpaths.aac.app.ui.helper.ItemTouchHelperAdapter
 import com.gy.chatpaths.aac.app.ui.helper.ItemTouchHelperViewHolder
 import com.gy.chatpaths.aac.app.ui.helper.OnStartDragListener
-import java.util.*
+import java.util.Collections
 
 /**
  * [RecyclerView.Adapter] that can display a [UserPathCollectionPrefsView].
@@ -27,7 +27,6 @@ class MyPathsRecyclerViewAdapter(
 ) : RecyclerView.Adapter<MyPathsRecyclerViewAdapter.ViewHolder>(),
     BindableAdapter<Path>,
     ItemTouchHelperAdapter {
-
     private var values: MutableList<Path> = mutableListOf()
 
     override fun getItemId(position: Int): Long {
@@ -48,6 +47,7 @@ class MyPathsRecyclerViewAdapter(
         listener.setPathPosition(item.pathId, item.position)
     }
 
+    @Suppress("ktlint:standard:no-consecutive-comments")
     /**
      * When we set the [RecyclerView] adapter to null, this will get called.
      * This allows us to save the state once when items are reordered when the
@@ -113,20 +113,29 @@ class MyPathsRecyclerViewAdapter(
         positions.forEach(this::notifyItemChanged)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         // .inflate(R.layout.fragment_collections, parent, false)
         val binding = PathItemBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ViewHolder,
+        position: Int,
+    ) {
         holder.bind(values[position])
     }
 
     override fun getItemCount(): Int = values.size
 
-    override fun onItemMove(fromPosition: Int, toPosition: Int) {
+    override fun onItemMove(
+        fromPosition: Int,
+        toPosition: Int,
+    ) {
         Collections.swap(values, fromPosition, toPosition)
         notifyItemMoved(fromPosition, toPosition)
         // notifyDataSetChanged()
@@ -143,7 +152,6 @@ class MyPathsRecyclerViewAdapter(
             binding.root,
         ),
         ItemTouchHelperViewHolder {
-
         fun bind(path: Path) {
             binding.pathImage.setImageDrawable(
                 DrawableUtils.getDrawableImage(

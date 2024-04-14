@@ -12,7 +12,7 @@ import com.gy.chatpaths.aac.app.model.PathCollection
 import com.gy.chatpaths.aac.app.ui.helper.ItemTouchHelperAdapter
 import com.gy.chatpaths.aac.app.ui.helper.ItemTouchHelperViewHolder
 import com.gy.chatpaths.aac.app.ui.helper.OnStartDragListener
-import java.util.*
+import java.util.Collections
 
 /**
  * [RecyclerView.Adapter] that can display a [PathCollection].
@@ -24,7 +24,6 @@ class MyCollectionsRecyclerViewAdapter(
 ) : RecyclerView.Adapter<MyCollectionsRecyclerViewAdapter.ViewHolder>(),
     BindableAdapter<PathCollection>,
     ItemTouchHelperAdapter {
-
     private var values: MutableList<PathCollection> = mutableListOf()
 
     override fun getItemId(position: Int): Long {
@@ -67,9 +66,10 @@ class MyCollectionsRecyclerViewAdapter(
         // do a dumb find
         items.forEach { newitem ->
             // if the item is in the list, ignore it, because the user probably has the latest value
-            val existingItem = values.find { existing ->
-                existing.collectionId == newitem.collectionId
-            }
+            val existingItem =
+                values.find { existing ->
+                    existing.collectionId == newitem.collectionId
+                }
             if (null == existingItem) {
                 // add it
                 values.add(newitem)
@@ -105,20 +105,29 @@ class MyCollectionsRecyclerViewAdapter(
         positions.forEach(this::notifyItemChanged)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         // .inflate(R.layout.fragment_collections, parent, false)
         val binding = FragmentCollectionsBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ViewHolder,
+        position: Int,
+    ) {
         holder.bind(values[position])
     }
 
     override fun getItemCount(): Int = values.size
 
-    override fun onItemMove(fromPosition: Int, toPosition: Int) {
+    override fun onItemMove(
+        fromPosition: Int,
+        toPosition: Int,
+    ) {
         Collections.swap(values, fromPosition, toPosition)
         notifyItemMoved(fromPosition, toPosition)
         // notifyDataSetChanged()
@@ -135,7 +144,6 @@ class MyCollectionsRecyclerViewAdapter(
             binding.root,
         ),
         ItemTouchHelperViewHolder {
-
         fun bind(collection: PathCollection) {
             binding.pathImage.setImageDrawable(
                 UserCollectionsViewModel.getDrawable(

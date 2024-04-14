@@ -7,7 +7,6 @@ import com.gy.chatpaths.aac.app.builder.create.Path
 class Family(
     collection: Collection,
 ) : Path(collection) {
-
     init {
         setName(R.string.col_title_family)
         setIcon(R.drawable.ic_family)

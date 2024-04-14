@@ -23,7 +23,6 @@ abstract class Collection(
     val repository: CPRepository,
     val userId: Int,
 ) {
-
     abstract val id: Identifier
 
     var name: String? = null
@@ -42,12 +41,13 @@ abstract class Collection(
      */
     open suspend fun build() {
         // Create collection
-        val pc = PathCollection(
-            collectionId = 0, // new
-            name = name,
-            imageUri = iconUri.toString(),
-            userId = userId,
-        )
+        val pc =
+            PathCollection(
+                collectionId = 0,
+                name = name,
+                imageUri = iconUri.toString(),
+                userId = userId,
+            )
         val id = repository.addCollection(pc)
 
         // Add paths depth first
@@ -68,7 +68,9 @@ abstract class Collection(
         return this
     }
 
-    fun setName(@StringRes name: Int): Collection {
+    fun setName(
+        @StringRes name: Int,
+    ): Collection {
         this.name = context.getString(name)
         return this
     }
@@ -80,7 +82,9 @@ abstract class Collection(
      * This method will create a drawable URI that can be used
      * store the drawable information in a database.
      */
-    fun setIcon(@DrawableRes res: Int): Collection {
+    fun setIcon(
+        @DrawableRes res: Int,
+    ): Collection {
         iconUri = UriHelper.getUriToDrawable(context, res)
         return this
     }
@@ -94,7 +98,12 @@ abstract class Collection(
         /**
          * Retrieve the builder for the specified object
          */
-        fun getBuilder(identifier: Identifier, context: Context, repository: CPRepository, userId: Int): Collection {
+        fun getBuilder(
+            identifier: Identifier,
+            context: Context,
+            repository: CPRepository,
+            userId: Int,
+        ): Collection {
             return when (identifier) {
                 Identifier.Essentials -> Essentials(context, repository, userId)
                 Identifier.Starter -> Starter(context, repository, userId)

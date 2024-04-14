@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CollectionDetailFragment : CommonFeatureFragment() {
-
+    @Suppress("ktlint:standard:property-naming")
     private var _binding: FragmentCollectionDetailBinding? = null
     private val binding get() = _binding!!
 

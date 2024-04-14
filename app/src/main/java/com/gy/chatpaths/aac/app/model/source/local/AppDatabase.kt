@@ -23,12 +23,15 @@ import com.gy.chatpaths.aac.app.model.PathUser
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun pathDao(): PathDao
+
     abstract fun pathCollectionDao(): PathCollectionDao
+
     abstract fun pathUserDao(): PathUserDao
 
     companion object {
         const val DATABASE_VERSION = 13
 
+        @Suppress("ktlint:standard:property-naming")
         // Singleton prevents multiple instances of database opening at the
         // same time.
         @Volatile
@@ -119,163 +122,219 @@ abstract class AppDatabase : RoomDatabase() {
 //                database.execSQL("CREATE VIEW `${VIEW_NAME}` AS SELECT PU.userId, P.pathId, P.imageResource as defaultImageResource, P.defaultTitleStringResource, P2C.parentId, P2C.defaultPosition, PC.collectionId, COALESCE(PUML.enabled,1) as enabled, PUML.anchored, COALESCE(PUML.timesUsed,0) as timesUsed, COALESCE(PUML.position,P2C.defaultPosition,null) as position, UPC.title AS userTitle, UPC.imageResource AS userSharedImageUri, UPUI.imageResource AS userIndividualImageUri FROM PathUser AS PU INNER JOIN Path AS P INNER JOIN PathToCollections AS P2C ON P2C.pathId = P.pathId LEFT JOIN UserPathCustomizations AS UPC ON P.pathId = UPC.pathId LEFT JOIN PathUserML AS PUML ON PUML.userId = PU.userId AND PUML.pathId = P.pathId AND PUML.pathCollectionId = P2C.pathCollectionId LEFT JOIN PathCollection AS PC ON PC.collectionId = P2C.pathCollectionId LEFT JOIN UserPathUniqueImages AS UPUI ON UPUI.userId = PU.userId AND UPUI.pathId = P.pathId")
 //            }
 //        }
+
         /**
          * @note this migration is no longer needed but is still used in testing
          */
-        private val MIGRATION_11_12 = object : Migration(11, 12) {
-            val tablePath = "Path"
-            val tablePathCollections = "PathCollection"
+        private val MIGRATION_11_12 =
+            object : Migration(11, 12) {
+                val tablePath = "Path"
+                val tablePathCollections = "PathCollection"
 
-            override fun migrate(database: SupportSQLiteDatabase) {
-                val tableTempPath = "TEMP_PATH"
-                val tableTempCollections = "TEMP_COLLECTIONS"
+                override fun migrate(database: SupportSQLiteDatabase) {
+                    val tableTempPath = "TEMP_PATH"
+                    val tableTempCollections = "TEMP_COLLECTIONS"
 
-                database.beginTransaction()
-                database.execSQL("PRAGMA foreign_keys=off;")
+                    database.beginTransaction()
+                    database.execSQL("PRAGMA foreign_keys=off;")
 
-                updateCollections(database, tableTempCollections)
-                updatePaths(database, tableTempPath)
+                    updateCollections(database, tableTempCollections)
+                    updatePaths(database, tableTempPath)
 
-                database.execSQL("DROP TABLE `$tablePath`")
-                database.execSQL("DROP TABLE `$tablePathCollections`")
+                    database.execSQL("DROP TABLE `$tablePath`")
+                    database.execSQL("DROP TABLE `$tablePathCollections`")
 
-                database.execSQL("ALTER TABLE `$tableTempPath` RENAME TO `$tablePath`")
-                database.execSQL("ALTER TABLE `$tableTempCollections` RENAME TO `$tablePathCollections`")
+                    database.execSQL("ALTER TABLE `$tableTempPath` RENAME TO `$tablePath`")
+                    database.execSQL("ALTER TABLE `$tableTempCollections` RENAME TO `$tablePathCollections`")
 
-                val prefix = "android.resource://" + BuildConfig.APPLICATION_ID + "/drawable"
+                    val prefix = "android.resource://" + BuildConfig.APPLICATION_ID + "/drawable"
 
-                database.execSQL("UPDATE `$tablePath` SET imageUri = `replace`(imageUri, 'ic_', '$prefix/ic_') WHERE imageUri LIKE 'ic_%'")
-                database.execSQL("UPDATE `$tablePathCollections` SET imageUri = `replace`(imageUri, 'ic_', '$prefix/ic_') WHERE imageUri LIKE 'ic_%'")
+                    database.execSQL(
+                        "UPDATE `$tablePath` SET imageUri = `replace`(imageUri, 'ic_', '$prefix/ic_') WHERE imageUri LIKE 'ic_%'",
+                    )
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "UPDATE `$tablePathCollections` SET imageUri = `replace`(imageUri, 'ic_', '$prefix/ic_') WHERE imageUri LIKE 'ic_%'",
+                    )
 
-                // Create temporary index for migrating data
-                database.execSQL("CREATE INDEX IF NOT EXISTS `index_PathCollection_oldCollectionId` ON `$tablePathCollections` (`oldCollectionId`)")
-                database.execSQL("CREATE INDEX IF NOT EXISTS `index_Path_oldPathId` ON `$tablePath` (`oldPathId`)")
+                    // Create temporary index for migrating data
+                    database.execSQL(
+                        "CREATE INDEX IF NOT EXISTS `index_PathCollection_oldCollectionId` ON `$tablePathCollections` (`oldCollectionId`)",
+                    )
+                    database.execSQL("CREATE INDEX IF NOT EXISTS `index_Path_oldPathId` ON `$tablePath` (`oldPathId`)")
 
-                // Update collection index
-                database.execSQL("UPDATE Path SET collectionId = (SELECT collectionId FROM PathCollection AS pc WHERE Path.collectionId = pc.oldCollectionId AND Path.userId = pc.userId)")
-                database.execSQL("UPDATE Path SET parentId = (SELECT p.pathId FROM Path AS p WHERE Path.parentId = p.oldPathId AND p.collectionId = Path.collectionId AND p.userId = Path.userId)")
+                    // Update collection index
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "UPDATE Path SET collectionId = (SELECT collectionId FROM PathCollection AS pc WHERE Path.collectionId = pc.oldCollectionId AND Path.userId = pc.userId)",
+                    )
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "UPDATE Path SET parentId = (SELECT p.pathId FROM Path AS p WHERE Path.parentId = p.oldPathId AND p.collectionId = Path.collectionId AND p.userId = Path.userId)",
+                    )
 
 //                printTable(database, tablePathCollections)
 //                printTable(database, tablePath)
 
-                updateCollectionsFinal(database, tableTempCollections)
-                updatePathsFinal(database, tableTempPath)
+                    updateCollectionsFinal(database, tableTempCollections)
+                    updatePathsFinal(database, tableTempPath)
 
-                // Drop the rest of the tables
-                database.execSQL("DROP TABLE `PathToCollections`")
-                database.execSQL("DROP VIEW `PathUserDetail`")
-                database.execSQL("DROP TABLE `PathUserML`")
-                database.execSQL("DROP VIEW `UserPathCollectionPrefsView`")
-                database.execSQL("DROP TABLE `UserPathCollectionPrefs`")
-                database.execSQL("DROP TABLE `UserPathCustomizations`")
-                database.execSQL("DROP TABLE `UserPathUniqueImages`")
+                    // Drop the rest of the tables
+                    database.execSQL("DROP TABLE `PathToCollections`")
+                    database.execSQL("DROP VIEW `PathUserDetail`")
+                    database.execSQL("DROP TABLE `PathUserML`")
+                    database.execSQL("DROP VIEW `UserPathCollectionPrefsView`")
+                    database.execSQL("DROP TABLE `UserPathCollectionPrefs`")
+                    database.execSQL("DROP TABLE `UserPathCustomizations`")
+                    database.execSQL("DROP TABLE `UserPathUniqueImages`")
 
-                database.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS `index_Path_pathId` ON `Path` (`pathId`)")
-                database.execSQL("CREATE INDEX IF NOT EXISTS `index_Path_userId_collectionId_parentId` ON `Path` (`userId`, `collectionId`, `parentId`)")
-                database.execSQL("CREATE INDEX IF NOT EXISTS `index_Path_collectionId` ON `Path` (`collectionId`)")
+                    database.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS `index_Path_pathId` ON `Path` (`pathId`)")
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "CREATE INDEX IF NOT EXISTS `index_Path_userId_collectionId_parentId` ON `Path` (`userId`, `collectionId`, `parentId`)",
+                    )
+                    database.execSQL("CREATE INDEX IF NOT EXISTS `index_Path_collectionId` ON `Path` (`collectionId`)")
 
-                database.execSQL("PRAGMA foreign_keys=on;")
-                database.setTransactionSuccessful()
-                database.endTransaction()
-            }
+                    database.execSQL("PRAGMA foreign_keys=on;")
+                    database.setTransactionSuccessful()
+                    database.endTransaction()
+                }
 
-            private fun printTable(database: SupportSQLiteDatabase, tableName: String) {
-                Log.d("MIGRATE", "Printing table $tableName")
-                val cursor = database.query("SELECT * FROM `$tableName`")
-                Log.d("MIGRATE", DatabaseUtils.dumpCursorToString(cursor))
-            }
+                private fun printTable(
+                    database: SupportSQLiteDatabase,
+                    tableName: String,
+                ) {
+                    Log.d("MIGRATE", "Printing table $tableName")
+                    val cursor = database.query("SELECT * FROM `$tableName`")
+                    Log.d("MIGRATE", DatabaseUtils.dumpCursorToString(cursor))
+                }
 
-            val pudView = "PathUserDetail"
-            val upcView = "UserPathCollectionPrefsView"
+                val pudView = "PathUserDetail"
+                val upcView = "UserPathCollectionPrefsView"
 
-            fun updatePaths(
-                database: SupportSQLiteDatabase,
-                TABLE_NAME: String,
-            ) {
-                database.execSQL("CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`pathId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `oldPathId` INTEGER NOT NULL, `userId` INTEGER NOT NULL, `collectionId` INTEGER NOT NULL, `parentId` INTEGER, `defaultPosition` INTEGER, `name` TEXT, `imageUri` TEXT, `enabled` INTEGER NOT NULL DEFAULT 1, `anchored` INTEGER NOT NULL DEFAULT 0, `timesUsed` INTEGER NOT NULL DEFAULT 0, `position` INTEGER, FOREIGN KEY(`userId`) REFERENCES `PathUser`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`collectionId`) REFERENCES `PathCollection`(`collectionId`) ON UPDATE NO ACTION ON DELETE CASCADE )")
-                database.execSQL("INSERT INTO `$TABLE_NAME` (`oldPathId`,`userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` ) SELECT u.pathId ,u.userId, u.collectionId, u.parentId, u.defaultPosition, COALESCE(u.userTitle,u.defaultTitleStringResource), COALESCE(u.userIndividualImageUri, u.userSharedImageUri, u.defaultImageResource), COALESCE(u.enabled,1), COALESCE(u.anchored,0), COALESCE(u.timesUsed,0), u.position FROM `$pudView` AS u WHERE u.collectionId < 9999 OR u.collectionId > 10000")
-            }
+                fun updatePaths(
+                    database: SupportSQLiteDatabase,
+                    TABLE_NAME: String,
+                ) {
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`pathId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `oldPathId` INTEGER NOT NULL, `userId` INTEGER NOT NULL, `collectionId` INTEGER NOT NULL, `parentId` INTEGER, `defaultPosition` INTEGER, `name` TEXT, `imageUri` TEXT, `enabled` INTEGER NOT NULL DEFAULT 1, `anchored` INTEGER NOT NULL DEFAULT 0, `timesUsed` INTEGER NOT NULL DEFAULT 0, `position` INTEGER, FOREIGN KEY(`userId`) REFERENCES `PathUser`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`collectionId`) REFERENCES `PathCollection`(`collectionId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+                    )
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "INSERT INTO `$TABLE_NAME` (`oldPathId`,`userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` ) SELECT u.pathId ,u.userId, u.collectionId, u.parentId, u.defaultPosition, COALESCE(u.userTitle,u.defaultTitleStringResource), COALESCE(u.userIndividualImageUri, u.userSharedImageUri, u.defaultImageResource), COALESCE(u.enabled,1), COALESCE(u.anchored,0), COALESCE(u.timesUsed,0), u.position FROM `$pudView` AS u WHERE u.collectionId < 9999 OR u.collectionId > 10000",
+                    )
+                }
 
-            fun updateCollections(
-                database: SupportSQLiteDatabase,
-                TABLE_NAME: String,
-            ) {
-                database.execSQL("CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`collectionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `oldCollectionId` INTEGER, `userId` INTEGER NOT NULL, `name` TEXT, `imageUri` TEXT, `displayOrder` INTEGER, `enabled` INTEGER NOT NULL DEFAULT 1, `autoSort` INTEGER NOT NULL DEFAULT 0)")
-                database.execSQL("INSERT INTO `$TABLE_NAME` (`oldCollectionId`, `userId`, `name`, `imageUri`, `displayOrder`, `enabled` ) SELECT c.collectionId, COALESCE(c.userId,1), COALESCE(c.userDisplayName,c.name), COALESCE(c.displayImage, c.userDisplayImage), c.displayOrder, COALESCE(c.enabled,1) AS enabled  FROM `$upcView` AS c")
-            }
+                fun updateCollections(
+                    database: SupportSQLiteDatabase,
+                    TABLE_NAME: String,
+                ) {
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`collectionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `oldCollectionId` INTEGER, `userId` INTEGER NOT NULL, `name` TEXT, `imageUri` TEXT, `displayOrder` INTEGER, `enabled` INTEGER NOT NULL DEFAULT 1, `autoSort` INTEGER NOT NULL DEFAULT 0)",
+                    )
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "INSERT INTO `$TABLE_NAME` (`oldCollectionId`, `userId`, `name`, `imageUri`, `displayOrder`, `enabled` ) SELECT c.collectionId, COALESCE(c.userId,1), COALESCE(c.userDisplayName,c.name), COALESCE(c.displayImage, c.userDisplayImage), c.displayOrder, COALESCE(c.enabled,1) AS enabled  FROM `$upcView` AS c",
+                    )
+                }
 
-            /**
-             * The last migration just gets rid of the oldCollectionId column
-             */
-            fun updateCollectionsFinal(
-                database: SupportSQLiteDatabase,
-                TABLE_NAME: String,
-            ) {
-                database.execSQL("CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`collectionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `name` TEXT, `imageUri` TEXT, `displayOrder` INTEGER, `enabled` INTEGER NOT NULL DEFAULT 1, `autoSort` INTEGER NOT NULL DEFAULT 0)")
-                database.execSQL("INSERT INTO `$TABLE_NAME` (`collectionId`, `userId`, `name`, `imageUri`, `displayOrder`, `enabled`, `autoSort` ) SELECT `collectionId`, `userId`, `name`, `imageUri`, `displayOrder`, `enabled` , `autoSort` FROM `$tablePathCollections`")
-                database.execSQL("DROP TABLE `$tablePathCollections`")
+                /**
+                 * The last migration just gets rid of the oldCollectionId column
+                 */
+                fun updateCollectionsFinal(
+                    database: SupportSQLiteDatabase,
+                    TABLE_NAME: String,
+                ) {
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`collectionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `name` TEXT, `imageUri` TEXT, `displayOrder` INTEGER, `enabled` INTEGER NOT NULL DEFAULT 1, `autoSort` INTEGER NOT NULL DEFAULT 0)",
+                    )
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "INSERT INTO `$TABLE_NAME` (`collectionId`, `userId`, `name`, `imageUri`, `displayOrder`, `enabled`, `autoSort` ) SELECT `collectionId`, `userId`, `name`, `imageUri`, `displayOrder`, `enabled` , `autoSort` FROM `$tablePathCollections`",
+                    )
+                    database.execSQL("DROP TABLE `$tablePathCollections`")
 
-                database.execSQL("ALTER TABLE `$TABLE_NAME` RENAME TO `$tablePathCollections`")
-            }
+                    database.execSQL("ALTER TABLE `$TABLE_NAME` RENAME TO `$tablePathCollections`")
+                }
 
-            fun updatePathsFinal(
-                database: SupportSQLiteDatabase,
-                TABLE_NAME: String,
-            ) {
-                database.execSQL("CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`pathId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `collectionId` INTEGER NOT NULL, `parentId` INTEGER, `defaultPosition` INTEGER, `name` TEXT, `imageUri` TEXT, `enabled` INTEGER NOT NULL DEFAULT 1, `anchored` INTEGER NOT NULL DEFAULT 0, `timesUsed` INTEGER NOT NULL DEFAULT 0, `position` INTEGER, FOREIGN KEY(`userId`) REFERENCES `PathUser`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`collectionId`) REFERENCES `PathCollection`(`collectionId`) ON UPDATE NO ACTION ON DELETE CASCADE )")
-                database.execSQL("INSERT INTO `$TABLE_NAME` (`pathId`, `userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` ) SELECT `pathId`, `userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` FROM `$tablePath`")
+                fun updatePathsFinal(
+                    database: SupportSQLiteDatabase,
+                    TABLE_NAME: String,
+                ) {
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`pathId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `collectionId` INTEGER NOT NULL, `parentId` INTEGER, `defaultPosition` INTEGER, `name` TEXT, `imageUri` TEXT, `enabled` INTEGER NOT NULL DEFAULT 1, `anchored` INTEGER NOT NULL DEFAULT 0, `timesUsed` INTEGER NOT NULL DEFAULT 0, `position` INTEGER, FOREIGN KEY(`userId`) REFERENCES `PathUser`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`collectionId`) REFERENCES `PathCollection`(`collectionId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+                    )
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "INSERT INTO `$TABLE_NAME` (`pathId`, `userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` ) SELECT `pathId`, `userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` FROM `$tablePath`",
+                    )
 
-                database.execSQL("DROP TABLE `$tablePath`")
+                    database.execSQL("DROP TABLE `$tablePath`")
 
-                database.execSQL("ALTER TABLE `$TABLE_NAME` RENAME TO `$tablePath`")
-            }
-        }
-
-        private val MIGRATION_12_13 = object : Migration(12, 13) {
-
-            val tablePath = "Path"
-
-            override fun migrate(database: SupportSQLiteDatabase) {
-                inMigrationTransaction(database) {
-                    updatePaths(database, "TEMP_PATH")
+                    database.execSQL("ALTER TABLE `$TABLE_NAME` RENAME TO `$tablePath`")
                 }
             }
 
-            fun updatePaths(
-                database: SupportSQLiteDatabase,
-                TABLE_NAME: String,
-            ) {
-                database.execSQL("CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`pathId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `collectionId` INTEGER NOT NULL, `parentId` INTEGER, `defaultPosition` INTEGER, `name` TEXT, `imageUri` TEXT, `audioPromptUri` TEXT, `enabled` INTEGER NOT NULL DEFAULT 1, `anchored` INTEGER NOT NULL DEFAULT 0, `timesUsed` INTEGER NOT NULL DEFAULT 0, `position` INTEGER, FOREIGN KEY(`userId`) REFERENCES `PathUser`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`collectionId`) REFERENCES `PathCollection`(`collectionId`) ON UPDATE NO ACTION ON DELETE CASCADE )")
-                database.execSQL("INSERT INTO `$TABLE_NAME` (`pathId`, `userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` ) SELECT u.pathId ,u.userId, u.collectionId, u.parentId, u.defaultPosition, u.name, u.imageUri, u.enabled, u.anchored, u.timesUsed, u.position FROM `$tablePath` AS u")
+        private val MIGRATION_12_13 =
+            object : Migration(12, 13) {
+                val tablePath = "Path"
 
-                // Make temp table the new table
-                database.execSQL("DROP TABLE `$tablePath`")
-                database.execSQL("ALTER TABLE `$TABLE_NAME` RENAME TO `$tablePath`")
+                override fun migrate(database: SupportSQLiteDatabase) {
+                    inMigrationTransaction(database) {
+                        updatePaths(database, "TEMP_PATH")
+                    }
+                }
 
-                database.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS `index_Path_pathId` ON `Path` (`pathId`)")
-                database.execSQL("CREATE INDEX IF NOT EXISTS `index_Path_userId_collectionId_parentId` ON `Path` (`userId`, `collectionId`, `parentId`)")
-                database.execSQL("CREATE INDEX IF NOT EXISTS `index_Path_collectionId` ON `Path` (`collectionId`)")
+                fun updatePaths(
+                    database: SupportSQLiteDatabase,
+                    TABLE_NAME: String,
+                ) {
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "CREATE TABLE IF NOT EXISTS `$TABLE_NAME` (`pathId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `collectionId` INTEGER NOT NULL, `parentId` INTEGER, `defaultPosition` INTEGER, `name` TEXT, `imageUri` TEXT, `audioPromptUri` TEXT, `enabled` INTEGER NOT NULL DEFAULT 1, `anchored` INTEGER NOT NULL DEFAULT 0, `timesUsed` INTEGER NOT NULL DEFAULT 0, `position` INTEGER, FOREIGN KEY(`userId`) REFERENCES `PathUser`(`userId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`collectionId`) REFERENCES `PathCollection`(`collectionId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+                    )
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "INSERT INTO `$TABLE_NAME` (`pathId`, `userId`, `collectionId`, `parentId`, `defaultPosition`, `name`, `imageUri`, `enabled`, `anchored`, `timesUsed`, `position` ) SELECT u.pathId ,u.userId, u.collectionId, u.parentId, u.defaultPosition, u.name, u.imageUri, u.enabled, u.anchored, u.timesUsed, u.position FROM `$tablePath` AS u",
+                    )
+
+                    // Make temp table the new table
+                    database.execSQL("DROP TABLE `$tablePath`")
+                    database.execSQL("ALTER TABLE `$TABLE_NAME` RENAME TO `$tablePath`")
+
+                    database.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS `index_Path_pathId` ON `Path` (`pathId`)")
+                    @Suppress("ktlint:standard:max-line-length")
+                    database.execSQL(
+                        "CREATE INDEX IF NOT EXISTS `index_Path_userId_collectionId_parentId` ON `Path` (`userId`, `collectionId`, `parentId`)",
+                    )
+                    database.execSQL("CREATE INDEX IF NOT EXISTS `index_Path_collectionId` ON `Path` (`collectionId`)")
+                }
             }
-        }
 
-        private val ALL_MIGRATIONS = arrayOf<Migration>(
+        private val ALL_MIGRATIONS =
+            arrayOf<Migration>(
 //            MIGRATION_10_11,
-            MIGRATION_11_12,
-            MIGRATION_12_13,
-        )
+                MIGRATION_11_12,
+                MIGRATION_12_13,
+            )
 
-        private val DESTRUCTIVE_MIGRATION_VERSIONS = arrayOf(
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-        )
+        private val DESTRUCTIVE_MIGRATION_VERSIONS =
+            arrayOf(
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+            )
 
         @Deprecated("Only Repository Classes should access this class directly")
         fun getDatabase(context: Context): AppDatabase {
@@ -284,13 +343,14 @@ abstract class AppDatabase : RoomDatabase() {
                 return tempInstance
             }
             synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    @Suppress("DEPRECATION") AppDatabase::class.java,
-                    "sc_database",
-                ).let {
-                    return@let buildDatabase(it)
-                }
+                val instance =
+                    Room.databaseBuilder(
+                        context.applicationContext,
+                        @Suppress("DEPRECATION") AppDatabase::class.java,
+                        "sc_database",
+                    ).let {
+                        return@let buildDatabase(it)
+                    }
 
                 INSTANCE = instance
                 return instance

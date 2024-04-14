@@ -32,6 +32,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class TemplateFragment : Fragment(), TemplateSelectionListener {
     private var columnCount: Int = 2
+
+    @Suppress("ktlint:standard:property-naming")
     private var _binder: FragmentHomeBinding? = null
     private val binder get() = _binder!!
 
@@ -46,10 +48,11 @@ class TemplateFragment : Fragment(), TemplateSelectionListener {
         _binder = FragmentHomeBinding.inflate(layoutInflater, container, false)
         // Apply configs if new ones were received in the background
 
-        columnCount = when (resources.configuration.orientation) {
-            Configuration.ORIENTATION_LANDSCAPE -> 3
-            else -> 2
-        }
+        columnCount =
+            when (resources.configuration.orientation) {
+                Configuration.ORIENTATION_LANDSCAPE -> 3
+                else -> 2
+            }
 
 //        val act = (activity as MainActivity)
 //        act.showInAppReviewDialog()
@@ -72,24 +75,26 @@ class TemplateFragment : Fragment(), TemplateSelectionListener {
     private fun setupViewContents() {
         context?.let { context ->
             val adapter = RVAdapter(context, this)
-            binder.chatviewRecycler.layoutManager = when {
-                columnCount <= 1 -> LinearLayoutManager(context)
-                else -> GridLayoutManager(context, columnCount)
-            }
+            binder.chatviewRecycler.layoutManager =
+                when {
+                    columnCount <= 1 -> LinearLayoutManager(context)
+                    else -> GridLayoutManager(context, columnCount)
+                }
             binder.chatviewRecycler.adapter = adapter
 
             lifecycleScope.launch {
                 currentUser.getUserLive().observe(viewLifecycleOwner, {
                     lifecycleScope.launch {
-                        val collections = listOf<Collection>(
-                            Essentials(context, currentUser.repository, currentUser.userId),
-                            Starter(context, currentUser.repository, currentUser.userId),
-                            Breakfast(context, currentUser.repository, currentUser.userId),
-                            Lunch(context, currentUser.repository, currentUser.userId),
-                            Dinner(context, currentUser.repository, currentUser.userId),
-                            Problem(context, currentUser.repository, currentUser.userId),
-                            Family(context, currentUser.repository, currentUser.userId),
-                        )
+                        val collections =
+                            listOf<Collection>(
+                                Essentials(context, currentUser.repository, currentUser.userId),
+                                Starter(context, currentUser.repository, currentUser.userId),
+                                Breakfast(context, currentUser.repository, currentUser.userId),
+                                Lunch(context, currentUser.repository, currentUser.userId),
+                                Dinner(context, currentUser.repository, currentUser.userId),
+                                Problem(context, currentUser.repository, currentUser.userId),
+                                Family(context, currentUser.repository, currentUser.userId),
+                            )
 
                         collections.apply {
                             adapter.setData(this)
@@ -114,18 +119,19 @@ class TemplateFragment : Fragment(), TemplateSelectionListener {
         context?.apply {
             pendingTemplateId = collection.id
             val binding = DialogEditCollectionBinding.inflate(layoutInflater)
-            val m = MaterialAlertDialogBuilder(this)
-                .setView(binding.root)
-                .setTitle(getString(R.string.add_path_collection_dialog_title))
-                .setMessage(getString(R.string.add_path_collection_dialog_name))
-                .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
-                }
-                .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
-                    pendingTemplateId = null
-                }
-                .setOnCancelListener {
-                    pendingTemplateId = null
-                }.show()
+            val m =
+                MaterialAlertDialogBuilder(this)
+                    .setView(binding.root)
+                    .setTitle(getString(R.string.add_path_collection_dialog_title))
+                    .setMessage(getString(R.string.add_path_collection_dialog_name))
+                    .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
+                    }
+                    .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
+                        pendingTemplateId = null
+                    }
+                    .setOnCancelListener {
+                        pendingTemplateId = null
+                    }.show()
 
             m.onCollectionValidated(frag, binding) {
                 setNavigationResult(it, "template_name")
@@ -135,7 +141,10 @@ class TemplateFragment : Fragment(), TemplateSelectionListener {
         }
     }
 
-    private fun <T> Fragment.setNavigationResult(result: T, key: String) {
+    private fun <T> Fragment.setNavigationResult(
+        result: T,
+        key: String,
+    ) {
         findNavController().previousBackStackEntry?.savedStateHandle?.set(key, result)
     }
 }

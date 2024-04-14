@@ -12,7 +12,6 @@ import com.gy.chatpaths.aac.app.model.PathCollection
 
 @Dao
 interface PathCollectionDao {
-
     @Insert
     fun insert(pc: PathCollection): Long
 
@@ -53,37 +52,65 @@ interface PathCollectionDao {
     fun deleteUserDisplayImage(collectionId: Int)
 
     @Query("UPDATE PathCollection SET name = :title WHERE collectionId = :collectionId")
-    fun setTitle(collectionId: Int, title: String)
+    fun setTitle(
+        collectionId: Int,
+        title: String,
+    )
 
     @Query("UPDATE PathCollection SET imageUri = :uri WHERE collectionId = :collectionId")
-    fun setImage(collectionId: Int, uri: String)
+    fun setImage(
+        collectionId: Int,
+        uri: String,
+    )
 
     @Query("UPDATE PathCollection SET enabled = :enabled WHERE userId = :userId AND collectionId = :collectionId")
-    fun setCollectionEnabled(userId: Int, collectionId: Int, enabled: Boolean)
+    fun setCollectionEnabled(
+        userId: Int,
+        collectionId: Int,
+        enabled: Boolean,
+    )
 
     @Query("UPDATE PathCollection SET displayOrder = NULL WHERE userId = :userId")
     fun resetOrder(userId: Int)
 
     @Query("UPDATE PathCollection SET displayOrder = :position WHERE userId = :userId AND collectionId = :collectionId")
-    fun setCollectionPosition(userId: Int, collectionId: Int, position: Int)
+    fun setCollectionPosition(
+        userId: Int,
+        collectionId: Int,
+        position: Int,
+    )
 
     @Query("UPDATE PathCollection SET autoSort = :enabled WHERE userId = :userId AND collectionId = :collectionId")
-    fun setCollectionAutosort(userId: Int, collectionId: Int, enabled: Boolean)
+    fun setCollectionAutosort(
+        userId: Int,
+        collectionId: Int,
+        enabled: Boolean,
+    )
 
     @Query("SELECT COUNT(*) FROM PathCollection WHERE imageUri = :uri")
     fun getImageUseCount(uri: String): Int
 
-    @Query("SELECT imageUri FROM PathCollection WHERE userId = :userId AND imageUri IS NOT NULL AND imageUri NOT LIKE '${ContentResolver.SCHEME_ANDROID_RESOURCE}%' ")
+    @Suppress("ktlint:standard:max-line-length")
+    @Query(
+        "SELECT imageUri FROM PathCollection WHERE userId = :userId AND imageUri IS NOT NULL AND imageUri NOT LIKE '${ContentResolver.SCHEME_ANDROID_RESOURCE}%' ",
+    )
     fun getUserImages(userId: Int): List<String>
 
+    @Suppress("ktlint:standard:max-line-length")
     @Query("SELECT * FROM PathCollection WHERE userId = :userId ORDER BY displayOrder ASC")
     fun getViewLive(userId: Int): LiveData<List<PathCollection>>
 
     @Query("SELECT * FROM PathCollection WHERE userId = :userId AND enabled = :enabled ORDER BY displayOrder ASC")
-    fun getViewLiveByState(userId: Int, enabled: Boolean): LiveData<List<PathCollection>>
+    fun getViewLiveByState(
+        userId: Int,
+        enabled: Boolean,
+    ): LiveData<List<PathCollection>>
 
     @Query("SELECT * FROM PathCollection WHERE userId = :userId AND enabled = :enabled ORDER BY displayOrder ASC")
-    fun getViewByState(userId: Int, enabled: Boolean): List<PathCollection>
+    fun getViewByState(
+        userId: Int,
+        enabled: Boolean,
+    ): List<PathCollection>
 
     @Query("SELECT * FROM PathCollection WHERE userId = :userId ORDER BY displayOrder ASC")
     fun getView(userId: Int): List<PathCollection>

@@ -11,7 +11,6 @@ class Essentials(
     repository: CPRepository,
     userId: Int,
 ) : Collection(context, repository, userId) {
-
     init {
         setName(R.string.col_title_essentials)
         setIcon(R.drawable.ic_crescent_moon_right)

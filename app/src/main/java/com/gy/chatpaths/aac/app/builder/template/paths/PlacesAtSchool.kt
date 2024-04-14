@@ -7,7 +7,6 @@ import com.gy.chatpaths.aac.app.builder.create.Path
 class PlacesAtSchool(
     collection: Collection,
 ) : Path(collection) {
-
     init {
         setName(R.string.path_somewhere_at_school)
         setIcon(R.drawable.ic_school)

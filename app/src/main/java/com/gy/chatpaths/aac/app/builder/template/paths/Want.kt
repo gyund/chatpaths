@@ -7,7 +7,6 @@ import com.gy.chatpaths.aac.app.builder.create.Path
 class Want(
     collection: Collection,
 ) : Path(collection) {
-
     init {
         setName(R.string.path_i_want)
         setIcon(R.drawable.ic_i_want)

@@ -35,7 +35,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
-
+    @Suppress("ktlint:standard:property-naming")
     private var _binding: FragmentPathDetailBinding? = null
     private val binding get() = _binding!!
 
@@ -47,34 +47,36 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
 
     var mediaRecordingDialog = MediaRecordingDialog()
 
-    private val recordAudioPermission = registerForActivityResult(
-        ActivityResultContracts.RequestPermission(),
-    ) {
-        if (it) {
-            context?.let { _ ->
-                launchPromptRecordingDialog()
+    private val recordAudioPermission =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission(),
+        ) {
+            if (it) {
+                context?.let { _ ->
+                    launchPromptRecordingDialog()
+                }
             }
         }
-    }
 
     private fun launchPromptRecordingDialog() {
         val fragment = this
         lifecycleScope.launch {
             var audioPromptUri: Uri? = null
-            val onDelete: (() -> Unit)? = viewmodel.getPath()?.let { p ->
-                if (true == p.audioPromptUri?.isNotEmpty()) {
-                    try {
-                        audioPromptUri = Uri.parse(p.audioPromptUri)
-                    } catch (e: RuntimeException) {
-                        FirebaseCrashlytics.getInstance().recordException(e)
+            val onDelete: (() -> Unit)? =
+                viewmodel.getPath()?.let { p ->
+                    if (true == p.audioPromptUri?.isNotEmpty()) {
+                        try {
+                            audioPromptUri = Uri.parse(p.audioPromptUri)
+                        } catch (e: RuntimeException) {
+                            FirebaseCrashlytics.getInstance().recordException(e)
+                        }
+                        return@let {
+                            // lambda for onDelete
+                            viewmodel.deleteAudioPrompt(p.pathId)
+                        }
                     }
-                    return@let {
-                        // lambda for onDelete
-                        viewmodel.deleteAudioPrompt(p.pathId)
-                    }
+                    null
                 }
-                null
-            }
 
             mediaRecordingDialog.recordAudio(fragment, audioPromptUri, onDelete) { uri ->
                 if (null != uri) {
@@ -154,7 +156,10 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    override fun onCreateOptionsMenu(
+        menu: Menu,
+        inflater: MenuInflater,
+    ) {
         inflater.inflate(R.menu.manager_pathdetail_fragment_menu, menu)
         lifecycleScope.launch {
             if (viewmodel.hasChild()) {

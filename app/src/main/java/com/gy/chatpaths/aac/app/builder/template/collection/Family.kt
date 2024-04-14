@@ -11,7 +11,6 @@ class Family(
     repository: CPRepository,
     userId: Int,
 ) : Collection(context, repository, userId) {
-
     init {
         val path = PathFamily(this)
         name = path.name

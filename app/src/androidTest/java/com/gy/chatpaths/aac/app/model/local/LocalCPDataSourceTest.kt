@@ -16,7 +16,6 @@ import org.junit.rules.TemporaryFolder
 
 @MediumTest
 class LocalCPDataSourceTest {
-
     private lateinit var pathDao: com.gy.chatpaths.aac.app.model.source.local.PathDao
     private lateinit var db: com.gy.chatpaths.aac.app.model.source.local.AppDatabase
     private lateinit var lds: com.gy.chatpaths.aac.app.model.source.local.LocalCPDataSource

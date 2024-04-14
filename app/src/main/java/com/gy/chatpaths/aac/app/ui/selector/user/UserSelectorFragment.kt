@@ -20,8 +20,9 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class UserSelectorFragment : Fragment() {
-
     val viewModel: UserViewModel by viewModels()
+
+    @Suppress("ktlint:standard:property-naming")
     private var _binding: UserFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -68,7 +69,10 @@ class UserSelectorFragment : Fragment() {
         findNavController().navigateUp()
     }
 
-    private fun <T> Fragment.setNavigationResult(result: T, key: String) {
+    private fun <T> Fragment.setNavigationResult(
+        result: T,
+        key: String,
+    ) {
         findNavController().previousBackStackEntry?.savedStateHandle?.set(key, result)
     }
 }

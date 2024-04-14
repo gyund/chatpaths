@@ -7,7 +7,6 @@ import com.gy.chatpaths.aac.app.builder.create.Path
 class PlacesAtHome(
     collection: Collection,
 ) : Path(collection) {
-
     init {
         setName(R.string.col_title_places_home)
         setIcon(R.drawable.ic_somewhere_in_house_yard)

@@ -7,22 +7,21 @@ import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
-import com.gy.chatpaths.aac.app.model.source.local.AppDatabase
-import com.gy.chatpaths.aac.app.model.source.local.LocalCPDataSource
 import kotlinx.coroutines.runBlocking
 import org.junit.Rule
 import org.junit.Test
 
 @LargeTest
 class MigrationTest {
-    private val TEST_DB = "sc_database_test"
+    private val testDB = "sc_database_test"
 
     @get:Rule
-    val helper: MigrationTestHelper = MigrationTestHelper(
-        InstrumentationRegistry.getInstrumentation(),
-        com.gy.chatpaths.aac.app.model.source.local.AppDatabase::class.java.canonicalName,
-        FrameworkSQLiteOpenHelperFactory(),
-    )
+    val helper: MigrationTestHelper =
+        MigrationTestHelper(
+            InstrumentationRegistry.getInstrumentation(),
+            com.gy.chatpaths.aac.app.model.source.local.AppDatabase::class.java.canonicalName,
+            FrameworkSQLiteOpenHelperFactory(),
+        )
 
     fun populate11(db: SupportSQLiteDatabase) {
         db.execSQL(
@@ -538,7 +537,7 @@ class MigrationTest {
     fun migrateAll() {
         for (version in 10..com.gy.chatpaths.aac.app.model.source.local.AppDatabase.DATABASE_VERSION) {
             // Create earliest version of the database.
-            val db = helper.createDatabase(TEST_DB, version)
+            val db = helper.createDatabase(testDB, version)
             when (version) {
                 // Oldest version with non-destructive upgrades
 //                10 -> {
@@ -561,7 +560,7 @@ class MigrationTest {
                     .getInstrumentation()
                     .targetContext,
                 com.gy.chatpaths.aac.app.model.source.local.AppDatabase::class.java,
-                TEST_DB,
+                testDB,
             ).let {
                 return@let com.gy.chatpaths.aac.app.model.source.local.AppDatabase.buildDatabase(it)
             }.apply {

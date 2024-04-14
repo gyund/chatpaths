@@ -7,7 +7,6 @@ import com.gy.chatpaths.aac.app.builder.create.Path
 class ChatWords(
     collection: Collection,
 ) : Path(collection) {
-
     init {
         setName(R.string.path_chat_words)
         setIcon(R.drawable.ic_chat_words)
