@@ -45,8 +45,7 @@ class PathsDetailFragment : CommonFeatureFragment(), PathDetailManagerListener {
     @Inject
     lateinit var guidedTour: GuidedTour
 
-    @Inject
-    lateinit var mediaRecordingDialog: MediaRecordingDialog
+    var mediaRecordingDialog = MediaRecordingDialog()
 
     private val recordAudioPermission = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
