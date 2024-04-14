@@ -134,7 +134,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        api-level: [27,34]
+        api-level: [34] # 27 hangs, due to crash_pad handler so just 34 for now (https://github.com/ReactiveCircus/android-emulator-runner/issues/381)
         target: [google_apis]
         arch: [x86, x86_64]
         exclude:
