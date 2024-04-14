@@ -19,7 +19,7 @@ import com.gy.chatpaths.aac.app.databinding.DialogUserNameBinding
 import com.gy.chatpaths.aac.app.databinding.UserFragmentBinding
 import com.gy.chatpaths.aac.app.di.module.CurrentUser
 import com.gy.chatpaths.aac.app.di.module.GuidedTour
-import com.gy.chatpaths.model.PathUser
+import com.gy.chatpaths.aac.app.model.PathUser
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

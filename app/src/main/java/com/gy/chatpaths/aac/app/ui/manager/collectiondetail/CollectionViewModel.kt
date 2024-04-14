@@ -5,8 +5,8 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import com.gy.chatpaths.aac.app.DrawableUtils
-import com.gy.chatpaths.model.PathCollection
-import com.gy.chatpaths.model.source.CPRepository
+import com.gy.chatpaths.aac.app.model.PathCollection
+import com.gy.chatpaths.aac.app.model.source.CPRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

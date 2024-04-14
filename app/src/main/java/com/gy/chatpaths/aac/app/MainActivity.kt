@@ -25,10 +25,10 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.gy.chatpaths.aac.app.builder.InitialData
 import com.gy.chatpaths.aac.app.databinding.ActivityMainBinding
 import com.gy.chatpaths.aac.app.di.module.Firebase
-import com.gy.chatpaths.builder.InitialData
-import com.gy.chatpaths.model.source.CPRepository
+import com.gy.chatpaths.aac.app.model.source.CPRepository
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

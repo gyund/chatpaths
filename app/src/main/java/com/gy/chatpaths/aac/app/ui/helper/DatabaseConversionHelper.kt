@@ -4,8 +4,8 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import com.gy.chatpaths.aac.app.DrawableUtils
 import com.gy.chatpaths.aac.app.R
-import com.gy.chatpaths.model.Path
-import com.gy.chatpaths.model.PathCollection
+import com.gy.chatpaths.aac.app.model.Path
+import com.gy.chatpaths.aac.app.model.PathCollection
 
 class DatabaseConversionHelper {
 

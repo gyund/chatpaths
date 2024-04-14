@@ -32,10 +32,10 @@ import com.gy.chatpaths.aac.app.databinding.DialogEditPathTitleBinding
 import com.gy.chatpaths.aac.app.databinding.FragmentPathsBinding
 import com.gy.chatpaths.aac.app.di.module.CurrentUser
 import com.gy.chatpaths.aac.app.di.module.GuidedTour
+import com.gy.chatpaths.aac.app.model.Path
 import com.gy.chatpaths.aac.app.ui.helper.DatabaseConversionHelper
 import com.gy.chatpaths.aac.app.ui.helper.OnStartDragListener
 import com.gy.chatpaths.aac.app.ui.helper.SimpleItemTouchHelperCallback
-import com.gy.chatpaths.model.Path
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

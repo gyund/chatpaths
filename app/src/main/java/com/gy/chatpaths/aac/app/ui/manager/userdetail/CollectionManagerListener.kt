@@ -1,6 +1,6 @@
 package com.gy.chatpaths.aac.app.ui.manager.userdetail
 
-import com.gy.chatpaths.model.PathCollection
+import com.gy.chatpaths.aac.app.model.PathCollection
 
 interface CollectionManagerListener {
 

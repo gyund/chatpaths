@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gy.chatpaths.aac.app.DrawableUtils
 import com.gy.chatpaths.aac.app.databinding.UserListContentBinding
-import com.gy.chatpaths.model.PathUser
+import com.gy.chatpaths.aac.app.model.PathUser
 
 class SimpleItemRecyclerViewAdapter(
     private val context: Context,

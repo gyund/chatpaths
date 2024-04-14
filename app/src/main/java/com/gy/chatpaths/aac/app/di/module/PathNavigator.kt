@@ -2,9 +2,9 @@ package com.gy.chatpaths.aac.app.di.module
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.gy.chatpaths.model.Path
-import com.gy.chatpaths.model.PathUser
-import com.gy.chatpaths.model.source.CPRepository
+import com.gy.chatpaths.aac.app.model.Path
+import com.gy.chatpaths.aac.app.model.PathUser
+import com.gy.chatpaths.aac.app.model.source.CPRepository
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.FragmentComponent

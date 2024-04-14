@@ -8,7 +8,7 @@ import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.net.toFile
-import com.gy.chatpaths.model.Path
+import com.gy.chatpaths.aac.app.model.Path
 
 class DrawableUtils {
     companion object {

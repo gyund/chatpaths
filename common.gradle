@@ -2,16 +2,3 @@
 //println  "  rootDir:      ${project.rootDir}"
 //println  "  projectDir:   ${project.projectDir}";
 //println  "  project dir:  ${System.getProperty("user.dir")}";
-
-android {
-	lintOptions {
-//		abortOnError false
-		lintConfig file("${project.rootDir}/lint.xml")
-
-		xmlReport true
-		htmlReport true
-	}
-//    lintOptions {
-//        baseline file("lint-baseline.xml")
-//    }
-}

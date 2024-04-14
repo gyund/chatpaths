@@ -22,16 +22,16 @@ import com.google.android.material.navigation.NavigationView
 import com.gy.chatpaths.aac.app.CommonFeatureFragment.Companion.getNavigationResult
 import com.gy.chatpaths.aac.app.MainActivity
 import com.gy.chatpaths.aac.app.R
+import com.gy.chatpaths.aac.app.builder.create.Collection
 import com.gy.chatpaths.aac.app.databinding.DialogEditCollectionBinding
 import com.gy.chatpaths.aac.app.databinding.FragmentHomeBinding
 import com.gy.chatpaths.aac.app.di.module.CurrentUser
 import com.gy.chatpaths.aac.app.di.module.Firebase
 import com.gy.chatpaths.aac.app.di.module.GuidedTour
 import com.gy.chatpaths.aac.app.di.module.InAppReview
+import com.gy.chatpaths.aac.app.model.source.CPRepository
 import com.gy.chatpaths.aac.app.ui.manager.userdetail.UserCollectionsViewModel
 import com.gy.chatpaths.aac.app.ui.manager.userdetail.UserDetailFragment.Companion.onCollectionValidated
-import com.gy.chatpaths.builder.create.Collection
-import com.gy.chatpaths.model.source.CPRepository
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -114,7 +114,7 @@ class HomeFragment : Fragment() {
                         //                                val menu = navigationView.menu
                         //                                val username = menu.findItem(R.id.username)
                         val username = headerView.findViewById<TextView>(R.id.textView)
-                        if (name != getString(com.gy.chatpaths.aac.data.R.string.username_default)) {
+                        if (name != getString(R.string.username_default)) {
                             username.text = name
                             username.visibility = View.VISIBLE
                         } else {

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.gy.chatpaths.aac.app.di.module.CurrentUser
-import com.gy.chatpaths.model.PathUser
-import com.gy.chatpaths.model.source.CPRepository
+import com.gy.chatpaths.aac.app.model.PathUser
+import com.gy.chatpaths.aac.app.model.source.CPRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

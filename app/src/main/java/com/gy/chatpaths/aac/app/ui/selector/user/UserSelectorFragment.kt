@@ -12,8 +12,8 @@ import com.gy.chatpaths.aac.app.databinding.UserFragmentBinding
 import com.gy.chatpaths.aac.app.di.module.CurrentUser
 import com.gy.chatpaths.aac.app.di.module.Firebase
 import com.gy.chatpaths.aac.app.di.module.GuidedTour
+import com.gy.chatpaths.aac.app.model.PathUser
 import com.gy.chatpaths.aac.app.ui.manager.user.UserViewModel
-import com.gy.chatpaths.model.PathUser
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

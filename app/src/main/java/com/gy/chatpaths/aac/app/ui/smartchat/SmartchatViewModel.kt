@@ -10,8 +10,8 @@ import androidx.palette.graphics.Palette
 import com.gy.chatpaths.aac.app.di.module.CurrentUser
 import com.gy.chatpaths.aac.app.di.module.InAppReview
 import com.gy.chatpaths.aac.app.di.module.PathNavigator
-import com.gy.chatpaths.model.Path
-import com.gy.chatpaths.model.source.CPRepository
+import com.gy.chatpaths.aac.app.model.Path
+import com.gy.chatpaths.aac.app.model.source.CPRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

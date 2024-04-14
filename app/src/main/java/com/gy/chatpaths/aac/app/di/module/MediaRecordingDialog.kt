@@ -14,17 +14,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.gy.chatpaths.aac.app.R
 import com.gy.chatpaths.aac.app.databinding.DialogRecordAudioBinding
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.FragmentComponent
 import java.io.File
 import java.io.IOException
 import java.util.*
-import javax.inject.Inject
 
-@Module
-@InstallIn(FragmentComponent::class)
-class MediaRecordingDialog @Inject constructor() {
+class MediaRecordingDialog {
 
     val TAG = "MediaRecordingDialog"
 

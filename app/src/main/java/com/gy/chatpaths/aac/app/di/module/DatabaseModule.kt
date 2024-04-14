@@ -1,7 +1,7 @@
 package com.gy.chatpaths.aac.app.di.module
 
 import android.content.Context
-import com.gy.chatpaths.model.source.local.AppDatabase
+import com.gy.chatpaths.aac.app.model.source.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

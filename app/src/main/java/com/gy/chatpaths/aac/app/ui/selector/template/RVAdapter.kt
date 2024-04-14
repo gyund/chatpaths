@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gy.chatpaths.aac.app.BindableAdapter
 import com.gy.chatpaths.aac.app.DrawableUtils
 import com.gy.chatpaths.aac.app.R
+import com.gy.chatpaths.aac.app.builder.create.Collection
 import com.gy.chatpaths.aac.app.databinding.FragmentHomeCollectionsBinding
-import com.gy.chatpaths.builder.create.Collection
 
 /**
  * [RecyclerView.Adapter] that can display a [UserPathCollectionPrefsView].

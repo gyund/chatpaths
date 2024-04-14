@@ -28,8 +28,8 @@ import com.gy.chatpaths.aac.app.R
 import com.gy.chatpaths.aac.app.databinding.FragmentSmartchatRootBinding
 import com.gy.chatpaths.aac.app.di.module.CurrentUser
 import com.gy.chatpaths.aac.app.di.module.PathReader
-import com.gy.chatpaths.model.Path
-import com.gy.chatpaths.model.PathUser
+import com.gy.chatpaths.aac.app.model.Path
+import com.gy.chatpaths.aac.app.model.PathUser
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

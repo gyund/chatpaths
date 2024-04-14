@@ -11,10 +11,10 @@ import com.gy.chatpaths.aac.app.BindableAdapter
 import com.gy.chatpaths.aac.app.DrawableUtils
 import com.gy.chatpaths.aac.app.R
 import com.gy.chatpaths.aac.app.databinding.PathItemBinding
+import com.gy.chatpaths.aac.app.model.Path
 import com.gy.chatpaths.aac.app.ui.helper.ItemTouchHelperAdapter
 import com.gy.chatpaths.aac.app.ui.helper.ItemTouchHelperViewHolder
 import com.gy.chatpaths.aac.app.ui.helper.OnStartDragListener
-import com.gy.chatpaths.model.Path
 import java.util.*
 
 /**
