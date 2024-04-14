@@ -12,23 +12,22 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
-
-    private val TAG = "myFBMS"
+    private val tag = "myFBMS"
 
     override fun onNewToken(token: String) {
         if (BuildConfig.DEBUG) {
-            Log.d(TAG, "New FCM Token: $token")
+            Log.d(tag, "New FCM Token: $token")
         }
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
-        Log.d(TAG, "From: ${remoteMessage.from}")
+        Log.d(tag, "From: ${remoteMessage.from}")
 
         // Check if message contains a data payload.
         if (remoteMessage.data.isNotEmpty()) {
-            Log.d(TAG, "Message data payload: ${remoteMessage.data}")
+            Log.d(tag, "Message data payload: ${remoteMessage.data}")
 
 //            if (/* Check if data needs to be processed by long running job */ true) {
 //                // For long-running tasks (10 seconds or more) use WorkManager.
@@ -41,7 +40,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         // Check if message contains a notification payload.
         remoteMessage.notification?.let {
-            Log.d(TAG, "Message Notification Body: ${it.body}")
+            Log.d(tag, "Message Notification Body: ${it.body}")
             sendNotification(it, remoteMessage.data)
         }
 
@@ -61,21 +60,23 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val channelId =
             notification.channelId ?: getString(R.string.default_notification_channel_id)
 
-        val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setStyle(NotificationCompat.BigTextStyle())
-            .setSmallIcon(R.drawable.ic_chatpath_logo_notification)
-            .setContentTitle(notification.title)
-            .setContentText(notification.body)
-            .setAutoCancel(true)
+        val notificationBuilder =
+            NotificationCompat.Builder(this, channelId)
+                .setStyle(NotificationCompat.BigTextStyle())
+                .setSmallIcon(R.drawable.ic_chatpath_logo_notification)
+                .setContentTitle(notification.title)
+                .setContentText(notification.body)
+                .setAutoCancel(true)
 
         setIntent(data, notificationBuilder)
 
         // Send the notification
-        val notificationManager = updateNotificationChannel(
-            channelId,
-            notificationBuilder,
-            getColorOverride(data),
-        )
+        val notificationManager =
+            updateNotificationChannel(
+                channelId,
+                notificationBuilder,
+                getColorOverride(data),
+            )
         notificationManager.notify(0, notificationBuilder.build())
     }
 
@@ -142,28 +143,30 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     ): NotificationManager {
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
-        val channelName = when (channelId) {
-            getString(R.string.updates_notification_channel_id) -> {
-                notificationBuilder.setCategory(NotificationCompat.CATEGORY_SOCIAL)
-                notificationBuilder.color = colorOverride ?: getColor(R.color.primaryDarkColor)
-                getString(R.string.updates_notification_channel_name)
+        val channelName =
+            when (channelId) {
+                getString(R.string.updates_notification_channel_id) -> {
+                    notificationBuilder.setCategory(NotificationCompat.CATEGORY_SOCIAL)
+                    notificationBuilder.color = colorOverride ?: getColor(R.color.primaryDarkColor)
+                    getString(R.string.updates_notification_channel_name)
+                }
+                getString(R.string.promo_notification_channel_id) -> {
+                    notificationBuilder.setCategory(NotificationCompat.CATEGORY_PROMO)
+                    notificationBuilder.color =
+                        colorOverride ?: getColor(android.R.color.holo_green_dark)
+                    getString(R.string.promo_notification_channel_name)
+                }
+                else -> {
+                    notificationBuilder.color = colorOverride ?: getColor(android.R.color.black)
+                    getString(R.string.default_notification_channel_name)
+                }
             }
-            getString(R.string.promo_notification_channel_id) -> {
-                notificationBuilder.setCategory(NotificationCompat.CATEGORY_PROMO)
-                notificationBuilder.color =
-                    colorOverride ?: getColor(android.R.color.holo_green_dark)
-                getString(R.string.promo_notification_channel_name)
-            }
-            else -> {
-                notificationBuilder.color = colorOverride ?: getColor(android.R.color.black)
-                getString(R.string.default_notification_channel_name)
-            }
-        }
-        val channel = NotificationChannel(
-            channelId,
-            channelName,
-            NotificationManager.IMPORTANCE_DEFAULT,
-        )
+        val channel =
+            NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_DEFAULT,
+            )
         notificationManager.createNotificationChannel(channel)
         return notificationManager
     }

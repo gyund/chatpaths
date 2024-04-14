@@ -11,7 +11,6 @@ class Lunch(
     repository: CPRepository,
     userId: Int,
 ) : Collection(context, repository, userId) {
-
     init {
         val path = PathLunch(this)
         name = path.name

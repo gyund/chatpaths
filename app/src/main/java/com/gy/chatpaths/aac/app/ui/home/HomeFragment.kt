@@ -39,6 +39,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var columnCount: Int = 2
+
+    @Suppress("ktlint:standard:property-naming")
     private var _binder: FragmentHomeBinding? = null
     private val binder get() = _binder!!
 
@@ -69,10 +71,11 @@ class HomeFragment : Fragment() {
         // Apply configs if new ones were received in the background
         firebase.refresh()
 
-        columnCount = when (resources.configuration.orientation) {
-            Configuration.ORIENTATION_LANDSCAPE -> 3
-            else -> 2
-        }
+        columnCount =
+            when (resources.configuration.orientation) {
+                Configuration.ORIENTATION_LANDSCAPE -> 3
+                else -> 2
+            }
 
         // When we create the view, check if we should display
         // older versions of resume might use fragments which would cause resume to continually
@@ -95,10 +98,11 @@ class HomeFragment : Fragment() {
     private fun setupViewContents() {
         context?.apply {
             val adapter = ActiveCollectionsRVAdapter(this)
-            binder.chatviewRecycler.layoutManager = when {
-                columnCount <= 1 -> LinearLayoutManager(this)
-                else -> GridLayoutManager(this, columnCount)
-            }
+            binder.chatviewRecycler.layoutManager =
+                when {
+                    columnCount <= 1 -> LinearLayoutManager(this)
+                    else -> GridLayoutManager(this, columnCount)
+                }
             binder.chatviewRecycler.adapter = adapter
 
             lifecycleScope.launch {
@@ -157,7 +161,10 @@ class HomeFragment : Fragment() {
         super.onResume()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    override fun onCreateOptionsMenu(
+        menu: Menu,
+        inflater: MenuInflater,
+    ) {
         inflater.inflate(R.menu.main, menu)
     }
 
@@ -180,10 +187,11 @@ class HomeFragment : Fragment() {
             R.id.userDetailFragment -> {
                 lifecycleScope.launch {
                     currentUser.getUser()?.let { user ->
-                        val action = HomeFragmentDirections.actionUserFragmentToUserDetailFragment(
-                            user.userId,
-                            false,
-                        )
+                        val action =
+                            HomeFragmentDirections.actionUserFragmentToUserDetailFragment(
+                                user.userId,
+                                false,
+                            )
                         findNavController().navigate(action)
                     }
                 }
@@ -195,18 +203,19 @@ class HomeFragment : Fragment() {
 
     private fun addCollectionDialog() {
         val binding = DialogEditCollectionBinding.inflate(layoutInflater)
-        val m = MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(R.string.add_path_collection_dialog_title))
-            .setMessage(getString(R.string.add_path_collection_dialog_name))
-            .setView(binding.root)
-            .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
-            }
-            .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
-            }
-            .setNeutralButton(getString(R.string.add_template)) { _, _ ->
-                val action = HomeFragmentDirections.actionNavHomeToTemplateFragment()
-                findNavController().navigate(action)
-            }.show()
+        val m =
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle(getString(R.string.add_path_collection_dialog_title))
+                .setMessage(getString(R.string.add_path_collection_dialog_name))
+                .setView(binding.root)
+                .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
+                }
+                .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
+                }
+                .setNeutralButton(getString(R.string.add_template)) { _, _ ->
+                    val action = HomeFragmentDirections.actionNavHomeToTemplateFragment()
+                    findNavController().navigate(action)
+                }.show()
 
         m.onCollectionValidated(this, binding) {
             collectionsViewModel.addCollection(it)

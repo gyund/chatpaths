@@ -14,7 +14,6 @@ import com.gy.chatpaths.aac.app.databinding.FragmentImageselectImageBinding
 class RVAdapter(
     private val listener: ImageSelectListener,
 ) : RecyclerView.Adapter<RVAdapter.ViewHolder>(), BindableAdapter<String> {
-
     private var values: List<String> = emptyList()
 
     /**
@@ -33,14 +32,20 @@ class RVAdapter(
         positions.forEach(this::notifyItemChanged)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         // .inflate(R.layout.fragment_collections, parent, false)
         val binding = FragmentImageselectImageBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ViewHolder,
+        position: Int,
+    ) {
         holder.bind(values[position])
     }
 
@@ -48,7 +53,6 @@ class RVAdapter(
 
     inner class ViewHolder(val binding: FragmentImageselectImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(resourceOrUri: String) {
             binding.pathImage.setImageDrawable(
                 DrawableUtils.getDrawableImage(
@@ -61,6 +65,7 @@ class RVAdapter(
             if (binding.pathImage.drawable == null) {
                 Log.d("RVAdapter", "image is not available: $resourceOrUri")
             }
+
             // binding.outercardview.setCardBackgroundColor(getColor(context, R.color.primaryDarkColor))
             fun onPathClicked() {
                 listener.selectImage(resourceOrUri)

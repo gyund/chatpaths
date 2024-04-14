@@ -12,8 +12,10 @@ import com.gy.chatpaths.aac.app.model.Path
 
 class DrawableUtils {
     companion object {
-
-        private fun getDrawableFromUri(context: Context, resourceNameOrUri: String): Drawable? {
+        private fun getDrawableFromUri(
+            context: Context,
+            resourceNameOrUri: String,
+        ): Drawable? {
             try {
                 val uri = Uri.parse(resourceNameOrUri)
                 if (uri.toFile().exists()) {
@@ -26,19 +28,24 @@ class DrawableUtils {
             return null
         }
 
-        private fun getDefaultResource(context: Context, @DrawableRes defaultResource: Int?) =
-            if (null != defaultResource) {
-                ContextCompat.getDrawable(context, defaultResource)
-            } else {
-                null
-            }
+        private fun getDefaultResource(
+            context: Context,
+            @DrawableRes defaultResource: Int?,
+        ) = if (null != defaultResource) {
+            ContextCompat.getDrawable(context, defaultResource)
+        } else {
+            null
+        }
 
         /**
          * @note we need to use getIdentifier, even though it is discouraged, because if
          * we're using a built in resource, we have to get the original resource id.
          */
         @SuppressLint("DiscouragedApi")
-        private fun getDrawableAsResource(context: Context, resourceNameOrUri: String): Drawable? {
+        private fun getDrawableAsResource(
+            context: Context,
+            resourceNameOrUri: String,
+        ): Drawable? {
             return if (resourceNameOrUri.startsWith(ContentResolver.SCHEME_ANDROID_RESOURCE)) {
                 val altUri = resourceNameOrUri.substringAfterLast('/')
                 // Default
@@ -89,16 +96,17 @@ class DrawableUtils {
             return getDrawableImage(context, path.imageUri, defaultResource)
         }
 
-        private val LIGHT = androidx.palette.graphics.Target.Builder().setMinimumLightness(0.50f)
-            .setTargetLightness(0.74f)
-            .setMaximumLightness(1.0f)
-            .setMinimumSaturation(0.1f)
-            .setTargetSaturation(0.7f)
-            .setMaximumSaturation(1f)
-            .setPopulationWeight(0.18f)
-            .setSaturationWeight(0.22f)
-            .setLightnessWeight(0.60f)
-            .setExclusive(false)
-            .build()
+        private val LIGHT =
+            androidx.palette.graphics.Target.Builder().setMinimumLightness(0.50f)
+                .setTargetLightness(0.74f)
+                .setMaximumLightness(1.0f)
+                .setMinimumSaturation(0.1f)
+                .setTargetSaturation(0.7f)
+                .setMaximumSaturation(1f)
+                .setPopulationWeight(0.18f)
+                .setSaturationWeight(0.22f)
+                .setLightnessWeight(0.60f)
+                .setExclusive(false)
+                .build()
     }
 }

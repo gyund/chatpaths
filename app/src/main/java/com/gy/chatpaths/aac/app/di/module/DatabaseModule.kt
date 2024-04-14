@@ -14,7 +14,9 @@ import javax.inject.Singleton
 class DatabaseModule {
     @Singleton
     @Provides
-    fun providesAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
+    fun providesAppDatabase(
+        @ApplicationContext appContext: Context,
+    ): AppDatabase {
         @Suppress("DEPRECATION")
         return AppDatabase.getDatabase(appContext)
     }

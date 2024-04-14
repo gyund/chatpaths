@@ -8,27 +8,29 @@ import com.gy.chatpaths.aac.app.model.Path
 import com.gy.chatpaths.aac.app.model.PathCollection
 
 class DatabaseConversionHelper {
-
     companion object {
-
         private fun getCollectionDrawable(
             context: Context,
             primaryImage: String?,
             secondaryImage: String?,
         ): Drawable? {
-            val img = if (!primaryImage.isNullOrBlank()) {
-                DrawableUtils.getDrawableImage(context, primaryImage, null)
-            } else {
-                DrawableUtils.getDrawableImage(
-                    context,
-                    secondaryImage,
-                    R.drawable.ic_baseline_image_24,
-                )
-            }
+            val img =
+                if (!primaryImage.isNullOrBlank()) {
+                    DrawableUtils.getDrawableImage(context, primaryImage, null)
+                } else {
+                    DrawableUtils.getDrawableImage(
+                        context,
+                        secondaryImage,
+                        R.drawable.ic_baseline_image_24,
+                    )
+                }
             return img
         }
 
-        fun getCollectionDrawable(context: Context, collection: PathCollection): Drawable? {
+        fun getCollectionDrawable(
+            context: Context,
+            collection: PathCollection,
+        ): Drawable? {
             return getCollectionDrawable(context, collection.imageUri, null)
         }
 
@@ -85,7 +87,10 @@ class DatabaseConversionHelper {
 //            }
 //        }
 
-        fun getPathTitleString(context: Context, path: Path): String? {
+        fun getPathTitleString(
+            context: Context,
+            path: Path,
+        ): String? {
             //            if(null == title) {title = StringUtils.getStringFromStringResourceName(context, path.defaultTitleStringResource, null)}
             return path.name
         }

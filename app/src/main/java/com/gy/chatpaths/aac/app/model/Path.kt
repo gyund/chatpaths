@@ -36,11 +36,13 @@ data class Path(
     var parentId: Int? = null,
     var defaultPosition: Int? = null,
     var name: String? = null,
-    var imageUri: String? = null, // TODO: Index or make FTS4 table
-    var audioPromptUri: String? = null, // TODO: Index or make FTS4 table
-    @ColumnInfo(defaultValue = "1") var enabled: Boolean = true, // modifyable so we don't need to request the whole view
+    // TODO: Index or make FTS4 table
+    var imageUri: String? = null,
+    // TODO: Index or make FTS4 table
+    var audioPromptUri: String? = null,
+    // modifyable so we don't need to request the whole view
+    @ColumnInfo(defaultValue = "1") var enabled: Boolean = true,
     @ColumnInfo(defaultValue = "0") var anchored: Boolean = true,
     @ColumnInfo(defaultValue = "0") var timesUsed: Int = 0,
     var position: Int?,
-
 )

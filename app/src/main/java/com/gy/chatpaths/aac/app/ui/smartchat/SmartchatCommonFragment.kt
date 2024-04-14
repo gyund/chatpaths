@@ -40,6 +40,7 @@ import javax.inject.Inject
  */
 @AndroidEntryPoint
 open class SmartchatCommonFragment : Fragment() {
+    @Suppress("ktlint:standard:property-naming")
     private var _binding: FragmentSmartchatRootBinding? = null
     protected val binding get() = _binding!!
 
@@ -239,41 +240,45 @@ open class SmartchatCommonFragment : Fragment() {
                 setNavEnabled(false)
                 preAnimation = null
                 val loadedAnim = AnimationUtils.loadAnimation(requireContext(), preAnim)
-                loadedAnim.setAnimationListener(object : Animation.AnimationListener {
-                    override fun onAnimationRepeat(animation: Animation?) {
-                    }
-
-                    override fun onAnimationEnd(animation: Animation?) {
-                        updatePathUI(path)
-                        val postAnim = postAnimation
-                        if (postAnim != null) {
-                            postAnimation = null
-                            val exitanim =
-                                AnimationUtils.loadAnimation(requireContext(), postAnim)
-                            exitanim.setAnimationListener(object :
-                                Animation.AnimationListener {
-                                override fun onAnimationRepeat(animation: Animation?) {
-                                }
-
-                                override fun onAnimationEnd(animation: Animation?) {
-                                    binding.pathImage.clearAnimation()
-                                    setNavEnabled(true)
-                                }
-
-                                override fun onAnimationStart(animation: Animation?) {
-                                }
-                            })
-                            binding.pathImage.startAnimation(exitanim)
-                        } else {
-                            animation?.reset()
-                            binding.pathImage.clearAnimation()
-                            setNavEnabled(true)
+                loadedAnim.setAnimationListener(
+                    object : Animation.AnimationListener {
+                        override fun onAnimationRepeat(animation: Animation?) {
                         }
-                    }
 
-                    override fun onAnimationStart(animation: Animation?) {
-                    }
-                })
+                        override fun onAnimationEnd(animation: Animation?) {
+                            updatePathUI(path)
+                            val postAnim = postAnimation
+                            if (postAnim != null) {
+                                postAnimation = null
+                                val exitanim =
+                                    AnimationUtils.loadAnimation(requireContext(), postAnim)
+                                exitanim.setAnimationListener(
+                                    object :
+                                        Animation.AnimationListener {
+                                        override fun onAnimationRepeat(animation: Animation?) {
+                                        }
+
+                                        override fun onAnimationEnd(animation: Animation?) {
+                                            binding.pathImage.clearAnimation()
+                                            setNavEnabled(true)
+                                        }
+
+                                        override fun onAnimationStart(animation: Animation?) {
+                                        }
+                                    },
+                                )
+                                binding.pathImage.startAnimation(exitanim)
+                            } else {
+                                animation?.reset()
+                                binding.pathImage.clearAnimation()
+                                setNavEnabled(true)
+                            }
+                        }
+
+                        override fun onAnimationStart(animation: Animation?) {
+                        }
+                    },
+                )
                 binding.pathImage.startAnimation(loadedAnim)
             } else {
                 preAnimation = null
@@ -385,11 +390,12 @@ open class SmartchatCommonFragment : Fragment() {
                 if (!fixedTxtColor) {
                     // Get the default image, since no image was found for this (or we're text only)
 
-                    val drawable = DrawableUtils.getDrawableImage(
-                        context,
-                        null,
-                        R.drawable.ic_baseline_image_24,
-                    )
+                    val drawable =
+                        DrawableUtils.getDrawableImage(
+                            context,
+                            null,
+                            R.drawable.ic_baseline_image_24,
+                        )
 
                     if (null != drawable) { // make sure we aren't missing the default image too instead of a theme
                         viewmodel.setTextColorFromDrawable(
@@ -423,7 +429,6 @@ open class SmartchatCommonFragment : Fragment() {
     }
 
     companion object {
-
         private var preAnimation: Int? = null
         private var postAnimation: Int? = null
     }

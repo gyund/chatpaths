@@ -28,8 +28,9 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class UserFragment : Fragment() {
-
     val viewModel: UserViewModel by viewModels()
+
+    @Suppress("ktlint:standard:property-naming")
     private var _binding: UserFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -70,6 +71,7 @@ class UserFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
         fun showGuidedHelp() {
             guidedTour.addGuidedEntry(
                 R.id.addUserMenu,
@@ -83,7 +85,10 @@ class UserFragment : Fragment() {
         showGuidedHelp()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    override fun onCreateOptionsMenu(
+        menu: Menu,
+        inflater: MenuInflater,
+    ) {
         inflater.inflate(R.menu.users_menu, menu)
     }
 
@@ -105,17 +110,18 @@ class UserFragment : Fragment() {
         context?.apply {
             fun showAddUserDialog() {
                 val binding = DialogUserNameBinding.inflate(layoutInflater)
-                val madb = MaterialAlertDialogBuilder(this)
-                    .setTitle("Add user")
-                    .setMessage("Enter a name")
-                    .setView(binding.root)
-                    .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
-                        // if the insert fails, the username already exists
-                    }
-                    .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
-                    }
-                    .show()
-                setUsernameValidationOnClickListener(madb, binding, ::_addUser)
+                val madb =
+                    MaterialAlertDialogBuilder(this)
+                        .setTitle("Add user")
+                        .setMessage("Enter a name")
+                        .setView(binding.root)
+                        .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
+                            // if the insert fails, the username already exists
+                        }
+                        .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
+                        }
+                        .show()
+                setUsernameValidationOnClickListener(madb, binding, ::addUser)
             }
 
             showAddUserDialog()
@@ -149,7 +155,7 @@ class UserFragment : Fragment() {
     /**
      * Wrapper for model access
      */
-    private suspend fun _addUser(name: String): Boolean {
+    private suspend fun addUser(name: String): Boolean {
         var success = false
 
         context?.apply {

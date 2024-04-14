@@ -15,7 +15,6 @@ class Starter(
     repository: CPRepository,
     userId: Int,
 ) : Collection(context, repository, userId) {
-
     init {
         setName(R.string.col_title_smartchat)
         setIcon(R.drawable.ic_chat)

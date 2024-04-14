@@ -14,14 +14,19 @@ class RVAdapter(
     private var values: List<PathUser>,
 ) :
     RecyclerView.Adapter<RVAdapter.ViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = UserListContentBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ViewHolder,
+        position: Int,
+    ) {
         val item = values[position]
         holder.bind(item)
     }

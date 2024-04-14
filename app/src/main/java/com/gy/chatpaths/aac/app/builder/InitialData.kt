@@ -10,14 +10,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class InitialData {
-
     companion object {
         const val COLLECTION_ID_LETSCHAT = 1
 
         /**
          * Initialize/Update the database with factory values
          */
-        suspend fun populate(context: Context, repository: CPRepository) {
+        suspend fun populate(
+            context: Context,
+            repository: CPRepository,
+        ) {
             withContext(Dispatchers.IO) {
                 val users = arrayOf(PathUser(1, context.getString(R.string.username_default), null))
                 users.forEach {

@@ -11,7 +11,6 @@ class Breakfast(
     repository: CPRepository,
     userId: Int,
 ) : Collection(context, repository, userId) {
-
     init {
         val path = PathBreakfast(this)
         name = path.name

@@ -7,7 +7,6 @@ import com.gy.chatpaths.aac.app.builder.create.Path
 class Eat(
     collection: Collection,
 ) : Path(collection) {
-
     init {
         setName(R.string.path_eat)
         setIcon(R.drawable.ic_eat)

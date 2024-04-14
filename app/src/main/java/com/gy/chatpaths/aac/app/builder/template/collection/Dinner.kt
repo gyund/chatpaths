@@ -11,7 +11,6 @@ class Dinner(
     repository: CPRepository,
     userId: Int,
 ) : Collection(context, repository, userId) {
-
     init {
         val path = PathDinner(this)
         name = path.name

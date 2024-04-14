@@ -42,8 +42,9 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerListener {
-
     private val columnCount: Int = 1
+
+    @Suppress("ktlint:standard:property-naming")
     private var _binding: FragmentPathsBinding? = null
     private val binding get() = _binding!!
 
@@ -134,7 +135,10 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
         return binding.root
     }
 
-    private fun getReadOutloudIcon(context: Context, readOutLoud: Boolean? = null): Drawable? {
+    private fun getReadOutloudIcon(
+        context: Context,
+        readOutLoud: Boolean? = null,
+    ): Drawable? {
         val preferences = activity?.let { PreferenceManager.getDefaultSharedPreferences(it) }
         val ro = readOutLoud ?: preferences?.getBoolean("read_out_loud_preference", false)
 
@@ -167,7 +171,10 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    override fun onCreateOptionsMenu(
+        menu: Menu,
+        inflater: MenuInflater,
+    ) {
         inflater.inflate(R.menu.manager_path_fragment_menu, menu)
 
         context?.apply {
@@ -296,13 +303,19 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
         }
     }
 
-    override fun setIsEnabled(pathId: Int, enabled: Boolean) {
+    override fun setIsEnabled(
+        pathId: Int,
+        enabled: Boolean,
+    ) {
         lifecycleScope.launch {
             viewmodel.setIsEnabled(pathId, enabled)
         }
     }
 
-    override fun setPathPosition(pathId: Int, position: Int?) {
+    override fun setPathPosition(
+        pathId: Int,
+        position: Int?,
+    ) {
         lifecycleScope.launch {
             viewmodel.setPathPosition(pathId, position)
         }
@@ -344,10 +357,11 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
         val frag = this
         context?.apply {
             adapter = MyPathsRecyclerViewAdapter(frag, viewmodel, frag)
-            binding.list.layoutManager = when {
-                columnCount <= 1 -> LinearLayoutManager(context)
-                else -> GridLayoutManager(context, columnCount)
-            }
+            binding.list.layoutManager =
+                when {
+                    columnCount <= 1 -> LinearLayoutManager(context)
+                    else -> GridLayoutManager(context, columnCount)
+                }
             // We attach in onResume
             // binding.list.adapter = adapter
 
@@ -355,24 +369,28 @@ class PathsFragment : CommonFeatureFragment(), OnStartDragListener, PathManagerL
             itemTouchHelper = ItemTouchHelper(callback)
             itemTouchHelper.attachToRecyclerView(binding.list)
 
-            val swipeHandler = object : SwipeToDeleteCallback(this) {
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    lifecycleScope.launch {
-                        adapter.removeAt(viewHolder.bindingAdapterPosition)
-                    }
-                }
-
-                override fun getSwipeDirs(
-                    recyclerView: RecyclerView,
-                    viewHolder: RecyclerView.ViewHolder,
-                ): Int {
-                    viewHolder.itemView.getTag(R.id.collection_id)?.let {
-                        return super.getSwipeDirs(recyclerView, viewHolder)
+            val swipeHandler =
+                object : SwipeToDeleteCallback(this) {
+                    override fun onSwiped(
+                        viewHolder: RecyclerView.ViewHolder,
+                        direction: Int,
+                    ) {
+                        lifecycleScope.launch {
+                            adapter.removeAt(viewHolder.bindingAdapterPosition)
+                        }
                     }
 
-                    return 0
+                    override fun getSwipeDirs(
+                        recyclerView: RecyclerView,
+                        viewHolder: RecyclerView.ViewHolder,
+                    ): Int {
+                        viewHolder.itemView.getTag(R.id.collection_id)?.let {
+                            return super.getSwipeDirs(recyclerView, viewHolder)
+                        }
+
+                        return 0
+                    }
                 }
-            }
             ItemTouchHelper(swipeHandler).attachToRecyclerView(binding.list)
         }
     }

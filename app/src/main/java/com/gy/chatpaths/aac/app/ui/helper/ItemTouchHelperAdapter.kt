@@ -15,7 +15,10 @@ interface ItemTouchHelperAdapter {
      * @see RecyclerView.getAdapterPositionFor
      * @see RecyclerView.ViewHolder.getAdapterPosition
      */
-    fun onItemMove(fromPosition: Int, toPosition: Int)
+    fun onItemMove(
+        fromPosition: Int,
+        toPosition: Int,
+    )
 
     /**
      * Called when an item has been dismissed by a swipe.

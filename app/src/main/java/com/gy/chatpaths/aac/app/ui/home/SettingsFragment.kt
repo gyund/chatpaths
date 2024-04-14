@@ -7,8 +7,10 @@ import androidx.preference.SwitchPreferenceCompat
 import com.gy.chatpaths.aac.app.R
 
 class SettingsFragment : PreferenceFragmentCompat() {
-
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+    override fun onCreatePreferences(
+        savedInstanceState: Bundle?,
+        rootKey: String?,
+    ) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
         findPreference<SwitchPreferenceCompat>("keep_screen_awake_preference")?.setOnPreferenceClickListener {
             if (it.isEnabled) {

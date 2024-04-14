@@ -28,20 +28,22 @@ open class AppDatabaseHelper {
     val collector: ErrorCollector = ErrorCollector()
 
     @Before
-    fun createDb() = runBlocking {
-        context = ApplicationProvider.getApplicationContext<Context>()
-        db = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java)
-            .build()
+    fun createDb() =
+        runBlocking {
+            context = ApplicationProvider.getApplicationContext<Context>()
+            db =
+                Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java)
+                    .build()
 
-        val local = LocalCPDataSource(db)
-        repository = CPRepository(local)
+            val local = LocalCPDataSource(db)
+            repository = CPRepository(local)
 
-        InitialData.populate(context, repository)
+            InitialData.populate(context, repository)
 
-        pathDao = db.pathDao()
-        pathCollectionDao = db.pathCollectionDao()
-        pathUserDao = db.pathUserDao()
-    }
+            pathDao = db.pathDao()
+            pathCollectionDao = db.pathCollectionDao()
+            pathUserDao = db.pathUserDao()
+        }
 
     @After
     @Throws(Exception::class)

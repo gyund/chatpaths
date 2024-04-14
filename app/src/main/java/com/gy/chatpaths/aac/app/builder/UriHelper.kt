@@ -10,7 +10,6 @@ import androidx.annotation.AnyRes
 import com.gy.chatpaths.aac.app.R
 
 class UriHelper {
-
     companion object {
         val TAG = "UriHelper"
 
@@ -72,7 +71,10 @@ class UriHelper {
          * @note we need to use getIdentifier so we can search find the resource mapping to the correct image
          */
         @SuppressLint("DiscouragedApi")
-        private fun getSearchString(context: Context, name: String): String {
+        private fun getSearchString(
+            context: Context,
+            name: String,
+        ): String {
             context.resources.configuration.locales.apply {
                 if (!isEmpty) {
                     val defaultLocale = get(0)

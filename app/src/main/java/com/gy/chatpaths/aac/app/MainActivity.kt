@@ -35,8 +35,9 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private val tag = "CPActivity"
 
-    private val TAG = "CPActivity"
+    @Suppress("ktlint:standard:property-naming")
     private var _binder: ActivityMainBinding? = null
     protected val binder get() = _binder!!
 
@@ -112,12 +113,13 @@ class MainActivity : AppCompatActivity() {
 
         setupRemoteConfig()
 
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home,
-            ),
-            binder.drawerLayout,
-        )
+        appBarConfiguration =
+            AppBarConfiguration(
+                setOf(
+                    R.id.nav_home,
+                ),
+                binder.drawerLayout,
+            )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         binder.navView.setupWithNavController(navController)
@@ -192,7 +194,10 @@ class MainActivity : AppCompatActivity() {
         isVisible = true
     }
 
-    private fun sendViewIntent(uri: String, packageName: String?) {
+    private fun sendViewIntent(
+        uri: String,
+        packageName: String?,
+    ) {
         try {
             val webpage: Uri = Uri.parse(uri)
             val intent = Intent(Intent.ACTION_VIEW, webpage)

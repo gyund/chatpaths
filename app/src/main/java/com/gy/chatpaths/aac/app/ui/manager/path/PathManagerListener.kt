@@ -4,9 +4,18 @@ import com.gy.chatpaths.aac.app.model.Path
 
 interface PathManagerListener {
     fun showAddPathDialog()
+
     fun showEditCollectionTitleDialog()
 
-    fun setIsEnabled(pathId: Int, enabled: Boolean)
-    fun setPathPosition(pathId: Int, position: Int?)
+    fun setIsEnabled(
+        pathId: Int,
+        enabled: Boolean,
+    )
+
+    fun setPathPosition(
+        pathId: Int,
+        position: Int?,
+    )
+
     fun updatePathOrder(paths: List<Path>)
 }

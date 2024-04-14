@@ -7,7 +7,6 @@ import com.gy.chatpaths.aac.app.builder.create.Path
 class Vegetables(
     collection: Collection,
 ) : Path(collection) {
-
     init {
         setName(R.string.col_title_vegetables)
         setIcon(R.drawable.ic_carrot)

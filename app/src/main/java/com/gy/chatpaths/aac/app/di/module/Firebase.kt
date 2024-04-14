@@ -14,52 +14,56 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class Firebase @Inject constructor(@ApplicationContext appContext: Context) {
+class Firebase
+    @Inject
+    constructor(
+        @ApplicationContext appContext: Context,
+    ) {
+        var remoteConfig: FirebaseRemoteConfig? = null
+            private set
 
-    var remoteConfig: FirebaseRemoteConfig? = null
-        private set
-
-    fun setAnalytics(enabled: Boolean) {
-        if (BuildConfig.FLAVOR.contains("WithFirebase")) {
-            Firebase.analytics.setAnalyticsCollectionEnabled(enabled)
-        }
-    }
-
-    init {
-        if (BuildConfig.FLAVOR.contains("WithFirebase")) {
-            FirebaseApp.initializeApp(appContext)
-            remoteConfig = Firebase.remoteConfig
+        fun setAnalytics(enabled: Boolean) {
+            if (BuildConfig.FLAVOR.contains("WithFirebase")) {
+                Firebase.analytics.setAnalyticsCollectionEnabled(enabled)
+            }
         }
 
-        remoteConfig?.apply {
-            val configSettings = remoteConfigSettings {
-                // 12 hours
-                minimumFetchIntervalInSeconds = 43200
+        init {
+            if (BuildConfig.FLAVOR.contains("WithFirebase")) {
+                FirebaseApp.initializeApp(appContext)
+                remoteConfig = Firebase.remoteConfig
+            }
 
-                // Override build
-                if (BuildConfig.DEBUG) {
-                    minimumFetchIntervalInSeconds = 3600
+            remoteConfig?.apply {
+                val configSettings =
+                    remoteConfigSettings {
+                        // 12 hours
+                        minimumFetchIntervalInSeconds = 43200
+
+                        // Override build
+                        if (BuildConfig.DEBUG) {
+                            minimumFetchIntervalInSeconds = 3600
+                        }
+                    }
+                setConfigSettingsAsync(configSettings)
+                setDefaultsAsync(R.xml.remote_config_defaults)
+                activate()
+                fetch()
+            }
+        }
+
+        fun refresh() {
+            remoteConfig?.activate()
+        }
+
+        fun getReviewCheckFrequency(): Long {
+            var maxCount = 50L
+            remoteConfig?.apply {
+                maxCount = getLong("review_check_interval")
+                if (maxCount <= 0) {
+                    maxCount = 50L
                 }
             }
-            setConfigSettingsAsync(configSettings)
-            setDefaultsAsync(R.xml.remote_config_defaults)
-            activate()
-            fetch()
+            return maxCount
         }
     }
-
-    fun refresh() {
-        remoteConfig?.activate()
-    }
-
-    fun getReviewCheckFrequency(): Long {
-        var maxCount = 50L
-        remoteConfig?.apply {
-            maxCount = getLong("review_check_interval")
-            if (maxCount <= 0) {
-                maxCount = 50L
-            }
-        }
-        return maxCount
-    }
-}

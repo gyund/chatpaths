@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class SwipeToDeleteCallback(context: Context) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-
     private val deleteIcon = ContextCompat.getDrawable(context, R.drawable.ic_delete_white_24)
     private val intrinsicWidth = deleteIcon!!.intrinsicWidth
     private val intrinsicHeight = deleteIcon!!.intrinsicHeight
@@ -92,7 +91,13 @@ abstract class SwipeToDeleteCallback(context: Context) :
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
     }
 
-    private fun clearCanvas(c: Canvas?, left: Float, top: Float, right: Float, bottom: Float) {
+    private fun clearCanvas(
+        c: Canvas?,
+        left: Float,
+        top: Float,
+        right: Float,
+        bottom: Float,
+    ) {
         c?.drawRect(left, top, right, bottom, clearPaint)
     }
 }

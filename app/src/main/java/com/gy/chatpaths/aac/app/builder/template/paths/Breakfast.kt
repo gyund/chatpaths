@@ -7,7 +7,6 @@ import com.gy.chatpaths.aac.app.builder.create.Path
 class Breakfast(
     collection: Collection,
 ) : Path(collection) {
-
     init {
         setName(R.string.col_title_breakfast)
         setIcon(R.drawable.ic_egg_cooked)

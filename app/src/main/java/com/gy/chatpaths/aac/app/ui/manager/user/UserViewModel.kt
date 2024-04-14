@@ -10,25 +10,24 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class UserViewModel @Inject constructor(
-    val savedStateHandle: SavedStateHandle,
-    val repository: CPRepository,
-    val currentUser: CurrentUser,
-) : ViewModel() {
+class UserViewModel
+    @Inject
+    constructor(
+        val savedStateHandle: SavedStateHandle,
+        val repository: CPRepository,
+        val currentUser: CurrentUser,
+    ) : ViewModel() {
+        suspend fun setUser(user: PathUser) {
+            currentUser.setUser(user.userId)
+        }
 
-    suspend fun setUser(user: PathUser) {
-        currentUser.setUser(user.userId)
+        /** Lazy load RoomDatabase stuff so we can use lifecycle management to initialize them on the
+         *  appropriate thread in the
+         *  corresponding fragments
+         *
+         *  All the users in the app
+         */
+        val users: LiveData<List<PathUser>> by lazy {
+            repository.getLiveUsers()
+        }
     }
-
-    /** Lazy load RoomDatabase stuff so we can use lifecycle management to initialize them on the
-     *  appropriate thread in the
-     *  corresponding fragments
-     */
-
-    /**
-     * All the users in the app
-     */
-    val users: LiveData<List<PathUser>> by lazy {
-        repository.getLiveUsers()
-    }
-}

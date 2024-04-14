@@ -6,7 +6,6 @@ import androidx.annotation.StringRes
 import com.gy.chatpaths.aac.app.builder.UriHelper
 
 open class Path(val collection: Collection) {
-
     var name: String? = null
     var iconUri: Uri? = null
     var anchored: Boolean = false
@@ -20,17 +19,21 @@ open class Path(val collection: Collection) {
         return mutableListOf()
     }
 
-    suspend fun build(collectionId: Int, position: Int) {
+    suspend fun build(
+        collectionId: Int,
+        position: Int,
+    ) {
         // create path
-        val id = collection.repository.addPath(
-            userId = collection.userId,
-            collectionId = collectionId,
-            title = name,
-            imageUri = iconUri.toString(),
-            parentId = parentPath,
-            position = position,
-            anchored = false,
-        )
+        val id =
+            collection.repository.addPath(
+                userId = collection.userId,
+                collectionId = collectionId,
+                title = name,
+                imageUri = iconUri.toString(),
+                parentId = parentPath,
+                position = position,
+                anchored = false,
+            )
 
         collection.repository.setPathIsAnchored(
             userId = collection.userId,
@@ -58,7 +61,9 @@ open class Path(val collection: Collection) {
         return this
     }
 
-    fun setName(@StringRes name: Int): Path {
+    fun setName(
+        @StringRes name: Int,
+    ): Path {
         this.name = collection.context.getString(name)
         return this
     }
@@ -70,7 +75,9 @@ open class Path(val collection: Collection) {
      * This method will create a drawable URI that can be used
      * store the drawable information in a database.
      */
-    fun setIcon(@DrawableRes res: Int): Path {
+    fun setIcon(
+        @DrawableRes res: Int,
+    ): Path {
         iconUri = UriHelper.getUriToDrawable(collection.context, res)
         return this
     }

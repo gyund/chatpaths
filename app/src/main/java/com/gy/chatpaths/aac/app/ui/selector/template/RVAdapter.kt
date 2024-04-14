@@ -19,7 +19,6 @@ class RVAdapter(
     private val context: Context,
     private val listener: TemplateSelectionListener,
 ) : RecyclerView.Adapter<RVAdapter.ViewHolder>(), BindableAdapter<Collection> {
-
     private var values: List<Collection> = emptyList()
 
     /**
@@ -38,14 +37,20 @@ class RVAdapter(
         positions.forEach(this::notifyItemChanged)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         // .inflate(R.layout.fragment_collections, parent, false)
         val binding = FragmentHomeCollectionsBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ViewHolder,
+        position: Int,
+    ) {
         holder.bind(values[position])
     }
 
@@ -53,7 +58,6 @@ class RVAdapter(
 
     inner class ViewHolder(val binding: FragmentHomeCollectionsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(collection: Collection) {
             binding.pathImage.setImageDrawable(
                 DrawableUtils.getDrawableImage(
