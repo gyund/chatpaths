@@ -114,11 +114,11 @@
     <string name="keep_awake_preference_summary_on">Keep the screen awake while in use</string>
     <string name="keep_awake_preference_summary_off">Use the system default for keeping the screen awake</string>
     <string name="general_preference_title">General</string>
-    <string name="read_out_loud_preference_summary_off">Don\'t read out loud while navigating paths</string>
+    <string name="read_out_loud_preference_summary_off">Don&#8217;t read out loud while navigating paths</string>
     <string name="read_out_loud_preference_summary_on">Read out loud while navigating paths</string>
     <string name="read_out_loud_preference_title">Read Out Loud</string>
     <string name="onboard_path_read_out_loud_primary">Read Out Loud</string>
-    <string name="onboard_path_read_out_loud_secondary">Read paths out loud as they\'re navigated to combine the paths into a sentence</string>
+    <string name="onboard_path_read_out_loud_secondary">Read paths out loud as they&#8217;re navigated to combine the paths into a sentence</string>
     <string name="facebook_message">Facebook Message</string>
     <string name="search">Search</string>
     <string name="record_audio">Record Voice</string>
@@ -131,7 +131,7 @@
 
 
 
-    <string name="col_title_smartchat">Let\'s Chat</string>
+    <string name="col_title_smartchat">Let&#8217;s Chat</string>
     <string name="col_title_madchat">Mad Mode</string>
     <string name="col_title_emptychat">My Chat</string>
     <string name="col_title_foodfinder">Food Finder</string>
@@ -150,7 +150,7 @@
     <string name="path_empty_string">empty</string>
     <string name="path_chat_words">request</string>
     <string name="path_i_want">I want</string>
-    <string name="path_something_is_wrong">something\'s wrong</string>
+    <string name="path_something_is_wrong">something&#8217;s wrong</string>
     <string name="path_something_to_eat_drink">to eat or drink</string>
     <string name="path_break_rest">a break or rest</string>
     <string name="path_hug">a hug</string>
@@ -188,7 +188,7 @@
     <string name="path_pasta">pasta</string>
     <string name="path_sandwich">sandwich</string>
     <string name="path_pancakes">pancakes</string>
-    <string name="path_dont_know">I don\'t know</string>
+    <string name="path_dont_know">I don&#8217;t know</string>
     <string name="path_sad">upset (sad)</string>
     <string name="path_hot">hot</string>
     <string name="path_cold">cold</string>
@@ -203,7 +203,7 @@
     <string name="path_hot_dog">hot dog</string>
     <string name="path_bath">bath</string>
     <string name="path_swim">swim</string>
-    <string name="path_lets_go">let\'s go</string>
+    <string name="path_lets_go">let&#8217;s go</string>
     <string name="path_home">home</string>
     <string name="path_somewhere_in_house_yard">somewhere in the house or yard</string>
     <string name="path_kitchen">kitchen</string>
@@ -320,13 +320,13 @@
     <string name="path_butter">butter</string>
     <string name="path_placeholder">starter path</string>
     <string name="path_something_to_say">something to say</string>
-    <string name="path_whats_wrong">what\'s wrong</string>
+    <string name="path_whats_wrong">what&#8217;s wrong</string>
     <string name="path_hungry">hungry</string>
     <string name="path_uncomfortable">uncomfortable</string>
     <string name="path_why_mad">why are you mad</string>
     <string name="path_wanted_something">wanted something</string>
-    <string name="path_dont_like">don\'t like</string>
-    <string name="path_dont_like_something">don\'t like something</string>
+    <string name="path_dont_like">don&#8217;t like</string>
+    <string name="path_dont_like_something">don&#8217;t like something</string>
     <string name="path_kiwi">kiwi</string>
     <string name="path_grape_juice">grape juice</string>
     <string name="path_cookie">cookie</string>
@@ -386,8 +386,8 @@
     <string name="search_cucumber">cucumber</string>
     <string name="search_cupcake">cupcake</string>
     <string name="search_different">different</string>
-    <string name="search_dont_know">don\'t know</string>
-    <string name="search_dont_like">don\'t like</string>
+    <string name="search_dont_know">don&#8217;t know</string>
+    <string name="search_dont_like">don&#8217;t like</string>
     <string name="search_doughnut">doughnut</string>
     <string name="search_drink">drink</string>
     <string name="search_ear">ear</string>
