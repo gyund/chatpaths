@@ -8,10 +8,8 @@ import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.os.Build
-import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
@@ -72,9 +70,9 @@ abstract class CommonFeatureFragment : Fragment() {
         if (
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
             (
-                    ContextCompat.checkSelfPermission(context, READ_MEDIA_IMAGES) == PERMISSION_GRANTED ||
-                            ContextCompat.checkSelfPermission(context, READ_MEDIA_VIDEO) == PERMISSION_GRANTED
-                    )
+                ContextCompat.checkSelfPermission(context, READ_MEDIA_IMAGES) == PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(context, READ_MEDIA_VIDEO) == PERMISSION_GRANTED
+                )
         ) {
             // Full access on Android 13 (API level 33) or higher
         } else if (
@@ -82,7 +80,7 @@ abstract class CommonFeatureFragment : Fragment() {
             ContextCompat.checkSelfPermission(context, READ_MEDIA_VISUAL_USER_SELECTED) == PERMISSION_GRANTED
         ) {
             // Partial access on Android 14 (API level 34) or higher
-        }  else if (ContextCompat.checkSelfPermission(context, READ_EXTERNAL_STORAGE) == PERMISSION_GRANTED) {
+        } else if (ContextCompat.checkSelfPermission(context, READ_EXTERNAL_STORAGE) == PERMISSION_GRANTED) {
             // Full access up to Android 12 (API level 32)
         } else {
             // Access denied
@@ -108,15 +106,12 @@ abstract class CommonFeatureFragment : Fragment() {
                     Uri.fromFile(requireActivity().getFileStreamPath("img_$time.jpg"))
                 Log.d("SCF", " new image uri: $newUri")
                 cropImage(uri, newUri)
-
             } else {
                 Log.d("PhotoPicker", "No media selected")
             }
         }
 
     private fun requestImagePermission() {
-
-
 // Permission request logic
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             requestPermission.launch(arrayOf(READ_MEDIA_IMAGES, READ_MEDIA_VIDEO, READ_MEDIA_VISUAL_USER_SELECTED))
@@ -127,12 +122,10 @@ abstract class CommonFeatureFragment : Fragment() {
         }
     }
 
-
     private fun openGalleryForImage() {
         if (hasImagePermission(requireContext())) {
             // Launch the photo picker and let the user choose only images.
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-
         } else {
             requestImagePermission()
         }
