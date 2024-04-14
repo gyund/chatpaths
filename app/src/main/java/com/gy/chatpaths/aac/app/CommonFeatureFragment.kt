@@ -1,11 +1,21 @@
 package com.gy.chatpaths.aac.app
 
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.Manifest.permission.READ_MEDIA_IMAGES
+import android.Manifest.permission.READ_MEDIA_VIDEO
+import android.Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED
 import android.app.Activity
-import android.content.Intent
+import android.content.Context
 import android.net.Uri
+import android.os.Build
+import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import androidx.core.net.toFile
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -50,22 +60,6 @@ abstract class CommonFeatureFragment : Fragment() {
         destinationUri = null
     }
 
-    private val getImageLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult(),
-    ) { result: ActivityResult ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val resultUri = result.data?.data
-            resultUri?.let { uri ->
-                val time = System.currentTimeMillis()
-                val newUri = Uri.fromFile(requireActivity().getFileStreamPath("img_$time.jpg"))
-                Log.d("SCF", " new image uri: $newUri")
-                cropImage(uri, newUri)
-            }
-        } else if (result.resultCode == Activity.RESULT_CANCELED) {
-            // cancled getting the image
-        }
-    }
-
     private fun cropImage(sourceUri: Uri, destinationUri: Uri) {
         this.destinationUri = destinationUri
         val intent = UCrop.of(sourceUri, destinationUri)
@@ -74,10 +68,74 @@ abstract class CommonFeatureFragment : Fragment() {
         cropImageLauncher.launch(intent)
     }
 
+    private fun hasImagePermission(context: Context): Boolean {
+        if (
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            (
+                    ContextCompat.checkSelfPermission(context, READ_MEDIA_IMAGES) == PERMISSION_GRANTED ||
+                            ContextCompat.checkSelfPermission(context, READ_MEDIA_VIDEO) == PERMISSION_GRANTED
+                    )
+        ) {
+            // Full access on Android 13 (API level 33) or higher
+        } else if (
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE &&
+            ContextCompat.checkSelfPermission(context, READ_MEDIA_VISUAL_USER_SELECTED) == PERMISSION_GRANTED
+        ) {
+            // Partial access on Android 14 (API level 34) or higher
+        }  else if (ContextCompat.checkSelfPermission(context, READ_EXTERNAL_STORAGE) == PERMISSION_GRANTED) {
+            // Full access up to Android 12 (API level 32)
+        } else {
+            // Access denied
+            return false
+        }
+        return true
+    }
+
+    private var requestPermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { results ->
+        // Handle permission requests results
+        // See the permission example in the Android platform samples: https://github.com/android/platform-samples
+    }
+
+    private val pickMedia =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+            // Callback is invoked after the user selects a media item or closes the
+            // photo picker.
+            if (uri != null) {
+                Log.d("PhotoPicker", "Selected URI: $uri")
+
+                val time = System.currentTimeMillis()
+                val newUri =
+                    Uri.fromFile(requireActivity().getFileStreamPath("img_$time.jpg"))
+                Log.d("SCF", " new image uri: $newUri")
+                cropImage(uri, newUri)
+
+            } else {
+                Log.d("PhotoPicker", "No media selected")
+            }
+        }
+
+    private fun requestImagePermission() {
+
+
+// Permission request logic
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            requestPermission.launch(arrayOf(READ_MEDIA_IMAGES, READ_MEDIA_VIDEO, READ_MEDIA_VISUAL_USER_SELECTED))
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestPermission.launch(arrayOf(READ_MEDIA_IMAGES, READ_MEDIA_VIDEO))
+        } else {
+            requestPermission.launch(arrayOf(READ_EXTERNAL_STORAGE))
+        }
+    }
+
+
     private fun openGalleryForImage() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "image/*"
-        getImageLauncher.launch(intent)
+        if (hasImagePermission(requireContext())) {
+            // Launch the photo picker and let the user choose only images.
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+
+        } else {
+            requestImagePermission()
+        }
     }
 
     /**
