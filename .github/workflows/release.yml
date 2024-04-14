@@ -8,8 +8,8 @@ env:
   playstore_name: ChatPaths
 
 on:
-  release:
-    types: [ published ]
+#  release:
+#    types: [ published ]
   push:
     branches:
       - 'release/**'
@@ -59,6 +59,11 @@ jobs:
 
       # Run Build Project
       - name: Build gradle project
+        env:
+          KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
         run: ./gradlew build
 
       # Create APK Debug
@@ -67,11 +72,21 @@ jobs:
 
       # Create APK Release
       - name: Build apk release project (APK) - ${{ env.main_project_module }} module
+        env:
+          KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
         run: ./gradlew assembleWithFirebaseRelease
 
       # Create Bundle AAB Release
       # Noted for main module build [main_project_module]:bundleRelease
       - name: Build app bundle release (AAB) - ${{ env.main_project_module }} module
+        env:
+          KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
         run: ./gradlew ${{ env.main_project_module }}:bundleRelease
 
       # Upload Artifact Build

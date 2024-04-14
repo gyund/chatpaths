@@ -32,24 +32,20 @@ android {
 		release {
 			if(System.getenv("KEYSTORE_FILE")) {
 				// GITHUB
-				storeFile = file(String.valueOf(System.getenv("KEYSTORE_FILE")))
-				storePassword = System.getenv("SIGNING_STORE_PASSWORD")
-				keyAlias = System.getenv("SIGNING_KEY_ALIAS")
-				keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
+				storeFile file(String.valueOf(System.getenv("KEYSTORE_FILE")))
+				storePassword System.getenv("SIGNING_STORE_PASSWORD")
+				keyAlias System.getenv("SIGNING_KEY_ALIAS")
+				keyPassword System.getenv("SIGNING_KEY_PASSWORD")
 			} else {
 				def keystoreFilePropertyKey = "chatpathsKeyStoreFile"
 				if (project.hasProperty(keystoreFilePropertyKey)) {
-					storeFile = file(project.getProperty(keystoreFilePropertyKey))
-					storePassword = project.getProperty("chatpathsKeyStorePassword")
-					keyAlias = project.getProperty("chatpathsKeyStoreAlias")
-					keyPassword = project.getProperty("chatpathsKeyStoreAliasPassword")
+					storeFile file(project.getProperty(keystoreFilePropertyKey))
+					storePassword project.getProperty("chatpathsKeyStorePassword")
+					keyAlias project.getProperty("chatpathsKeyStoreAlias")
+					keyPassword project.getProperty("chatpathsKeyStoreAliasPassword")
 				}
 
 			}
-			keyAlias keyAlias
-			keyPassword keyPassword
-			storeFile storeFile
-			storePassword storePassword
 		}
 	}
 
