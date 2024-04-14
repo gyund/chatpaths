@@ -37,10 +37,13 @@ android {
 				keyAlias = System.getenv("SIGNING_KEY_ALIAS")
 				keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
 			} else {
-				storeFile = file(project.getProperty("chatpathsKeyStoreFile"))
-				storePassword = project.getProperty("chatpathsKeyStorePassword")
-				keyAlias = project.getProperty("chatpathsKeyStoreAlias")
-				keyPassword = project.getProperty("chatpathsKeyStoreAliasPassword")
+				def keystoreFilePropertyKey = "chatpathsKeyStoreFile"
+				if (project.hasProperty(keystoreFilePropertyKey)) {
+					storeFile = file(project.getProperty(keystoreFilePropertyKey))
+					storePassword = project.getProperty("chatpathsKeyStorePassword")
+					keyAlias = project.getProperty("chatpathsKeyStoreAlias")
+					keyPassword = project.getProperty("chatpathsKeyStoreAliasPassword")
+				}
 
 			}
 			keyAlias keyAlias
