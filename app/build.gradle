@@ -96,6 +96,9 @@ android {
 			pseudoLocalesEnabled true
 			versionNameSuffix '.debug'
 			manifestPlaceholders applicationName: 'ChatPaths Debug'
+			firebaseCrashlytics {
+				mappingFileUploadEnabled false
+			}
 		}
 		release {
 			minifyEnabled true
@@ -103,6 +106,9 @@ android {
 			signingConfig signingConfigs.release
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 			manifestPlaceholders applicationName: 'ChatPaths'
+			firebaseCrashlytics {
+				mappingFileUploadEnabled false
+			}
 		}
 	}
 	buildFeatures {
