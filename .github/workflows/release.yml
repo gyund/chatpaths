@@ -58,13 +58,13 @@ jobs:
         run: ./gradlew test
 
       # Run Build Project
-      - name: Build gradle project
-        env:
-          KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
-          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
-        run: ./gradlew build
+#      - name: Build gradle project
+#        env:
+#          KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
+#          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+#          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+#          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+#        run: ./gradlew build
 
       # Create APK Debug
 #      - name: Build apk debug project (APK) - ${{ env.main_project_module }} module
