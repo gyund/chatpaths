@@ -19,19 +19,6 @@ ext {
 	app_major_version = 1
 	app_version_code = 137
 	app_version_name = "$app_version.$app_major_version.$app_version_code"
-
-	storeFile = null
-	storePassword = null
-	keyAlias = null
-	keyPassword = null
-
-	def keystoreFilePropertyKey = "chatpathsKeyStoreFile"
-	if (project.hasProperty(keystoreFilePropertyKey)) {
-		storeFile = file(project.getProperty(keystoreFilePropertyKey))
-		storePassword = project.getProperty("chatpathsKeyStorePassword")
-		keyAlias = project.getProperty("chatpathsKeyStoreAlias")
-		keyPassword = project.getProperty("chatpathsKeyStoreAliasPassword")
-	}
 }
 
 static def getDate() {
@@ -43,10 +30,22 @@ android {
 
 	signingConfigs {
 		release {
-			keyAlias project.keyAlias
-			keyPassword project.keyPassword
-			storeFile project.storeFile
-			storePassword project.storePassword
+			if(System.getenv("KEYSTORE_FILE")) {
+				// GITHUB
+				storeFile file(System.getenv("KEYSTORE_FILE"))
+				storePassword System.getenv("SIGNING_STORE_PASSWORD")
+				keyAlias System.getenv("SIGNING_KEY_ALIAS")
+				keyPassword System.getenv("SIGNING_KEY_PASSWORD")
+			} else {
+				def keystoreFilePropertyKey = "chatpathsKeyStoreFile"
+				if (project.hasProperty(keystoreFilePropertyKey)) {
+					storeFile file(project.getProperty(keystoreFilePropertyKey))
+					storePassword project.getProperty("chatpathsKeyStorePassword")
+					keyAlias project.getProperty("chatpathsKeyStoreAlias")
+					keyPassword project.getProperty("chatpathsKeyStoreAliasPassword")
+				}
+
+			}
 		}
 	}
 
@@ -97,6 +96,9 @@ android {
 			pseudoLocalesEnabled true
 			versionNameSuffix '.debug'
 			manifestPlaceholders applicationName: 'ChatPaths Debug'
+			firebaseCrashlytics {
+				mappingFileUploadEnabled false
+			}
 		}
 		release {
 			minifyEnabled true
@@ -104,6 +106,9 @@ android {
 			signingConfig signingConfigs.release
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 			manifestPlaceholders applicationName: 'ChatPaths'
+			firebaseCrashlytics {
+				mappingFileUploadEnabled false
+			}
 		}
 	}
 	buildFeatures {
