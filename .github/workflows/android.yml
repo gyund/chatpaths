@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: set up JAVA
       uses: actions/setup-java@v3
       with:
@@ -33,7 +33,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: set up Java
       uses: actions/setup-java@v3
       with:
@@ -49,7 +49,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: set up JAVA
         uses: actions/setup-java@v3
         with:
@@ -84,7 +84,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -196,7 +196,7 @@ jobs:
 #
 #    steps:
 #      - name: Checkout
-#        uses: actions/checkout@v3
+#        uses: actions/checkout@v4
 #
 #      - name: Set up JAVA
 #        uses: actions/setup-java@v3
