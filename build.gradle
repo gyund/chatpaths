@@ -21,9 +21,9 @@ buildscript {
 }
 
 plugins {
-	id 'com.diffplug.spotless' version "6.25.0"
-	id "com.google.devtools.ksp" version "1.9.23-1.0.20" apply false
-	id 'com.google.dagger.hilt.android' version "2.51.1" apply false
+	alias libs.plugins.diffplug.spotless
+	alias libs.plugins.google.devtools.ksp apply false
+	alias libs.plugins.dagger.hilt.android apply false
 //    id 'jacoco'
 //    id("com.github.nbaztec.coveralls-jacoco") version "1.2.15"
 //    id 'jacoco-report-aggregation'
