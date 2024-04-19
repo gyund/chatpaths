@@ -34,6 +34,10 @@ ChatPaths is a communication app for helping non-verbal kids communicate while o
 
 ## Additional Notes
 
+### Demo Video
+
+[![Demo Video](https://img.youtube.com/vi/GlIo0wvHSXY/hqdefault.jpg)](https://www.youtube.com/embed/GlIo0wvHSXY?si=VoY87uA9UwJEhmEH)
+
 ### Image Search
 
 Built in search functionality for paths uses translations that can be found [here](modules/builder/src/main/res/values/images.xml).
