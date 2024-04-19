@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  unit-test:
 
     runs-on: ubuntu-latest
 
@@ -22,132 +22,22 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: gradle
-
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+      with:
+        gradle-version: 8.4
     - name: Build with Gradle
       run: ./gradlew :app:assembleWithoutFirebaseDebug testWithoutFirebaseDebugUnitTest
-
-  format:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: set up Java
-      uses: actions/setup-java@v3
+    - name: GitHub Action for Android Lint
+      run: ./gradlew lint
+    - uses: yutailang0119/action-android-lint@v4.0.0
       with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: gradle
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+        report-path: '**/build/reports/*.xml' # Support glob patterns by https://www.npmjs.com/package/@actions/glob
+      continue-on-error: false # If annotations contain error of severity, action-android-lint exit 1.
     - name: Run spotless
       run: ./gradlew spotlessCheck
 
-  lint:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: set up JAVA
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: gradle
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: GitHub Action for Android Lint
-        run: ./gradlew lint
-      - uses: yutailang0119/action-android-lint@v4.0.0
-        with:
-          report-path: '**/build/reports/*.xml' # Support glob patterns by https://www.npmjs.com/package/@actions/glob
-        continue-on-error: false # If annotations contain error of severity, action-android-lint exit 1.
-
-  analysis:
-    name: Analyze
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
-    strategy:
-      fail-fast: false
-      matrix:
-        language: [ 'java-kotlin' ]
-        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
-        # Use only 'java' to analyze code written in Java, Kotlin or both
-        # Use only 'javascript' to analyze code written in JavaScript, TypeScript or both
-        # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    # Initializes the CodeQL tools for scanning.
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3
-      with:
-        config-file: ./.github/codeql/codeql-config.yml
-        languages: ${{ matrix.language }}
-        # If you wish to specify custom queries, you can do so here or in a config file.
-        # By default, queries listed here will override any specified in a config file.
-        # Prefix the list here with "+" to use these queries and those in the config file.
-
-        # Details on CodeQL's query packs refer to : https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
-        queries: +security-extended,security-and-quality
-
-
-    # Autobuild attempts to build any compiled languages  (C/C++, C#, Go, or Java).
-    # If this step fails, then you should remove it and run the build manually (see below)
-#    - name: Autobuild
-#      uses: github/codeql-action/autobuild@v2
-    - name: set up JAVA
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-#        cache: gradle
-
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew clean :app:assembleWithoutFirebaseDebug -S
-
-    # ℹ️ Command-line programs to run using the OS shell.
-    # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-
-    #   If the Autobuild fails above, remove it and uncomment the following three lines.
-    #   modify them (or add more) to build your code if your project, please refer to the EXAMPLE below for guidance.
-
-    # - run: |
-    #     echo "Run, Build Application using script"
-    #     ./location_of_script_within_repo/buildscript.sh
-
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
-      with:
-        category: "/language:${{matrix.language}}"
-        output: sarif-results
-        upload: failure-only
-
-    - name: filter-sarif
-      uses: advanced-security/filter-sarif@v1
-      with:
-        patterns: |
-          +**/*.kt
-          -**/*.java
-        input: sarif-results/java.sarif
-        output: sarif-results/java.sarif
-
-    - name: Upload SARIF
-      uses: github/codeql-action/upload-sarif@v3
-      with:
-        sarif_file: sarif-results/java.sarif
-
-  test:
+  device-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -173,8 +63,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Gradle cache
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: 8.4
 
       - name: AVD cache
         uses: actions/cache@v4
@@ -207,30 +99,3 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: ./gradlew connectedWithoutFirebaseDebugAndroidTest
-
-#  connected-tests:
-#    runs-on: macos-latest
-#
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v4
-#
-#      - name: Set up JAVA
-#        uses: actions/setup-java@v3
-#        with:
-#          java-version: 11
-#          distribution: 'adopt'
-#          cache: gradle
-#
-#      - name: Grant execute permission for gradlew
-#        run: chmod +x gradlew
-#
-#      - name: Run connected tests
-#        uses: ReactiveCircus/android-emulator-runner@v2
-#        with:
-#          api-level: 30
-#          target: google_apis
-#          force-avd-creation: false
-#          disable-animations: true
-#          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-#          script: ./gradlew connectedWithoutFirebaseDebugAndroidTest

@@ -16,15 +16,8 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: gradle
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      
-      - name: Gradle Dependency Submission
-        uses: mikepenz/gradle-dependency-submission@v1.0.0
-        with:
-          gradle-build-module: |-
-            :app
+      - name: Generate and submit dependency graph
+        uses: gradle/actions/dependency-submission@v3
           
 
