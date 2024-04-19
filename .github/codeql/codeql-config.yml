@@ -1,0 +1,3 @@
+# Project is only kotlin
+paths-ignore:
+  - '**/*.java'
