@@ -22,13 +22,20 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: gradle
-
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+      with:
+        gradle-version: 8.4
     - name: Build with Gradle
       run: ./gradlew :app:assembleWithoutFirebaseDebug testWithoutFirebaseDebugUnitTest
-
+    - name: GitHub Action for Android Lint
+      run: ./gradlew lint
+    - uses: yutailang0119/action-android-lint@v4.0.0
+      with:
+        report-path: '**/build/reports/*.xml' # Support glob patterns by https://www.npmjs.com/package/@actions/glob
+      continue-on-error: false # If annotations contain error of severity, action-android-lint exit 1.
+    - name: Run spotless
+      run: ./gradlew spotlessCheck
 
   device-test:
     runs-on: ubuntu-latest
@@ -56,8 +63,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Gradle cache
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: 8.4
 
       - name: AVD cache
         uses: actions/cache@v4
