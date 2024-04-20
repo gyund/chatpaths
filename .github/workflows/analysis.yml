@@ -8,6 +8,9 @@ on:
       - "**/*.java"
   pull_request:
     branches: [ "main" ]
+    paths:
+      - "**/*.kt"
+      - "**/*.java"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
