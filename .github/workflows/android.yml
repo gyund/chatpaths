@@ -27,15 +27,11 @@ jobs:
       with:
         gradle-version: 8.4
     - name: Build with Gradle
-      run: ./gradlew :app:assembleWithoutFirebaseDebug testWithoutFirebaseDebugUnitTest
-    - name: GitHub Action for Android Lint
-      run: ./gradlew lint
+      run: ./gradlew :app:assembleWithoutFirebaseDebug testWithoutFirebaseDebugUnitTest lint spotlessCheck
     - uses: yutailang0119/action-android-lint@v4.0.0
       with:
         report-path: '**/build/reports/*.xml' # Support glob patterns by https://www.npmjs.com/package/@actions/glob
       continue-on-error: false # If annotations contain error of severity, action-android-lint exit 1.
-    - name: Run spotless
-      run: ./gradlew spotlessCheck
 
   device-test:
     runs-on: ubuntu-latest
