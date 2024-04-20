@@ -3,6 +3,9 @@ name: Analysis
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - "**/*.kt"
+      - "**/*.java"
   pull_request:
     branches: [ "main" ]
 
