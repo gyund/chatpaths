@@ -6,11 +6,13 @@ on:
     paths:
       - "**/*.kt"
       - "**/*.java"
+      - ".github/workflows/analysis.yml"
   pull_request:
     branches: [ "main" ]
     paths:
       - "**/*.kt"
       - "**/*.java"
+      - ".github/workflows/analysis.yml"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
