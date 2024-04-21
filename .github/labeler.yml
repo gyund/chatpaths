@@ -1,0 +1,26 @@
+test:
+  - changed-files:
+    - any-glob-to-any-file:
+      - app/src/androidTest/**/*
+      - app/src/test/**/*
+
+source:
+  - changed-files:
+    - any-glob-to-any-file:
+      - app/src/main/**/*
+
+documentation:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/**/*
+      - README.md
+
+workflow:
+  - changed-files:
+    - any-glob-to-any-file:
+      - .github/workflows/**/*
+
+dependencies:
+  - changed-files:
+    - any-glob-to-any-file:
+      - gradle/libs.versions.toml
