@@ -35,7 +35,7 @@ jobs:
         uses: gyund/android-auto-translate@delay
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v6
         with:
           committer: "ashishb's Translation Bot <ashishb+android-auto-translate@ashishb.net>"
           title: "[Bot]Auto-generated translations for non-English languages"
