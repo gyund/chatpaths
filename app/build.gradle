@@ -146,6 +146,14 @@ android {
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
 //	implementation libs.androidx.core.ktx
+	implementation libs.asset.delivery
+//	implementation libs.asset.delivery.ktx
+	implementation libs.feature.delivery
+//	implementation libs.feature.delivery.ktx
+	implementation libs.review
+//	implementation libs.review.ktx
+	implementation libs.app.update
+//	implementation libs.app.update.ktx
 	implementation libs.androidx.appcompat
 	implementation libs.androidx.core.splashscreen
 	implementation libs.androidx.legacy.support.v4
@@ -167,12 +175,12 @@ dependencies {
 
 	// In-app review
 //	implementation libs.core
-//	implementation libs.core.ktx
+	implementation libs.core.ktx
 //	implementation project(path: ':modules:builder')
 	implementation libs.review
 
 	// For Kotlin users, also add the Kotlin extensions library for Play In-App Review:
-	implementation libs.review.ktx
+//	implementation libs.review.ktx
 
 
 	testImplementation libs.junit

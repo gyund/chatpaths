@@ -1,28 +1,30 @@
 [versions]
 appcompat = "1.7.1"
+assetDelivery = "2.3.0"
 cardview = "1.0.0"
 constraintlayout = "2.2.1"
-core = "1.10.3"
-coreKtx = "1.13.0"
+#core = "1.10.3"
+coreKtx = "1.16.0"
 coreKtxVersion = "1.8.1"
 coreSplashscreen = "1.0.1"
-devtoolsKsp = "1.9.23-1.0.20"
+devtoolsKsp = "2.2.0-2.0.2"
 espressoCore = "3.6.1"
+featureDelivery = "2.1.0"
 firebaseAnalyticsKtx = "23.0.0"
 firebaseBom = "34.0.0"
 firebaseConfigKtx = "23.0.0"
-firebaseCrashlyticsGradle = "2.9.9"
+firebaseCrashlyticsGradle = "3.0.5"
 firebaseCrashlyticsKtx = "20.0.0"
 firebaseMessagingKtx = "25.0.0"
 fragmentKtx = "1.8.8"
-googleServices = "4.4.1"
+googleServices = "4.4.3"
 gradle = "8.11.1"
 hiltAndroid = "2.57"
 junit = "4.13.2"
 junitVersion = "1.2.1"
-kotlinGradlePlugin = "1.9.23"
+kotlinGradlePlugin = "2.2.0"
 kotlinStdlibJdk7 = "2.2.0"
-kotlinxCoroutinesAndroid = "1.8.0"
+kotlinxCoroutinesAndroid = "1.10.2"
 legacySupportV4 = "1.0.0"
 lifecycleCommonJava8 = "2.9.2"
 material = "1.12.0"
@@ -39,7 +41,7 @@ recyclerview = "1.4.0"
 review = "2.0.2"
 roomRuntime = "2.7.2"
 runner = "1.6.2"
-spotless = "6.25.0"
+spotless = "7.2.1"
 truth = "1.6.0"
 truthVersion = "1.4.4"
 ucrop = "2.2.8"
@@ -76,8 +78,14 @@ androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 androidx-truth = { module = "androidx.test.ext:truth", version.ref = "truth" }
 androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
 androidx-work-testing = { module = "androidx.work:work-testing", version.ref = "workTesting" }
-core = { module = "com.google.android.play:core", version.ref = "core" }
+app-update = { module = "com.google.android.play:app-update", version.ref = "featureDelivery" }
+#app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "featureDelivery" }
+asset-delivery = { module = "com.google.android.play:asset-delivery", version.ref = "assetDelivery" }
+#asset-delivery-ktx = { module = "com.google.android.play:asset-delivery-ktx", version.ref = "assetDelivery" }
+#core = { module = "com.google.android.play:core", version.ref = "core" }
 core-ktx = { module = "com.google.android.play:core-ktx", version.ref = "coreKtxVersion" }
+feature-delivery = { module = "com.google.android.play:feature-delivery", version.ref = "featureDelivery" }
+#feature-delivery-ktx = { module = "com.google.android.play:feature-delivery-ktx", version.ref = "featureDelivery" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics", version.ref = "firebaseAnalyticsKtx" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-config = { module = "com.google.firebase:firebase-config", version.ref = "firebaseConfigKtx" }
@@ -101,7 +109,7 @@ mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore
 oss-licenses-plugin = { module = "com.google.android.gms:oss-licenses-plugin", version.ref = "ossLicensesPlugin" }
 play-services-oss-licenses = { module = "com.google.android.gms:play-services-oss-licenses", version.ref = "playServicesOssLicenses" }
 review = { module = "com.google.android.play:review", version.ref = "review" }
-review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "review" }
+#review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "review" }
 truth = { module = "com.google.truth:truth", version.ref = "truthVersion" }
 truth-java8-extension = { module = "com.google.truth.extensions:truth-java8-extension", version = "1.4.4" }
 ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }
