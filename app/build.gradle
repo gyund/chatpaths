@@ -146,7 +146,9 @@ android {
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
 //	implementation libs.androidx.core.ktx
-	implementation libs.asset.delivery
+	implementation (libs.asset.delivery) {
+		exclude group: 'com.google.android.play', module: 'core'
+	}
 //	implementation libs.asset.delivery.ktx
 	implementation libs.feature.delivery
 //	implementation libs.feature.delivery.ktx
@@ -175,7 +177,7 @@ dependencies {
 
 	// In-app review
 //	implementation libs.core
-	implementation libs.core.ktx
+//	implementation libs.core.ktx
 //	implementation project(path: ':modules:builder')
 	implementation libs.review
 
