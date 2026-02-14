@@ -21,10 +21,6 @@ ChatPaths is a communication app for helping non-verbal kids communicate while o
 - Localization support for english, spanish, french, and hindi
 
 
-<p align="center">
-	<a href='https://play.google.com/store/apps/details?id=com.gy.chatpaths.aac.app'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
-</p>
-
 ## Structure
 
 ```
