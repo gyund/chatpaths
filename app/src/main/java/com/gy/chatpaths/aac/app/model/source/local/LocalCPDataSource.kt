@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
+import androidx.core.net.toUri
 
 @Singleton
 class LocalCPDataSource
@@ -140,7 +141,7 @@ class LocalCPDataSource
                                 // Get the anchored elements off the list and added to the new list
                                 while (it.isNotEmpty()) {
                                     if (it.first().anchored) {
-                                        newList.add(it.removeFirst())
+                                        newList.add(it.removeAt(0))
                                     } else {
                                         break
                                     }
@@ -617,7 +618,7 @@ class LocalCPDataSource
             promptUriString?.let {
                 // audio prompts are not shared, so we can just delete it
                 try {
-                    val oldPromptUri = Uri.parse(promptUriString)
+                    val oldPromptUri = promptUriString.toUri()
                     oldPromptUri.toFile().delete()
                 } catch (e: RuntimeException) {
                     Log.d(tag, "exception with deleting audio: $e")
